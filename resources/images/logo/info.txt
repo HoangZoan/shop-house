@@ -1,0 +1,18 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: SourceSerifPro-Bold
+font link: https://fonts.google.com/specimen/Source+Serif+Pro
+font author: Frank Grießhammer
+font author site: http://www.frgr.de/
+
+
+icon designer: Samuel Q. Green
+icon designer link: /samuelqgreen
+        
+
+fontColor: {"hex":"#1E90FF"}
+bgColor: {"hex":"transparent"}
+iconColor: {"hex":"#1E90FF"}
+
+      

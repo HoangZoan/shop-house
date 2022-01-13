@@ -1,0 +1,97 @@
+@mixin respond($breakpoint, $orientation: none) {
+  @if $orientation == none {
+    @if $breakpoint == xxlg {
+      // <= 1300px
+      @media only screen and (max-width: 81.25em) {
+        @content;
+      }
+    }
+    @if $breakpoint == xlg {
+      // <= 1100px
+      @media only screen and (max-width: 68.75em) {
+        @content;
+      }
+    }
+    @if $breakpoint == lg {
+      // <= 960px
+      @media only screen and (max-width: 60em) {
+        @content;
+      }
+    }
+    @if $breakpoint == bg {
+      // <= 800px
+      @media only screen and (max-width: 50em) {
+        @content;
+      }
+    }
+    @if $breakpoint == md {
+      // <= 640px
+      @media only screen and (max-width: 40em) {
+        @content;
+      }
+    }
+    @if $breakpoint == sm {
+      // <= 500px
+      @media only screen and (max-width: 31.25em) {
+        @content;
+      }
+    }
+    @if $breakpoint == xs {
+      // <= 360px
+      @media only screen and (max-width: 22.5em) {
+        @content;
+      }
+    }
+  }
+
+  @if $orientation != none {
+    @if $breakpoint == tab-bg {
+      // <= 1100px
+      @media only screen and (max-width: 68.75em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+    @if $breakpoint == tab-md {
+      // <= 960px
+      @media only screen and (max-width: 60em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+    @if $breakpoint == tab-sm {
+      // <= 800px
+      @media only screen and (max-width: 50em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+    @if $breakpoint == phone-lg {
+      // <= 720px
+      @media only screen and (max-width: 45em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+    @if $breakpoint == phone-bg {
+      // <= 640px
+      @media only screen and (max-width: 40em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+    @if $breakpoint == phone-md {
+      // <= 540px
+      @media only screen and (max-width: 33.75em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+    @if $breakpoint == phone-sm {
+      // <= 450px
+      @media only screen and (max-width: 28.125em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+    @if $breakpoint == phone-xs {
+      // <= 360px
+      @media only screen and (max-width: 22.5em) and (orientation: $orientation) {
+        @content;
+      }
+    }
+  }
+}

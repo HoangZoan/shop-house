@@ -1,3 +1,5 @@
+/* COLOR */
+/* BORDER */
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +10,60 @@ html {
   font-size: 62.5%;
 }
 
-span {
-  color: greenyellow;
+button {
+  border: none;
+}
+
+.p-container {
+  padding-left: 4.8rem;
+  padding-right: 4.8rem;
+}
+
+.page-header .header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-header .header-bar__logo {
+  width: 8.6rem;
+}
+.page-header .header-bar__logo img {
+  width: 100%;
+  height: auto;
+}
+.page-header .header-bar__search-control {
+  background-color: red;
+  position: relative;
+  display: flex;
+  width: 30%;
+  background: #f4f4f4;
+  border-bottom: 1px solid #1e90ff;
+}
+.page-header .header-bar__search-control .search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translateY(-50%);
+}
+.page-header .header-bar__search-control .search-icon svg {
+  height: 1.4rem;
+  width: 1.4rem;
+}
+.page-header .header-bar__search-control input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 1rem 0;
+  padding-left: 4rem;
+}
+.page-header .header-bar__search-control button {
+  display: block;
+  padding: 0 2.4rem;
+}
+.page-header .header-bar__tools-box {
+  display: flex;
+}
+.page-header .header-bar__tools-box .tool-icon svg {
+  height: 2.4rem;
+  width: 2.4rem;
 }

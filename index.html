@@ -4,11 +4,55 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="resources/images/logo/favicon.png"
+      type="image/png"
+    />
     <title>Shop House - Đồ gia dụng nội thất chính hãng</title>
     <link rel="stylesheet" href="./src/css/style.css" />
     <script defer type="module" src="./src/script/controller.js"></script>
   </head>
   <body>
-    <div>Hello, HTML is working (<span>Sass and CSS are working</span>)</div>
+    <header class="page-header">
+      <div class="header-bar p-container">
+        <div class="header-bar__logo">
+          <img
+            src="./resources/images/logo/vector/default.svg"
+            alt="Shop House Logo"
+          />
+        </div>
+        <div class="header-bar__search-control">
+          <div class="search-icon">
+            <svg>
+              <use xlink:href="resources/icons/sprite.svg#search"></use>
+            </svg>
+          </div>
+          <input type="text" placeholder="Bạn đang tìm kiếm...?" />
+          <button>Tìm</button>
+        </div>
+        <div class="header-bar__tools-box">
+          <div class="tool-icon">
+            <svg>
+              <use xlink:href="resources/icons/sprite.svg#user"></use>
+            </svg>
+          </div>
+          <div class="tool-icon">
+            <svg>
+              <use xlink:href="resources/icons/sprite.svg#heart"></use>
+            </svg>
+          </div>
+          <div class="tool-icon">
+            <svg>
+              <use
+                xlink:href="resources/icons/sprite.svg#shopping-basket"
+              ></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-category"></div>
+    </header>
   </body>
 </html>

@@ -1,0 +1,62 @@
+.page-header {
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo {
+      width: 8.6rem;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &__search-control {
+      background-color: red;
+      position: relative;
+      display: flex;
+      width: 30%;
+      background: $color-gray-1;
+      border-bottom: $border-primary-thin;
+
+      .search-icon {
+        position: absolute;
+        top: 50%;
+        left: 1.2rem;
+        transform: translateY(-50%);
+
+        svg {
+          $icon-size: 1.4rem;
+          height: $icon-size;
+          width: $icon-size;
+        }
+      }
+
+      input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 1rem 0;
+        padding-left: 4rem;
+      }
+
+      button {
+        display: block;
+        padding: 0 2.4rem;
+      }
+    }
+
+    &__tools-box {
+      display: flex;
+
+      .tool-icon {
+        svg {
+          height: 2.4rem;
+          width: 2.4rem;
+        }
+      }
+    }
+  }
+}
