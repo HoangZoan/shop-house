@@ -10,6 +10,10 @@
       type="image/png"
     />
     <title>Shop House - Đồ gia dụng nội thất chính hãng</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./src/css/style.css" />
     <script defer type="module" src="./src/script/controller.js"></script>
   </head>
@@ -29,7 +33,7 @@
             </svg>
           </div>
           <input type="text" placeholder="Bạn đang tìm kiếm...?" />
-          <button>Tìm</button>
+          <button class="btn--primary">Tìm kiếm</button>
         </div>
         <div class="header-bar__tools-box">
           <div class="tool-icon">
@@ -52,7 +56,157 @@
         </div>
       </div>
 
-      <div class="header-category"></div>
+      <div class="header-category">
+        <ul class="header-category__list">
+          <li class="header-category__list__item">
+            <a href="#">Phòng khách</a>
+          </li>
+          <li class="header-category__list__item"><a href="#">Phòng ngủ</a></li>
+          <li class="header-category__list__item"><a href="#">Nhà bếp</a></li>
+          <li class="header-category__list__item"><a href="#">Trẻ em</a></li>
+          <li class="header-category__list__item"><a href="#">Sân vườn</a></li>
+          <li class="header-category__list__item">
+            <a href="#">Thiết bị nội thất</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="#">Khuyến mãi</a>
+          </li>
+        </ul>
+      </div>
     </header>
+
+    <main>
+      <section class="section-billboards bg--gray">
+        <div class="billboard container">
+          <div class="billboard__slider">
+            <div class="billboard__slider__item--1 banner">
+              <a href="#">
+                <img src="./resources/images/banners/slider.png" alt="Banner" />
+              </a>
+            </div>
+          </div>
+          <div class="billboard__banners">
+            <div class="billboard__banners__item--1 banner">
+              <a href="#">
+                <img
+                  src="./resources/images/banners/banner-sm-1.png"
+                  alt="Banner"
+                />
+              </a>
+            </div>
+            <div class="billboard__banners__item--2 banner">
+              <a href="#">
+                <img
+                  src="./resources/images/banners/banner-sm-2.png"
+                  alt="Banner"
+                />
+              </a>
+            </div>
+            <div class="billboard__banners__item--3 banner">
+              <a href="#">
+                <img
+                  src="./resources/images/banners/banner-sm-3.png"
+                  alt="Banner"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-brands-and-products bg--gray">
+        <div class="main-cards container">
+          <div class="main-cards__top-bar">
+            <div class="main-cards__top-bar__icon">
+              <img
+                src="./resources/images/icons/favorite-brand.png"
+                alt="Cerificate icon"
+              />
+            </div>
+            <h2 class="heading--2">Nhãn hàng yêu thích</h2>
+            <div class="main-cards__top-bar__see-more">
+              <a href="#">Xem thêm</a>
+              <div class="icon-arrow">
+                <svg>
+                  <use
+                    xlink:href="resources/icons/sprite.svg#arrow-right"
+                  ></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-cards__cards variant-product">
+            <div class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--final">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <span class="price-text">4.499.000đ</span>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </div>
+
+            <div class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--final">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <span class="price-text">4.499.000đ</span>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </div>
+
+            <div class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--final">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <span class="price-text">4.499.000đ</span>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </div>
+
+            <div class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--final">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <span class="price-text">4.499.000đ</span>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

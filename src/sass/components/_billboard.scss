@@ -1,0 +1,29 @@
+.billboard {
+  @include grid-2-col;
+
+  &__slider {
+    &__item--1 {
+    }
+  }
+
+  &__banners {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+
+    &__item--1 {
+      grid-row: 1 / 2;
+      grid-column: 1 / span 3;
+    }
+
+    &__item--2 {
+      grid-row: 2 / 3;
+      grid-column: 1 / span 2;
+    }
+
+    &__item--3 {
+      grid-row: 2 / 3;
+      grid-column: 3 / span 1;
+    }
+  }
+}
