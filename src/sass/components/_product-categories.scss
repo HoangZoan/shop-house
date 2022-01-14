@@ -5,14 +5,17 @@
   &__item {
     position: relative;
 
-    @include placeImg;
+    &__img {
+      @include placeImg;
+      overflow: hidden;
+    }
 
     img {
       transition: $trans-medium;
     }
 
     &:hover img {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     &:hover .product-categories__item__link {
@@ -31,7 +34,7 @@
       }
 
       100% {
-        transform: translate(-50%, -80%);
+        transform: translate(-50%, -60%);
       }
     }
 

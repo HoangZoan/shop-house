@@ -27,6 +27,12 @@
       align-items: center;
       color: $color-primary;
 
+      transition: $trans-short;
+
+      &:hover {
+        color: lighten($color-primary, 15%);
+      }
+
       a {
         color: inherit;
         font-weight: 500;
@@ -51,7 +57,7 @@
   &__cards {
     display: grid;
     overflow: hidden;
-    padding: 0.5rem;
+    padding: 0.8rem;
     position: relative;
 
     .card-img,
@@ -74,8 +80,10 @@
     }
 
     // BRAND CARD
-    &__product-card {
+    &__brand-card {
+      box-shadow: $box-shadow-card;
       background-color: $color-white-background;
+      transition: $trans-short;
 
       &,
       .card-img {
@@ -94,6 +102,7 @@
     &__product-card {
       box-shadow: $box-shadow-card;
       background-color: $color-white-background;
+      transition: $trans-short;
 
       .card-text {
         padding: 2rem 2.8rem;
@@ -113,6 +122,12 @@
           font-size: 1.8rem;
         }
       }
+    }
+
+    &__brand-card:hover,
+    &__product-card:hover {
+      box-shadow: $box-shadow-card-hover;
+      transform: translateY(-2px);
     }
 
     // SLIDER BUTTON

@@ -16,6 +16,7 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   line-height: 1.7;
+  font-size: 1.4rem;
 }
 
 a {
@@ -29,10 +30,15 @@ ul {
 
 input {
   outline: none;
+  border: none;
 }
 
 .heading--2 {
   font-size: 2.8rem;
+}
+
+.heading--3 {
+  font-size: 2rem;
 }
 
 /* SPACING */
@@ -115,7 +121,6 @@ input {
 }
 .page-header .header-bar__search-control input {
   flex: 1;
-  border: none;
   background: transparent;
   padding: 1rem 0;
   padding-left: 4rem;
@@ -168,6 +173,73 @@ input {
   color: #006ad1;
 }
 
+.footer-divider {
+  height: 1px;
+  background-color: #cfcfcf;
+}
+
+.footer-content {
+  margin: 4.8rem auto;
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: flex-start;
+}
+.footer-content__column .heading--3 {
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+.footer-content__column__list {
+  color: #7c7c7c;
+  margin-bottom: 2.8rem;
+  transition: all 0.2s;
+}
+.footer-content__column__list li strong {
+  color: #000;
+  transition: all 0.2s;
+}
+.footer-content__column__list li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.footer-content__column__list li:hover {
+  color: #1e90ff;
+}
+.footer-content__column__list li:hover strong {
+  color: inherit;
+}
+.footer-content__column .footer-logo {
+  --logo-size: 12rem;
+  height: var(--logo-size);
+  width: var(--logo-size);
+}
+.footer-content__column .footer-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.footer-content__column .footer-copyright {
+  font-size: 1.2rem;
+}
+.footer-content__column .certificate-logo {
+  --logo-width: 18rem;
+  width: var(--logo-width);
+  height: auto;
+}
+.footer-content__column .certificate-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.footer-content__column .footer-social-box svg {
+  --icon-size: 2.4rem;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  color: #1e90ff;
+  margin-right: 1.2rem;
+}
+
 .section-billboards,
 .section-brands-and-products {
   padding-bottom: 12rem;
@@ -177,7 +249,8 @@ input {
   padding-top: 6rem;
 }
 
-.section-categories {
+.section-categories,
+.section-info {
   margin-bottom: 12rem;
 }
 
@@ -232,6 +305,10 @@ input {
   display: flex;
   align-items: center;
   color: #1e90ff;
+  transition: all 0.2s;
+}
+.main-cards__top-bar__see-more:hover {
+  color: #6bb6ff;
 }
 .main-cards__top-bar__see-more a {
   color: inherit;
@@ -252,7 +329,7 @@ input {
 .main-cards__cards {
   display: grid;
   overflow: hidden;
-  padding: 0.5rem;
+  padding: 0.8rem;
   position: relative;
   --slider-btn-spacing: 0.8rem;
 }
@@ -275,22 +352,25 @@ input {
   grid-template-columns: repeat(5, var(--column-width));
   column-gap: var(--column-gap);
 }
-.main-cards__cards__product-card {
+.main-cards__cards__brand-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   background-color: #fff;
+  transition: all 0.2s;
 }
-.main-cards__cards__product-card,
-.main-cards__cards__product-card .card-img {
+.main-cards__cards__brand-card,
+.main-cards__cards__brand-card .card-img {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   overflow: hidden;
 }
-.main-cards__cards__product-card .card-brand-logo {
+.main-cards__cards__brand-card .card-brand-logo {
   background-color: #fff;
   padding: 2.4rem 5.6rem;
 }
 .main-cards__cards__product-card {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   background-color: #fff;
+  transition: all 0.2s;
 }
 .main-cards__cards__product-card .card-text {
   padding: 2rem 2.8rem;
@@ -306,6 +386,10 @@ input {
 }
 .main-cards__cards__product-card .card-text__product-title {
   font-size: 1.8rem;
+}
+.main-cards__cards__brand-card:hover, .main-cards__cards__product-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 .main-cards__cards__btn--prev, .main-cards__cards__btn--next {
   --button-size: 4.8rem;
@@ -340,7 +424,10 @@ input {
 .product-categories__item {
   position: relative;
 }
-.product-categories__item img {
+.product-categories__item__img {
+  overflow: hidden;
+}
+.product-categories__item__img img {
   display: block;
   width: 100%;
   height: 100%;
@@ -350,7 +437,7 @@ input {
   transition: all 0.35s;
 }
 .product-categories__item:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .product-categories__item:hover .product-categories__item__link {
   backdrop-filter: brightness(100%);
@@ -363,7 +450,7 @@ input {
 }
 @keyframes category-moveUp {
   100% {
-    transform: translate(-50%, -80%);
+    transform: translate(-50%, -60%);
   }
 }
 .product-categories__item--living-room {
@@ -407,4 +494,80 @@ input {
   padding: 0.6rem 2.4rem;
   border: 1px solid #fff;
   transition: all 0.35s;
+}
+
+.banner-wide {
+  margin-bottom: 9rem;
+}
+.banner-wide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-features {
+  display: flex;
+  margin-bottom: 9rem;
+}
+.info-features__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.info-features__item:not(:last-child) {
+  margin-right: 6.4rem;
+}
+.info-features__item__img {
+  --img-size: 9.6rem;
+  height: var(--img-size);
+  width: var(--img-size);
+  margin-bottom: 3.6rem;
+}
+.info-features__item__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.info-features__item__title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  flex: 1;
+}
+.info-features__item__paragraph {
+  margin-top: 1.8rem;
+  font-size: 1.3rem;
+}
+
+.info-cta {
+  background-color: #c8e4ff;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info-cta__description {
+  margin-right: 4.8rem;
+  font-size: 1.6rem;
+}
+.info-cta__form {
+  flex: 0.4;
+  display: flex;
+}
+.info-cta__form input {
+  background-color: #f6f6f6;
+  flex: 1;
+  padding: 1.2rem 2.4rem;
+  border-bottom: 1px solid #1e90ff;
+}
+.info-cta__form input::placeholder {
+  font-size: 1.4rem;
+}
+.info-cta__form button {
+  --padding: 2.4rem;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
 }
