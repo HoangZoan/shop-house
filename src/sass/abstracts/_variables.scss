@@ -1,9 +1,12 @@
 /* COLOR */
 $color-primary: #1e90ff;
 
+$color-red: #e74c3c;
+
 $color-white: #fff;
-$color-gray-background: #f6f6f6;
-$color-gray-search-placeholder: #f4f4f4;
+$color-white-background: #fff;
+$color-gray-background: #f4f4f4;
+$color-gray-search-placeholder: #f6f6f6;
 $color-gray-border-bottom: #cfcfcf;
 
 //////////////////////////
@@ -14,7 +17,16 @@ $grid-2-col-horizontal-gap: 3.2rem;
 /* BORDER */
 $border-primary-thin: 1px solid $color-primary;
 $border-gray-thin: 1px solid $color-gray-border-bottom;
+$border-white-thin: 1px solid $color-white;
+
+$border-radius-bg: 1rem;
 
 //////////////////////////
 /* TRANSITION */
 $trans-short: all 0.2s;
+$trans-medium: all 0.35s;
+
+//////////////////////////
+/* BOX SHADOW */
+$box-shadow-card: 0 2px 4px rgba(0, 0, 0, 0.15);
+$box-shadow-slider-btn: 0 1px 3px rgba(0, 0, 0, 0.1);

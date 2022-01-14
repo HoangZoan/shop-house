@@ -2,6 +2,7 @@
 /* SPACING */
 /* BORDER */
 /* TRANSITION */
+/* BOX SHADOW */
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +15,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
+  line-height: 1.7;
 }
 
 a {
@@ -23,6 +25,10 @@ a {
 
 ul {
   list-style: none;
+}
+
+input {
+  outline: none;
 }
 
 .heading--2 {
@@ -44,7 +50,7 @@ ul {
 
 /* BACKGROUND */
 .bg--gray {
-  background-color: #f6f6f6;
+  background-color: #f4f4f4;
 }
 
 /* BUTTON */
@@ -64,6 +70,13 @@ ul {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* POSITION */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .page-header .header-bar {
@@ -86,7 +99,7 @@ ul {
   position: relative;
   display: flex;
   width: 30%;
-  background: #f4f4f4;
+  background: #f6f6f6;
   border-bottom: 1px solid #1e90ff;
 }
 .page-header .header-bar__search-control .search-icon {
@@ -155,9 +168,17 @@ ul {
   color: #006ad1;
 }
 
+.section-billboards,
+.section-brands-and-products {
+  padding-bottom: 12rem;
+}
+
 .section-billboards {
   padding-top: 6rem;
-  padding-bottom: 12rem;
+}
+
+.section-categories {
+  margin-bottom: 12rem;
 }
 
 .billboard {
@@ -183,7 +204,7 @@ ul {
   grid-column: 3/span 1;
 }
 
-.main-cards {
+.main-cards:not(:last-child) {
   padding-bottom: 9rem;
 }
 .main-cards__top-bar {
@@ -230,17 +251,160 @@ ul {
 }
 .main-cards__cards {
   display: grid;
+  overflow: hidden;
+  padding: 0.5rem;
+  position: relative;
+  --slider-btn-spacing: 0.8rem;
 }
-.main-cards__cards .card-img img {
+.main-cards__cards .card-img img,
+.main-cards__cards .card-brand-logo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.main-cards__cards.variant-banner {
+  --column-gap: 4.8rem;
+  --column-width: calc((100% - var(--column-gap) * 2) / 3);
+  grid-template-columns: repeat(4, var(--column-width));
+  column-gap: var(--column-gap);
+}
 .main-cards__cards.variant-product {
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 3.2rem;
+  --column-gap: 3.2rem;
+  --column-width: calc((100% - var(--column-gap) * 3) / 4);
+  grid-template-columns: repeat(5, var(--column-width));
+  column-gap: var(--column-gap);
+}
+.main-cards__cards__product-card {
+  background-color: #fff;
+}
+.main-cards__cards__product-card,
+.main-cards__cards__product-card .card-img {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  overflow: hidden;
+}
+.main-cards__cards__product-card .card-brand-logo {
+  background-color: #fff;
+  padding: 2.4rem 5.6rem;
+}
+.main-cards__cards__product-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
 }
 .main-cards__cards__product-card .card-text {
-  background-color: red;
+  padding: 2rem 2.8rem;
+}
+.main-cards__cards__product-card .card-text__price--current {
+  font-size: 1.6rem;
+  color: #1e90ff;
+}
+.main-cards__cards__product-card .card-text__price--old {
+  font-size: 1.6rem;
+  color: #e74c3c;
+  margin-bottom: 1.6rem;
+}
+.main-cards__cards__product-card .card-text__product-title {
+  font-size: 1.8rem;
+}
+.main-cards__cards__btn--prev, .main-cards__cards__btn--next {
+  --button-size: 4.8rem;
+  height: var(--button-size);
+  width: var(--button-size);
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid #1e90ff;
+  cursor: pointer;
+}
+.main-cards__cards__btn--prev svg, .main-cards__cards__btn--next svg {
+  --icon-size: 1.8rem;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  color: #1e90ff;
+}
+.main-cards__cards__btn--prev {
+  left: var(--slider-btn-spacing);
+}
+.main-cards__cards__btn--next {
+  right: var(--slider-btn-spacing);
+}
+
+.product-categories {
+  display: grid;
+  grid-template-areas: "living living bed bed" "garden kids kitchen appliances";
+}
+.product-categories__item {
+  position: relative;
+}
+.product-categories__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-categories__item img {
+  transition: all 0.35s;
+}
+.product-categories__item:hover img {
+  transform: scale(1.1);
+}
+.product-categories__item:hover .product-categories__item__link {
+  backdrop-filter: brightness(100%);
+}
+.product-categories__item:hover .product-categories__item__link .category-title {
+  background-color: #fff;
+  color: #1e90ff;
+  animation: category-moveUp 0.3s;
+  animation-fill-mode: forwards;
+}
+@keyframes category-moveUp {
+  100% {
+    transform: translate(-50%, -80%);
+  }
+}
+.product-categories__item--living-room {
+  grid-area: living;
+}
+.product-categories__item--bed-room {
+  grid-area: bed;
+}
+.product-categories__item--garden {
+  grid-area: garden;
+}
+.product-categories__item--kids {
+  grid-area: kids;
+}
+.product-categories__item--kitchen {
+  grid-area: kitchen;
+}
+.product-categories__item--appliances {
+  grid-area: appliances;
+}
+.product-categories__item__link {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: brightness(65%);
+  width: 100%;
+  height: 100%;
+  transition: all 0.35s;
+}
+.product-categories__item__link .category-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  top: 75%;
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: 300;
+  padding: 0.6rem 2.4rem;
+  border: 1px solid #fff;
+  transition: all 0.35s;
 }

@@ -1,5 +1,7 @@
 .main-cards {
-  padding-bottom: 9rem;
+  &:not(:last-child) {
+    padding-bottom: 9rem;
+  }
 
   &__top-bar {
     display: flex;
@@ -48,31 +50,102 @@
 
   &__cards {
     display: grid;
+    overflow: hidden;
+    padding: 0.5rem;
+    position: relative;
 
-    .card-img {
+    .card-img,
+    .card-brand-logo {
       @include placeImg;
     }
 
-    &.variant-product {
-      grid-template-columns: repeat(4, 1fr);
-      column-gap: 3.2rem;
+    &.variant-banner {
+      --column-gap: 4.8rem;
+      --column-width: calc((100% - var(--column-gap) * 2) / 3);
+      grid-template-columns: repeat(4, var(--column-width));
+      column-gap: var(--column-gap);
     }
 
+    &.variant-product {
+      --column-gap: 3.2rem;
+      --column-width: calc((100% - var(--column-gap) * 3) / 4);
+      grid-template-columns: repeat(5, var(--column-width));
+      column-gap: var(--column-gap);
+    }
+
+    // BRAND CARD
     &__product-card {
+      background-color: $color-white-background;
+
+      &,
       .card-img {
+        border-bottom-left-radius: $border-radius-bg;
+        border-bottom-right-radius: $border-radius-bg;
+        overflow: hidden;
       }
 
+      .card-brand-logo {
+        background-color: $color-white-background;
+        padding: 2.4rem 5.6rem;
+      }
+    }
+
+    // PRODUCT CARD
+    &__product-card {
+      box-shadow: $box-shadow-card;
+      background-color: $color-white-background;
+
       .card-text {
-        background-color: red;
+        padding: 2rem 2.8rem;
 
         &__price {
-          &--final {
+          &--current {
+            @include priceText;
           }
 
           &--old {
+            @include priceText(old);
+            margin-bottom: 1.6rem;
           }
         }
+
+        &__product-title {
+          font-size: 1.8rem;
+        }
       }
+    }
+
+    // SLIDER BUTTON
+    &__btn--prev,
+    &__btn--next {
+      --button-size: 4.8rem;
+      height: var(--button-size);
+      width: var(--button-size);
+
+      background-color: $color-white;
+      border-radius: 50%;
+      box-shadow: $box-shadow-slider-btn;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: $border-primary-thin;
+      cursor: pointer;
+
+      svg {
+        --icon-size: 1.8rem;
+        height: var(--icon-size);
+        width: var(--icon-size);
+        color: $color-primary;
+      }
+    }
+
+    --slider-btn-spacing: 0.8rem;
+    &__btn--prev {
+      left: var(--slider-btn-spacing);
+    }
+
+    &__btn--next {
+      right: var(--slider-btn-spacing);
     }
   }
 }

@@ -37,3 +37,11 @@ $p-container: 4.8rem;
 .banner {
   @include placeImg;
 }
+
+//////////////////////////
+/* POSITION */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

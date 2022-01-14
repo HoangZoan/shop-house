@@ -11,7 +11,7 @@
     />
     <title>Shop House - Đồ gia dụng nội thất chính hãng</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./src/css/style.css" />
@@ -76,6 +76,7 @@
     </header>
 
     <main>
+      <!-- QUẢNG CÁO ĐẦU TRANG -->
       <section class="section-billboards bg--gray">
         <div class="billboard container">
           <div class="billboard__slider">
@@ -114,12 +115,88 @@
         </div>
       </section>
 
+      <!-- BRANDS AND PRODUCTS -->
       <section class="section-brands-and-products bg--gray">
+        <!-- NHÃN HÀNG YÊU THÍCH -->
         <div class="main-cards container">
           <div class="main-cards__top-bar">
             <div class="main-cards__top-bar__icon">
               <img
                 src="./resources/images/icons/favorite-brand.png"
+                alt="Cerificate icon"
+              />
+            </div>
+            <h2 class="heading--2">Nhãn hàng yêu thích</h2>
+          </div>
+
+          <div class="main-cards__cards variant-banner">
+            <a href="#" class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img
+                  src="./resources/images/brands/chilai-wall.png"
+                  alt="Product"
+                />
+              </div>
+              <div class="card-brand-logo">
+                <img
+                  src="./resources/images/brands/chilai-logo.png"
+                  alt="Chilai Logo"
+                />
+              </div>
+            </a>
+
+            <a href="#" class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img
+                  src="./resources/images/brands/nhaxinh-wall.jpg"
+                  alt="Product"
+                />
+              </div>
+              <div class="card-brand-logo">
+                <img
+                  src="./resources/images/brands/hoaphat-logo.png"
+                  alt="Chilai Logo"
+                />
+              </div>
+            </a>
+
+            <a href="#" class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img
+                  src="./resources/images/brands/phoxinh-wall.jpg"
+                  alt="Product"
+                />
+              </div>
+              <div class="card-brand-logo">
+                <img
+                  src="./resources/images/brands/phoxinh-logo.png"
+                  alt="Chilai Logo"
+                />
+              </div>
+            </a>
+
+            <!-- SLIDER BUTTON -->
+            <div class="main-cards__cards__btn--prev center-content">
+              <svg>
+                <use xlink:href="resources/icons/sprite.svg#chevron-left"></use>
+              </svg>
+            </div>
+            <div class="main-cards__cards__btn--next center-content">
+              <svg>
+                <use
+                  xlink:href="resources/icons/sprite.svg#chevron-right"
+                ></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- SẢN PHẨM BÁN CHẠY -->
+        <div class="main-cards container">
+          <div class="main-cards__top-bar">
+            <div class="main-cards__top-bar__icon">
+              <img
+                src="./resources/images/icons/heart-bag.png"
                 alt="Cerificate icon"
               />
             </div>
@@ -137,73 +214,281 @@
           </div>
 
           <div class="main-cards__cards variant-product">
-            <div class="main-cards__cards__product-card">
+            <a href="#" class="main-cards__cards__product-card">
               <div class="card-img">
                 <img src="./resources/images/products/p1.jpg" alt="Product" />
               </div>
               <div class="card-text">
-                <div class="card-text__price card-text__price--final">
+                <div class="card-text__price card-text__price--current">
                   Giá: <span class="price-text">3.999.000đ</span>
                 </div>
                 <div class="card-text__price card-text__price--old">
-                  <span class="price-text">4.499.000đ</span>
+                  <del class="price-text">4.499.000đ</del>
                 </div>
                 <div class="card-text__product-title">
                   Ghế trẻ nhỏ Alcalde Kids Activity
                 </div>
               </div>
-            </div>
+            </a>
 
-            <div class="main-cards__cards__product-card">
+            <a href="#" class="main-cards__cards__product-card">
               <div class="card-img">
                 <img src="./resources/images/products/p1.jpg" alt="Product" />
               </div>
               <div class="card-text">
-                <div class="card-text__price card-text__price--final">
+                <div class="card-text__price card-text__price--current">
                   Giá: <span class="price-text">3.999.000đ</span>
                 </div>
                 <div class="card-text__price card-text__price--old">
-                  <span class="price-text">4.499.000đ</span>
+                  <del class="price-text">4.499.000đ</del>
                 </div>
                 <div class="card-text__product-title">
                   Ghế trẻ nhỏ Alcalde Kids Activity
                 </div>
               </div>
-            </div>
+            </a>
 
-            <div class="main-cards__cards__product-card">
+            <a href="#" class="main-cards__cards__product-card">
               <div class="card-img">
                 <img src="./resources/images/products/p1.jpg" alt="Product" />
               </div>
               <div class="card-text">
-                <div class="card-text__price card-text__price--final">
+                <div class="card-text__price card-text__price--current">
                   Giá: <span class="price-text">3.999.000đ</span>
                 </div>
                 <div class="card-text__price card-text__price--old">
-                  <span class="price-text">4.499.000đ</span>
+                  <del class="price-text">4.499.000đ</del>
                 </div>
                 <div class="card-text__product-title">
                   Ghế trẻ nhỏ Alcalde Kids Activity
                 </div>
               </div>
-            </div>
+            </a>
 
-            <div class="main-cards__cards__product-card">
+            <a href="#" class="main-cards__cards__product-card">
               <div class="card-img">
                 <img src="./resources/images/products/p1.jpg" alt="Product" />
               </div>
               <div class="card-text">
-                <div class="card-text__price card-text__price--final">
+                <div class="card-text__price card-text__price--current">
                   Giá: <span class="price-text">3.999.000đ</span>
                 </div>
                 <div class="card-text__price card-text__price--old">
-                  <span class="price-text">4.499.000đ</span>
+                  <del class="price-text">4.499.000đ</del>
                 </div>
                 <div class="card-text__product-title">
                   Ghế trẻ nhỏ Alcalde Kids Activity
                 </div>
               </div>
+            </a>
+
+            <!-- SLIDER BUTTON -->
+            <div class="main-cards__cards__btn--prev center-content">
+              <svg>
+                <use xlink:href="resources/icons/sprite.svg#chevron-left"></use>
+              </svg>
             </div>
+            <div class="main-cards__cards__btn--next center-content">
+              <svg>
+                <use
+                  xlink:href="resources/icons/sprite.svg#chevron-right"
+                ></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- SẢN PHẨM MỚI NHẤT -->
+        <div class="main-cards container">
+          <div class="main-cards__top-bar">
+            <div class="main-cards__top-bar__icon">
+              <img
+                src="./resources/images/icons/new.png"
+                alt="Cerificate icon"
+              />
+            </div>
+            <h2 class="heading--2">Sản phẩm mới nhất</h2>
+            <div class="main-cards__top-bar__see-more">
+              <a href="#">Xem thêm</a>
+              <div class="icon-arrow">
+                <svg>
+                  <use
+                    xlink:href="resources/icons/sprite.svg#arrow-right"
+                  ></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-cards__cards variant-product">
+            <a href="#" class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--current">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <del class="price-text">4.499.000đ</del>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </a>
+
+            <a href="#" class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--current">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <del class="price-text">4.499.000đ</del>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </a>
+
+            <a href="#" class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--current">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <del class="price-text">4.499.000đ</del>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </a>
+
+            <a href="#" class="main-cards__cards__product-card">
+              <div class="card-img">
+                <img src="./resources/images/products/p1.jpg" alt="Product" />
+              </div>
+              <div class="card-text">
+                <div class="card-text__price card-text__price--current">
+                  Giá: <span class="price-text">3.999.000đ</span>
+                </div>
+                <div class="card-text__price card-text__price--old">
+                  <del class="price-text">4.499.000đ</del>
+                </div>
+                <div class="card-text__product-title">
+                  Ghế trẻ nhỏ Alcalde Kids Activity
+                </div>
+              </div>
+            </a>
+
+            <!-- SLIDER BUTTON -->
+            <div class="main-cards__cards__btn--prev center-content">
+              <svg>
+                <use xlink:href="resources/icons/sprite.svg#chevron-left"></use>
+              </svg>
+            </div>
+            <div class="main-cards__cards__btn--next center-content">
+              <svg>
+                <use
+                  xlink:href="resources/icons/sprite.svg#chevron-right"
+                ></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCT CATEGORIES -->
+      <section class="section-categories">
+        <div class="product-categories">
+          <!-- Phòng Khách -->
+          <div
+            class="product-categories__item product-categories__item--living-room"
+          >
+            <img
+              src="./resources/images/categories/living-room.jpg"
+              alt="Living room photo"
+            />
+
+            <a href="#" class="product-categories__item__link">
+              <div class="category-title">Phòng Khách</div>
+            </a>
+          </div>
+
+          <!-- Phòng Ngủ -->
+          <div
+            class="product-categories__item product-categories__item--bed-room"
+          >
+            <img
+              src="./resources/images/categories/bed-room.jpg"
+              alt="Living room photo"
+            />
+
+            <a href="#" class="product-categories__item__link">
+              <div class="category-title">Phòng Ngủ</div>
+            </a>
+          </div>
+
+          <!-- Sân Vườn -->
+          <div
+            class="product-categories__item product-categories__item--garden"
+          >
+            <img
+              src="./resources/images/categories/garden.jpg"
+              alt="Living room photo"
+            />
+
+            <a href="#" class="product-categories__item__link">
+              <div class="category-title">Sân Vườn</div>
+            </a>
+          </div>
+
+          <!-- Trẻ Em -->
+          <div class="product-categories__item product-categories__item--kids">
+            <img
+              src="./resources/images/categories/kids.jpg"
+              alt="Living room photo"
+            />
+
+            <a href="#" class="product-categories__item__link">
+              <div class="category-title">Trẻ Em</div>
+            </a>
+          </div>
+
+          <!-- Nhà Bếp -->
+          <div
+            class="product-categories__item product-categories__item--kitchen"
+          >
+            <img
+              src="./resources/images/categories/kitchen.jpg"
+              alt="Living room photo"
+            />
+
+            <a href="#" class="product-categories__item__link">
+              <div class="category-title">Nhà Bếp</div>
+            </a>
+          </div>
+
+          <!-- Thiết Bị -->
+          <div
+            class="product-categories__item product-categories__item--appliances"
+          >
+            <img
+              src="./resources/images/categories/appliances.png"
+              alt="Living room photo"
+            />
+
+            <a href="#" class="product-categories__item__link">
+              <div class="category-title">Thiết Bị</div>
+            </a>
           </div>
         </div>
       </section>
