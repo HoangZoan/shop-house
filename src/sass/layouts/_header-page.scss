@@ -1,14 +1,35 @@
 .page-header {
+  position: relative;
+  z-index: 300;
+
+  @mixin socialIcons {
+    svg {
+      --icon-size: 2.4rem;
+
+      @include respond(sm) {
+        --icon-size: 2rem;
+      }
+
+      height: var(--icon-size);
+      width: var(--icon-size);
+    }
+  }
+
   .header-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: $border-gray-thin;
+    position: relative;
 
     &__logo {
       width: 8.6rem;
 
       @include placeImg;
+
+      @include respond(bg) {
+        width: 7.2rem;
+      }
     }
 
     &__search-control {
@@ -18,6 +39,27 @@
       width: 30%;
       background: $color-gray-search-placeholder;
       border-bottom: $border-primary-thin;
+
+      &.active {
+        display: flex;
+      }
+
+      @include respond(xxlg) {
+        width: 40%;
+      }
+
+      @include respond(lg) {
+        width: 50%;
+      }
+
+      @include respond(bg) {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transform: translateY(calc(100%));
+        display: none;
+      }
 
       .search-icon {
         position: absolute;
@@ -37,6 +79,13 @@
         background: transparent;
         padding: 1rem 0;
         padding-left: 4rem;
+
+        @include respond(bg) {
+          padding-top: 1.4rem;
+          padding-bottom: 1.4rem;
+          background-color: $color-white-background;
+          border-top: $border-gray-thin;
+        }
       }
 
       button {
@@ -51,37 +100,119 @@
       .tool-icon {
         cursor: pointer;
 
-        &:not(:last-child) {
-          margin-right: 2.8rem;
+        &--search,
+        &--menu {
+          display: none;
+
+          @include respond(bg) {
+            display: block;
+          }
         }
 
-        svg {
-          height: 2.4rem;
-          width: 2.4rem;
+        &--user,
+        &--heart {
+          @include respond(bg) {
+            display: none;
+          }
         }
+
+        &:not(:last-child) {
+          margin-right: 2.8rem;
+
+          @include respond(xs) {
+            margin-right: 2rem;
+          }
+        }
+
+        @include socialIcons;
       }
     }
   }
 
+  @mixin category-list-style {
+    font-size: 1.6rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+
+  @mixin category-list-hover {
+    background-color: $color-primary-light-greyish;
+    color: $color-primary;
+  }
+
+  @mixin category-list-transition {
+    transition: $trans-short;
+  }
+
+  // HEADER CATEGORY
   .header-category {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: $color-white-background;
+
+    @include setDivider($color-gray-border-bottom);
+
+    .divider {
+      display: none;
+
+      @include respond(bg) {
+        display: block;
+      }
+    }
+
+    @include respond(bg) {
+      width: 40%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translateY(calc(100% - 1px));
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    @include respond(md) {
+      width: 100%;
+    }
 
     &__list {
       display: flex;
       justify-content: center;
-      font-size: 1.6rem;
+
+      @include respond(bg) {
+        flex-direction: column;
+      }
 
       &__item {
-        transition: $trans-short;
+        @include category-list-transition;
+
+        @include respond(bg) {
+          width: 100%;
+          text-align: center;
+        }
 
         a {
+          @include category-list-style;
           display: inline-block;
-          padding: 1.2rem 0;
+          width: 100%;
+
+          @include respond(bg) {
+            padding: 1rem 0;
+          }
         }
       }
 
       &__item:not(:last-child) {
         margin-right: 6.4rem;
+
+        @include respond(lg) {
+          margin-right: 3.6rem;
+        }
+
+        @include respond(bg) {
+          margin-right: 0;
+        }
       }
 
       &__item:last-child {
@@ -94,10 +225,58 @@
 
       &__item:hover {
         color: $color-primary;
+
+        @include respond(bg) {
+          @include category-list-hover;
+        }
       }
 
       &__item:last-child:hover {
         color: darken($color-primary, 15%);
+      }
+    }
+
+    // TOOL BOX MENU (RESPONSIVE)
+    .tool-box-menu {
+      display: none;
+
+      @include respond(bg) {
+        display: block;
+      }
+
+      &__item {
+        padding-left: 3.6rem;
+        @include category-list-style;
+
+        @include respond(md) {
+          padding-left: 0;
+        }
+
+        &:hover {
+          @include category-list-hover;
+          @include category-list-transition;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+
+          @include respond(md) {
+            justify-content: center;
+          }
+        }
+
+        &__icon {
+          display: flex;
+          align-items: center;
+          margin-right: 2.4rem;
+
+          @include respond(sm) {
+            margin-right: 1.6rem;
+          }
+
+          @include socialIcons;
+        }
       }
     }
   }

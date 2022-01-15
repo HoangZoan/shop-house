@@ -19,7 +19,7 @@
   </head>
   <body>
     <header class="page-header">
-      <div class="header-bar p-container">
+      <div class="header-bar container">
         <div class="header-bar__logo">
           <img
             src="./resources/images/logo/vector/default.svg"
@@ -36,12 +36,17 @@
           <button class="btn--primary">Tìm kiếm</button>
         </div>
         <div class="header-bar__tools-box">
-          <div class="tool-icon">
+          <div class="tool-icon tool-icon--search">
+            <svg>
+              <use xlink:href="resources/icons/sprite.svg#search"></use>
+            </svg>
+          </div>
+          <div class="tool-icon tool-icon--user">
             <svg>
               <use xlink:href="resources/icons/sprite.svg#user"></use>
             </svg>
           </div>
-          <div class="tool-icon">
+          <div class="tool-icon tool-icon--heart">
             <svg>
               <use xlink:href="resources/icons/sprite.svg#heart"></use>
             </svg>
@@ -53,10 +58,42 @@
               ></use>
             </svg>
           </div>
+          <div class="tool-icon tool-icon--menu">
+            <svg>
+              <use xlink:href="resources/icons/sprite.svg#menu"></use>
+            </svg>
+          </div>
         </div>
       </div>
 
       <div class="header-category">
+        <div class="divider"></div>
+
+        <ul class="tool-box-menu">
+          <li class="tool-box-menu__item">
+            <a href="#">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use xlink:href="resources/icons/sprite.svg#user"></use>
+                </svg>
+              </div>
+              <div class="tool-box-menu__item__title">Thông tin khách hàng</div>
+            </a>
+          </li>
+          <li class="tool-box-menu__item">
+            <a href="#">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use xlink:href="resources/icons/sprite.svg#heart"></use>
+                </svg>
+              </div>
+              <div>Sản phẩm yêu thích</div>
+            </a>
+          </li>
+        </ul>
+
+        <div class="divider"></div>
+
         <ul class="header-category__list">
           <li class="header-category__list__item">
             <a href="#">Phòng khách</a>
@@ -82,25 +119,34 @@
           <div class="billboard__slider">
             <div class="billboard__slider__item--1 banner">
               <a href="#">
-                <img src="./resources/images/banners/slider.png" alt="Banner" />
+                <picture>
+                  <img
+                    src="./resources/images/banners/slider.png"
+                    alt="Banner"
+                  />
+                </picture>
               </a>
             </div>
           </div>
           <div class="billboard__banners">
             <div class="billboard__banners__item--1 banner">
               <a href="#">
-                <img
-                  src="./resources/images/banners/banner-sm-1.png"
-                  alt="Banner"
-                />
+                <picture>
+                  <img
+                    src="./resources/images/banners/banner-sm-1.png"
+                    alt="Banner"
+                  />
+                </picture>
               </a>
             </div>
             <div class="billboard__banners__item--2 banner">
               <a href="#">
-                <img
-                  src="./resources/images/banners/banner-sm-2.png"
-                  alt="Banner"
-                />
+                <picture>
+                  <img
+                    src="./resources/images/banners/banner-sm-2.png"
+                    alt="Banner"
+                  />
+                </picture>
               </a>
             </div>
             <div class="billboard__banners__item--3 banner">
@@ -414,10 +460,12 @@
             class="product-categories__item product-categories__item--living-room"
           >
             <div class="product-categories__item__img">
-              <img
-                src="./resources/images/categories/living-room.jpg"
-                alt="Living room photo"
-              />
+              <picture>
+                <img
+                  src="./resources/images/categories/living-room.jpg"
+                  alt="Living room photo"
+                />
+              </picture>
             </div>
 
             <a href="#" class="product-categories__item__link">
@@ -430,10 +478,12 @@
             class="product-categories__item product-categories__item--bed-room"
           >
             <div class="product-categories__item__img">
-              <img
-                src="./resources/images/categories/bed-room.jpg"
-                alt="Bed room photo"
-              />
+              <picture>
+                <img
+                  src="./resources/images/categories/bed-room.jpg"
+                  alt="Bed room photo"
+                />
+              </picture>
             </div>
 
             <a href="#" class="product-categories__item__link">
@@ -446,10 +496,12 @@
             class="product-categories__item product-categories__item--garden"
           >
             <div class="product-categories__item__img">
-              <img
-                src="./resources/images/categories/garden.jpg"
-                alt="Garden tools photo"
-              />
+              <picture>
+                <img
+                  src="./resources/images/categories/garden.jpg"
+                  alt="Garden tools photo"
+                />
+              </picture>
             </div>
 
             <a href="#" class="product-categories__item__link">
@@ -460,10 +512,12 @@
           <!-- Trẻ Em -->
           <div class="product-categories__item product-categories__item--kids">
             <div class="product-categories__item__img">
-              <img
-                src="./resources/images/categories/kids.jpg"
-                alt="Kids plaing in a room photo"
-              />
+              <picture>
+                <img
+                  src="./resources/images/categories/kids.jpg"
+                  alt="Kids plaing in a room photo"
+                />
+              </picture>
             </div>
 
             <a href="#" class="product-categories__item__link">
@@ -476,10 +530,12 @@
             class="product-categories__item product-categories__item--kitchen"
           >
             <div class="product-categories__item__img">
-              <img
-                src="./resources/images/categories/kitchen.jpg"
-                alt="Kitchen photo"
-              />
+              <picture>
+                <img
+                  src="./resources/images/categories/kitchen.jpg"
+                  alt="Kitchen photo"
+                />
+              </picture>
             </div>
 
             <a href="#" class="product-categories__item__link">
@@ -492,10 +548,12 @@
             class="product-categories__item product-categories__item--appliances"
           >
             <div class="product-categories__item__img">
-              <img
-                src="./resources/images/categories/appliances.png"
-                alt="Toast machine photo"
-              />
+              <picture>
+                <img
+                  src="./resources/images/categories/appliances.png"
+                  alt="Toast machine photo"
+                />
+              </picture>
             </div>
 
             <a href="#" class="product-categories__item__link">
@@ -508,10 +566,12 @@
       <section class="section-info">
         <div class="banner-wide container">
           <a href="#">
-            <img
-              src="./resources/images/banners/long-banner.png"
-              alt="Ad area"
-            />
+            <picture>
+              <img
+                src="./resources/images/banners/long-banner.png"
+                alt="Ad area"
+              />
+            </picture>
           </a>
         </div>
 
@@ -588,8 +648,8 @@
       </section>
     </main>
 
-    <footer>
-      <div class="footer-divider"></div>
+    <footer class="page-footer">
+      <div class="divider"></div>
 
       <div class="footer-content">
         <div class="footer-content__column">
@@ -622,7 +682,7 @@
           <ul class="footer-content__column__list">
             <li>
               <a href="#">
-                <span class="footer-list-icon">☎️ </span>
+                <span class="footer-list-icon">☎️&nbsp;</span>
                 <span>Hotline: <strong>1900-9999</strong></span>
                 <br />
                 <span>(08h - 21h cả T7, CN)</span>
@@ -630,7 +690,7 @@
             </li>
             <li>
               <a href="#">
-                <span class="footer-list-icon">✉️ </span>
+                <span class="footer-list-icon">✉️&nbsp;</span>
                 <span>Email: <strong>HoTro@ShopHouse.vn</strong></span>
               </a>
             </li>
@@ -641,7 +701,7 @@
         </div>
       </div>
 
-      <div class="footer-divider"></div>
+      <div class="divider"></div>
 
       <div class="footer-content">
         <div class="footer-content__column">

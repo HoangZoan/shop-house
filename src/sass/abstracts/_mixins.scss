@@ -7,12 +7,6 @@
   }
 }
 
-@mixin grid-2-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 3.2rem;
-}
-
 @mixin priceText($type: current) {
   font-size: 1.6rem;
 
@@ -36,4 +30,31 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@mixin setDivider(
+  $color: #000,
+  $capacity: 100%,
+  $thickness: 1px,
+  $dir: horizontal
+) {
+  .divider {
+    background-color: $color;
+
+    @if $dir == horizontal {
+      width: $capacity;
+      height: $thickness;
+      transform: translateX(
+        calc(((100% - $capacity) * 100 / 2) / $capacity) * 1%
+      );
+    }
+
+    @if $dir == vertical {
+      height: $capacity;
+      width: $thickness;
+      transform: translateY(
+        calc(((100% - $capacity) * 100 / 2) / $capacity) * 1%
+      );
+    }
+  }
 }

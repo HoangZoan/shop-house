@@ -3,6 +3,10 @@
   background-color: $color-gray-border-bottom;
 }
 
+.page-footer {
+  @include setDivider($color-gray-border-bottom);
+}
+
 .footer-content {
   margin: 4.8rem auto;
   width: 70%;

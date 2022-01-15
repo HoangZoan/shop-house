@@ -1,6 +1,15 @@
+:root {
+  --container-padding: 4.8rem;
+
+  @include respond(sm) {
+    --container-padding: 2.4rem;
+  }
+}
+
 /* COLOR */
 $color-primary: #1e90ff;
 $color-primary-light: #c8e4ff;
+$color-primary-light-greyish: darken(#fbfdff, 2%);
 
 $color-red: #e74c3c;
 
