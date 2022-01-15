@@ -7,18 +7,6 @@
   }
 }
 
-@mixin priceText($type: current) {
-  font-size: 1.6rem;
-
-  @if $type == current {
-    color: $color-primary;
-  }
-
-  @if $type == old {
-    color: $color-red;
-  }
-}
-
 @mixin position-top-left {
   position: absolute;
   top: 0;

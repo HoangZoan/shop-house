@@ -2,6 +2,14 @@
   display: grid;
   grid-template-areas: "living living bed bed" "garden kids kitchen appliances";
 
+  @include respond(lg) {
+    grid-template-areas: "living living" "bed bed" "kitchen kids" "appliances garden";
+  }
+
+  @include respond(sm) {
+    grid-template-areas: "living" "bed" "kitchen" "kids" "appliances" "garden";
+  }
+
   &__item {
     position: relative;
 
@@ -30,9 +38,6 @@
     }
 
     @keyframes category-moveUp {
-      0% {
-      }
-
       100% {
         transform: translate(-50%, -60%);
       }
@@ -80,6 +85,26 @@
         padding: 0.6rem 2.4rem;
         border: $border-white-thin;
         transition: $trans-medium;
+
+        @include respond(xxlg) {
+          font-size: 1.8rem;
+        }
+
+        @include respond(xlg) {
+          padding-left: 1.8rem;
+          padding-right: 1.8rem;
+        }
+
+        @include respond(lg) {
+          padding: 1.2rem 3.6rem;
+          font-size: 2.4rem;
+          top: 70%;
+        }
+
+        @include respond(bg) {
+          font-size: 2rem;
+          padding: 0.4rem 2.4rem;
+        }
       }
     }
   }

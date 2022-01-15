@@ -2,6 +2,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 3.2rem;
+  row-gap: 2.8rem;
+
+  @include respond(md) {
+    grid-template-columns: 1fr;
+  }
 
   &__slider {
     &__item--1 {

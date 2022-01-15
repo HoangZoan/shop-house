@@ -9,11 +9,27 @@
     justify-content: space-between;
     margin-bottom: 2.4rem;
 
+    @include respond(sm) {
+      flex-wrap: wrap;
+    }
+
+    @include respond(xs) {
+      margin-bottom: 1.2rem;
+    }
+
     &__icon {
       --icon-size: 4.2rem;
+      @include respond(sm) {
+        --icon-size: 3.6rem;
+      }
+
       height: var(--icon-size);
       width: var(--icon-size);
       margin-right: 2.4rem;
+
+      @include respond(sm) {
+        margin-right: 1.6rem;
+      }
 
       @include placeImg;
     }
@@ -26,8 +42,12 @@
       display: flex;
       align-items: center;
       color: $color-primary;
-
       transition: $trans-short;
+
+      @include respond(sm) {
+        margin-top: 1.2rem;
+        width: 100%;
+      }
 
       &:hover {
         color: lighten($color-primary, 15%);
@@ -38,6 +58,11 @@
         font-weight: 500;
         font-size: 1.6rem;
         margin-right: 0.6rem;
+
+        @include respond(sm) {
+          margin-left: auto;
+          font-size: 1.4rem;
+        }
       }
 
       .icon-arrow {
@@ -66,15 +91,45 @@
     }
 
     &.variant-banner {
+      --columns-visible: 3;
+      @include respond(lg) {
+        --columns-visible: 2;
+      }
+      @include respond(sm) {
+        --columns-visible: 1;
+      }
+
       --column-gap: 4.8rem;
-      --column-width: calc((100% - var(--column-gap) * 2) / 3);
-      grid-template-columns: repeat(4, var(--column-width));
+      @include respond(md) {
+        --column-gap: 2.8rem;
+      }
+
+      --column-width: calc(
+        (100% - var(--column-gap) * (var(--columns-visible) - 1)) /
+          var(--columns-visible)
+      );
+
+      grid-template-columns: repeat(var(--brands-number), var(--column-width));
       column-gap: var(--column-gap);
     }
 
-    &.variant-product {
+    &.variant-product-preview {
+      --columns-visible: 4;
+      @include respond(lg) {
+        --columns-visible: 3;
+      }
+      @include respond(md) {
+        --columns-visible: 2;
+      }
+      @include respond(sm) {
+        --columns-visible: 1;
+      }
+
       --column-gap: 3.2rem;
-      --column-width: calc((100% - var(--column-gap) * 3) / 4);
+      --column-width: calc(
+        (100% - var(--column-gap) * (var(--columns-visible) - 1)) /
+          var(--columns-visible)
+      );
       grid-template-columns: repeat(5, var(--column-width));
       column-gap: var(--column-gap);
     }
@@ -95,6 +150,10 @@
       .card-brand-logo {
         background-color: $color-white-background;
         padding: 2.4rem 5.6rem;
+
+        @include respond(md) {
+          padding: 1.8rem 2.8rem;
+        }
       }
     }
 
@@ -106,20 +165,39 @@
 
       .card-text {
         padding: 2rem 2.8rem;
+        font-size: 1.6rem;
+
+        @include respond(xlg) {
+          padding: 1.8rem 1.8rem;
+          font-size: 1.4rem;
+        }
+
+        @include respond(sm) {
+          padding: 2.8rem 2.8rem;
+          font-size: 1.6rem;
+        }
 
         &__price {
           &--current {
-            @include priceText;
+            color: $color-primary;
           }
 
           &--old {
-            @include priceText(old);
+            color: $color-red;
             margin-bottom: 1.6rem;
           }
         }
 
         &__product-title {
           font-size: 1.8rem;
+
+          @include respond(xlg) {
+            font-size: 1.6rem;
+          }
+
+          @include respond(sm) {
+            font-size: 1.8rem;
+          }
         }
       }
     }
@@ -134,6 +212,10 @@
     &__btn--prev,
     &__btn--next {
       --button-size: 4.8rem;
+      @include respond(xs) {
+        --button-size: 4rem;
+      }
+
       height: var(--button-size);
       width: var(--button-size);
 

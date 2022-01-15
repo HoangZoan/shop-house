@@ -4,8 +4,15 @@
 }
 
 .info-features {
-  display: flex;
   margin-bottom: 9rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  column-gap: 4.2rem;
+  row-gap: 4.8rem;
+
+  @include respond(sm) {
+    column-gap: 2.8rem;
+  }
 
   &__item {
     display: flex;
@@ -13,27 +20,46 @@
     align-items: center;
     text-align: center;
 
-    &:not(:last-child) {
-      margin-right: 6.4rem;
-    }
-
     &__img {
       --img-size: 9.6rem;
+      @include respond(lg) {
+        --img-size: 7.2rem;
+      }
+      @include respond(xs) {
+        --img-size: 6rem;
+      }
+
       height: var(--img-size);
       width: var(--img-size);
       margin-bottom: 3.6rem;
       @include placeImg;
+
+      @include respond(bg) {
+        margin-bottom: 2.8rem;
+      }
     }
 
     &__title {
       font-size: 1.8rem;
       font-weight: 500;
       flex: 1;
+
+      @include respond(lg) {
+        font-size: 1.6rem;
+      }
     }
 
     &__paragraph {
       margin-top: 1.8rem;
       font-size: 1.3rem;
+
+      @include respond(lg) {
+        font-size: 1.1rem;
+      }
+
+      @include respond(sm) {
+        margin-top: 1rem;
+      }
     }
   }
 }

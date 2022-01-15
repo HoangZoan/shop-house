@@ -1,9 +1,6 @@
 :root {
-  --container-padding: 4.8rem;
-
-  @include respond(sm) {
-    --container-padding: 2.4rem;
-  }
+  --brands-number: 10;
+  --products-number: 10;
 }
 
 /* COLOR */

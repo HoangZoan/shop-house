@@ -1,13 +1,25 @@
 .section-billboards,
 .section-brands-and-products {
   padding-bottom: 12rem;
+
+  @include respond(xlg) {
+    padding-bottom: 9.6rem;
+  }
 }
 
 .section-billboards {
   padding-top: 6rem;
+
+  @include respond(md) {
+    padding-top: 4.8rem;
+  }
 }
 
 .section-categories,
 .section-info {
   margin-bottom: 12rem;
+
+  @include respond(xlg) {
+    margin-bottom: 9.6rem;
+  }
 }
