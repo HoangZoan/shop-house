@@ -1,0 +1,10 @@
+/* BREAD CRUMBS */
+.bread-crumbs {
+  &__link {
+    @include primaryLink;
+  }
+
+  &__slash {
+    font-size: 1.6rem;
+  }
+}

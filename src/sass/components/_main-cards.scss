@@ -1,6 +1,10 @@
 .main-cards {
   &:not(:last-child) {
     padding-bottom: 9rem;
+
+    @include respond(sm) {
+      padding-bottom: 7.2rem;
+    }
   }
 
   &__top-bar {
@@ -41,17 +45,13 @@
     &__see-more {
       display: flex;
       align-items: center;
-      color: $color-primary;
-      transition: $trans-short;
 
       @include respond(sm) {
         margin-top: 1.2rem;
         width: 100%;
       }
 
-      &:hover {
-        color: lighten($color-primary, 15%);
-      }
+      @include primaryLink;
 
       a {
         color: inherit;

@@ -1,10 +1,18 @@
+@mixin handleSpacing {
+  @include respond(xlg) {
+    padding-bottom: 9.6rem;
+  }
+
+  @include respond(sm) {
+    padding-bottom: 7.2rem;
+  }
+}
+
 .section-billboards,
 .section-brands-and-products {
   padding-bottom: 12rem;
 
-  @include respond(xlg) {
-    padding-bottom: 9.6rem;
-  }
+  @include handleSpacing;
 }
 
 .section-billboards {
@@ -19,7 +27,9 @@
 .section-info {
   margin-bottom: 12rem;
 
-  @include respond(xlg) {
-    margin-bottom: 9.6rem;
-  }
+  @include handleSpacing;
+}
+
+.section-categories {
+  margin-bottom: 0;
 }

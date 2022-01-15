@@ -46,3 +46,14 @@
     }
   }
 }
+
+@mixin primaryLink {
+  & {
+    color: $color-primary;
+    transition: $trans-short;
+  }
+
+  &:hover {
+    color: lighten($color-primary, 15%);
+  }
+}

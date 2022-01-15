@@ -13,6 +13,41 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: flex-start;
+  column-gap: 6.4rem;
+  row-gap: 4.8rem;
+
+  @include respond(xlg) {
+    width: 80%;
+  }
+
+  @include respond(lg) {
+    width: 90%;
+  }
+
+  @include respond(bg) {
+    width: 70%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond(md) {
+    width: 50%;
+    grid-template-columns: 1fr;
+  }
+
+  @include respond(md) {
+    width: 70%;
+  }
+
+  // &--top {
+  // }
+
+  &--bottom {
+    .footer-content__column:first-child {
+      @include respond(bg) {
+        grid-column: 1 / -1;
+      }
+    }
+  }
 
   &__column {
     .heading--3 {
@@ -47,6 +82,13 @@
     }
 
     .payments-method-box {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .payment-icon {
+        margin-right: 1.2rem;
+      }
     }
 
     // BOTTOM CONTENT
