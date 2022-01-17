@@ -1,8 +1,4 @@
-@include setMainPadding;
-
 .section-product-list {
-  background-color: $color-gray-background;
-
   .product-fliter {
     margin-right: 8rem;
 
@@ -35,17 +31,10 @@
     }
 
     select {
-      padding: 0.2rem;
-      border-radius: 3px;
-      border: $border-primary-thin;
-      margin-bottom: 2.4rem;
+      @include setSelectStyle;
 
       @include respond(sm) {
         margin-bottom: 1.8rem;
-      }
-
-      &:not(:last-child) {
-        margin-right: 1.8rem;
       }
     }
   }

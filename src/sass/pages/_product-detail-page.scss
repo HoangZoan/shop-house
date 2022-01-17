@@ -1,0 +1,123 @@
+.section-product-detail {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  column-gap: 3.2rem;
+  align-items: flex-start;
+
+  .product-description {
+    background-color: $color-white-background;
+
+    &__gallery {
+      margin-bottom: 4.2rem;
+
+      &__big-img {
+        @include placeImg;
+        margin-bottom: 1.8rem;
+      }
+
+      &__small-images-container {
+        display: flex;
+        justify-content: center;
+
+        .small-image {
+          --img-size: 4.2rem;
+          height: var(--img-size);
+          width: var(--img-size);
+          opacity: 0.7;
+          transition: $trans-short;
+          @include placeImg;
+
+          &:not(:last-child) {
+            margin-right: 1.8rem;
+          }
+
+          &:hover,
+          &.active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &__text {
+      padding: 3.6rem 2.4rem;
+      padding-top: 0;
+
+      &__title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      &__specification-list {
+        margin-bottom: 3.2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      // &__content {
+      //   p {
+      //   }
+      // }
+    }
+  }
+
+  .product-order {
+    background-color: $color-white-background;
+    padding: 1.8rem 2.4rem;
+
+    @include setDivider($color-primary);
+
+    &__title-info {
+      .heading--3 {
+        margin-bottom: 0.6rem;
+      }
+
+      &__distributor {
+        font-size: 1.3rem;
+        margin-bottom: 2.4rem;
+
+        a {
+          @include primaryLink;
+        }
+      }
+    }
+
+    &__promotion-list {
+      background-color: $color-primary-light-2;
+      line-height: 1.6;
+      list-style: disc;
+      padding: 1.6rem 1.6rem 1.6rem 2.8rem;
+      margin-bottom: 3.2rem;
+    }
+
+    &__price-tag {
+      font-size: 2.8rem;
+      color: $color-primary;
+      margin-bottom: 1.6rem;
+    }
+
+    &__product-filter {
+      margin-bottom: 3.2rem;
+
+      select {
+        @include setSelectStyle;
+      }
+    }
+
+    &__action {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      column-gap: 1.6rem;
+      margin-bottom: 5.6rem;
+
+      button {
+        font-size: 1.8rem;
+        font-weight: 700;
+        --padding-size: 1rem;
+        padding-top: var(--padding-size);
+        padding-bottom: var(--padding-size);
+      }
+    }
+  }
+}

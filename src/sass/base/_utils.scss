@@ -29,6 +29,16 @@
   padding-right: var(--padding);
 }
 
+.main-padding-y {
+  --padding-y: 6.4rem;
+  padding-top: var(--padding-y);
+  padding-bottom: var(--padding-y);
+
+  @include respond(sm) {
+    padding-top: 3.6rem;
+  }
+}
+
 //////////////////////////
 /* BACKGROUND */
 .bg--gray {
@@ -40,12 +50,29 @@
 %button {
   border: none;
   cursor: pointer;
+  transition: $trans-short;
 }
 
 .btn--primary {
   @extend %button;
   background-color: $color-primary;
   color: $color-white;
+
+  &:hover {
+    background-color: $color-primary-light-hover-btn;
+  }
+}
+
+.btn--sub {
+  @extend %button;
+  background-color: $color-white-background;
+  color: $color-primary;
+  border: $border-primary-thin;
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+  }
 }
 
 .pagination__btn {
