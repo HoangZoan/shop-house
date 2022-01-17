@@ -38,7 +38,7 @@ const brandsItemEl = `
 `;
 
 const brandsMarkup = [brandsItemEl, brandsItemEl, brandsItemEl].join(" ");
-renderMainCards(["main-cards__cards", "variant-banner"], brandsMarkup);
+renderMainCards(["main-cards__cards", "variant-brand"], brandsMarkup);
 
 const productReviewEl = `
     <a href="#" class="main-cards__cards__product-card">

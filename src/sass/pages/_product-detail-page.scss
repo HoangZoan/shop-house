@@ -4,15 +4,30 @@
   column-gap: 3.2rem;
   align-items: flex-start;
 
+  @include respond(bg) {
+    grid-template-columns: 1fr;
+  }
+
   .product-description {
     background-color: $color-white-background;
 
     &__gallery {
       margin-bottom: 4.2rem;
 
+      @keyframes buttonsFadeIn {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
       &__big-img {
         @include placeImg;
         margin-bottom: 1.8rem;
+        position: relative;
       }
 
       &__small-images-container {
@@ -43,6 +58,10 @@
       padding: 3.6rem 2.4rem;
       padding-top: 0;
 
+      @include respond(bg) {
+        margin-top: 2.8rem;
+      }
+
       &__title {
         font-size: 2rem;
         font-weight: 700;
@@ -68,9 +87,24 @@
 
     @include setDivider($color-primary);
 
+    &--origin {
+      @include respond(bg) {
+        display: none;
+      }
+    }
+
+    &--responsive {
+      display: none;
+
+      @include respond(bg) {
+        display: block;
+      }
+    }
+
     &__title-info {
       .heading--3 {
         margin-bottom: 0.6rem;
+        line-height: 1.4;
       }
 
       &__distributor {
@@ -102,6 +136,8 @@
 
       select {
         @include setSelectStyle;
+        margin-right: 1.2rem;
+        margin-bottom: 1.2rem;
       }
     }
 
@@ -109,14 +145,62 @@
       display: grid;
       grid-template-columns: 1fr 1.5fr;
       column-gap: 1.6rem;
+      row-gap: 2rem;
       margin-bottom: 5.6rem;
+
+      @include respond(lg) {
+        grid-template-columns: 1fr;
+      }
+
+      @include respond(bg) {
+        grid-template-columns: 1fr 1.5fr;
+      }
+
+      @include respond(sm) {
+        grid-template-columns: 1fr;
+      }
 
       button {
         font-size: 1.8rem;
         font-weight: 700;
+
         --padding-size: 1rem;
+        @include respond(lg) {
+          --padding-size: 1.2rem;
+        }
         padding-top: var(--padding-size);
         padding-bottom: var(--padding-size);
+      }
+    }
+
+    &__policy-title {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+      margin-top: 1.8rem;
+    }
+
+    &__policy-list {
+      li {
+        display: flex;
+        align-items: center;
+        line-height: 1.5;
+
+        &:not(:last-child) {
+          margin-bottom: 1.2rem;
+        }
+
+        .policy-icon {
+          --icon-size: 2.8rem;
+          height: var(--icon-size);
+          width: var(--icon-size);
+
+          @include placeImg;
+        }
+
+        .policy-description {
+          margin-left: 1.2rem;
+        }
       }
     }
   }

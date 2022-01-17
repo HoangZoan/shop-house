@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sản phẩm chi tiết</title>
+    <title>Sản Phẩm Yêu Thích</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
@@ -13,7 +13,7 @@
     <script
       defer
       type="module"
-      src="../src/script/controllers/product-detail.js"
+      src="../src/script/controllers/favorite-products.js"
     ></script>
   </head>
   <body>
@@ -109,297 +109,125 @@
       </div>
     </header>
 
-    <main class="bg--gray main-padding-y">
+    <main class="section-favorite-products bg--gray main-padding-y">
       <div class="container">
         <div class="bread-crumbs">
           <a class="bread-crumbs__link" href="#">Trang chủ</a>
           &nbsp;
           <span class="bread-crumbs__slash">/</span>
           &nbsp;
-          <a class="bread-crumbs__link" href="#">Phòng bếp</a>
-          &nbsp;
-          <span class="bread-crumbs__slash">/</span>
-          &nbsp;
-          <a class="bread-crumbs__link" href="#"
-            >Bộ bát đĩa sứ 16 món Wickham</a
-          >
+          <a class="bread-crumbs__link" href="#">Sản phẩm yêu thích</a>
         </div>
 
-        <section class="section-product-detail">
-          <div class="product-description">
-            <div class="product-description__gallery">
-              <div class="product-description__gallery__big-img">
-                <img
-                  src="../resources/images/product detail/p1.jpg"
-                  alt="Product image"
-                />
-
-                <!-- Slider Button -->
-                <div class="slider-btn--prev center-content">
-                  <svg>
-                    <use
-                      xlink:href="../resources/icons/sprite.svg#chevron-left"
-                    ></use>
-                  </svg>
-                </div>
-                <div class="slider-btn--next center-content">
-                  <svg>
-                    <use
-                      xlink:href="../resources/icons/sprite.svg#chevron-right"
-                    ></use>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="product-description__gallery__small-images-container">
-                <div class="small-image active">
-                  <img
-                    src="../resources/images/product detail/p1.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="small-image">
-                  <img
-                    src="../resources/images/product detail/p2.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="small-image">
-                  <img
-                    src="../resources/images/product detail/p3.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="small-image">
-                  <img
-                    src="../resources/images/product detail/p4.jpg"
-                    alt="Product image"
-                  />
-                </div>
-              </div>
+        <section class="favorite-products">
+          <div class="main-cards">
+            <div class="main-cards__top-bar">
+              <h2 class="heading--2">Sản phẩm yêu thích</h2>
             </div>
 
-            <div class="product-order product-order--responsive">
-              <div class="product-order__title-info">
-                <h3 class="heading--3">Bộ bát đĩa sứ 16 món Wickham</h3>
-                <div class="product-order__title-info__distributor">
-                  <span>Phân phối bởi: <a href="#">Phố xinh</a></span>
+            <div class="main-cards__cards variant-favorite-products">
+              <a href="#" class="main-cards__cards__favorite-card">
+                <div class="card-img">
+                  <img
+                    src="../resources/images/products/p1.jpg"
+                    alt="Product image"
+                  />
                 </div>
-              </div>
-
-              <ul class="product-order__promotion-list">
-                <li>
-                  Áp dụng mã <strong>PhoXinhFreeShip</strong> để miễn phí giao
-                  hàng với đơn hàng có giá trị
-                  <strong>từ 1,5 triệu đồng</strong>
-                </li>
-              </ul>
-
-              <div class="product-order__price-tag">1.000.000đ</div>
-
-              <div class="product-order__product-filter">
-                <select>
-                  <option value="white">Màu sắc: Trắng</option>
-                </select>
-              </div>
-
-              <div class="product-order__action">
-                <button class="btn--sub">Yêu thích</button>
-                <button class="btn--primary">Mua ngay</button>
-              </div>
-
-              <div class="divider"></div>
-
-              <div class="product-order__policy-title">Chính sách sản phẩm</div>
-
-              <ul class="product-order__policy-list">
-                <li>
-                  <div class="policy-icon">
-                    <img
-                      src="../resources/images/policy/warranty.svg"
-                      alt="Shield icon"
-                    />
+                <div class="card-content">
+                  <div class="card-content__title">
+                    Ghế trẻ nhỏ Alcalde Kids Activity
                   </div>
-                  <p class="policy-description">
-                    Bảo hành <strong>2 năm</strong>
-                  </p>
-                </li>
-                <li>
-                  <div class="policy-icon">
-                    <img
-                      src="../resources/images/policy/delivery.svg"
-                      alt="Truck icon"
-                    />
+
+                  <div>
+                    <div
+                      class="card-content__price card-content__price--current"
+                    >
+                      Giá: <span class="price-text">3.999.000đ</span>
+                    </div>
+                    <div class="card-content__price card-content__price--old">
+                      <del class="price-text">4.499.000đ</del>
+                    </div>
                   </div>
-                  <p class="policy-description">
-                    Vận chuyển tận nơi <strong>từ 2 đến 5 ngày</strong>
-                  </p>
-                </li>
-                <li>
-                  <div class="policy-icon">
-                    <img
-                      src="../resources/images/policy/gift.svg"
-                      alt="Gift icon"
-                    />
+
+                  <div class="card-content__action">
+                    <button class="btn--primary">Mua ngay</button>
+                    <button class="btn--sub">Xóa</button>
                   </div>
-                  <p class="policy-description">Có quà tặng kèm sản phẩm</p>
-                </li>
-              </ul>
-            </div>
+                </div>
+              </a>
 
-            <div class="product-description__text">
-              <div class="product-description__text__title">Mô tả chi tiết</div>
-              <ul class="product-description__text__specification-list">
-                <li>Kích thước: ...</li>
-                <li>Nơi sản xuất: ...</li>
-                <li>Chất liệu: ...</li>
-                <li>Kèm theo: ...</li>
-              </ul>
-
-              <div class="product-description__text__title">
-                Thông tin sản phẩm
-              </div>
-              <div class="product-description__text__content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Lectus elit dolor nibh quam. Urna sed mattis odio risus
-                  lobortis. Tristique consectetur tincidunt amet et. Non et
-                  aliquet nullam mus sed tristique amet est venenatis. In
-                  placerat odio hac egestas ac turpis adipiscing in. Aliquam
-                  enim purus duis porttitor vulputate sapien eleifend lectus.
-                  Ultricies felis molestie mattis lacus, etiam eget orci
-                  ultricies est. Dictumst massa duis nunc, erat accumsan nisl
-                  volutpat eu. Nunc lobortis id egestas condimentum et. Potenti
-                  et egestas consequat ultricies diam. Fames consectetur feugiat
-                  tortor consequat arcu...
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-order product-order--origin">
-            <div class="product-order__title-info">
-              <h3 class="heading--3">Bộ bát đĩa sứ 16 món Wickham</h3>
-              <div class="product-order__title-info__distributor">
-                <span>Phân phối bởi: <a href="#">Phố xinh</a></span>
-              </div>
-            </div>
-
-            <ul class="product-order__promotion-list">
-              <li>
-                Áp dụng mã <strong>PhoXinhFreeShip</strong> để miễn phí giao
-                hàng với đơn hàng có giá trị
-                <strong>từ 1,5 triệu đồng</strong>
-              </li>
-            </ul>
-
-            <div class="product-order__price-tag">1.000.000đ</div>
-
-            <div class="product-order__product-filter">
-              <select>
-                <option value="white">Màu sắc: Trắng</option>
-              </select>
-            </div>
-
-            <div class="product-order__action">
-              <button class="btn--sub">Yêu thích</button>
-              <button class="btn--primary">Mua ngay</button>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="product-order__policy-title">Chính sách sản phẩm</div>
-
-            <ul class="product-order__policy-list">
-              <li>
-                <div class="policy-icon">
+              <a href="#" class="main-cards__cards__favorite-card">
+                <div class="card-img">
                   <img
-                    src="../resources/images/policy/warranty.svg"
-                    alt="Shield icon"
+                    src="../resources/images/products/p1.jpg"
+                    alt="Product image"
                   />
                 </div>
-                <p class="policy-description">
-                  Bảo hành <strong>2 năm</strong>
-                </p>
-              </li>
-              <li>
-                <div class="policy-icon">
+                <div class="card-content">
+                  <div class="card-content__title">
+                    Ghế trẻ nhỏ Alcalde Kids Activity asdfa sdfasdf adsfasd
+                    fadsfadsf
+                  </div>
+
+                  <div>
+                    <div
+                      class="card-content__price card-content__price--current"
+                    >
+                      Giá: <span class="price-text">3.999.000đ</span>
+                    </div>
+                    <div class="card-content__price card-content__price--old">
+                      <del class="price-text">4.499.000đ</del>
+                    </div>
+                  </div>
+
+                  <div class="card-content__action">
+                    <button class="btn--primary">Mua ngay</button>
+                    <button class="btn--sub">Xóa</button>
+                  </div>
+                </div>
+              </a>
+
+              <a href="#" class="main-cards__cards__favorite-card">
+                <div class="card-img">
                   <img
-                    src="../resources/images/policy/delivery.svg"
-                    alt="Truck icon"
+                    src="../resources/images/products/p1.jpg"
+                    alt="Product image"
                   />
                 </div>
-                <p class="policy-description">
-                  Vận chuyển tận nơi <strong>từ 2 đến 5 ngày</strong>
-                </p>
-              </li>
-              <li>
-                <div class="policy-icon">
-                  <img
-                    src="../resources/images/policy/gift.svg"
-                    alt="Gift icon"
-                  />
+                <div class="card-content">
+                  <div class="card-content__title">
+                    Ghế trẻ nhỏ Alcalde Kids Activity
+                  </div>
+
+                  <div>
+                    <div
+                      class="card-content__price card-content__price--current"
+                    >
+                      Giá: <span class="price-text">3.999.000đ</span>
+                    </div>
+                    <div class="card-content__price card-content__price--old">
+                      <del class="price-text">4.499.000đ</del>
+                    </div>
+                  </div>
+
+                  <div class="card-content__action">
+                    <button class="btn--primary">Mua ngay</button>
+                    <button class="btn--sub">Xóa</button>
+                  </div>
                 </div>
-                <p class="policy-description">Có quà tặng kèm sản phẩm</p>
-              </li>
-            </ul>
+              </a>
+            </div>
           </div>
         </section>
 
         <section class="section-more-products">
           <div class="main-cards">
             <div class="main-cards__top-bar">
-              <h2 class="heading--2">Thường mua kèm theo</h2>
+              <h2 class="heading--2">Xem gần đây</h2>
             </div>
 
             <div
-              class="main-cards__cards variant-product-preview purchase-by-follow"
-            >
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <!-- SLIDER BUTTON -->
-              <div class="slider-btn--prev center-content">
-                <svg>
-                  <use
-                    xlink:href="../resources/icons/sprite.svg#chevron-left"
-                  ></use>
-                </svg>
-              </div>
-              <div class="slider-btn--next center-content">
-                <svg>
-                  <use
-                    xlink:href="../resources/icons/sprite.svg#chevron-right"
-                  ></use>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div class="main-cards">
-            <div class="main-cards__top-bar">
-              <h2 class="heading--2">Sản phẩm tương tự</h2>
-            </div>
-
-            <div
-              class="main-cards__cards variant-product-preview similar-category"
+              class="main-cards__cards variant-product-preview recently-viewed"
             >
               <a href="#" class="main-cards__cards__product-card">
                 <div class="card-img">

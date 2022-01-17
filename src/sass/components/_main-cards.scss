@@ -90,7 +90,7 @@
       @include placeImg;
     }
 
-    &.variant-banner {
+    &.variant-brand {
       --columns-visible: 3;
       @include respond(lg) {
         --columns-visible: 2;
@@ -140,6 +140,17 @@
       row-gap: 4.8rem;
     }
 
+    &.variant-favorite-products {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2.4rem;
+      row-gap: 3.6rem;
+
+      @include respond(xlg) {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+    }
+
     // BRAND CARD
     &__brand-card {
       box-shadow: $box-shadow-card;
@@ -184,18 +195,12 @@
         }
 
         &__price {
-          &--current {
-            color: $color-primary;
-          }
-
-          &--old {
-            color: $color-red;
-            margin-bottom: 1.6rem;
-          }
+          @include setPriceStyle;
         }
 
         &__product-title {
           font-size: 1.8rem;
+          margin-top: 1.6rem;
 
           @include respond(xlg) {
             font-size: 1.6rem;
@@ -212,6 +217,104 @@
     &__product-card:hover {
       box-shadow: $box-shadow-card-hover;
       transform: translateY(-2px);
+    }
+
+    // FAVORITE PRODUCT CARD
+
+    &__favorite-card {
+      background-color: $color-white-background;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      column-gap: 2.4rem;
+      box-shadow: $box-shadow-card;
+
+      @include respond(xlg) {
+        width: 70%;
+      }
+
+      @include respond(lg) {
+        width: 90%;
+      }
+
+      @include respond(bg) {
+        width: 100%;
+      }
+
+      @include respond(sm) {
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+
+      .card-img {
+        @include placeImg;
+      }
+
+      .card-content {
+        padding: 1.2rem 1.2rem 1.2rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include respond(xlg) {
+          padding-top: 2.8rem;
+          padding-bottom: 2.8rem;
+        }
+
+        @include respond(md) {
+          padding-top: 1.2rem;
+          padding-bottom: 1.2rem;
+        }
+
+        @include respond(sm) {
+          padding: 2rem 2.4rem;
+        }
+
+        &__title {
+          font-size: 1.6rem;
+          line-height: 1.5;
+
+          @include respond(sm) {
+            margin-bottom: 2.4rem;
+          }
+        }
+
+        &__price {
+          line-height: 1.5;
+
+          @include setPriceStyle;
+
+          @include respond(xlg) {
+            line-height: 1.9;
+          }
+
+          @include respond(md) {
+            font-size: 1.2rem;
+            line-height: 1.5;
+          }
+
+          @include respond(sm) {
+            font-size: 1.4rem;
+          }
+        }
+
+        &__action {
+          display: grid;
+          grid-template-columns: 3fr 1fr;
+          column-gap: 1.6rem;
+
+          @include respond(sm) {
+            margin-top: 3.6rem;
+          }
+
+          .btn--primary {
+            padding: 0.8rem;
+            font-weight: 700;
+          }
+
+          // .btn--sub {
+          // }
+        }
+      }
     }
   }
 }
