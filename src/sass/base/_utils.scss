@@ -48,6 +48,10 @@
   color: $color-white;
 }
 
+.pagination__btn {
+  @extend %button;
+}
+
 //////////////////////////
 /* BANNER */
 .banner {

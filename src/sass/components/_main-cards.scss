@@ -134,6 +134,12 @@
       column-gap: var(--column-gap);
     }
 
+    &.variant-product-list {
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+      column-gap: 2.4rem;
+      row-gap: 4.8rem;
+    }
+
     // BRAND CARD
     &__brand-card {
       box-shadow: $box-shadow-card;

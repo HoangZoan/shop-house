@@ -1,10 +1,60 @@
 /* BREAD CRUMBS */
 .bread-crumbs {
+  margin-bottom: 4.8rem;
+
+  @include respond(sm) {
+    margin-bottom: 3.2rem;
+  }
+
   &__link {
     @include primaryLink;
   }
 
   &__slash {
     font-size: 1.6rem;
+  }
+}
+
+/* PAGINATION */
+
+.pagination {
+  display: flex;
+
+  &__btn {
+    border: $border-gray-thin;
+    display: block;
+    background-color: $color-white-background;
+    padding: 0.8rem 1.4rem;
+    color: $color-primary;
+    transition: $trans-short;
+
+    &:hover {
+      @include category-list-hover;
+      border: $border-primary-thin;
+    }
+
+    &.active {
+      font-weight: 700;
+      background-color: $color-primary;
+      color: $color-white;
+      border: $border-primary-thin;
+    }
+
+    &--next,
+    &--prev {
+      @include respond(md) {
+        display: none;
+      }
+    }
+
+    &--number {
+      font-weight: 700;
+
+      &.last-number {
+        @include respond(sm) {
+          display: none;
+        }
+      }
+    }
   }
 }

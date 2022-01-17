@@ -1,10 +1,22 @@
-@mixin handleSpacing {
-  @include respond(xlg) {
-    padding-bottom: 9.6rem;
+@mixin handleSpacing($type) {
+  @if $type == p {
+    @include respond(xlg) {
+      padding-bottom: 9.6rem;
+    }
+
+    @include respond(sm) {
+      padding-bottom: 7.2rem;
+    }
   }
 
-  @include respond(sm) {
-    padding-bottom: 7.2rem;
+  @if $type == m {
+    @include respond(xlg) {
+      margin-bottom: 9.6rem;
+    }
+
+    @include respond(sm) {
+      margin-bottom: 7.2rem;
+    }
   }
 }
 
@@ -12,7 +24,7 @@
 .section-brands-and-products {
   padding-bottom: 12rem;
 
-  @include handleSpacing;
+  @include handleSpacing(p);
 }
 
 .section-billboards {
@@ -27,9 +39,5 @@
 .section-info {
   margin-bottom: 12rem;
 
-  @include handleSpacing;
-}
-
-.section-categories {
-  margin-bottom: 0;
+  @include handleSpacing(m);
 }

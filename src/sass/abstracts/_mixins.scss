@@ -57,3 +57,24 @@
     color: lighten($color-primary, 15%);
   }
 }
+
+@mixin category-list-hover {
+  background-color: $color-primary-light-greyish;
+  color: $color-primary;
+}
+
+@mixin category-list-transition {
+  transition: $trans-short;
+}
+
+@mixin setMainPadding {
+  main {
+    --padding-y: 6.4rem;
+    padding-top: var(--padding-y);
+    padding-bottom: var(--padding-y);
+
+    @include respond(sm) {
+      padding-top: 3.6rem;
+    }
+  }
+}
