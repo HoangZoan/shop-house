@@ -89,7 +89,7 @@ input {
 }
 
 /* BUTTON */
-.pagination__btn, .btn--sub, .btn--primary {
+.btn--counter, .btn--link, .pagination__btn, .btn--sub, .btn--primary {
   border: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -111,6 +111,30 @@ input {
 .btn--sub:hover {
   background-color: #1e90ff;
   color: #fff;
+}
+
+.btn--link {
+  line-height: 1.2;
+  display: inline-block;
+}
+.btn--link {
+  color: #1e90ff;
+  border-bottom: 1px solid #1e90ff;
+  transition: all 0.2s;
+}
+.btn--link:hover {
+  color: #6bb6ff;
+  border-bottom: 1px solid #6bb6ff;
+}
+
+.btn--counter {
+  background-color: #fff;
+  border: 1px solid #cfcfcf;
+}
+.btn--counter:hover {
+  color: #1e90ff;
+  border: 1px solid #1e90ff;
+  background-color: #eaf5ff;
 }
 
 /* BANNER */
@@ -815,6 +839,96 @@ input {
 }
 .section-product-detail .product-order__policy-list li .policy-description {
   margin-left: 1.2rem;
+}
+
+.section-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4.8rem;
+}
+.section-orders-table .order-table-head .divider {
+  background-color: #000;
+  width: 100%;
+  height: 1px;
+  transform: translateX(0%);
+}
+.section-orders-table .order-table-head__row {
+  border-bottom: 2px solid #1e90ff;
+}
+.section-orders-table .order-table-head__row th {
+  padding-bottom: 0.6rem;
+  font-size: 1.6rem;
+}
+.section-orders-table .order-table-head__row th:first-child {
+  text-align: left;
+}
+.section-orders-table .order-table-head__row th:last-child {
+  text-align: right;
+}
+.section-orders-table .order-table-head__row .th-price,
+.section-orders-table .order-table-head__row .th-quantity {
+  padding-right: 2.4rem;
+}
+.section-orders-table .order-card {
+  border-bottom: 1px solid #cfcfcf;
+}
+.section-orders-table .order-card td {
+  --padding-size: 2.4rem;
+  padding-top: var(--padding-size);
+  padding-bottom: var(--padding-size);
+}
+.section-orders-table .order-card__img, .section-orders-table .order-card__text, .section-orders-table .order-card__price-box, .section-orders-table .order-card__product-quantity {
+  padding-right: 3.2rem;
+}
+.section-orders-table .order-card__img {
+  max-width: 18rem;
+}
+.section-orders-table .order-card__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.section-orders-table .order-card__text__title {
+  font-size: 1.8rem;
+}
+.section-orders-table .order-card__text__delivery-info {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.section-orders-table .order-card__text__action .btn--link {
+  font-size: 1.4rem;
+}
+.section-orders-table .order-card__text__action .btn--link:not(:last-child) {
+  margin-right: 2.4rem;
+}
+.section-orders-table .order-card__price-box__price--current {
+  color: #1e90ff;
+}
+.section-orders-table .order-card__price-box__price--old {
+  color: #e74c3c;
+}
+.section-orders-table .order-card__product-quantity__form-control {
+  display: flex;
+  justify-content: center;
+}
+.section-orders-table .order-card__product-quantity__form-control .btn--counter,
+.section-orders-table .order-card__product-quantity__form-control input {
+  --size: 3.6rem;
+  height: var(--size);
+  width: var(--size);
+}
+.section-orders-table .order-card__product-quantity__form-control .btn--counter {
+  font-size: 1.8rem;
+}
+.section-orders-table .order-card__product-quantity__form-control input {
+  text-align: center;
+  border-top: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+}
+.section-orders-table .order-card__total-price {
+  text-align: right;
+  color: #1e90ff;
 }
 
 .billboard {

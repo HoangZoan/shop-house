@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sản Phẩm Yêu Thích</title>
+    <title>Giỏ Hàng Của Bạn</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
@@ -13,7 +13,7 @@
     <script
       defer
       type="module"
-      src="../src/script/controllers/favorite-products.js"
+      src="../src/script/controllers/your-cart.js"
     ></script>
   </head>
   <body>
@@ -28,7 +28,7 @@
         <div class="header-bar__search-control">
           <div class="search-icon">
             <svg>
-              <use xlink:href="../resources/icons/sprite.svg#search"></use>
+              <use xlink:href="./resources/icons/sprite.svg#search"></use>
             </svg>
           </div>
           <input type="text" placeholder="Bạn đang tìm kiếm...?" />
@@ -109,165 +109,138 @@
       </div>
     </header>
 
-    <main class="section-favorite-products bg--gray main-padding-y">
-      <div class="container">
-        <div class="bread-crumbs">
-          <a class="bread-crumbs__link" href="#">Trang chủ</a>
-          &nbsp;
-          <span class="bread-crumbs__slash">/</span>
-          &nbsp;
-          <a class="bread-crumbs__link" href="#">Sản phẩm yêu thích</a>
-        </div>
-
-        <section class="favorite-products">
-          <div class="main-cards">
-            <div class="main-cards__top-bar">
-              <h2 class="heading--2">Sản phẩm yêu thích</h2>
-            </div>
-
-            <div class="main-cards__cards variant-favorite-products">
-              <a href="#" class="main-cards__cards__favorite-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="card-content">
-                  <div class="card-content__title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-
-                  <div>
-                    <div
-                      class="card-content__price card-content__price--current"
-                    >
-                      Giá: <span class="price-text">3.999.000đ</span>
-                    </div>
-                    <div class="card-content__price card-content__price--old">
-                      <del class="price-text">4.499.000đ</del>
-                    </div>
-                  </div>
-
-                  <div class="card-content__action">
-                    <button class="btn--primary">Mua ngay</button>
-                    <button class="btn--sub">Xóa</button>
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__favorite-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="card-content">
-                  <div class="card-content__title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity asdfa sdfasdf adsfasd
-                    fadsfadsf
-                  </div>
-
-                  <div>
-                    <div
-                      class="card-content__price card-content__price--current"
-                    >
-                      Giá: <span class="price-text">3.999.000đ</span>
-                    </div>
-                    <div class="card-content__price card-content__price--old">
-                      <del class="price-text">4.499.000đ</del>
-                    </div>
-                  </div>
-
-                  <div class="card-content__action">
-                    <button class="btn--primary">Mua ngay</button>
-                    <button class="btn--sub">Xóa</button>
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__favorite-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="card-content">
-                  <div class="card-content__title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-
-                  <div>
-                    <div
-                      class="card-content__price card-content__price--current"
-                    >
-                      Giá: <span class="price-text">3.999.000đ</span>
-                    </div>
-                    <div class="card-content__price card-content__price--old">
-                      <del class="price-text">4.499.000đ</del>
-                    </div>
-                  </div>
-
-                  <div class="card-content__action">
-                    <button class="btn--primary">Thêm vào giỏ</button>
-                    <button class="btn--sub">Xóa</button>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section class="section-more-products">
-          <div class="main-cards">
-            <div class="main-cards__top-bar">
-              <h2 class="heading--2">Xem gần đây</h2>
-            </div>
-
-            <div
-              class="main-cards__cards variant-product-preview recently-viewed"
-            >
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <!-- SLIDER BUTTON -->
-              <div class="slider-btn--prev center-content">
-                <svg>
-                  <use
-                    xlink:href="../resources/icons/sprite.svg#chevron-left"
-                  ></use>
-                </svg>
-              </div>
-              <div class="slider-btn--next center-content">
-                <svg>
-                  <use
-                    xlink:href="../resources/icons/sprite.svg#chevron-right"
-                  ></use>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </section>
+    <main class="section-your-cart container main-padding-y">
+      <div class="bread-crumbs">
+        <a class="bread-crumbs__link" href="#">Trang chủ</a>
+        &nbsp;
+        <span class="bread-crumbs__slash">/</span>
+        &nbsp;
+        <a class="bread-crumbs__link" href="#">Giỏ hàng</a>
       </div>
+
+      <h2 class="heading--2">Giỏ hàng của bạn</h2>
+
+      <table class="section-orders-table">
+        <thead class="order-table-head">
+          <tr class="order-table-head__row">
+            <th colspan="2"><span>Sản phẩm</span></th>
+            <th class="th-price"><span>Giá</span></th>
+            <th class="th-quantity"><span>Số lượng</span></th>
+            <th><span>Tổng</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="order-card">
+            <td class="order-card__img">
+              <img
+                src="../resources/images/products/p1.jpg"
+                alt="Product image"
+              />
+            </td>
+
+            <td class="order-card__text">
+              <div class="order-card__text__title">
+                Ghế trẻ nhỏ Alcalde Kids Activity
+              </div>
+              <div class="order-card__text__delivery-info">
+                Giao hàng trong khoảng 3 - 5 ngày
+              </div>
+              <div class="order-card__text__action">
+                <div class="btn--link delete">Xóa</div>
+                <div class="btn--link save">Lưu lại</div>
+              </div>
+            </td>
+
+            <td class="order-card__price-box">
+              <div
+                class="order-card__price-box__price order-card__price-box__price--current"
+              >
+                3.999.000đ
+              </div>
+              <div
+                class="order-card__price-box__price order-card__price-box__price--old"
+              >
+                <del class="price-text">4.499.000đ</del>
+              </div>
+            </td>
+
+            <td class="order-card__product-quantity">
+              <div class="order-card__product-quantity__form-control">
+                <button class="btn--counter add">+</button>
+                <input type="text" readonly value="1" />
+                <button class="btn--counter remove">-</button>
+              </div>
+            </td>
+
+            <td class="order-card__total-price">3.789.000đ</td>
+          </tr>
+
+          <tr class="order-card">
+            <td class="order-card__img">
+              <img
+                src="../resources/images/products/p1.jpg"
+                alt="Product image"
+              />
+            </td>
+
+            <td class="order-card__text">
+              <div class="order-card__text__title">
+                Ghế trẻ nhỏ Alcalde Kids Activity
+              </div>
+              <div class="order-card__text__delivery-info">
+                Giao hàng trong khoảng 3 - 5 ngày
+              </div>
+              <div class="order-card__text__action">
+                <div class="btn--link delete">Xóa</div>
+                <div class="btn--link save">Lưu lại</div>
+              </div>
+            </td>
+
+            <td class="order-card__price-box">
+              <div
+                class="order-card__price-box__price order-card__price-box__price--current"
+              >
+                3.999.000đ
+              </div>
+              <div
+                class="order-card__price-box__price order-card__price-box__price--old"
+              >
+                <del class="price-text">4.499.000đ</del>
+              </div>
+            </td>
+
+            <td class="order-card__product-quantity">
+              <div class="order-card__product-quantity__form-control">
+                <button class="btn--counter add">+</button>
+                <input type="text" readonly value="1" />
+                <button class="btn--counter remove">-</button>
+              </div>
+            </td>
+
+            <td class="order-card__total-price">3.789.000đ</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <form class="form-check-out">
+        <div class="user-info-field">
+          <div class="field-title">Thông tin khách hàng</div>
+
+          <div class="user-info-field__form-control">
+            <label for="user-name">Họ và tên:<sup>*</sup></label>
+            <input type="text" id="user-name" required />
+          </div>
+          <div class="user-info-field__form-control">
+            <label for="phone-number">Số điện thoại:<sup>*</sup></label>
+            <input type="text" id="phone-number" />
+          </div>
+          <div class="user-info-field__form-control">
+            <label for="user-name">Email:</label>
+            <input type="email" id="user-name" required />
+          </div>
+        </div>
+      </form>
     </main>
 
     <footer class="page-footer">

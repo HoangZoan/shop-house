@@ -47,14 +47,29 @@
   }
 }
 
-@mixin primaryLink {
-  & {
-    color: $color-primary;
-    transition: $trans-short;
+@mixin primaryLink($type: link) {
+  @if $type == link {
+    & {
+      color: $color-primary;
+      transition: $trans-short;
+    }
+
+    &:hover {
+      color: $color-primary-light-hover-link;
+    }
   }
 
-  &:hover {
-    color: $color-primary-light-hover-link;
+  @if $type == button {
+    & {
+      color: $color-primary;
+      border-bottom: $border-primary-thin;
+      transition: $trans-short;
+    }
+
+    &:hover {
+      color: $color-primary-light-hover-link;
+      border-bottom: $border-primary-hover;
+    }
   }
 }
 

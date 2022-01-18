@@ -79,6 +79,25 @@
   @extend %button;
 }
 
+.btn--link {
+  @extend %button;
+  @include primaryLink(button);
+  line-height: 1.2;
+  display: inline-block;
+}
+
+.btn--counter {
+  @extend %button;
+  background-color: $color-white-background;
+  border: $border-gray-thin;
+
+  &:hover {
+    color: $color-primary;
+    border: $border-primary-thin;
+    background-color: $color-primary-light-2;
+  }
+}
+
 //////////////////////////
 /* BANNER */
 .banner {

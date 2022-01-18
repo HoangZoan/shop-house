@@ -1,0 +1,109 @@
+.section-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4.8rem;
+
+  .order-table-head {
+    @include setDivider;
+
+    &__row {
+      border-bottom: $border-primary-md;
+
+      th {
+        padding-bottom: 0.6rem;
+        font-size: 1.6rem;
+      }
+
+      th:first-child {
+        text-align: left;
+      }
+
+      th:last-child {
+        text-align: right;
+      }
+
+      .th-price,
+      .th-quantity {
+        padding-right: 2.4rem;
+      }
+    }
+  }
+
+  .order-card {
+    border-bottom: $border-gray-thin;
+
+    td {
+      --padding-size: 2.4rem;
+      padding-top: var(--padding-size);
+      padding-bottom: var(--padding-size);
+    }
+
+    &__img,
+    &__text,
+    &__price-box,
+    &__product-quantity {
+      padding-right: 3.2rem;
+    }
+
+    &__img {
+      max-width: 18rem;
+      @include placeImg;
+    }
+
+    &__text {
+      &__title {
+        font-size: 1.8rem;
+      }
+
+      &__delivery-info {
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+      }
+
+      &__action {
+        .btn--link {
+          font-size: 1.4rem;
+
+          &:not(:last-child) {
+            margin-right: 2.4rem;
+          }
+        }
+      }
+    }
+
+    &__price-box {
+      &__price {
+        @include setPriceStyle;
+      }
+    }
+
+    &__product-quantity {
+      &__form-control {
+        display: flex;
+        justify-content: center;
+
+        .btn--counter,
+        input {
+          --size: 3.6rem;
+          height: var(--size);
+          width: var(--size);
+        }
+
+        .btn--counter {
+          font-size: 1.8rem;
+        }
+
+        input {
+          text-align: center;
+          border-top: $border-gray-thin;
+          border-bottom: $border-gray-thin;
+        }
+      }
+    }
+
+    &__total-price {
+      text-align: right;
+      color: $color-primary;
+    }
+  }
+}
