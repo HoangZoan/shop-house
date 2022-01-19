@@ -15,6 +15,10 @@
   color: $color-primary;
 }
 
+.text-black {
+  color: $color-black;
+}
+
 .fz-small-link-btn {
   font-size: 1.2rem;
 }
@@ -51,6 +55,10 @@
 /* BACKGROUND */
 .bg--gray {
   background-color: $color-gray-background;
+}
+
+.bg--white {
+  background-color: $color-white-background;
 }
 
 //////////////////////////

@@ -56,6 +56,10 @@ input {
   color: #1e90ff;
 }
 
+.text-black {
+  color: #000;
+}
+
 .fz-small-link-btn {
   font-size: 1.2rem;
 }
@@ -94,6 +98,10 @@ input {
 /* BACKGROUND */
 .bg--gray {
   background-color: #f4f4f4;
+}
+
+.bg--white {
+  background-color: #fff;
 }
 
 /* BUTTON + INPUT */
@@ -560,6 +568,48 @@ input {
   margin-right: 1.2rem;
 }
 
+.user-dasboard {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  column-gap: 3.2rem;
+}
+.user-dasboard .user-nav-container {
+  margin-left: 3.2rem;
+  margin-right: 3.2rem;
+}
+.user-dasboard .user-nav {
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
+}
+.user-dasboard .user-nav .divider {
+  background-color: #1e90ff;
+  width: 100%;
+  height: 1px;
+  transform: translateX(0%);
+}
+.user-dasboard .user-nav__link {
+  display: flex;
+  align-items: center;
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
+}
+.user-dasboard .user-nav__link:hover span {
+  color: #1e90ff;
+}
+.user-dasboard .user-nav__link svg {
+  --icon-size: 1.8rem;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  color: #1e90ff;
+  margin-right: 2.4rem;
+}
+.user-dasboard .user-nav__link span {
+  transition: all 0.2s;
+}
+.user-dasboard .user-content {
+  height: 100px;
+}
+
 .section-billboards,
 .section-brands-and-products {
   padding-bottom: 12rem;
@@ -879,9 +929,24 @@ input {
 .section-orders-table .order-table-head__row th:last-child {
   text-align: right;
 }
+@media only screen and (max-width: 40em) {
+  .section-orders-table .order-table-head__row th:last-child {
+    display: none;
+  }
+}
 .section-orders-table .order-table-head__row .th-price,
 .section-orders-table .order-table-head__row .th-quantity {
   padding-right: 2.4rem;
+}
+@media only screen and (max-width: 50em) {
+  .section-orders-table .order-table-head__row .th-price {
+    display: none;
+  }
+}
+@media only screen and (max-width: 60em) {
+  .section-orders-table .order-table-head__row .th-quantity {
+    display: none;
+  }
 }
 .section-orders-table .order-card {
   border-bottom: 1px solid #cfcfcf;
@@ -895,13 +960,77 @@ input {
   padding-right: 3.2rem;
 }
 .section-orders-table .order-card__img {
+  vertical-align: top;
   max-width: 18rem;
+  max-height: 18rem;
 }
 .section-orders-table .order-card__img img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+@media only screen and (max-width: 31.25em) {
+  .section-orders-table .order-card__img.img-origin {
+    display: none;
+  }
+}
+.section-orders-table .order-card__text .img-responsive {
+  display: none;
+}
+@media only screen and (max-width: 31.25em) {
+  .section-orders-table .order-card__text .img-responsive {
+    display: block;
+    padding-right: 0;
+    max-width: 32rem;
+    max-height: 32rem;
+    margin-bottom: 2.8rem;
+  }
+}
+.section-orders-table .order-card__text .quantity-control-responsive {
+  display: none;
+}
+@media only screen and (max-width: 60em) {
+  .section-orders-table .order-card__text .quantity-control-responsive {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2.4rem;
+    margin-bottom: 2.8rem;
+  }
+}
+.section-orders-table .order-card__text .price-box-responsive {
+  display: none;
+}
+.section-orders-table .order-card__text .price-box-responsive .price-title-repsonsive {
+  display: none;
+}
+@media only screen and (max-width: 40em) {
+  .section-orders-table .order-card__text .price-box-responsive .price-title-repsonsive {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 50em) {
+  .section-orders-table .order-card__text .price-box-responsive {
+    display: block;
+  }
+}
+@media only screen and (max-width: 40em) {
+  .section-orders-table .order-card__text .price-box-responsive {
+    display: flex;
+    margin-bottom: 1.2rem;
+  }
+  .section-orders-table .order-card__text .price-box-responsive .order-card__price-box__price--current {
+    margin-right: 1.2rem;
+  }
+}
+.section-orders-table .order-card__text .total-price-responsive {
+  display: none;
+  text-align: left;
+}
+@media only screen and (max-width: 40em) {
+  .section-orders-table .order-card__text .total-price-responsive {
+    display: block;
+  }
 }
 .section-orders-table .order-card__text__title {
   font-size: 1.8rem;
@@ -916,15 +1045,30 @@ input {
 .section-orders-table .order-card__text__action .btn--link:not(:last-child) {
   margin-right: 2.4rem;
 }
+@media only screen and (max-width: 50em) {
+  .section-orders-table .order-card__price-box.price-box-origin {
+    display: none;
+  }
+}
 .section-orders-table .order-card__price-box__price--current {
   color: #1e90ff;
 }
 .section-orders-table .order-card__price-box__price--old {
   color: #e74c3c;
 }
+@media only screen and (max-width: 60em) {
+  .section-orders-table .order-card__product-quantity {
+    display: none;
+  }
+}
 .section-orders-table .order-card__product-quantity__form-control {
   display: flex;
   justify-content: center;
+}
+@media only screen and (max-width: 60em) {
+  .section-orders-table .order-card__product-quantity__form-control.quantity-control-origin {
+    display: none;
+  }
 }
 .section-orders-table .order-card__product-quantity__form-control .btn--counter,
 .section-orders-table .order-card__product-quantity__form-control input {
@@ -943,12 +1087,34 @@ input {
 .section-orders-table .order-card__total-price {
   text-align: right;
 }
+@media only screen and (max-width: 40em) {
+  .section-orders-table .order-card__total-price.total-price-origin {
+    display: none;
+  }
+}
 
 .section-form-check-out {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 16rem;
   margin-top: 8rem;
+}
+@media only screen and (max-width: 68.75em) {
+  .section-form-check-out {
+    grid-template-columns: 1fr 1.2fr;
+    column-gap: 10rem;
+  }
+}
+@media only screen and (max-width: 60em) {
+  .section-form-check-out {
+    grid-template-columns: 1fr 1.5fr;
+    column-gap: 8rem;
+  }
+}
+@media only screen and (max-width: 50em) {
+  .section-form-check-out {
+    grid-template-columns: 1fr;
+  }
 }
 .section-form-check-out .divider {
   background-color: #cfcfcf;
@@ -961,10 +1127,33 @@ input {
   font-weight: 500;
   border-bottom: 2px solid #1e90ff;
 }
+@media only screen and (max-width: 50em) {
+  .section-form-check-out .user-info-field {
+    margin-bottom: 4.8rem;
+  }
+}
 .section-form-check-out .user-info-field__form-control {
   display: flex;
   align-items: center;
   margin-top: 2.4rem;
+}
+@media only screen and (max-width: 60em) {
+  .section-form-check-out .user-info-field__form-control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media only screen and (max-width: 50em) {
+  .section-form-check-out .user-info-field__form-control {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .section-form-check-out .user-info-field__form-control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .section-form-check-out .user-info-field__form-control:not(:last-child) {
   margin-bottom: 1.6rem;
@@ -980,11 +1169,50 @@ input {
   padding: 0.8rem 1.2rem;
   margin-right: 1.8rem;
 }
+@media only screen and (max-width: 60em) {
+  .section-form-check-out .user-info-field__form-control input {
+    margin-top: 0.6rem;
+    width: 90%;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 50em) {
+  .section-form-check-out .user-info-field__form-control input {
+    width: 70%;
+    margin-right: 1.8rem;
+  }
+}
+@media only screen and (max-width: 40em) {
+  .section-form-check-out .user-info-field__form-control input {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .section-form-check-out .user-info-field__form-control input {
+    width: 100%;
+  }
+}
 .section-form-check-out .payment-info-field__segment {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-top: 2.4rem;
   margin-bottom: 2.4rem;
+}
+@media only screen and (max-width: 60em) {
+  .section-form-check-out .payment-info-field__segment {
+    grid-template-columns: 1fr 2.8fr;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .section-form-check-out .payment-info-field__segment {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .section-form-check-out .payment-info-field__segment__title {
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
 }
 .section-form-check-out .payment-info-field__segment__form {
   display: flex;
@@ -1018,6 +1246,7 @@ input {
 .section-form-check-out .payment-info-field__segment__form .payment-form-checkbox {
   display: flex;
   align-items: center;
+  margin-bottom: 0.8rem;
 }
 .section-form-check-out .payment-info-field__segment__form .payment-form-checkbox input {
   margin-right: 0.8rem;

@@ -20,11 +20,27 @@
 
       th:last-child {
         text-align: right;
+
+        @include respond(md) {
+          display: none;
+        }
       }
 
       .th-price,
       .th-quantity {
         padding-right: 2.4rem;
+      }
+
+      .th-price {
+        @include respond(bg) {
+          display: none;
+        }
+      }
+
+      .th-quantity {
+        @include respond(lg) {
+          display: none;
+        }
       }
     }
   }
@@ -46,11 +62,76 @@
     }
 
     &__img {
+      vertical-align: top;
       max-width: 18rem;
+      max-height: 18rem;
       @include placeImg;
+
+      &.img-origin {
+        @include respond(sm) {
+          display: none;
+        }
+      }
     }
 
     &__text {
+      .img-responsive {
+        display: none;
+
+        @include respond(sm) {
+          display: block;
+          padding-right: 0;
+          max-width: 32rem;
+          max-height: 32rem;
+          margin-bottom: 2.8rem;
+        }
+      }
+
+      .quantity-control-responsive {
+        display: none;
+
+        @include respond(lg) {
+          display: flex;
+          justify-content: flex-start;
+          margin-top: 2.4rem;
+          margin-bottom: 2.8rem;
+        }
+      }
+
+      .price-box-responsive {
+        display: none;
+
+        .price-title-repsonsive {
+          display: none;
+
+          @include respond(md) {
+            display: inline-block;
+          }
+        }
+
+        @include respond(bg) {
+          display: block;
+        }
+
+        @include respond(md) {
+          display: flex;
+          margin-bottom: 1.2rem;
+
+          .order-card__price-box__price--current {
+            margin-right: 1.2rem;
+          }
+        }
+      }
+
+      .total-price-responsive {
+        display: none;
+        text-align: left;
+
+        @include respond(md) {
+          display: block;
+        }
+      }
+
       &__title {
         font-size: 1.8rem;
       }
@@ -72,15 +153,31 @@
     }
 
     &__price-box {
+      &.price-box-origin {
+        @include respond(bg) {
+          display: none;
+        }
+      }
+
       &__price {
         @include setPriceStyle;
       }
     }
 
     &__product-quantity {
+      @include respond(lg) {
+        display: none;
+      }
+
       &__form-control {
         display: flex;
         justify-content: center;
+
+        &.quantity-control-origin {
+          @include respond(lg) {
+            display: none;
+          }
+        }
 
         .btn--counter,
         input {
@@ -103,6 +200,12 @@
 
     &__total-price {
       text-align: right;
+
+      &.total-price-origin {
+        @include respond(md) {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -113,6 +216,20 @@
   column-gap: 16rem;
   margin-top: 8rem;
 
+  @include respond(xlg) {
+    grid-template-columns: 1fr 1.2fr;
+    column-gap: 10rem;
+  }
+
+  @include respond(lg) {
+    grid-template-columns: 1fr 1.5fr;
+    column-gap: 8rem;
+  }
+
+  @include respond(bg) {
+    grid-template-columns: 1fr;
+  }
+
   @include setDivider($color-gray-border-bottom);
 
   .field-title {
@@ -122,10 +239,29 @@
   }
 
   .user-info-field {
+    @include respond(bg) {
+      margin-bottom: 4.8rem;
+    }
+
     &__form-control {
       display: flex;
       align-items: center;
       margin-top: 2.4rem;
+
+      @include respond(lg) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      @include respond(bg) {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      @include respond(sm) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
       &:not(:last-child) {
         margin-bottom: 1.6rem;
@@ -143,6 +279,25 @@
         width: 60%;
         padding: 0.8rem 1.2rem;
         margin-right: 1.8rem;
+
+        @include respond(lg) {
+          margin-top: 0.6rem;
+          width: 90%;
+          margin-right: 0;
+        }
+
+        @include respond(bg) {
+          width: 70%;
+          margin-right: 1.8rem;
+        }
+
+        @include respond(md) {
+          width: 60%;
+        }
+
+        @include respond(sm) {
+          width: 100%;
+        }
       }
     }
   }
@@ -154,7 +309,19 @@
       margin-top: 2.4rem;
       margin-bottom: 2.4rem;
 
+      @include respond(lg) {
+        grid-template-columns: 1fr 2.8fr;
+      }
+
+      @include respond(sm) {
+        grid-template-columns: 1fr;
+      }
+
       &__title {
+        @include respond(sm) {
+          font-weight: 500;
+          margin-bottom: 1.2rem;
+        }
       }
 
       &__form {
@@ -195,6 +362,7 @@
         .payment-form-checkbox {
           display: flex;
           align-items: center;
+          margin-bottom: 0.8rem;
 
           input {
             margin-right: 0.8rem;

@@ -1,0 +1,44 @@
+.user-dasboard {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  column-gap: 3.2rem;
+
+  .user-nav-container {
+    margin-left: 3.2rem;
+    margin-right: 3.2rem;
+  }
+
+  .user-nav {
+    padding-top: 1.8rem;
+    padding-bottom: 1.8rem;
+
+    @include setDivider($color-primary);
+
+    &__link {
+      display: flex;
+      align-items: center;
+      padding-top: 1.8rem;
+      padding-bottom: 1.8rem;
+
+      &:hover span {
+        color: $color-primary;
+      }
+
+      svg {
+        --icon-size: 1.8rem;
+        height: var(--icon-size);
+        width: var(--icon-size);
+        color: $color-primary;
+        margin-right: 2.4rem;
+      }
+
+      span {
+        transition: $trans-short;
+      }
+    }
+  }
+
+  .user-content {
+    height: 100px;
+  }
+}

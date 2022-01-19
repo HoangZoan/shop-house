@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông Tin Người Dùng</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../src/css/style.css" />
+    <script
+      defer
+      type="module"
+      src="../../src/script/controllers/user-info.js"
+    ></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="header-bar container">
+        <div class="header-bar__logo">
+          <img
+            src="../../resources/images/logo/vector/default.svg"
+            alt="Shop House Logo"
+          />
+        </div>
+        <div class="header-bar__search-control">
+          <div class="search-icon">
+            <svg>
+              <use xlink:href="../../resources/icons/sprite.svg#search"></use>
+            </svg>
+          </div>
+          <input type="text" placeholder="Bạn đang tìm kiếm...?" />
+          <button class="btn--primary">Tìm kiếm</button>
+        </div>
+        <div class="header-bar__tools-box">
+          <div class="tool-icon tool-icon--search">
+            <svg>
+              <use xlink:href="../../resources/icons/sprite.svg#search"></use>
+            </svg>
+          </div>
+          <div class="tool-icon tool-icon--user">
+            <svg>
+              <use xlink:href="../../resources/icons/sprite.svg#user"></use>
+            </svg>
+          </div>
+          <div class="tool-icon tool-icon--heart">
+            <svg>
+              <use xlink:href="../../resources/icons/sprite.svg#heart"></use>
+            </svg>
+          </div>
+          <div class="tool-icon">
+            <svg>
+              <use
+                xlink:href="../../resources/icons/sprite.svg#shopping-basket"
+              ></use>
+            </svg>
+          </div>
+          <div class="tool-icon tool-icon--menu">
+            <svg>
+              <use xlink:href="../../resources/icons/sprite.svg#menu"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-category">
+        <ul class="tool-box-menu">
+          <li class="tool-box-menu__item">
+            <a href="#">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use xlink:href="../../resources/icons/sprite.svg#user"></use>
+                </svg>
+              </div>
+              <div class="tool-box-menu__item__title">Thông tin khách hàng</div>
+            </a>
+          </li>
+          <li class="tool-box-menu__item">
+            <a href="#">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use
+                    xlink:href="../../resources/icons/sprite.svg#heart"
+                  ></use>
+                </svg>
+              </div>
+              <div>Sản phẩm yêu thích</div>
+            </a>
+          </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <ul class="header-category__list">
+          <li class="header-category__list__item">
+            <a href="#">Phòng khách</a>
+          </li>
+          <li class="header-category__list__item"><a href="#">Phòng ngủ</a></li>
+          <li class="header-category__list__item"><a href="#">Nhà bếp</a></li>
+          <li class="header-category__list__item"><a href="#">Trẻ em</a></li>
+          <li class="header-category__list__item"><a href="#">Sân vườn</a></li>
+          <li class="header-category__list__item">
+            <a href="#">Thiết bị nội thất</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="#">Khuyến mãi</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="bg--gray main-padding-y">
+      <div class="user-dasboard container">
+        <nav class="user-nav bg--white">
+          <div class="user-nav-container">
+            <a href="#" class="user-nav__link">
+              <svg>
+                <use
+                  xlink:href="../../resources/icons/sprite.svg#user-side"
+                ></use>
+              </svg>
+              <span>Thông tin tài khoản</span>
+            </a>
+            <div class="divider"></div>
+
+            <a href="#" class="user-nav__link">
+              <svg>
+                <use
+                  xlink:href="../../resources/icons/sprite.svg#credit-card"
+                ></use>
+              </svg>
+              <span>Thông tin thanh toán</span>
+            </a>
+            <div class="divider"></div>
+
+            <a href="#" class="user-nav__link">
+              <svg>
+                <use
+                  xlink:href="../../resources/icons/sprite.svg#clipboard"
+                ></use>
+              </svg>
+              <span>Quản lý đơn hàng</span>
+            </a>
+            <div class="divider"></div>
+
+            <a href="#" class="user-nav__link">
+              <svg>
+                <use
+                  xlink:href="../../resources/icons/sprite.svg#question-circle"
+                ></use>
+              </svg>
+              <span>Hỏi đáp</span>
+            </a>
+          </div>
+        </nav>
+
+        <div class="user-content bg--white"></div>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="divider"></div>
+
+      <div class="footer-content footer-content--top">
+        <div class="footer-content__column">
+          <div class="heading--3">Về Shop House</div>
+          <ul class="footer-content__column__list">
+            <li><a href="#">Giới thiệu Shop House</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+            <li><a href="#">Giải quyết khiếu nại</a></li>
+            <li><a href="#">Điều khoản sử dụng</a></li>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Bán hàng doanh nghiệp</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-content__column">
+          <div class="heading--3">Sản phẩm</div>
+          <ul class="footer-content__column__list">
+            <li><a href="#">Phòng khách</a></li>
+            <li><a href="#">Phòng ngủ</a></li>
+            <li><a href="#">Nhà bếp</a></li>
+            <li><a href="#">Trẻ em</a></li>
+            <li><a href="#">Sân vườn</a></li>
+            <li><a href="#">Thiết bị nội thất</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-content__column">
+          <div class="heading--3">Hỗ trợ khách hàng</div>
+          <ul class="footer-content__column__list">
+            <li>
+              <a href="#">
+                <span class="footer-list-icon">☎️&nbsp;</span>
+                <span>Hotline: <strong>1900-9999</strong></span>
+                <br />
+                <span>(08h - 21h cả T7, CN)</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="footer-list-icon">✉️&nbsp;</span>
+                <span>Email: <strong>HoTro@ShopHouse.vn</strong></span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="heading--3">Hỗ trợ thanh toán</div>
+          <div class="payments-method-box">
+            <div class="payment-icon">
+              <img
+                src="../../resources/images/footer/visa.png"
+                alt="Visa icon"
+              />
+            </div>
+            <div class="payment-icon">
+              <img
+                src="../../resources/images/footer/master.png"
+                alt="Master card icon"
+              />
+            </div>
+            <div class="payment-icon">
+              <img
+                src="../../resources/images/footer/momo.png"
+                alt="Momo icon"
+              />
+            </div>
+            <div class="payment-icon">
+              <img src="../../resources/images/footer/atm.png" alt="ATM icon" />
+            </div>
+            <div class="payment-icon">
+              <img src="../../resources/images/footer/cod.png" alt="COD icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="footer-content footer-content--bottom">
+        <div class="footer-content__column">
+          <div class="footer-logo">
+            <img src="../../resources/images/logo/vector/default.svg" alt="" />
+          </div>
+
+          <div class="footer-copyright">
+            © 2022 by Shop House Số..., Đường..., TP. Hà Nội
+          </div>
+        </div>
+        <div class="footer-content__column">
+          <div class="heading--3">Chứng nhận bởi</div>
+          <div class="certificate-logo">
+            <img
+              src="../../resources/images/footer/bo-cong-thuong.png"
+              alt="Chung nhan cua Bo Cong Thuong"
+            />
+          </div>
+        </div>
+        <div class="footer-content__column">
+          <div class="heading--3">Kết nối với chúng tôi</div>
+          <div class="footer-social-box">
+            <a href="#">
+              <svg>
+                <use
+                  xlink:href="../../resources/icons/sprite.svg#facebook"
+                ></use>
+              </svg>
+            </a>
+            <a href="#">
+              <svg>
+                <use
+                  xlink:href="../../resources/icons/sprite.svg#instagram"
+                ></use>
+              </svg>
+            </a>
+            <a href="#">
+              <svg>
+                <use
+                  xlink:href="../../resources/icons/sprite.svg#pinterest"
+                ></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

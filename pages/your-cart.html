@@ -132,7 +132,7 @@
 
         <tbody>
           <tr class="order-card">
-            <td class="order-card__img">
+            <td class="order-card__img img-origin">
               <img
                 src="../resources/images/products/p1.jpg"
                 alt="Product image"
@@ -140,19 +140,56 @@
             </td>
 
             <td class="order-card__text">
+              <div class="order-card__img img-responsive">
+                <img
+                  src="../resources/images/products/p1.jpg"
+                  alt="Product image"
+                />
+              </div>
+
               <div class="order-card__text__title">
                 Ghế trẻ nhỏ Alcalde Kids Activity
               </div>
               <div class="order-card__text__delivery-info">
                 Giao hàng trong khoảng 3 - 5 ngày
               </div>
+
+              <div class="order-card__price-box price-box-responsive">
+                <div
+                  class="order-card__price-box__price order-card__price-box__price--current"
+                >
+                  <span class="price-title-repsonsive text-black">Giá:</span>
+                  3.999.000đ
+                </div>
+                <div
+                  class="order-card__price-box__price order-card__price-box__price--old"
+                >
+                  <del class="price-text">4.499.000đ</del>
+                </div>
+              </div>
+
+              <div
+                class="order-card__total-price text-primary total-price-responsive"
+              >
+                <strong class="text-black">Tổng:</strong>
+                3.789.000đ
+              </div>
+
+              <div
+                class="order-card__product-quantity__form-control quantity-control-responsive"
+              >
+                <button class="btn--counter add">+</button>
+                <input type="text" readonly value="1" />
+                <button class="btn--counter remove">-</button>
+              </div>
+
               <div class="order-card__text__action">
                 <div class="btn--link delete">Xóa</div>
                 <div class="btn--link save">Lưu lại</div>
               </div>
             </td>
 
-            <td class="order-card__price-box">
+            <td class="order-card__price-box price-box-origin">
               <div
                 class="order-card__price-box__price order-card__price-box__price--current"
               >
@@ -166,14 +203,18 @@
             </td>
 
             <td class="order-card__product-quantity">
-              <div class="order-card__product-quantity__form-control">
+              <div
+                class="order-card__product-quantity__form-control quantity-control-origin"
+              >
                 <button class="btn--counter add">+</button>
                 <input type="text" readonly value="1" />
                 <button class="btn--counter remove">-</button>
               </div>
             </td>
 
-            <td class="order-card__total-price text-primary">3.789.000đ</td>
+            <td class="order-card__total-price text-primary total-price-origin">
+              3.789.000đ
+            </td>
           </tr>
         </tbody>
       </table>
