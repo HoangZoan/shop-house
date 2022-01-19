@@ -52,6 +52,14 @@ input {
   font-size: 2rem;
 }
 
+.text-primary {
+  color: #1e90ff;
+}
+
+.fz-small-link-btn {
+  font-size: 1.2rem;
+}
+
 /* CONTAINER */
 .container {
   --padding: 4.8rem;
@@ -88,7 +96,7 @@ input {
   background-color: #f4f4f4;
 }
 
-/* BUTTON */
+/* BUTTON + INPUT */
 .btn--counter, .btn--link, .pagination__btn, .btn--sub, .btn--primary {
   border: none;
   cursor: pointer;
@@ -135,6 +143,12 @@ input {
   color: #1e90ff;
   border: 1px solid #1e90ff;
   background-color: #eaf5ff;
+}
+
+.input-border {
+  background-color: #f6f6f6;
+  border: 1px solid #cfcfcf;
+  border-radius: 0.3rem;
 }
 
 /* BANNER */
@@ -928,7 +942,105 @@ input {
 }
 .section-orders-table .order-card__total-price {
   text-align: right;
-  color: #1e90ff;
+}
+
+.section-form-check-out {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16rem;
+  margin-top: 8rem;
+}
+.section-form-check-out .divider {
+  background-color: #cfcfcf;
+  width: 100%;
+  height: 1px;
+  transform: translateX(0%);
+}
+.section-form-check-out .field-title {
+  font-size: 2.2rem;
+  font-weight: 500;
+  border-bottom: 2px solid #1e90ff;
+}
+.section-form-check-out .user-info-field__form-control {
+  display: flex;
+  align-items: center;
+  margin-top: 2.4rem;
+}
+.section-form-check-out .user-info-field__form-control:not(:last-child) {
+  margin-bottom: 1.6rem;
+}
+.section-form-check-out .user-info-field__form-control label {
+  margin-right: auto;
+}
+.section-form-check-out .user-info-field__form-control label sup {
+  color: #e74c3c;
+}
+.section-form-check-out .user-info-field__form-control input {
+  width: 60%;
+  padding: 0.8rem 1.2rem;
+  margin-right: 1.8rem;
+}
+.section-form-check-out .payment-info-field__segment {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+.section-form-check-out .payment-info-field__segment__form {
+  display: flex;
+  flex-direction: column;
+}
+.section-form-check-out .payment-info-field__segment__form .btn--link {
+  margin-left: 1rem;
+}
+.section-form-check-out .payment-info-field__segment__form .price-net {
+  text-align: right;
+}
+.section-form-check-out .payment-info-field__segment__form .extra-count-box {
+  display: grid;
+  grid-template-columns: 1fr 10rem;
+  justify-items: flex-end;
+  margin: 1.2rem 0;
+}
+.section-form-check-out .payment-info-field__segment__form .promotion-code {
+  display: flex;
+}
+.section-form-check-out .payment-info-field__segment__form .promotion-code input {
+  margin-left: auto;
+  margin-right: 1rem;
+  padding: 0 1.2rem;
+  width: 45%;
+}
+.section-form-check-out .payment-info-field__segment__form .promotion-code button {
+  padding: 0.6rem 1rem;
+  font-size: 1.2rem;
+}
+.section-form-check-out .payment-info-field__segment__form .payment-form-checkbox {
+  display: flex;
+  align-items: center;
+}
+.section-form-check-out .payment-info-field__segment__form .payment-form-checkbox input {
+  margin-right: 0.8rem;
+}
+.section-form-check-out .payment-info-field__segment__form .shipment-location {
+  display: flex;
+  align-items: center;
+}
+.section-form-check-out .payment-info-field__total {
+  border-top: 2px solid #1e90ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.8rem;
+  padding-top: 1.2rem;
+  padding-bottom: 2rem;
+}
+.section-form-check-out .payment-info-field .button-submit {
+  font-weight: 500;
+  font-size: 1.8rem;
+  width: 100%;
+  padding: 1.2rem 0;
 }
 
 .billboard {
