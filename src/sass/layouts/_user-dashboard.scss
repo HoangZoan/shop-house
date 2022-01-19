@@ -1,9 +1,14 @@
 .user-dasboard {
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: max-content 1fr;
   column-gap: 3.2rem;
+  align-items: flex-start;
 
-  .user-nav-container {
+  @include respond(md) {
+    grid-template-columns: 1fr;
+  }
+
+  .user-container {
     margin-left: 3.2rem;
     margin-right: 3.2rem;
   }
@@ -11,6 +16,10 @@
   .user-nav {
     padding-top: 1.8rem;
     padding-bottom: 1.8rem;
+
+    @include respond(md) {
+      display: none;
+    }
 
     @include setDivider($color-primary);
 
@@ -39,6 +48,12 @@
   }
 
   .user-content {
-    height: 100px;
+    padding-top: 2.8rem;
+    padding-bottom: 2.8rem;
+
+    .heading--3 {
+      font-weight: 500;
+      margin-bottom: 3.6rem;
+    }
   }
 }

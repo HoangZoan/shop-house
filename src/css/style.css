@@ -52,16 +52,16 @@ input {
   font-size: 2rem;
 }
 
+.fz-small-link-btn {
+  font-size: 1.2rem;
+}
+
 .text-primary {
   color: #1e90ff;
 }
 
 .text-black {
   color: #000;
-}
-
-.fz-small-link-btn {
-  font-size: 1.2rem;
 }
 
 /* CONTAINER */
@@ -105,7 +105,7 @@ input {
 }
 
 /* BUTTON + INPUT */
-.btn--counter, .btn--link, .pagination__btn, .btn--sub, .btn--primary {
+.btn--counter, .btn--link, .pagination__btn, .btn--danger, .btn--sub, .btn--primary {
   border: none;
   cursor: pointer;
   transition: all 0.2s;
@@ -127,6 +127,12 @@ input {
 .btn--sub:hover {
   background-color: #1e90ff;
   color: #fff;
+}
+
+.btn--danger {
+  background-color: #fff;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
 }
 
 .btn--link {
@@ -570,16 +576,27 @@ input {
 
 .user-dasboard {
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: max-content 1fr;
   column-gap: 3.2rem;
+  align-items: flex-start;
 }
-.user-dasboard .user-nav-container {
+@media only screen and (max-width: 40em) {
+  .user-dasboard {
+    grid-template-columns: 1fr;
+  }
+}
+.user-dasboard .user-container {
   margin-left: 3.2rem;
   margin-right: 3.2rem;
 }
 .user-dasboard .user-nav {
   padding-top: 1.8rem;
   padding-bottom: 1.8rem;
+}
+@media only screen and (max-width: 40em) {
+  .user-dasboard .user-nav {
+    display: none;
+  }
 }
 .user-dasboard .user-nav .divider {
   background-color: #1e90ff;
@@ -607,7 +624,12 @@ input {
   transition: all 0.2s;
 }
 .user-dasboard .user-content {
-  height: 100px;
+  padding-top: 2.8rem;
+  padding-bottom: 2.8rem;
+}
+.user-dasboard .user-content .heading--3 {
+  font-weight: 500;
+  margin-bottom: 3.6rem;
 }
 
 .section-billboards,
@@ -1159,36 +1181,40 @@ input {
   margin-bottom: 1.6rem;
 }
 .section-form-check-out .user-info-field__form-control label {
-  margin-right: auto;
+  width: 100%;
+  max-width: 14rem;
 }
 .section-form-check-out .user-info-field__form-control label sup {
   color: #e74c3c;
 }
 .section-form-check-out .user-info-field__form-control input {
-  width: 60%;
+  flex: 1;
   padding: 0.8rem 1.2rem;
-  margin-right: 1.8rem;
 }
 @media only screen and (max-width: 60em) {
   .section-form-check-out .user-info-field__form-control input {
     margin-top: 0.6rem;
-    width: 90%;
-    margin-right: 0;
   }
 }
 @media only screen and (max-width: 50em) {
   .section-form-check-out .user-info-field__form-control input {
-    width: 70%;
-    margin-right: 1.8rem;
+    margin-right: 16rem;
   }
 }
 @media only screen and (max-width: 40em) {
   .section-form-check-out .user-info-field__form-control input {
-    width: 60%;
+    margin-right: 10rem;
   }
 }
 @media only screen and (max-width: 31.25em) {
   .section-form-check-out .user-info-field__form-control input {
+    margin-right: 0;
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .section-form-check-out .user-info-field__form-control input {
+    margin-right: 0;
     width: 100%;
   }
 }
@@ -1270,6 +1296,145 @@ input {
   font-size: 1.8rem;
   width: 100%;
   padding: 1.2rem 0;
+}
+
+.user-info-container {
+  display: grid;
+  grid-template-columns: 1fr min-content 2.5fr;
+  column-gap: 2.4rem;
+}
+@media only screen and (max-width: 60em) {
+  .user-info-container {
+    grid-template-columns: 1fr;
+  }
+}
+.user-info-container button {
+  margin-top: 2.4rem;
+  padding: 1rem 1.2rem;
+}
+.user-info-container .divider {
+  background-color: #1e90ff;
+  height: 100%;
+  width: 1px;
+  transform: translateY(0%);
+}
+@media only screen and (max-width: 60em) {
+  .user-info-container .divider {
+    background-color: #1e90ff;
+    width: 100%;
+    height: 1px;
+    transform: translateX(0%);
+  }
+  .user-info-container .divider {
+    margin: 3.6rem 0;
+  }
+}
+.user-info-container .user-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-info-container .user-avatar__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-info-container .user-update {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-info-container .user-update .user-update-container {
+  width: 100%;
+}
+.user-info-container .user-update__form-control {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+@media only screen and (max-width: 50em) {
+  .user-info-container .user-update__form-control {
+    flex-direction: column;
+  }
+}
+.user-info-container .user-update__form-control__title {
+  width: 100%;
+  max-width: 10rem;
+}
+.user-info-container .user-update__form-control__value {
+  font-weight: 500;
+}
+.user-info-container .user-update__form-control input {
+  display: none;
+  padding: 0.8rem 1.2rem;
+}
+.user-info-container .user-update__form-control input:not(input[type=date]) {
+  flex: 1;
+  margin-right: 4.8rem;
+}
+@media only screen and (max-width: 50em) {
+  .user-info-container .user-update__form-control input:not(input[type=date]) {
+    margin-right: 0;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 40em) {
+  .user-info-container .user-update__form-control input:not(input[type=date]) {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 22.5em) {
+  .user-info-container .user-update__form-control input:not(input[type=date]) {
+    width: 100%;
+  }
+}
+
+.payment-method {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.payment-method:not(:last-child) {
+  margin-bottom: 3.6rem;
+}
+.payment-method .not-found-msg {
+  display: none;
+  padding: 0.5rem 2.4rem;
+}
+.payment-method.not-found .not-found-msg {
+  display: block;
+}
+.payment-method__title {
+  margin-bottom: 1.2rem;
+}
+.payment-method__item {
+  background-color: #c8e4ff;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+}
+.payment-method__item__logo {
+  --logo-size: 3.6rem;
+  height: var(--logo-size);
+  width: var(--logo-size);
+  margin-right: 1.8rem;
+}
+.payment-method__item__logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.payment-method__item__card-number {
+  margin-right: 4rem;
+}
+.payment-method__item .btn--danger {
+  padding: 0.6rem 1.6rem;
+}
+.payment-method .btn--primary {
+  padding: 0.8rem 2rem;
 }
 
 .billboard {

@@ -1,0 +1,87 @@
+.user-info-container {
+  display: grid;
+  grid-template-columns: 1fr min-content 2.5fr;
+  column-gap: 2.4rem;
+
+  @include respond(lg) {
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    margin-top: 2.4rem;
+    padding: 1rem 1.2rem;
+  }
+
+  @include setDivider($color-primary, 100%, 1px, vertical);
+
+  @include respond(lg) {
+    @include setDivider($color-primary, 100%, 1px, horizontal);
+
+    .divider {
+      margin: 3.6rem 0;
+    }
+  }
+
+  .user-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__img {
+      @include placeImg;
+    }
+  }
+
+  .user-update {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .user-update-container {
+      width: 100%;
+    }
+
+    &__form-control {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+
+      @include respond(bg) {
+        flex-direction: column;
+      }
+
+      &__title {
+        width: 100%;
+        max-width: 10rem;
+      }
+
+      &__value {
+        // display: none;
+        font-weight: 500;
+      }
+
+      input {
+        display: none;
+        padding: 0.8rem 1.2rem;
+      }
+
+      input:not(input[type="date"]) {
+        flex: 1;
+        margin-right: 4.8rem;
+
+        @include respond(bg) {
+          margin-right: 0;
+          width: 100%;
+        }
+
+        @include respond(md) {
+          width: 90%;
+        }
+
+        @include respond(xs) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

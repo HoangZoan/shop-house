@@ -161,74 +161,39 @@
           <div class="user-container">
             <div class="heading--3">Thông tin tài khoản</div>
 
-            <div class="user-info-container">
-              <div class="user-avatar">
-                <div class="user-avatar__img">
-                  <img
-                    src="../../resources/images/illustrations/user-avatar.png"
-                    alt="Default use avatar"
-                  />
-                </div>
-                <button class="btn--primary">Thay ảnh đại diện</button>
+            <div class="payment-method">
+              <div class="payment-method__title">
+                Thẻ ngân hàng/Thẻ tín dụng:
               </div>
 
-              <div class="divider"></div>
-
-              <form class="user-update">
-                <div class="user-update-container">
-                  <div class="user-update__form-control">
-                    <label
-                      class="user-update__form-control__title"
-                      for="full-name"
-                      >Họ và tên:</label
-                    >
-                    <span class="user-update__form-control__value"
-                      >Nguyễn Văn B</span
-                    >
-                    <input class="input-border" type="text" id="full-name" />
-                  </div>
-
-                  <div class="user-update__form-control">
-                    <label
-                      class="user-update__form-control__title"
-                      for="date-of-birth"
-                      >Ngày sinh:</label
-                    >
-                    <span class="user-update__form-control__value"
-                      >12/07/1998</span
-                    >
-                    <input
-                      class="input-border"
-                      type="date"
-                      id="date-of-birth"
-                    />
-                  </div>
-
-                  <div class="user-update__form-control">
-                    <label
-                      class="user-update__form-control__title"
-                      for="address"
-                      >Nơi ở:</label
-                    >
-                    <span class="user-update__form-control__value"
-                      >Số 10, Đường A, Phường B, Quận C, TP. Hà Nội</span
-                    >
-                    <input class="input-border" type="text" id="address" />
-                  </div>
-
-                  <div class="user-update__form-control">
-                    <label class="user-update__form-control__title" for="email"
-                      >Email:</label
-                    >
-                    <span class="user-update__form-control__value"
-                      >test@123.com.vn</span
-                    >
-                    <input class="input-border" type="email" id="email" />
-                  </div>
+              <div class="payment-method__item">
+                <div class="payment-method__item__logo">
+                  <img
+                    src="../../resources/images/user payment/techcom-logo.png"
+                    alt="Techcom bank logo"
+                  />
                 </div>
 
-                <button class="btn--primary">Cập nhật thông tin</button>
-              </form>
+                <div class="payment-method__item__card-number">
+                  ************1366
+                </div>
+
+                <div class="not-found-msg">Chưa liên kết thẻ</div>
+
+                <button class="btn--danger">Xóa</button>
+              </div>
+
+              <button class="btn--primary">Thêm thẻ</button>
+            </div>
+
+            <div class="payment-method not-found">
+              <div class="payment-method__title">Ví điện tử:</div>
+
+              <div class="payment-method__item">
+                <div class="not-found-msg">Chưa liên kết ví điện tử</div>
+              </div>
+
+              <button class="btn--primary">Thêm ví</button>
             </div>
           </div>
         </div>

@@ -11,16 +11,16 @@
   font-size: 2rem;
 }
 
+.fz-small-link-btn {
+  font-size: 1.2rem;
+}
+
 .text-primary {
   color: $color-primary;
 }
 
 .text-black {
   color: $color-black;
-}
-
-.fz-small-link-btn {
-  font-size: 1.2rem;
 }
 
 //////////////////////////
@@ -89,6 +89,13 @@
     background-color: $color-primary;
     color: $color-white;
   }
+}
+
+.btn--danger {
+  @extend %button;
+  background-color: $color-white-background;
+  color: $color-red;
+  border: $border-red-thin;
 }
 
 .pagination__btn {
