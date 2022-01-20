@@ -11,6 +11,16 @@
   .user-container {
     margin-left: 3.2rem;
     margin-right: 3.2rem;
+    padding-top: 2.8rem;
+    padding-bottom: 2.8rem;
+  }
+
+  .user-container-detach {
+    padding: 2.8rem 3.2rem;
+
+    &:not(:last-child) {
+      margin-bottom: 3.6rem;
+    }
   }
 
   .user-nav {
@@ -48,8 +58,8 @@
   }
 
   .user-content {
-    padding-top: 2.8rem;
-    padding-bottom: 2.8rem;
+    // padding-top: 2.8rem;
+    // padding-bottom: 2.8rem;
 
     .heading--3 {
       font-weight: 500;

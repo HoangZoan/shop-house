@@ -96,6 +96,11 @@
   background-color: $color-white-background;
   color: $color-red;
   border: $border-red-thin;
+
+  &:hover {
+    background-color: $color-red;
+    color: $color-white;
+  }
 }
 
 .pagination__btn {

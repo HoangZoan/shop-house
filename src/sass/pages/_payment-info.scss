@@ -40,6 +40,10 @@
 
     &__card-number {
       margin-right: 4rem;
+
+      @include respond(xs) {
+        margin-right: 2.4rem;
+      }
     }
 
     .btn--danger {

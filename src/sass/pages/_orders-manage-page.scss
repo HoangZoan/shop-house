@@ -1,0 +1,147 @@
+.user-dasboard.orders-manage-dashboard {
+  grid-template-columns: 1fr;
+
+  .user-nav {
+    @include respond(lg) {
+      display: none;
+    }
+  }
+}
+
+.orders-manage-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: $border-primary-md;
+
+  @include respond(md) {
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+  }
+
+  @include respond(sm) {
+    grid-template-columns: repeat(3, max-content);
+  }
+
+  li {
+    padding-top: 0.6rem;
+    padding-bottom: 0.4rem;
+    text-align: center;
+    cursor: pointer;
+    @include category-list-transition;
+
+    @include respond(sm) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    &:first-child {
+      @include respond(sm) {
+        display: none;
+      }
+    }
+
+    &.active,
+    &:hover {
+      @include category-list-hover;
+    }
+  }
+}
+
+.order-manage-card {
+  &.on-delivery .order-manage-card__header {
+    color: $color-primary;
+  }
+
+  &.delivered .order-manage-card__header {
+    color: $color-text-gray;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    border-bottom: $border-primary-md;
+    padding-bottom: 0.6rem;
+
+    &__icon {
+      margin-right: 1.8rem;
+
+      svg {
+        --icon-size: 2.4rem;
+        height: var(--icon-size);
+        width: var(--icon-size);
+      }
+    }
+
+    &__title {
+      font-weight: 500;
+    }
+  }
+
+  &__cards-list {
+    &__item {
+      padding: 1.6rem 0;
+      display: grid;
+      grid-template-columns: max-content 1fr max-content;
+      column-gap: 2.4rem;
+
+      &:not(:last-child) {
+        border-bottom: $border-gray-thin;
+      }
+
+      .order-card-img {
+        width: 100%;
+        max-width: 14rem;
+
+        @include placeImg;
+      }
+
+      .order-card-content {
+        &__title {
+          font-size: 1.6rem;
+          margin-bottom: 0.6rem;
+        }
+
+        &__distributor,
+        &__quantity {
+          color: $color-text-gray;
+          font-size: 1.3rem;
+        }
+
+        &__distributor {
+          display: flex;
+          align-items: center;
+          margin-bottom: 2.8rem;
+
+          &__icon {
+            margin-right: 1rem;
+
+            svg {
+              --icon-size: 1.8rem;
+              height: var(--icon-size);
+              width: var(--icon-size);
+            }
+          }
+
+          &__link {
+            @include primaryLink;
+          }
+        }
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: $border-primary-thin;
+    padding-top: 1.2rem;
+
+    button {
+      padding: 0.8rem 1.2rem;
+    }
+
+    &__total {
+      color: $color-text-gray;
+    }
+  }
+}

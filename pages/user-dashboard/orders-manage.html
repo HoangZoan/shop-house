@@ -112,7 +112,7 @@
     </header>
 
     <main class="bg--gray main-padding-y">
-      <div class="user-dasboard container">
+      <div class="user-dasboard container orders-manage-dashboard">
         <nav class="user-nav bg--white">
           <div class="user-container">
             <a href="#" class="user-nav__link">
@@ -157,47 +157,128 @@
         </nav>
 
         <!--  CONTENT HERE! -->
-        <div class="user-content bg--white">
-          <div class="user-container">
-            <div class="heading--3">Thông tin tài khoản</div>
+        <div class="user-content">
+            <div class="user-container-detach bg--white">
+                <div class="heading--3">Quản lý đơn hàng</div>
 
-            <div class="payment-method">
-              <div class="payment-method__title">
-                Thẻ ngân hàng/Thẻ tín dụng:
-              </div>
-
-              <div class="payment-method__item">
-                <div class="payment-method__item__logo">
-                  <img
-                    src="../../resources/images/user payment/techcom-logo.png"
-                    alt="Techcom bank logo"
-                  />
-                </div>
-
-                <div class="payment-method__item__card-number">
-                  ************1366
-                </div>
-
-                <div class="not-found-msg">Chưa liên kết thẻ</div>
-
-                <button class="btn--danger">Xóa</button>
-              </div>
-
-              <button class="btn--primary">Thêm thẻ</button>
+                <ul class="orders-manage-nav">
+                <li class="active">Tất cả</li>
+                <li>Đang vận chuyển</li>
+                <li>Đã mua</li>
+                <li>Đã hủy</li>
+                </ul>
             </div>
 
-            <div class="payment-method not-found">
-              <div class="payment-method__title">Ví điện tử:</div>
+            <div class="order-manage-card on-delivery user-container-detach bg--white">
+                <header class="order-manage-card__header">
+                    <div class="order-manage-card__header__icon center-content">
+                        <svg>
+                            <use
+                                xlink:href="../../resources/icons/sprite.svg#truck"
+                            ></use>
+                        </svg>
+                    </div>
+                    <div class="order-manage-card__header__title">
+                        Giao hàng dự kiến 12/01 - 14/01/2022
+                    </div>
+                </header>
 
-              <div class="payment-method__item">
-                <div class="not-found-msg">Chưa liên kết ví điện tử</div>
-              </div>
+                <ul class="order-manage-card__cards-list">
+                    <li class="order-manage-card__cards-list__item">
+                        <div class="order-card-img">
+                            <img
+                                src="../../resources/images/products/p1.jpg"
+                                alt="Product img"
+                            />
+                        </div>
 
-              <button class="btn--primary">Thêm ví</button>
+                        <div class="order-card-content">
+                            <div class="order-card-content__title">
+                                Bộ rèm phòng tắm Lush Decor
+                            </div>
+                            <div class="order-card-content__distributor">
+                                <div class="order-card-content__distributor__icon center-content">
+                                    <svg>
+                                        <use
+                                        xlink:href="../../resources/icons/sprite.svg#store"
+                                        ></use>
+                                    </svg>
+                                </div>
+
+                                <a href="#" class="order-card-content__distributor__link">
+                                    Phố Xinh
+                                </a>
+                            </div>
+                            <div class="order-card-content__quantity">Số lượng: x1</div>
+                        </div>
+                        <div class="order-card-price">3.789.000đ</div>
+                    </li>
+                </ul>
+
+                <footer class="order-manage-card__footer">
+                    <button class="btn--sub">Xem chi tiết</button>
+                    <div class="order-manage-card__footer__total">
+                        Tổng tiền: <span class="text-black">4.688.000đ</span>
+                    </div>
+                </footer>
             </div>
-          </div>
+
+            <!-- <div class="order-manage-card delivered user-container-detach bg--white">
+                <header class="order-manage-card__header">
+                    <div class="order-manage-card__header__icon center-content">
+                        <svg>
+                            <use
+                                xlink:href="../../resources/icons/sprite.svg#truck"
+                            ></use>
+                        </svg>
+                    </div>
+                    <div class="order-manage-card__header__title">
+                        Hàng đã giao 24/12/2021
+                    </div>
+                </header>
+
+                <ul class="order-manage-card__cards-list">
+                    <li class="order-manage-card__cards-list__item">
+                        <div class="order-card-img">
+                            <img
+                                src="../../resources/images/products/p1.jpg"
+                                alt="Product img"
+                            />
+                        </div>
+
+                        <div class="order-card-content">
+                            <div class="order-card-content__title">
+                                Bộ rèm phòng tắm Lush Decor
+                            </div>
+                            <div class="order-card-content__distributor">
+                                <div class="order-card-content__distributor__icon center-content">
+                                    <svg>
+                                        <use
+                                        xlink:href="../../resources/icons/sprite.svg#store"
+                                        ></use>
+                                    </svg>
+                                </div>
+
+                                <a href="#" class="order-card-content__distributor__link">
+                                    Phố Xinh
+                                </a>
+                            </div>
+                            <div class="order-card-content__quantity">Số lượng: x1</div>
+                        </div>
+                        <div class="order-card-price">3.789.000đ</div>
+                    </li>
+                </ul>
+
+                <footer class="order-manage-card__footer">
+                    <button class="btn--sub">Xem chi tiết</button>
+                    <div class="order-manage-card__footer__total">
+                        Tổng tiền: <span class="text-black">4.688.000đ</span>
+                    </div>
+                </footer>
+            </div> -->
         </div>
-      </div>
+
+        
     </main>
 
     <footer class="page-footer">

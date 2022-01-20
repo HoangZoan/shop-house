@@ -134,6 +134,10 @@ input {
   color: #e74c3c;
   border: 1px solid #e74c3c;
 }
+.btn--danger:hover {
+  background-color: #e74c3c;
+  color: #fff;
+}
 
 .btn--link {
   line-height: 1.2;
@@ -516,7 +520,7 @@ input {
   margin-bottom: 2rem;
 }
 .footer-content__column__list {
-  color: #7c7c7c;
+  color: #a6a6a6;
   margin-bottom: 2.8rem;
   transition: all 0.2s;
 }
@@ -588,6 +592,14 @@ input {
 .user-dasboard .user-container {
   margin-left: 3.2rem;
   margin-right: 3.2rem;
+  padding-top: 2.8rem;
+  padding-bottom: 2.8rem;
+}
+.user-dasboard .user-container-detach {
+  padding: 2.8rem 3.2rem;
+}
+.user-dasboard .user-container-detach:not(:last-child) {
+  margin-bottom: 3.6rem;
 }
 .user-dasboard .user-nav {
   padding-top: 1.8rem;
@@ -622,10 +634,6 @@ input {
 }
 .user-dasboard .user-nav__link span {
   transition: all 0.2s;
-}
-.user-dasboard .user-content {
-  padding-top: 2.8rem;
-  padding-bottom: 2.8rem;
 }
 .user-dasboard .user-content .heading--3 {
   font-weight: 500;
@@ -1430,11 +1438,147 @@ input {
 .payment-method__item__card-number {
   margin-right: 4rem;
 }
+@media only screen and (max-width: 22.5em) {
+  .payment-method__item__card-number {
+    margin-right: 2.4rem;
+  }
+}
 .payment-method__item .btn--danger {
   padding: 0.6rem 1.6rem;
 }
 .payment-method .btn--primary {
   padding: 0.8rem 2rem;
+}
+
+.user-dasboard.orders-manage-dashboard {
+  grid-template-columns: 1fr;
+}
+@media only screen and (max-width: 60em) {
+  .user-dasboard.orders-manage-dashboard .user-nav {
+    display: none;
+  }
+}
+
+.orders-manage-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 2px solid #1e90ff;
+}
+@media only screen and (max-width: 40em) {
+  .orders-manage-nav {
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .orders-manage-nav {
+    grid-template-columns: repeat(3, max-content);
+  }
+}
+.orders-manage-nav li {
+  padding-top: 0.6rem;
+  padding-bottom: 0.4rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+@media only screen and (max-width: 31.25em) {
+  .orders-manage-nav li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .orders-manage-nav li:first-child {
+    display: none;
+  }
+}
+.orders-manage-nav li.active, .orders-manage-nav li:hover {
+  background-color: #f1f8ff;
+  color: #1e90ff;
+}
+
+.order-manage-card.on-delivery .order-manage-card__header {
+  color: #1e90ff;
+}
+.order-manage-card.delivered .order-manage-card__header {
+  color: #a6a6a6;
+}
+.order-manage-card__header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #1e90ff;
+  padding-bottom: 0.6rem;
+}
+.order-manage-card__header__icon {
+  margin-right: 1.8rem;
+}
+.order-manage-card__header__icon svg {
+  --icon-size: 2.4rem;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+.order-manage-card__header__title {
+  font-weight: 500;
+}
+.order-manage-card__cards-list__item {
+  padding: 1.6rem 0;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  column-gap: 2.4rem;
+}
+.order-manage-card__cards-list__item:not(:last-child) {
+  border-bottom: 1px solid #cfcfcf;
+}
+.order-manage-card__cards-list__item .order-card-img {
+  width: 100%;
+  max-width: 14rem;
+}
+.order-manage-card__cards-list__item .order-card-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.order-manage-card__cards-list__item .order-card-content__title {
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+.order-manage-card__cards-list__item .order-card-content__distributor, .order-manage-card__cards-list__item .order-card-content__quantity {
+  color: #a6a6a6;
+  font-size: 1.3rem;
+}
+.order-manage-card__cards-list__item .order-card-content__distributor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.8rem;
+}
+.order-manage-card__cards-list__item .order-card-content__distributor__icon {
+  margin-right: 1rem;
+}
+.order-manage-card__cards-list__item .order-card-content__distributor__icon svg {
+  --icon-size: 1.8rem;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+.order-manage-card__cards-list__item .order-card-content__distributor__link {
+  color: #1e90ff;
+  transition: all 0.2s;
+}
+.order-manage-card__cards-list__item .order-card-content__distributor__link:hover {
+  color: #6bb6ff;
+}
+.order-manage-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #1e90ff;
+  padding-top: 1.2rem;
+}
+.order-manage-card__footer button {
+  padding: 0.8rem 1.2rem;
+}
+.order-manage-card__footer__total {
+  color: #a6a6a6;
 }
 
 .billboard {
