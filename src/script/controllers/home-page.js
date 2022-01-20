@@ -65,5 +65,5 @@ const productReviewMarkup = [
   productReviewEl,
   productReviewEl,
 ].join(" ");
-renderMainCards("test-1", productReviewMarkup);
-renderMainCards("test-2", productReviewMarkup);
+// renderMainCards("test-1", productReviewMarkup);
+// renderMainCards("test-2", productReviewMarkup);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thông Tin Thanh Toán</title>
+    <title>Chi tiết đơn hàng</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
       rel="stylesheet"
@@ -13,7 +13,7 @@
     <script
       defer
       type="module"
-      src="../../src/script/controllers/payment-info.js"
+      src="../../src/script/controllers/order-detail.js"
     ></script>
   </head>
   <body>
@@ -112,7 +112,7 @@
     </header>
 
     <main class="bg--gray main-padding-y">
-      <div class="user-dasboard container">
+      <div class="user-dasboard container orders-detail-dashboard">
         <nav class="user-nav bg--white">
           <div class="user-container">
             <a href="#" class="user-nav__link">
@@ -157,43 +157,114 @@
         </nav>
 
         <!--  CONTENT HERE! -->
-        <div class="user-content bg--white">
-          <div class="user-container">
-            <div class="heading--3">Thông tin tài khoản</div>
+        <div class="user-content">
+          <div class="user-container-detach-sm bg--white">
+            <div class="order-id">Chi tiết đơn hàng #123456</div>
+          </div>
 
-            <div class="payment-method">
-              <div class="payment-method__title">
-                Thẻ ngân hàng/Thẻ tín dụng:
-              </div>
+          <div class="user-container-detach-sm bg--white">
+            <div class="order-delivery-status">
+              Trạng thái:
+              <strong
+                >Đang vận chuyển - Dự kiến giao hàng 12/01 - 14/01/2021</strong
+              >
+            </div>
+          </div>
 
-              <div class="payment-method__item">
-                <div class="payment-method__item__logo">
+          <div class="user-container-detach bg--white">
+            <ul class="order-manage-card__cards-list">
+              <li class="order-manage-card__cards-list__item">
+                <div class="order-card-img">
                   <img
-                    src="../../resources/images/user payment/techcom-logo.png"
-                    alt="Techcom bank logo"
+                    src="../../resources/images/products/p1.jpg"
+                    alt="Product img"
                   />
                 </div>
 
-                <div class="payment-method__item__card-number">
-                  ************1366
+                <div class="order-card-content">
+                  <div class="order-card-content__title">
+                    Bộ rèm phòng tắm Lush Decor Bộ rèm phòng tắm Lush Decor Bộ
+                    rèm phòng tắm Lush Decor
+                  </div>
+                  <div class="order-card-content__distributor">
+                    <div
+                      class="order-card-content__distributor__icon center-content"
+                    >
+                      <svg>
+                        <use
+                          xlink:href="../../resources/icons/sprite.svg#store"
+                        ></use>
+                      </svg>
+                    </div>
+
+                    <a href="#" class="order-card-content__distributor__link">
+                      Phố Xinh
+                    </a>
+                  </div>
+                  <div class="order-card-content__quantity">Số lượng: x1</div>
+                  <div class="order-card-price order-card-price--responsive">
+                    3.789.000đ
+                  </div>
                 </div>
+                <div class="order-card-price order-card-price--origin">
+                  3.789.000đ
+                </div>
+              </li>
+            </ul>
+          </div>
 
-                <div class="not-found-msg">Chưa liên kết thẻ</div>
+          <div class="order-info">
+            <div
+              class="order-info__box customer-info user-container-detach bg--white clear-m"
+            >
+              <header class="order-info__box__title">
+                Thông tin người nhận
+              </header>
 
-                <button class="btn--danger">Xóa</button>
-              </div>
-
-              <button class="btn--primary">Thêm thẻ</button>
+              <ul class="order-info__box__list">
+                <li class="order-info__box__list-item">
+                  <div class="order-list-title">Người nhận:</div>
+                  <div class="order-list-detail">Nguyễn Văn B</div>
+                </li>
+                <li class="order-info__box__list-item">
+                  <div class="order-list-title">Nơi nhận:</div>
+                  <div class="order-list-detail">
+                    Số 10, Đường A, Phường B, Quận C, TP. Hà Nội
+                  </div>
+                </li>
+              </ul>
             </div>
 
-            <div class="payment-method not-found">
-              <div class="payment-method__title">Ví điện tử:</div>
+            <div
+              class="order-info__box payment-info user-container-detach bg--white"
+            >
+              <header class="order-info__box__title">Hóa đơn thanh toán</header>
 
-              <div class="payment-method__item">
-                <div class="not-found-msg">Chưa liên kết ví điện tử</div>
+              <ul>
+                <li class="order-info__box__list-item">
+                  <div class="order-list-title">Tạm tính</div>
+                  <div class="order-list-detail">4.688.000đ</div>
+                </li>
+                <li class="order-info__box__list-item">
+                  <div class="order-list-title">Phí vận chuyển</div>
+                  <div class="order-list-detail">0đ</div>
+                </li>
+                <li class="order-info__box__list-item">
+                  <div class="order-list-title">Mã giảm giá</div>
+                  <div class="order-list-detail">0đ</div>
+                </li>
+                <li class="order-info__box__list-item">
+                  <div class="order-list-title">Thanh toán</div>
+                  <div class="order-list-detail">Khi nhận hàng</div>
+                </li>
+              </ul>
+
+              <div class="order-info__box__total-price">
+                <div class="order-info__box__list-item">
+                  <div class="order-list-title">Tổng</div>
+                  <div class="order-list-detail">4.688.000đ</div>
+                </div>
               </div>
-
-              <button class="btn--primary">Thêm ví</button>
             </div>
           </div>
         </div>

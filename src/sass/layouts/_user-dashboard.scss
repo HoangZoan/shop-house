@@ -11,8 +11,8 @@
   .user-container {
     margin-left: 3.2rem;
     margin-right: 3.2rem;
-    padding-top: 2.8rem;
-    padding-bottom: 2.8rem;
+    margin-top: 2.8rem;
+    margin-bottom: 2.8rem;
   }
 
   .user-container-detach {
@@ -23,10 +23,12 @@
     }
   }
 
-  .user-nav {
-    padding-top: 1.8rem;
-    padding-bottom: 1.8rem;
+  .user-container-detach-sm {
+    padding: 1.4rem 3.2rem;
+    margin-bottom: 2.4rem;
+  }
 
+  .user-nav {
     @include respond(md) {
       display: none;
     }
@@ -58,9 +60,6 @@
   }
 
   .user-content {
-    // padding-top: 2.8rem;
-    // padding-bottom: 2.8rem;
-
     .heading--3 {
       font-weight: 500;
       margin-bottom: 3.6rem;

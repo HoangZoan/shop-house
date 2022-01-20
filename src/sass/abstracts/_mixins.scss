@@ -13,6 +13,12 @@
   left: 0;
 }
 
+@mixin position-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 @mixin position-top-center {
   position: absolute;
   top: 50%;

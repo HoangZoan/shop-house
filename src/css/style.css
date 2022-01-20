@@ -64,6 +64,14 @@ input {
   color: #000;
 }
 
+.text-gray {
+  color: #7c7c7c;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
 /* CONTAINER */
 .container {
   --padding: 4.8rem;
@@ -182,6 +190,11 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* BOX MODEL */
+.clear-m {
+  margin: 0 !important;
 }
 
 .page-header {
@@ -520,7 +533,7 @@ input {
   margin-bottom: 2rem;
 }
 .footer-content__column__list {
-  color: #a6a6a6;
+  color: #7c7c7c;
   margin-bottom: 2.8rem;
   transition: all 0.2s;
 }
@@ -592,8 +605,8 @@ input {
 .user-dasboard .user-container {
   margin-left: 3.2rem;
   margin-right: 3.2rem;
-  padding-top: 2.8rem;
-  padding-bottom: 2.8rem;
+  margin-top: 2.8rem;
+  margin-bottom: 2.8rem;
 }
 .user-dasboard .user-container-detach {
   padding: 2.8rem 3.2rem;
@@ -601,9 +614,9 @@ input {
 .user-dasboard .user-container-detach:not(:last-child) {
   margin-bottom: 3.6rem;
 }
-.user-dasboard .user-nav {
-  padding-top: 1.8rem;
-  padding-bottom: 1.8rem;
+.user-dasboard .user-container-detach-sm {
+  padding: 1.4rem 3.2rem;
+  margin-bottom: 2.4rem;
 }
 @media only screen and (max-width: 40em) {
   .user-dasboard .user-nav {
@@ -1450,8 +1463,10 @@ input {
   padding: 0.8rem 2rem;
 }
 
-.user-dasboard.orders-manage-dashboard {
-  grid-template-columns: 1fr;
+@media only screen and (max-width: 60em) {
+  .user-dasboard.orders-manage-dashboard {
+    grid-template-columns: 1fr;
+  }
 }
 @media only screen and (max-width: 60em) {
   .user-dasboard.orders-manage-dashboard .user-nav {
@@ -1501,7 +1516,7 @@ input {
   color: #1e90ff;
 }
 .order-manage-card.delivered .order-manage-card__header {
-  color: #a6a6a6;
+  color: #7c7c7c;
 }
 .order-manage-card__header {
   display: flex;
@@ -1512,6 +1527,11 @@ input {
 .order-manage-card__header__icon {
   margin-right: 1.8rem;
 }
+@media only screen and (max-width: 31.25em) {
+  .order-manage-card__header__icon {
+    margin-right: 1.2rem;
+  }
+}
 .order-manage-card__header__icon svg {
   --icon-size: 2.4rem;
   height: var(--icon-size);
@@ -1520,18 +1540,41 @@ input {
 .order-manage-card__header__title {
   font-weight: 500;
 }
+@media only screen and (max-width: 31.25em) {
+  .order-manage-card__header__title {
+    font-size: 1.2rem;
+  }
+}
 .order-manage-card__cards-list__item {
   padding: 1.6rem 0;
   display: grid;
   grid-template-columns: max-content 1fr max-content;
   column-gap: 2.4rem;
+  row-gap: 3.2rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .order-manage-card__cards-list__item {
+    grid-template-columns: 1fr;
+  }
 }
 .order-manage-card__cards-list__item:not(:last-child) {
   border-bottom: 1px solid #cfcfcf;
 }
 .order-manage-card__cards-list__item .order-card-img {
+  align-self: flex-start;
   width: 100%;
+  height: auto;
   max-width: 14rem;
+}
+@media only screen and (max-width: 40em) {
+  .order-manage-card__cards-list__item .order-card-img {
+    max-width: 12rem;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .order-manage-card__cards-list__item .order-card-img {
+    max-width: 120rem;
+  }
 }
 .order-manage-card__cards-list__item .order-card-img img {
   display: block;
@@ -1544,7 +1587,7 @@ input {
   margin-bottom: 0.6rem;
 }
 .order-manage-card__cards-list__item .order-card-content__distributor, .order-manage-card__cards-list__item .order-card-content__quantity {
-  color: #a6a6a6;
+  color: #7c7c7c;
   font-size: 1.3rem;
 }
 .order-manage-card__cards-list__item .order-card-content__distributor {
@@ -1567,6 +1610,19 @@ input {
 .order-manage-card__cards-list__item .order-card-content__distributor__link:hover {
   color: #6bb6ff;
 }
+@media only screen and (max-width: 50em) {
+  .order-manage-card__cards-list__item .order-card-price--origin {
+    display: none;
+  }
+}
+.order-manage-card__cards-list__item .order-card-price--responsive {
+  display: none;
+}
+@media only screen and (max-width: 50em) {
+  .order-manage-card__cards-list__item .order-card-price--responsive {
+    display: block;
+  }
+}
 .order-manage-card__footer {
   display: flex;
   align-items: center;
@@ -1574,11 +1630,84 @@ input {
   border-top: 1px solid #1e90ff;
   padding-top: 1.2rem;
 }
-.order-manage-card__footer button {
+@media only screen and (max-width: 31.25em) {
+  .order-manage-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.order-manage-card__footer .btn--sub {
   padding: 0.8rem 1.2rem;
 }
+@media only screen and (max-width: 31.25em) {
+  .order-manage-card__footer .btn--sub {
+    order: 2;
+    align-self: center;
+    margin-top: 2.4rem;
+  }
+}
 .order-manage-card__footer__total {
-  color: #a6a6a6;
+  color: #7c7c7c;
+}
+
+@media only screen and (max-width: 60em) {
+  .user-dasboard.orders-detail-dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (max-width: 60em) {
+  .user-dasboard.orders-detail-dashboard .user-nav {
+    display: none;
+  }
+}
+
+.order-id {
+  font-size: 1.8rem;
+}
+
+.order-delivery-status {
+  color: #7c7c7c;
+}
+
+.order-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+  row-gap: 3.6rem;
+  align-items: flex-start;
+}
+@media only screen and (max-width: 40em) {
+  .order-info {
+    grid-template-columns: 1fr;
+  }
+}
+.order-info__box.customer-info .order-info__box__list-item {
+  flex-direction: column;
+}
+.order-info__box.payment-info .order-info__box__list-item {
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+.order-info__box__list-item {
+  display: flex;
+}
+.order-info__box__list-item:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
+.order-info__box__list-item .order-list-title {
+  color: #7c7c7c;
+}
+.order-info__box__title {
+  font-weight: 500;
+  font-size: 2rem;
+  border-bottom: 2px solid #1e90ff;
+  margin-bottom: 1.8rem;
+}
+.order-info__box__total-price {
+  font-size: 1.6rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #1e90ff;
+  font-weight: 500;
 }
 
 .billboard {
@@ -1798,6 +1927,7 @@ input {
   }
 }
 .main-cards__cards__product-card {
+  position: relative;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   background-color: #fff;
   transition: all 0.2s;
@@ -1837,6 +1967,15 @@ input {
   .main-cards__cards__product-card .card-text__product-title {
     font-size: 1.8rem;
   }
+}
+.main-cards__cards__product-card .test-box {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .main-cards__cards__brand-card:hover, .main-cards__cards__product-card:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);

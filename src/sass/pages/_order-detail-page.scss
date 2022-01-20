@@ -1,0 +1,72 @@
+.user-dasboard.orders-detail-dashboard {
+  @include respond(lg) {
+    grid-template-columns: 1fr;
+  }
+
+  .user-nav {
+    @include respond(lg) {
+      display: none;
+    }
+  }
+}
+
+.order-id {
+  font-size: 1.8rem;
+}
+
+.order-delivery-status {
+  color: $color-text-gray;
+}
+
+.order-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+  row-gap: 3.6rem;
+  align-items: flex-start;
+
+  @include respond(md) {
+    grid-template-columns: 1fr;
+  }
+
+  &__box {
+    &.customer-info {
+      .order-info__box__list-item {
+        flex-direction: column;
+      }
+    }
+
+    &.payment-info {
+      .order-info__box__list-item {
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+      }
+    }
+
+    &__list-item {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 0.8rem;
+      }
+
+      .order-list-title {
+        color: $color-text-gray;
+      }
+    }
+
+    &__title {
+      font-weight: 500;
+      font-size: 2rem;
+      border-bottom: $border-primary-md;
+      margin-bottom: 1.8rem;
+    }
+
+    &__total-price {
+      font-size: 1.6rem;
+      padding-top: 1.2rem;
+      border-top: $border-primary-thin;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,5 +1,7 @@
 .user-dasboard.orders-manage-dashboard {
-  grid-template-columns: 1fr;
+  @include respond(lg) {
+    grid-template-columns: 1fr;
+  }
 
   .user-nav {
     @include respond(lg) {
@@ -64,6 +66,10 @@
     &__icon {
       margin-right: 1.8rem;
 
+      @include respond(sm) {
+        margin-right: 1.2rem;
+      }
+
       svg {
         --icon-size: 2.4rem;
         height: var(--icon-size);
@@ -73,6 +79,10 @@
 
     &__title {
       font-weight: 500;
+
+      @include respond(sm) {
+        font-size: 1.2rem;
+      }
     }
   }
 
@@ -82,14 +92,29 @@
       display: grid;
       grid-template-columns: max-content 1fr max-content;
       column-gap: 2.4rem;
+      row-gap: 3.2rem;
+
+      @include respond(sm) {
+        grid-template-columns: 1fr;
+      }
 
       &:not(:last-child) {
         border-bottom: $border-gray-thin;
       }
 
       .order-card-img {
+        align-self: flex-start;
         width: 100%;
+        height: auto;
         max-width: 14rem;
+
+        @include respond(md) {
+          max-width: 12rem;
+        }
+
+        @include respond(sm) {
+          max-width: 120rem;
+        }
 
         @include placeImg;
       }
@@ -126,6 +151,22 @@
           }
         }
       }
+
+      .order-card-price {
+        &--origin {
+          @include respond(bg) {
+            display: none;
+          }
+        }
+
+        &--responsive {
+          display: none;
+
+          @include respond(bg) {
+            display: block;
+          }
+        }
+      }
     }
   }
 
@@ -136,8 +177,19 @@
     border-top: $border-primary-thin;
     padding-top: 1.2rem;
 
-    button {
+    @include respond(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .btn--sub {
       padding: 0.8rem 1.2rem;
+
+      @include respond(sm) {
+        order: 2;
+        align-self: center;
+        margin-top: 2.4rem;
+      }
     }
 
     &__total {
