@@ -13,6 +13,19 @@
   &__item {
     position: relative;
 
+    @include respond(sm) {
+      .product-categories__item__link {
+        backdrop-filter: brightness(100%);
+      }
+
+      .product-categories__item__link .category-title {
+        background-color: $color-white;
+        color: $color-primary;
+        animation: category-moveUp 0.3s;
+        animation-fill-mode: forwards;
+      }
+    }
+
     &__img {
       @include placeImg;
       overflow: hidden;

@@ -16,20 +16,20 @@
     />
     <link rel="stylesheet" href="./src/css/style.css" />
     <script
-      defer
       type="module"
+      defer
       src="./src/script/controllers/home-page.js"
     ></script>
   </head>
   <body>
     <header class="page-header">
       <div class="header-bar container">
-        <div class="header-bar__logo">
+        <a href="#" class="header-bar__logo">
           <img
             src="./resources/images/logo/vector/default.svg"
             alt="Shop House Logo"
           />
-        </div>
+        </a>
         <div class="header-bar__search-control">
           <div class="search-icon">
             <svg>
@@ -45,23 +45,29 @@
               <use xlink:href="resources/icons/sprite.svg#search"></use>
             </svg>
           </div>
-          <div class="tool-icon tool-icon--user">
+          <a
+            href="./pages/user-dashboard/user-info.html"
+            class="tool-icon tool-icon--user"
+          >
             <svg>
               <use xlink:href="resources/icons/sprite.svg#user"></use>
             </svg>
-          </div>
-          <div class="tool-icon tool-icon--heart">
+          </a>
+          <a
+            href="./pages/favorite-products.html"
+            class="tool-icon tool-icon--heart"
+          >
             <svg>
               <use xlink:href="resources/icons/sprite.svg#heart"></use>
             </svg>
-          </div>
-          <div class="tool-icon">
+          </a>
+          <a href="./pages/your-cart.html" class="tool-icon">
             <svg>
               <use
                 xlink:href="resources/icons/sprite.svg#shopping-basket"
               ></use>
             </svg>
-          </div>
+          </a>
           <div class="tool-icon tool-icon--menu">
             <svg>
               <use xlink:href="resources/icons/sprite.svg#menu"></use>
@@ -70,10 +76,11 @@
         </div>
       </div>
 
+      <!-- Add 'active' here -->
       <div class="header-category">
         <ul class="tool-box-menu">
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="./pages/user-dashboard/user-info.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="resources/icons/sprite.svg#user"></use>
@@ -83,7 +90,7 @@
             </a>
           </li>
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="./pages/favorite-products.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="resources/icons/sprite.svg#heart"></use>
@@ -98,17 +105,29 @@
 
         <ul class="header-category__list">
           <li class="header-category__list__item">
-            <a href="#">Phòng khách</a>
-          </li>
-          <li class="header-category__list__item"><a href="#">Phòng ngủ</a></li>
-          <li class="header-category__list__item"><a href="#">Nhà bếp</a></li>
-          <li class="header-category__list__item"><a href="#">Trẻ em</a></li>
-          <li class="header-category__list__item"><a href="#">Sân vườn</a></li>
-          <li class="header-category__list__item">
-            <a href="#">Thiết bị nội thất</a>
+            <a href="./pages/product-list.html?category=livingroom"
+              >Phòng khách</a
+            >
           </li>
           <li class="header-category__list__item">
-            <a href="#">Khuyến mãi</a>
+            <a href="./pages/product-list.html?category=bedroom">Phòng ngủ</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="./pages/product-list.html?category=kitchen">Nhà bếp</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="./pages/product-list.html?category=kids">Trẻ em</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="./pages/product-list.html?category=garden">Sân vườn</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="./pages/product-list.html?category=appliances"
+              >Thiết bị nội thất</a
+            >
+          </li>
+          <li class="header-category__list__item">
+            <a href="./pages/product-list.html?category=sale">Khuyến mãi</a>
           </li>
         </ul>
       </div>
@@ -177,21 +196,23 @@
             <h2 class="heading--2">Nhãn hàng yêu thích</h2>
           </div>
 
-          <div class="main-cards__cards variant-brand">
-            <!-- <a href="#" class="main-cards__cards__brand-card">
-                <div class="card-img">
-                  <img
-                    src="./resources/images/brands/chilai-wall.png"
-                    alt="Photo of furniture"
-                  />
-                </div>
-                <div class="card-brand-logo">
-                  <img
-                    src="./resources/images/brands/chilai-logo.png"
-                    alt="Chilai Logo"
-                  />
-                </div>
-              </a> -->
+          <div class="main-cards__cards-container">
+            <div class="main-cards__cards variant-brand brands-preview">
+              <!-- <a href="#" class="main-cards__cards__brand-card">
+              <div class="card-img">
+                <img
+                  src="./resources/images/brands/chilai-wall.png"
+                  alt="Photo of furniture"
+                />
+              </div>
+              <div class="card-brand-logo">
+                <img
+                  src="./resources/images/brands/chilai-logo.png"
+                  alt="Chilai Logo"
+                />
+              </div>
+            </a> -->
+            </div>
 
             <!-- SLIDER BUTTON -->
             <div class="slider-btn--prev center-content">
@@ -218,7 +239,7 @@
                 alt="Cerificate icon"
               />
             </div>
-            <h2 class="heading--2">Nhãn hàng yêu thích</h2>
+            <h2 class="heading--2">Sản phẩm bán chạy</h2>
             <div class="main-cards__top-bar__see-more">
               <a href="#">Xem thêm</a>
               <div class="icon-arrow">
@@ -231,23 +252,59 @@
             </div>
           </div>
 
-          <div class="main-cards__cards variant-product-preview test-1">
-            <a href="#" class="main-cards__cards__product-card">
-              <div class="card-img">
-                <img src="./resources/images/products/p1.jpg" alt="Product" />
+          <div class="main-cards__cards-container">
+            <div
+              class="main-cards__cards variant-product-preview best-seller-preview"
+            >
+              <!-- RENDER BEST SELLING PRODUCTS -->
+              <!-- <div class="main-cards__cards__product-card-container">
+              <a href="#" class="main-cards__cards__product-card">
+                <div class="card-img">
+                  <img src="./resources/images/products/p1.jpg" alt="Product" />
+
+                  <div class="product-card-tags">
+                    <div
+                      class="product-card-tags__item product-card-tags__item--new"
+                    >
+                      Mới
+                    </div>
+                    <div
+                      class="product-card-tags__item product-card-tags__item--discount"
+                    >
+                      Giảm 30%
+                    </div>
+                    <div
+                      class="product-card-tags__item product-card-tags__item--free-ship"
+                    >
+                      Free ship
+                    </div>
+                    <div
+                      class="product-card-tags__item product-card-tags__item--gift"
+                    >
+                      Quà tặng
+                    </div>
+                  </div>
+                </div>
+                <div class="card-text">
+                  <div class="card-text__price card-text__price--current">
+                    Giá: <span class="price-text">3.999.000đ</span>
+                  </div>
+                  <div class="card-text__price card-text__price--old">
+                    <del class="price-text">4.499.000đ</del>
+                  </div>
+                  <div class="card-text__product-title">
+                    Ghế trẻ nhỏ Alcalde Kids Activity
+                  </div>
+                </div>
+              </a>
+
+              <div class="card-favorite-btn center-content">
+                <svg>
+                  <use xlink:href="resources/icons/sprite.svg#heart-fill"></use>
+                </svg>
               </div>
-              <div class="card-text">
-                <div class="card-text__price card-text__price--current">
-                  Giá: <span class="price-text">3.999.000đ</span>
-                </div>
-                <div class="card-text__price card-text__price--old">
-                  <del class="price-text">4.499.000đ</del>
-                </div>
-                <div class="card-text__product-title">
-                  Ghế trẻ nhỏ Alcalde Kids Activity
-                </div>
-              </div>
-            </a>
+            </div> -->
+            </div>
 
             <!-- SLIDER BUTTON -->
             <div class="slider-btn--prev center-content">
@@ -287,25 +344,12 @@
             </div>
           </div>
 
-          <div class="main-cards__cards variant-product-preview test-2">
-            <a href="#" class="main-cards__cards__product-card">
-              <div class="card-img">
-                <img src="./resources/images/products/p1.jpg" alt="Product" />
-              </div>
-              <div class="card-text">
-                <div class="card-text__price card-text__price--current">
-                  Giá: <span class="price-text">3.999.000đ</span>
-                </div>
-                <div class="card-text__price card-text__price--old">
-                  <del class="price-text">4.499.000đ</del>
-                </div>
-                <div class="card-text__product-title">
-                  Ghế trẻ nhỏ Alcalde Kids Activity
-                </div>
-              </div>
-
-              <div class="test-box"></div>
-            </a>
+          <div class="main-cards__cards-container">
+            <div
+              class="main-cards__cards variant-product-preview new-coming-preview"
+            >
+              <!-- RENDER NEW COMING PRODUCTS -->
+            </div>
 
             <!-- SLIDER BUTTON -->
             <div class="slider-btn--prev center-content">
@@ -340,7 +384,10 @@
               </picture>
             </div>
 
-            <a href="#" class="product-categories__item__link">
+            <a
+              href="./pages/product-list.html?category=livingroom"
+              class="product-categories__item__link"
+            >
               <div class="category-title">Phòng Khách</div>
             </a>
           </div>
@@ -358,7 +405,10 @@
               </picture>
             </div>
 
-            <a href="#" class="product-categories__item__link">
+            <a
+              href="./pages/product-list.html?category=bedroom"
+              class="product-categories__item__link"
+            >
               <div class="category-title">Phòng Ngủ</div>
             </a>
           </div>
@@ -381,7 +431,10 @@
               </picture>
             </div>
 
-            <a href="#" class="product-categories__item__link">
+            <a
+              href="./pages/product-list.html?category=garden"
+              class="product-categories__item__link"
+            >
               <div class="category-title">Sân Vườn</div>
             </a>
           </div>
@@ -402,7 +455,10 @@
               </picture>
             </div>
 
-            <a href="#" class="product-categories__item__link">
+            <a
+              href="./pages/product-list.html?category=kids"
+              class="product-categories__item__link"
+            >
               <div class="category-title">Trẻ Em</div>
             </a>
           </div>
@@ -425,7 +481,10 @@
               </picture>
             </div>
 
-            <a href="#" class="product-categories__item__link">
+            <a
+              href="./pages/product-list.html?category=kitchen"
+              class="product-categories__item__link"
+            >
               <div class="category-title">Nhà Bếp</div>
             </a>
           </div>
@@ -448,7 +507,10 @@
               </picture>
             </div>
 
-            <a href="#" class="product-categories__item__link">
+            <a
+              href="./pages/product-list.html?category=appliances"
+              class="product-categories__item__link"
+            >
               <div class="category-title">Thiết Bị</div>
             </a>
           </div>
@@ -533,8 +595,9 @@
           </p>
 
           <form class="info-cta__form">
-            <input type="email" placeholder="Nhập email của bạn" />
+            <input type="email" placeholder="Nhập email của bạn" required />
             <button type="submit" class="btn--primary">Đăng ký</button>
+            <!-- <div class="input-error">abc</div> -->
           </form>
         </div>
       </section>

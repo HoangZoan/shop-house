@@ -39,16 +39,12 @@
       background-color: red;
       position: relative;
       display: flex;
-      width: 30%;
+      width: 40%;
       background: $color-gray-search-placeholder;
       border-bottom: $border-primary-thin;
 
       &.active {
         display: flex;
-      }
-
-      @include respond(xxlg) {
-        width: 40%;
       }
 
       @include respond(lg) {

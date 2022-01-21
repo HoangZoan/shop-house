@@ -1,69 +1,40 @@
-"use strict";
+import PreviewProductsView from "../views/previewProductsView.js";
+import PreviewBrandsView from "../views/previewBrandsView.js";
+import { productsData } from "../DUMMY_DATA/products-data.js";
+import { brandsData } from "../DUMMY_DATA/brands-data.js";
+import { toolBoxClickHandler } from "../model.js";
 
-// DRAFT
-
-const renderMainCards = (parentClasses, markup) => {
-  let parentEl;
-
-  if (!Array.isArray(parentClasses)) {
-    parentEl = document.querySelector(`.${parentClasses}`);
-  } else {
-    const parentClassStr = parentClasses
-      .map((cl) => {
-        return "." + cl;
-      })
-      .join("");
-
-    parentEl = document.querySelector(`${parentClassStr}`);
-  }
-
-  parentEl.insertAdjacentHTML("beforeend", markup);
+const brandsPreviewControl = () => {
+  PreviewBrandsView.renderItems(brandsData);
 };
 
-const brandsItemEl = `
-    <a href="#" class="main-cards__cards__brand-card">
-        <div class="card-img">
-        <img
-            src="./resources/images/brands/chilai-wall.png"
-            alt="Photo of furniture"
-        />
-        </div>
-        <div class="card-brand-logo">
-        <img
-            src="./resources/images/brands/chilai-logo.png"
-            alt="Chilai Logo"
-        />
-        </div>
-    </a>
-`;
+const bestSaleProductsControl = () => {
+  PreviewProductsView.setCardTypeClass("best-seller-preview");
+  PreviewProductsView.renderItems(productsData);
+};
 
-const brandsMarkup = [brandsItemEl, brandsItemEl, brandsItemEl].join(" ");
-renderMainCards(["main-cards__cards", "variant-brand"], brandsMarkup);
+const newComingProductsControl = () => {
+  PreviewProductsView.setCardTypeClass("new-coming-preview");
+  PreviewProductsView.renderItems(productsData);
+};
 
-const productReviewEl = `
-    <a href="#" class="main-cards__cards__product-card">
-        <div class="card-img">
-            <img src="./resources/images/products/p1.jpg" alt="Product" />
-        </div>
-        <div class="card-text">
-            <div class="card-text__price card-text__price--current">
-                Giá: <span class="price-text">3.999.000đ</span>
-            </div>
-            <div class="card-text__price card-text__price--old">
-                <del class="price-text">4.499.000đ</del>
-            </div>
-            <div class="card-text__product-title">
-                Ghế trẻ nhỏ Alcalde Kids Activity
-            </div>
-        </div>
-    </a>
-`;
+const emailResiterFormControl = () => {
+  const formEl = document.querySelector(".info-cta__form");
 
-const productReviewMarkup = [
-  productReviewEl,
-  productReviewEl,
-  productReviewEl,
-  productReviewEl,
-].join(" ");
-// renderMainCards("test-1", productReviewMarkup);
-// renderMainCards("test-2", productReviewMarkup);
+  formEl.addEventListener("submit", (event) => {
+    const registeredEmail = formEl.querySelector("input").value;
+    event.preventDefault();
+
+    formEl.querySelector("input").value = "";
+    console.log(registeredEmail);
+  });
+};
+
+const init = () => {
+  toolBoxClickHandler();
+  PreviewBrandsView.addRenderWhenLoadedHanlder(brandsPreviewControl);
+  PreviewProductsView.addRenderWhenLoadedHanlder(bestSaleProductsControl);
+  PreviewProductsView.addRenderWhenLoadedHanlder(newComingProductsControl);
+  emailResiterFormControl();
+};
+init();

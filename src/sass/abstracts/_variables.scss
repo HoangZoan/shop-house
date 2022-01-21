@@ -10,18 +10,20 @@ $color-primary-light-2: #eaf5ff;
 $color-primary-light-greyish: darken(#fbfdff, 2%);
 $color-primary-light-hover-link: lighten($color-primary, 15%);
 $color-primary-light-hover-btn: darken($color-primary, 10%);
-
 $color-red: #e74c3c;
-
 $color-black: #000;
-
 $color-white: #fff;
 $color-white-background: #fff;
 $color-gray-background: #f4f4f4;
 $color-gray-search-placeholder: #f6f6f6;
 $color-gray-border-bottom: #cfcfcf;
-
 $color-text-gray: #7c7c7c;
+
+$color-tag-new: #2ecc71;
+$color-tag-best-seller: #f1c40f;
+$color-tag-discount: #e74c3c;
+$color-tag-free-ship: #3498db;
+$color-tag-gift: #3498db;
 
 //////////////////////////
 /* SPACING */

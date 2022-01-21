@@ -140,6 +140,10 @@
   border-radius: $border-radius-sm;
 }
 
+.input-error {
+  color: $color-red;
+  font-size: 1.3rem;
+}
 //////////////////////////
 /* BANNER */
 .banner {

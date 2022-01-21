@@ -7,16 +7,16 @@
   }
 }
 
-@mixin position-top-left {
+@mixin position-top-left($top: 0, $left: 0) {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: $top;
+  left: $left;
 }
 
-@mixin position-top-right {
+@mixin position-top-right($top: 0, $right: 0) {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: $top;
+  right: $right;
 }
 
 @mixin position-top-center {

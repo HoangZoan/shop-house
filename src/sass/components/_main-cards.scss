@@ -79,15 +79,64 @@
     }
   }
 
+  &__cards-container {
+    position: relative;
+  }
+
   &__cards {
     display: grid;
     overflow: hidden;
     padding: 0.8rem;
-    position: relative;
 
     .card-img,
     .card-brand-logo {
       @include placeImg;
+    }
+
+    .card-img {
+      position: relative;
+
+      .product-card-tags {
+        width: 70%;
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        @include position-top-left(0.8rem, 0.8rem);
+
+        &__item {
+          background-color: red;
+          font-size: 1rem;
+          padding: 0.5rem;
+          line-height: 1;
+          border-radius: 3px;
+          color: $color-white;
+
+          margin-bottom: 0.6rem;
+          &:not(:last-child) {
+            margin-right: 0.6rem;
+          }
+
+          &--best-seller {
+            background-color: $color-tag-best-seller;
+          }
+
+          &--new {
+            background-color: $color-tag-new;
+          }
+
+          &--discount {
+            background-color: $color-tag-discount;
+          }
+
+          &--free-ship {
+            background-color: $color-tag-free-ship;
+          }
+
+          &--gift {
+            background-color: $color-tag-free-ship;
+          }
+        }
+      }
     }
 
     &.variant-brand {
@@ -175,11 +224,32 @@
     }
 
     // PRODUCT CARD
-    &__product-card {
+    &__product-card-container {
       position: relative;
-      box-shadow: $box-shadow-card;
       background-color: $color-white-background;
+      box-shadow: $box-shadow-card;
       transition: $trans-short;
+
+      .card-favorite-btn {
+        @include position-top-right(0.8rem, 0.8rem);
+        cursor: pointer;
+
+        &:hover svg {
+          color: $color-primary;
+        }
+
+        svg {
+          --icon-size: 2.4rem;
+          width: var(--icon-size);
+          height: var(--icon-size);
+          color: $color-gray-background;
+          transition: $trans-short;
+        }
+      }
+    }
+
+    &__product-card {
+      background-color: $color-white-background;
 
       .card-text {
         padding: 2rem 2.8rem;
@@ -212,19 +282,10 @@
           }
         }
       }
-
-      .test-box {
-        width: 50px;
-        height: 50px;
-        background-color: red;
-        z-index: 100;
-
-        @include position-top-left;
-      }
     }
 
     &__brand-card:hover,
-    &__product-card:hover {
+    &__product-card-container:hover {
       box-shadow: $box-shadow-card-hover;
       transform: translateY(-2px);
     }
