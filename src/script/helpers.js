@@ -38,3 +38,7 @@ export const validateInput = (inputData, type) => {
 
   return { isValid: true };
 };
+
+export const calcSalesPrice = (price, discount) => {
+  return (price * (100 - discount)) / 100;
+};

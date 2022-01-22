@@ -1,3 +1,5 @@
+import { productsData } from "./DUMMY_DATA/products-data.js";
+
 // HEADER TOOLBOX CLICK HANDLER (RESPONSIVE)
 const addClickEventHandler = (callerClass, activeClass) => {
   const caller = document.querySelector("." + callerClass);
@@ -14,4 +16,9 @@ const addClickEventHandler = (callerClass, activeClass) => {
 export const toolBoxClickHandler = () => {
   addClickEventHandler("tool-icon--menu", "header-category");
   addClickEventHandler("tool-icon--search", "header-bar__search-control");
+};
+
+// MODEL FUNCTIONALITY
+export const getProductById = (id) => {
+  return productsData.find((product) => product.id === id);
 };

@@ -24,12 +24,12 @@
   <body>
     <header class="page-header">
       <div class="header-bar container">
-        <div class="header-bar__logo">
+        <a href="../index.html" class="header-bar__logo">
           <img
             src="../resources/images/logo/vector/default.svg"
             alt="Shop House Logo"
           />
-        </div>
+        </a>
         <div class="header-bar__search-control">
           <div class="search-icon">
             <svg>
@@ -135,7 +135,7 @@
             <div class="product-description__gallery">
               <div class="product-description__gallery__big-img">
                 <img
-                  src="../resources/images/product detail/p1.jpg"
+                  src="../resources/images/products/p-01-thmb.jpg"
                   alt="Product image"
                 />
 
@@ -159,25 +159,25 @@
               <div class="product-description__gallery__small-images-container">
                 <div class="small-image active">
                   <img
-                    src="../resources/images/product detail/p1.jpg"
+                    src="../resources/images/products/p-01-white-1.jpg"
                     alt="Product image"
                   />
                 </div>
                 <div class="small-image">
                   <img
-                    src="../resources/images/product detail/p2.jpg"
+                    src="../resources/images/products/p-01-white-2.jpg"
                     alt="Product image"
                   />
                 </div>
                 <div class="small-image">
                   <img
-                    src="../resources/images/product detail/p3.jpg"
+                    src="../resources/images/products/p-01-white-3.jpg"
                     alt="Product image"
                   />
                 </div>
                 <div class="small-image">
                   <img
-                    src="../resources/images/product detail/p4.jpg"
+                    src="../resources/images/products/p-01-white-4.jpg"
                     alt="Product image"
                   />
                 </div>
@@ -200,7 +200,12 @@
                 </li>
               </ul>
 
-              <div class="product-order__price-tag">1.000.000đ</div>
+              <div class="product-order__price-container">
+                <div class="product-order__price-tag">1.000.000đ</div>
+                <div class="product-order__price-tag--old">
+                  <del>1.000.000đ</del>
+                </div>
+              </div>
 
               <div class="product-order__product-filter">
                 <select>
@@ -283,7 +288,8 @@
           </div>
 
           <div class="product-order product-order--origin">
-            <div class="product-order__title-info">
+            <!-- RENDER PRODUCT ORDER -->
+            <!-- <div class="product-order__title-info">
               <h3 class="heading--3">Bộ bát đĩa sứ 16 món Wickham</h3>
               <div class="product-order__title-info__distributor">
                 <span>Phân phối bởi: <a href="#">Phố xinh</a></span>
@@ -298,7 +304,12 @@
               </li>
             </ul>
 
-            <div class="product-order__price-tag">1.000.000đ</div>
+            <div class="product-order__price-container">
+              <div class="product-order__price-tag">1.000.000đ</div>
+              <div class="product-order__price-tag--old">
+                <del>1.000.000đ</del>
+              </div>
+            </div>
 
             <div class="product-order__product-filter">
               <select>
@@ -347,7 +358,8 @@
                 </div>
                 <p class="policy-description">Có quà tặng kèm sản phẩm</p>
               </li>
-            </ul>
+            </ul> -->
+            <!-- END -->
           </div>
         </section>
 
@@ -357,88 +369,25 @@
               <h2 class="heading--2">Thường mua kèm theo</h2>
             </div>
 
-            <div
-              class="main-cards__cards variant-product-preview purchase-by-follow"
-            >
-              <a href="#" class="main-cards__cards__product-card">
+            <div class="main-cards__cards-container">
+              <div
+                class="main-cards__cards variant-product-preview following-purchase-preview"
+              >
+                <!-- <a href="#" class="main-cards__cards__brand-card">
                 <div class="card-img">
                   <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
+                    src="./resources/images/brands/chilai-wall.png"
+                    alt="Photo of furniture"
                   />
                 </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
+                <div class="card-brand-logo">
                   <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
+                    src="./resources/images/brands/chilai-logo.png"
+                    alt="Chilai Logo"
                   />
                 </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
+              </a> -->
+              </div>
 
               <!-- SLIDER BUTTON -->
               <div class="slider-btn--prev center-content">
@@ -463,88 +412,12 @@
               <h2 class="heading--2">Sản phẩm tương tự</h2>
             </div>
 
-            <div
-              class="main-cards__cards variant-product-preview similar-category"
-            >
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
-
-              <a href="#" class="main-cards__cards__product-card">
-                <div class="card-img">
-                  <img
-                    src="../resources/images/products/p1.jpg"
-                    alt="Product"
-                  />
-                </div>
-                <div class="card-text">
-                  <div class="card-text__price card-text__price--current">
-                    Giá: <span class="price-text">3.999.000đ</span>
-                  </div>
-                  <div class="card-text__price card-text__price--old">
-                    <del class="price-text">4.499.000đ</del>
-                  </div>
-                  <div class="card-text__product-title">
-                    Ghế trẻ nhỏ Alcalde Kids Activity
-                  </div>
-                </div>
-              </a>
+            <div class="main-cards__cards-container">
+              <div
+                class="main-cards__cards variant-product-preview similar-purchase-preview"
+              >
+                <!-- RENDER HERE -->
+              </div>
 
               <!-- SLIDER BUTTON -->
               <div class="slider-btn--prev center-content">

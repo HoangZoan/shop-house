@@ -1,12 +1,8 @@
 import { View } from "./view.js";
-import { convertPriceNumber } from "../helpers.js";
+import { convertPriceNumber, calcSalesPrice } from "../helpers.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
-
-  setCardTypeClass(className) {
-    this._parentElement = document.querySelector("." + className);
-  }
 
   _generateTags(tagName, data) {
     if (!data) return "";
@@ -51,7 +47,7 @@ export class PreviewProductsView extends View {
       return `
         <div class="card-text__price card-text__price--current">
             Giá: <span class="price-text">${convertPriceNumber(
-              (initialPrice * discount) / 100
+              calcSalesPrice(initialPrice, discount)
             )}đ</span>
         </div>
         
@@ -62,16 +58,25 @@ export class PreviewProductsView extends View {
     }
   }
 
-  _generateMarkup() {
+  _generateMarkup(homepage) {
     const _this = this;
 
     return this._data
       .map((data) => {
         return `
           <div class="main-cards__cards__product-card-container">
-              <a href="#" class="main-cards__cards__product-card">
+              <a 
+                href="${homepage ? "./pages/product-detail.html" : ""}#${
+          data.id
+        }" 
+                class="main-cards__cards__product-card">
                   <div class="card-img">
-                      <img src="./resources/images/products/p1.jpg" alt="Product" />
+                      <img 
+                        src="${
+                          homepage ? "" : "."
+                        }./resources/images/products/${data.id}-thmb.jpg" 
+                        alt="Product" 
+                      />
       
                       <div class="product-card-tags">
                           ${_this._generateTags("new", data.tags.new)}
@@ -101,7 +106,9 @@ export class PreviewProductsView extends View {
       
               <div class="card-favorite-btn center-content">
                   <svg>
-                      <use xlink:href="resources/icons/sprite.svg#heart-fill"></use>
+                      <use xlink:href="${
+                        homepage ? "" : "../"
+                      }resources/icons/sprite.svg#heart-fill"></use>
                   </svg>
               </div>
           </div>

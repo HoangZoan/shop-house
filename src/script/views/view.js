@@ -1,18 +1,26 @@
 export class View {
   _data;
   _emptyErrorMessage = "Vui lòng nhập thông tin tại đây";
+  _homepage = true;
 
-  renderItems(data) {
+  renderItems(data, homepage) {
     if (!Array.isArray(data) || data.length === 0) return;
     this._data = data;
-    const markup = this._generateMarkup();
+
+    if (homepage == "branch-page") {
+      this._homepage = false;
+    }
+    const markup = this._generateMarkup(this._homepage);
 
     this._parentElement.innerHTML = "";
     this._parentElement.insertAdjacentHTML("beforeend", markup);
   }
 
   renderSingleItem(data) {
-    if (!data) return;
+    if (!data) {
+      console.log("Product not found!");
+      return;
+    }
     this._data = data;
     const markup = this._generateMarkup();
 
@@ -32,6 +40,18 @@ export class View {
 
   addRenderWhenLoadedHanlder(handler) {
     window.addEventListener("load", handler);
+  }
+
+  addRenderByLocationHandler(handler) {
+    ["load", "hashchange"].forEach((event) => {
+      window.addEventListener(event, () => {
+        handler(window.location.hash);
+      });
+    });
+  }
+
+  setCardTypeClass(className) {
+    this._parentElement = document.querySelector("." + className);
   }
 
   _showErrorMessage(message) {

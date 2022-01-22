@@ -73,11 +73,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
-
-      // &__content {
-      //   p {
-      //   }
-      // }
     }
   }
 
@@ -125,10 +120,22 @@
       margin-bottom: 3.2rem;
     }
 
+    &__price-container {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 1.6rem;
+    }
+
     &__price-tag {
+      line-height: 1.6;
       font-size: 2.8rem;
       color: $color-primary;
-      margin-bottom: 1.6rem;
+      margin-right: 1.2rem;
+
+      &--old {
+        font-size: 1.8rem;
+        color: red;
+      }
     }
 
     &__product-filter {
