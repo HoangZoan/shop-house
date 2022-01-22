@@ -25,3 +25,16 @@ export const convertPriceNumber = (number) => {
 
   return splitStr.join(".");
 };
+
+export const validateInput = (inputData, type) => {
+  const data = inputData.trim();
+
+  if (data.length === 0) {
+    return { isValid: false, status: "empty" };
+  }
+
+  if (type === "email") {
+  }
+
+  return { isValid: true };
+};

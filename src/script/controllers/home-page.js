@@ -1,5 +1,6 @@
 import PreviewProductsView from "../views/previewProductsView.js";
 import PreviewBrandsView from "../views/previewBrandsView.js";
+import RegisterEmailFormView from "../views/registerEmailFormView.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 import { brandsData } from "../DUMMY_DATA/brands-data.js";
 import { toolBoxClickHandler } from "../model.js";
@@ -18,16 +19,8 @@ const newComingProductsControl = () => {
   PreviewProductsView.renderItems(productsData);
 };
 
-const emailResiterFormControl = () => {
-  const formEl = document.querySelector(".info-cta__form");
-
-  formEl.addEventListener("submit", (event) => {
-    const registeredEmail = formEl.querySelector("input").value;
-    event.preventDefault();
-
-    formEl.querySelector("input").value = "";
-    console.log(registeredEmail);
-  });
+const registerEmailFormControl = (values) => {
+  console.log(values);
 };
 
 const init = () => {
@@ -35,6 +28,6 @@ const init = () => {
   PreviewBrandsView.addRenderWhenLoadedHanlder(brandsPreviewControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(bestSaleProductsControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(newComingProductsControl);
-  emailResiterFormControl();
+  RegisterEmailFormView.addSubmitFormHandler(registerEmailFormControl);
 };
 init();

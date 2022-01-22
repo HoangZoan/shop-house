@@ -108,3 +108,23 @@
     color: $color-red;
   }
 }
+
+@mixin addInputError {
+  position: relative;
+
+  .input-error {
+    position: absolute;
+    bottom: -70%;
+    left: 0;
+  }
+}
+
+@mixin addInputSuccess {
+  position: relative;
+
+  .input-success {
+    position: absolute;
+    bottom: -80%;
+    left: 0;
+  }
+}

@@ -96,16 +96,11 @@
     flex: 1;
     display: flex;
     max-width: 45rem;
-    position: relative;
+    @include addInputError;
+    @include addInputSuccess;
 
     @include respond(lg) {
       width: 100%;
-    }
-
-    .input-error {
-      position: absolute;
-      bottom: -70%;
-      left: 0;
     }
 
     input {
