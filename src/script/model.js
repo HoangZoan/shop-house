@@ -22,3 +22,7 @@ export const toolBoxClickHandler = () => {
 export const getProductById = (id) => {
   return productsData.find((product) => product.id === id);
 };
+
+export const persistDataOnLocalStorage = (storageName, data) => [
+  window.localStorage.setItem(storageName, data),
+];

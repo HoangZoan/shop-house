@@ -2,8 +2,13 @@ import { View } from "../view.js";
 import { calcSalesPrice, convertPriceNumber } from "../../helpers.js";
 
 class ProductDetailOrderView extends View {
-  _parentElement = document.querySelector(".product-order--origin");
+  _parentElement;
   _iconsHref = "../resources/images/policy/";
+  _favoriteBtn;
+
+  addFavoriteBtnClickHanlder(handler) {
+    this._favoriteBtn.addEventListener("click", handler);
+  }
 
   _generatePromotionList(list) {
     return list

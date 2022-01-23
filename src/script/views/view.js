@@ -1,4 +1,5 @@
 export class View {
+  _breadCrumbs = document.querySelector(".bread-crumbs");
   _data;
   _emptyErrorMessage = "Vui lòng nhập thông tin tại đây";
   _homepage = true;
@@ -28,6 +29,44 @@ export class View {
     this._parentElement.insertAdjacentHTML("beforeend", markup);
   }
 
+  renderBreadCrumbs(page) {
+    let markup = `
+      <a class="bread-crumbs__link" href="../index.html">Trang chủ</a>
+        &nbsp;
+      <span class="bread-crumbs__slash">/</span>
+        &nbsp;
+    `;
+
+    if (page === "product-detail") {
+      const data = this._data;
+      markup +=
+        "\n" +
+        `
+          <a class="bread-crumbs__link" href="product-list.html?category=${data.category.value}">
+            ${data.category.name}
+          </a>
+            &nbsp;
+          <span class="bread-crumbs__slash">/</span>
+            &nbsp;
+          <a class="bread-crumbs__link" href="#${data.id}">
+            Bộ bát đĩa sứ 16 món Wickham
+          </a> 
+        `;
+    }
+
+    if (page === "favorite-products") {
+      const data = this._data;
+      markup +=
+        "\n" +
+        `
+          <a class="bread-crumbs__link" href="#">Sản phẩm yêu thích</a>
+        `;
+    }
+
+    this._breadCrumbs.innerHTML = "";
+    this._breadCrumbs.insertAdjacentHTML("beforeend", markup);
+  }
+
   addSubmitFormHandler(handler) {
     this._formEl.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -54,6 +93,20 @@ export class View {
     this._parentElement = document.querySelector("." + className);
   }
 
+  setComponentElementClass(component, className) {
+    this[component] = document.querySelector("." + className);
+  }
+
+  setLocationSearch() {
+    const defaultSortQuery = this._data.sort
+      .map((data) => {
+        return `?${data.type}=${data.defaultValue}`;
+      })
+      .join("");
+
+    window.location.search = defaultSortQuery;
+  }
+
   _showErrorMessage(message) {
     const markup = `
       <p class="input-error">${message}</p>
@@ -75,5 +128,38 @@ export class View {
     inputEl.addEventListener("keydown", () => {
       _this._removeMessageNodeHandler(inputEl);
     });
+  }
+
+  _generateSliderButtons() {
+    return `
+      <div class="slider-btn--prev center-content">
+          <svg>
+            <use
+              xlink:href="../resources/icons/sprite.svg#chevron-left"
+            ></use>
+          </svg>
+        </div>
+        <div class="slider-btn--next center-content">
+          <svg>
+            <use
+              xlink:href="../resources/icons/sprite.svg#chevron-right"
+            ></use>
+          </svg>
+        </div>
+      </div>
+    `;
+  }
+
+  _getLocationSearchValues() {
+    const search = window.location.search;
+    const queryValues = search
+      .slice(1)
+      .split("?")
+      .map((value) => {
+        return value.split("=")[1];
+      })
+      .join("-");
+
+    return queryValues;
   }
 }

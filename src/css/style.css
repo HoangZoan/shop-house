@@ -2090,6 +2090,10 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.2s;
+}
+.main-cards__cards__favorite-card .card-content:hover .card-content__title-link {
+  color: #1e90ff;
 }
 @media only screen and (max-width: 68.75em) {
   .main-cards__cards__favorite-card .card-content {
@@ -2108,12 +2112,13 @@ input {
     padding: 2rem 2.4rem;
   }
 }
-.main-cards__cards__favorite-card .card-content__title {
+.main-cards__cards__favorite-card .card-content__title-link {
   font-size: 1.6rem;
   line-height: 1.5;
+  transition: all 0.2s;
 }
 @media only screen and (max-width: 31.25em) {
-  .main-cards__cards__favorite-card .card-content__title {
+  .main-cards__cards__favorite-card .card-content__title-link {
     margin-bottom: 2.4rem;
   }
 }

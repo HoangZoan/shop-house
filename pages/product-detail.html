@@ -45,23 +45,26 @@
               <use xlink:href="../resources/icons/sprite.svg#search"></use>
             </svg>
           </div>
-          <div class="tool-icon tool-icon--user">
+          <a
+            href="../pages/user-dashboard/user-info.html"
+            class="tool-icon tool-icon--user"
+          >
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#user"></use>
             </svg>
-          </div>
-          <div class="tool-icon tool-icon--heart">
+          </a>
+          <a href="favorite-products.html" class="tool-icon tool-icon--heart">
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#heart"></use>
             </svg>
-          </div>
-          <div class="tool-icon">
+          </a>
+          <a href="your-cart.html" class="tool-icon">
             <svg>
               <use
                 xlink:href="../resources/icons/sprite.svg#shopping-basket"
               ></use>
             </svg>
-          </div>
+          </a>
           <div class="tool-icon tool-icon--menu">
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#menu"></use>
@@ -70,10 +73,11 @@
         </div>
       </div>
 
+      <!-- Add 'active' here -->
       <div class="header-category">
         <ul class="tool-box-menu">
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="../pages/user-dashboard/user-info.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="../resources/icons/sprite.svg#user"></use>
@@ -83,7 +87,7 @@
             </a>
           </li>
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="favorite-products.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="../resources/icons/sprite.svg#heart"></use>
@@ -98,17 +102,27 @@
 
         <ul class="header-category__list">
           <li class="header-category__list__item">
-            <a href="#">Phòng khách</a>
-          </li>
-          <li class="header-category__list__item"><a href="#">Phòng ngủ</a></li>
-          <li class="header-category__list__item"><a href="#">Nhà bếp</a></li>
-          <li class="header-category__list__item"><a href="#">Trẻ em</a></li>
-          <li class="header-category__list__item"><a href="#">Sân vườn</a></li>
-          <li class="header-category__list__item">
-            <a href="#">Thiết bị nội thất</a>
+            <a href="product-list.html?category=livingroom">Phòng khách</a>
           </li>
           <li class="header-category__list__item">
-            <a href="#">Khuyến mãi</a>
+            <a href="product-list.html?category=bedroom">Phòng ngủ</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="product-list.html?category=kitchen">Nhà bếp</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="product-list.html?category=kids">Trẻ em</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="product-list.html?category=garden">Sân vườn</a>
+          </li>
+          <li class="header-category__list__item">
+            <a href="product-list.html?category=appliances"
+              >Thiết bị nội thất</a
+            >
+          </li>
+          <li class="header-category__list__item">
+            <a href="product-list.html?category=sale">Khuyến mãi</a>
           </li>
         </ul>
       </div>
@@ -117,249 +131,16 @@
     <main class="bg--gray main-padding-y">
       <div class="container">
         <div class="bread-crumbs">
-          <a class="bread-crumbs__link" href="#">Trang chủ</a>
-          &nbsp;
-          <span class="bread-crumbs__slash">/</span>
-          &nbsp;
-          <a class="bread-crumbs__link" href="#">Phòng bếp</a>
-          &nbsp;
-          <span class="bread-crumbs__slash">/</span>
-          &nbsp;
-          <a class="bread-crumbs__link" href="#"
-            >Bộ bát đĩa sứ 16 món Wickham</a
-          >
+          <!-- RENDER BREAD CRUMBS -->
         </div>
 
         <section class="section-product-detail">
           <div class="product-description">
-            <div class="product-description__gallery">
-              <div class="product-description__gallery__big-img">
-                <img
-                  src="../resources/images/products/p-01-thmb.jpg"
-                  alt="Product image"
-                />
-
-                <!-- Slider Button -->
-                <div class="slider-btn--prev center-content">
-                  <svg>
-                    <use
-                      xlink:href="../resources/icons/sprite.svg#chevron-left"
-                    ></use>
-                  </svg>
-                </div>
-                <div class="slider-btn--next center-content">
-                  <svg>
-                    <use
-                      xlink:href="../resources/icons/sprite.svg#chevron-right"
-                    ></use>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="product-description__gallery__small-images-container">
-                <div class="small-image active">
-                  <img
-                    src="../resources/images/products/p-01-white-1.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="small-image">
-                  <img
-                    src="../resources/images/products/p-01-white-2.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="small-image">
-                  <img
-                    src="../resources/images/products/p-01-white-3.jpg"
-                    alt="Product image"
-                  />
-                </div>
-                <div class="small-image">
-                  <img
-                    src="../resources/images/products/p-01-white-4.jpg"
-                    alt="Product image"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="product-order product-order--responsive">
-              <div class="product-order__title-info">
-                <h3 class="heading--3">Bộ bát đĩa sứ 16 món Wickham</h3>
-                <div class="product-order__title-info__distributor">
-                  <span>Phân phối bởi: <a href="#">Phố xinh</a></span>
-                </div>
-              </div>
-
-              <ul class="product-order__promotion-list">
-                <li>
-                  Áp dụng mã <strong>PhoXinhFreeShip</strong> để miễn phí giao
-                  hàng với đơn hàng có giá trị
-                  <strong>từ 1,5 triệu đồng</strong>
-                </li>
-              </ul>
-
-              <div class="product-order__price-container">
-                <div class="product-order__price-tag">1.000.000đ</div>
-                <div class="product-order__price-tag--old">
-                  <del>1.000.000đ</del>
-                </div>
-              </div>
-
-              <div class="product-order__product-filter">
-                <select>
-                  <option value="white">Màu sắc: Trắng</option>
-                </select>
-              </div>
-
-              <div class="product-order__action">
-                <button class="btn--sub">Yêu thích</button>
-                <button class="btn--primary">Thêm vào giỏ</button>
-              </div>
-
-              <div class="divider"></div>
-
-              <div class="product-order__policy-title">Chính sách sản phẩm</div>
-
-              <ul class="product-order__policy-list">
-                <li>
-                  <div class="policy-icon">
-                    <img
-                      src="../resources/images/policy/warranty.svg"
-                      alt="Shield icon"
-                    />
-                  </div>
-                  <p class="policy-description">
-                    Bảo hành <strong>2 năm</strong>
-                  </p>
-                </li>
-                <li>
-                  <div class="policy-icon">
-                    <img
-                      src="../resources/images/policy/delivery.svg"
-                      alt="Truck icon"
-                    />
-                  </div>
-                  <p class="policy-description">
-                    Vận chuyển tận nơi <strong>từ 2 đến 5 ngày</strong>
-                  </p>
-                </li>
-                <li>
-                  <div class="policy-icon">
-                    <img
-                      src="../resources/images/policy/gift.svg"
-                      alt="Gift icon"
-                    />
-                  </div>
-                  <p class="policy-description">Có quà tặng kèm sản phẩm</p>
-                </li>
-              </ul>
-            </div>
-
-            <div class="product-description__text">
-              <div class="product-description__text__title">Mô tả chi tiết</div>
-              <ul class="product-description__text__specification-list">
-                <li>Kích thước: ...</li>
-                <li>Nơi sản xuất: ...</li>
-                <li>Chất liệu: ...</li>
-                <li>Kèm theo: ...</li>
-              </ul>
-
-              <div class="product-description__text__title">
-                Thông tin sản phẩm
-              </div>
-              <div class="product-description__text__content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Lectus elit dolor nibh quam. Urna sed mattis odio risus
-                  lobortis. Tristique consectetur tincidunt amet et. Non et
-                  aliquet nullam mus sed tristique amet est venenatis. In
-                  placerat odio hac egestas ac turpis adipiscing in. Aliquam
-                  enim purus duis porttitor vulputate sapien eleifend lectus.
-                  Ultricies felis molestie mattis lacus, etiam eget orci
-                  ultricies est. Dictumst massa duis nunc, erat accumsan nisl
-                  volutpat eu. Nunc lobortis id egestas condimentum et. Potenti
-                  et egestas consequat ultricies diam. Fames consectetur feugiat
-                  tortor consequat arcu...
-                </p>
-              </div>
-            </div>
+            <!-- RENDER PRODUCT DESCRIPTION -->
           </div>
 
           <div class="product-order product-order--origin">
             <!-- RENDER PRODUCT ORDER -->
-            <!-- <div class="product-order__title-info">
-              <h3 class="heading--3">Bộ bát đĩa sứ 16 món Wickham</h3>
-              <div class="product-order__title-info__distributor">
-                <span>Phân phối bởi: <a href="#">Phố xinh</a></span>
-              </div>
-            </div>
-
-            <ul class="product-order__promotion-list">
-              <li>
-                Áp dụng mã <strong>PhoXinhFreeShip</strong> để miễn phí giao
-                hàng với đơn hàng có giá trị
-                <strong>từ 1,5 triệu đồng</strong>
-              </li>
-            </ul>
-
-            <div class="product-order__price-container">
-              <div class="product-order__price-tag">1.000.000đ</div>
-              <div class="product-order__price-tag--old">
-                <del>1.000.000đ</del>
-              </div>
-            </div>
-
-            <div class="product-order__product-filter">
-              <select>
-                <option value="white">Màu sắc: Trắng</option>
-              </select>
-            </div>
-
-            <div class="product-order__action">
-              <button class="btn--sub">Yêu thích</button>
-              <button class="btn--primary">Thêm vào giỏ</button>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="product-order__policy-title">Chính sách sản phẩm</div>
-
-            <ul class="product-order__policy-list">
-              <li>
-                <div class="policy-icon">
-                  <img
-                    src="../resources/images/policy/warranty.svg"
-                    alt="Shield icon"
-                  />
-                </div>
-                <p class="policy-description">
-                  Bảo hành <strong>2 năm</strong>
-                </p>
-              </li>
-              <li>
-                <div class="policy-icon">
-                  <img
-                    src="../resources/images/policy/delivery.svg"
-                    alt="Truck icon"
-                  />
-                </div>
-                <p class="policy-description">
-                  Vận chuyển tận nơi <strong>từ 2 đến 5 ngày</strong>
-                </p>
-              </li>
-              <li>
-                <div class="policy-icon">
-                  <img
-                    src="../resources/images/policy/gift.svg"
-                    alt="Gift icon"
-                  />
-                </div>
-                <p class="policy-description">Có quà tặng kèm sản phẩm</p>
-              </li>
-            </ul> -->
-            <!-- END -->
           </div>
         </section>
 
@@ -373,20 +154,7 @@
               <div
                 class="main-cards__cards variant-product-preview following-purchase-preview"
               >
-                <!-- <a href="#" class="main-cards__cards__brand-card">
-                <div class="card-img">
-                  <img
-                    src="./resources/images/brands/chilai-wall.png"
-                    alt="Photo of furniture"
-                  />
-                </div>
-                <div class="card-brand-logo">
-                  <img
-                    src="./resources/images/brands/chilai-logo.png"
-                    alt="Chilai Logo"
-                  />
-                </div>
-              </a> -->
+                <!-- RENDER FOLLOWING PURCHASE PREVIEW -->
               </div>
 
               <!-- SLIDER BUTTON -->

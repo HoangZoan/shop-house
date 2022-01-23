@@ -74,7 +74,7 @@ export class PreviewProductsView extends View {
                       <img 
                         src="${
                           homepage ? "" : "."
-                        }./resources/images/products/${data.id}-thmb.jpg" 
+                        }./resources/images/products/${data.id}/thmb.jpg" 
                         alt="Product" 
                       />
       

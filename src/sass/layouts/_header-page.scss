@@ -223,7 +223,7 @@
       }
 
       &__item:last-child:hover {
-        color: darken($color-primary, 15%);
+        color: $color-primary-dark-hover-link;
       }
     }
 

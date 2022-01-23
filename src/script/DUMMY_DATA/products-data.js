@@ -1,12 +1,9 @@
 export const productsData = [
   {
     id: "p-01",
-    productImages: [
-      { type: "white", imageIds: ["1", "2", "3", "4"] },
-      { type: "pink", imageIds: ["1", "2", "3", "4"] },
-    ],
     initialPrice: 800000,
     title: "Bộ bát đĩa sứ 16 món Wickham (Test)",
+    category: { value: "kitchen", name: "Phòng bếp" },
     distributor: { name: "Phố Xinh", search: "pho-xinh" },
     tags: {
       new: false,
@@ -25,9 +22,10 @@ export const productsData = [
     sort: [
       {
         type: "color",
+        defaultValue: "white",
         name: "Màu sắc",
         values: [
-          { value: "white", name: "Trắng" },
+          { value: "white", name: "Trắng", default: true },
           { value: "pink", name: "Hồng" },
         ],
       },
@@ -41,12 +39,9 @@ export const productsData = [
   },
   {
     id: "p-01",
-    productImages: [
-      { type: "white", imageIds: ["1", "2", "3", "4"] },
-      { type: "pink", imageIds: ["1", "2", "3", "4"] },
-    ],
     initialPrice: 800000,
     title: "Bộ bát đĩa sứ 16 món Wickham",
+    category: { value: "kitchen", name: "Phòng bếp" },
     distributor: { name: "Phố Xinh", search: "pho-xinh" },
     tags: {
       new: false,
@@ -72,12 +67,9 @@ export const productsData = [
   },
   {
     id: "p-01",
-    productImages: [
-      { type: "white", imageIds: ["1", "2", "3", "4"] },
-      { type: "pink", imageIds: ["1", "2", "3", "4"] },
-    ],
     initialPrice: 800000,
     title: "Bộ bát đĩa sứ 16 món Wickham",
+    category: { value: "kitchen", name: "Phòng bếp" },
     distributor: { name: "Phố Xinh", search: "pho-xinh" },
     tags: {
       new: false,
@@ -103,12 +95,9 @@ export const productsData = [
   },
   {
     id: "p-01",
-    productImages: [
-      { type: "white", imageIds: ["1", "2", "3", "4"] },
-      { type: "pink", imageIds: ["1", "2", "3", "4"] },
-    ],
     initialPrice: 800000,
     title: "Bộ bát đĩa sứ 16 món Wickham",
+    category: { value: "kitchen", name: "Phòng bếp" },
     distributor: { name: "Phố Xinh", search: "pho-xinh" },
     tags: {
       new: false,
