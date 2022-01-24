@@ -1,7 +1,12 @@
 import PreviewProductsView from "../views/previewProductsView.js";
 import ProductDetailOrderView from "../views/product-detail-view/productDetailOrderView.js";
 import ProductDetailDescriptionView from "../views/product-detail-view/productDetailDescriptionView.js";
-import { toolBoxClickHandler, getProductById } from "../model.js";
+import {
+  toolBoxClickHandler,
+  getProductById,
+  persistDataOnLocalStorage,
+  getDataFromLocalStorage,
+} from "../model.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
 const ProductDetailDescriptionControl = () => {
@@ -35,8 +40,23 @@ const productDetailOrderControl = () => {
   ProductDetailOrderView.addFavoriteBtnClickHanlder(favoriteBtnClickControl);
 };
 
-const favoriteBtnClickControl = () => {
-  console.log("Click");
+const favoriteBtnClickControl = (productData) => {
+  const favoriteProducts = getDataFromLocalStorage("favorite-products");
+
+  if (favoriteProducts) {
+    const match = favoriteProducts.find(
+      (product) => productData.id === product.id
+    );
+
+    if (!match) {
+      persistDataOnLocalStorage("favorite-products", [
+        ...favoriteProducts,
+        productData,
+      ]);
+    }
+  } else {
+    persistDataOnLocalStorage("favorite-products", [productData]);
+  }
 };
 
 const followingPurchaseProductsControl = () => {

@@ -7,7 +7,19 @@ class ProductDetailOrderView extends View {
   _favoriteBtn;
 
   addFavoriteBtnClickHanlder(handler) {
-    this._favoriteBtn.addEventListener("click", handler);
+    const _this = this;
+    this._favoriteBtn.addEventListener("click", () => {
+      handler(_this._data);
+
+      _this._buttonChangeTextHandler(_this._favoriteBtn, "Yêu thích");
+    });
+  }
+
+  _buttonChangeTextHandler(buttonEl, originText) {
+    buttonEl.textContent = "Đã thêm";
+    setTimeout(() => {
+      buttonEl.textContent = `${originText}`;
+    }, 1000);
   }
 
   _generatePromotionList(list) {

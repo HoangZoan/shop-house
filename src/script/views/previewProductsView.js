@@ -37,7 +37,7 @@ export class PreviewProductsView extends View {
   _generatePrice(initialPrice, discount) {
     if (!discount) {
       return `
-        <div class="card-text__price card-text__price--current">
+        <div class="card-text__price--current">
             Giá: <span class="price-text">${convertPriceNumber(
               initialPrice
             )}đ</span>
@@ -45,13 +45,13 @@ export class PreviewProductsView extends View {
         `;
     } else {
       return `
-        <div class="card-text__price card-text__price--current">
+        <div class="card-text__price--current">
             Giá: <span class="price-text">${convertPriceNumber(
               calcSalesPrice(initialPrice, discount)
             )}đ</span>
         </div>
         
-        <div class="card-text__price card-text__price--old">
+        <div class="card-text__price--old">
             <del class="price-text">${convertPriceNumber(initialPrice)}đ</del>
         </div>
         `;

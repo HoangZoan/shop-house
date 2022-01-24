@@ -23,6 +23,13 @@ export const getProductById = (id) => {
   return productsData.find((product) => product.id === id);
 };
 
-export const persistDataOnLocalStorage = (storageName, data) => [
-  window.localStorage.setItem(storageName, data),
-];
+export const persistDataOnLocalStorage = (storageName, data) => {
+  const dataUpload = JSON.stringify(data);
+  window.localStorage.setItem(storageName, dataUpload);
+};
+
+export const getDataFromLocalStorage = (storageName) => {
+  const dataReceive = window.localStorage.getItem(storageName);
+
+  return JSON.parse(dataReceive);
+};

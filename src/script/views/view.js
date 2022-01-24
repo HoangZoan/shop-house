@@ -5,7 +5,11 @@ export class View {
   _homepage = true;
 
   renderItems(data, homepage) {
-    if (!Array.isArray(data) || data.length === 0) return;
+    if (!Array.isArray(data) || data.length === 0) {
+      this._showNotFoundMessage();
+      return;
+    }
+
     this._data = data;
 
     if (homepage == "branch-page") {
@@ -19,9 +23,10 @@ export class View {
 
   renderSingleItem(data) {
     if (!data) {
-      console.log("Product not found!");
+      this.showNotFoundMessage();
       return;
     }
+
     this._data = data;
     const markup = this._generateMarkup();
 
@@ -97,6 +102,10 @@ export class View {
     this[component] = document.querySelector("." + className);
   }
 
+  setMultiComponentElementsClass(component, className) {
+    this[component] = document.querySelectorAll("." + className);
+  }
+
   setLocationSearch() {
     const defaultSortQuery = this._data.sort
       .map((data) => {
@@ -105,6 +114,13 @@ export class View {
       .join("");
 
     window.location.search = defaultSortQuery;
+  }
+
+  _showNotFoundMessage() {
+    const markup = this._generateNotFoundMarkup();
+
+    this._parentElement.innerHTML = "";
+    this._parentElement.insertAdjacentHTML("beforeend", markup);
   }
 
   _showErrorMessage(message) {
@@ -161,5 +177,9 @@ export class View {
       .join("-");
 
     return queryValues;
+  }
+
+  _reloadPage() {
+    window.location.reload();
   }
 }
