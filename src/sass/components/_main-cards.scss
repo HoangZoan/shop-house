@@ -387,10 +387,24 @@
             padding: 0.8rem;
             font-weight: 700;
           }
-
-          // .btn--sub {
-          // }
         }
+      }
+    }
+
+    // NOT FOUND MESSAGE
+    .not-found-message {
+      grid-column: 1 / -1;
+      flex-direction: column;
+      background-color: $color-white-background;
+      padding: 3.2rem 0;
+
+      &__text {
+        font-size: 1.8rem;
+        margin-bottom: 2.8rem;
+      }
+
+      &__link {
+        @include primaryLink(link);
       }
     }
   }

@@ -123,6 +123,17 @@ export class View {
     this._parentElement.insertAdjacentHTML("beforeend", markup);
   }
 
+  _generateNotFoundMarkup() {
+    return `
+        <div class="not-found-message center-content">
+          <p class="not-found-message__text">${this._notFoundMessage}</p>
+          <a href="../index.html" class="not-found-message__link">
+            Tiếp tục mua sắm
+          </a>
+        </div>
+      `;
+  }
+
   _showErrorMessage(message) {
     const markup = `
       <p class="input-error">${message}</p>
@@ -177,9 +188,5 @@ export class View {
       .join("-");
 
     return queryValues;
-  }
-
-  _reloadPage() {
-    window.location.reload();
   }
 }

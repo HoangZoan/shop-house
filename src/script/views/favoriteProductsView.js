@@ -11,7 +11,6 @@ class FavoriteProductsView extends View {
   _notFoundMessage = "Bạn chưa có sản phẩm yêu thích nào";
 
   addDeleteClickHandler(handler) {
-    const _this = this;
     this._deleteButtons.forEach((btn) => {
       btn.addEventListener("click", (event) => {
         const productsAfterDelete = getDataFromLocalStorage(
@@ -19,7 +18,6 @@ class FavoriteProductsView extends View {
         ).filter((product) => product.id !== event.target.dataset.productId);
 
         persistDataOnLocalStorage("favorite-products", productsAfterDelete);
-        // _this._reloadPage();
         handler();
       });
     });
@@ -95,12 +93,6 @@ class FavoriteProductsView extends View {
     
         
     `;
-  }
-
-  _generateNotFoundMarkup() {
-    return `
-        <p>${this._notFoundMessage}</p>
-      `;
   }
 }
 

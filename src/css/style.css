@@ -2161,6 +2161,23 @@ input {
   padding: 0.8rem;
   font-weight: 700;
 }
+.main-cards__cards .not-found-message {
+  grid-column: 1/-1;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 3.2rem 0;
+}
+.main-cards__cards .not-found-message__text {
+  font-size: 1.8rem;
+  margin-bottom: 2.8rem;
+}
+.main-cards__cards .not-found-message__link {
+  color: #1e90ff;
+  transition: all 0.2s;
+}
+.main-cards__cards .not-found-message__link:hover {
+  color: #6bb6ff;
+}
 
 .product-categories {
   display: grid;
