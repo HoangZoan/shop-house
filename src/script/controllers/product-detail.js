@@ -29,10 +29,16 @@ const productDetailOrderControl = () => {
   const hash = window.location.hash.slice(1);
   ProductDetailOrderView.renderSingleItem(getProductById(hash));
 
-  // Set select input value to the location search
-  ProductDetailOrderView.setLocationSearch();
+  // Set options select and handle change event
+  ProductDetailOrderView.setMultiComponentElementsClass(
+    "_sortSelects",
+    ".product-order__product-filter select"
+  );
+  ProductDetailOrderView.addSortOptionsChangeHandler(
+    ProductDetailDescriptionControl
+  );
 
-  // Set click event on favorite button after render order card
+  // Set favorite button and handle click event
   ProductDetailOrderView.setComponentElementClass(
     "_favoriteBtn",
     "product-order__action .btn--sub"

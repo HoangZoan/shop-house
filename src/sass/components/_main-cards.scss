@@ -393,6 +393,7 @@
 
     // NOT FOUND MESSAGE
     .not-found-message {
+      width: 100%;
       grid-column: 1 / -1;
       flex-direction: column;
       background-color: $color-white-background;

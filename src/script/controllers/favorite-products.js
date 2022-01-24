@@ -15,7 +15,7 @@ const FavoriteProductsControl = () => {
   // Set Delete button and handle click event
   FavoriteProductsView.setMultiComponentElementsClass(
     "_deleteButtons",
-    "card-content__action .btn--sub"
+    ".card-content__action .btn--sub"
   );
   FavoriteProductsView.addDeleteClickHandler(FavoriteProductsControl);
 };

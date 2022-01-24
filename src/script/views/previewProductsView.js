@@ -62,13 +62,17 @@ export class PreviewProductsView extends View {
     const _this = this;
 
     return this._data
-      .map((data) => {
+      .map((data, index) => {
         return `
           <div class="main-cards__cards__product-card-container">
               <a 
-                href="${homepage ? "./pages/product-detail.html" : ""}#${
-          data.id
-        }" 
+                href="${
+                  homepage ? "./pages/product-detail.html" : ""
+                }${_this.setLocationSearch(
+          null,
+          _this._data[index].sort,
+          false
+        )}#${data.id}" 
                 class="main-cards__cards__product-card">
                   <div class="card-img">
                       <img 

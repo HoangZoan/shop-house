@@ -32,19 +32,22 @@ class ProductDetailDescriptionView extends View {
 
   _generateMarkup() {
     const data = this._data;
+    const locationQuery = this._getLocationSearchValues();
 
     return `
     <div class="product-description__gallery">
       <div class="product-description__gallery__big-img">
         <img
-          src="../resources/images/products/${data.id}/thmb.jpg"
+          src="../resources/images/products/${
+            data.id
+          }/thmb-${locationQuery}.jpg"
           alt="Product image"
         />
 
         ${this._generateSliderButtons()}
 
       <div class="product-description__gallery__small-images-container">
-        ${this._generageSmallImages(data.id, this._getLocationSearchValues())}
+        ${this._generageSmallImages(data.id, locationQuery)}
       </div>
     </div>
 

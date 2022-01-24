@@ -1,10 +1,49 @@
 import { View } from "../view.js";
-import { calcSalesPrice, convertPriceNumber } from "../../helpers.js";
+import { persistDataOnLocalStorage } from "../../model.js";
+import {
+  calcSalesPrice,
+  convertPriceNumber,
+  deepCloneArray,
+} from "../../helpers.js";
+import { PRODUCT_DETAIL_SEARCH_QUERIES } from "../../config.js";
 
 class ProductDetailOrderView extends View {
   _parentElement;
   _iconsHref = "../resources/images/policy/";
+  _searchQueries = PRODUCT_DETAIL_SEARCH_QUERIES;
+  _sortSelects;
   _favoriteBtn;
+
+  addSortOptionsChangeHandler(handler) {
+    const _this = this;
+    const queries = deepCloneArray(this._searchQueries);
+    let initialQueries = [];
+
+    queries.forEach(({ query }) => {
+      const queryMatch = _this._data.sort.find((srt) => srt.type === query);
+
+      if (queryMatch) {
+        const defaultValue = queryMatch.values.find((srt) => srt.default).value;
+        initialQueries.push({ query, value: defaultValue });
+      }
+    });
+
+    this._sortSelects.forEach((select) => {
+      select.addEventListener("change", (event) => {
+        const index = initialQueries.findIndex(
+          ({ query }) => query === event.target.dataset.query
+        );
+        initialQueries[index].value = event.target.value;
+        const queriesStr = initialQueries
+          .map(({ query, value }) => {
+            return `?${query}=${value}`;
+          })
+          .join("");
+
+        _this.setLocationSearch(queriesStr);
+      });
+    });
+  }
 
   addFavoriteBtnClickHanlder(handler) {
     const _this = this;
@@ -13,13 +52,6 @@ class ProductDetailOrderView extends View {
 
       _this._buttonChangeTextHandler(_this._favoriteBtn, "Yêu thích");
     });
-  }
-
-  _buttonChangeTextHandler(buttonEl, originText) {
-    buttonEl.textContent = "Đã thêm";
-    setTimeout(() => {
-      buttonEl.textContent = `${originText}`;
-    }, 1000);
   }
 
   _generatePromotionList(list) {
@@ -63,7 +95,7 @@ class ProductDetailOrderView extends View {
     return options
       .map((option) => {
         return `
-          <select>
+          <select data-query=${option.type}>
             ${option.values
               .map((value) => {
                 return `

@@ -103,17 +103,27 @@ export class View {
   }
 
   setMultiComponentElementsClass(component, className) {
-    this[component] = document.querySelectorAll("." + className);
+    this[component] = document.querySelectorAll(className);
   }
 
-  setLocationSearch() {
-    const defaultSortQuery = this._data.sort
+  setLocationSearch(search, sort, set = true) {
+    const sortData = sort || this._data.sort;
+    const defaultSortQuery = sortData
       .map((data) => {
         return `?${data.type}=${data.defaultValue}`;
       })
       .join("");
 
-    window.location.search = defaultSortQuery;
+    if (set) window.location.search = search || defaultSortQuery;
+
+    if (!set) return defaultSortQuery;
+  }
+
+  _buttonChangeTextHandler(buttonEl, originText) {
+    buttonEl.textContent = "Đã thêm";
+    setTimeout(() => {
+      buttonEl.textContent = `${originText}`;
+    }, 1000);
   }
 
   _showNotFoundMessage() {
@@ -121,17 +131,6 @@ export class View {
 
     this._parentElement.innerHTML = "";
     this._parentElement.insertAdjacentHTML("beforeend", markup);
-  }
-
-  _generateNotFoundMarkup() {
-    return `
-        <div class="not-found-message center-content">
-          <p class="not-found-message__text">${this._notFoundMessage}</p>
-          <a href="../index.html" class="not-found-message__link">
-            Tiếp tục mua sắm
-          </a>
-        </div>
-      `;
   }
 
   _showErrorMessage(message) {
@@ -157,6 +156,29 @@ export class View {
     });
   }
 
+  _getLocationSearchValues(value = true) {
+    const search = window.location.search;
+    const queryValues = search
+      .slice(1)
+      .split("?")
+      .map((value) => {
+        return value.split("=")[`${value ? 1 : 0}`];
+      });
+
+    return value ? queryValues.join("-") : queryValues;
+  }
+
+  _generateNotFoundMarkup() {
+    return `
+        <div class="not-found-message center-content">
+          <p class="not-found-message__text">${this._notFoundMessage}</p>
+          <a href="../index.html" class="not-found-message__link">
+            Tiếp tục mua sắm
+          </a>
+        </div>
+      `;
+  }
+
   _generateSliderButtons() {
     return `
       <div class="slider-btn--prev center-content">
@@ -175,18 +197,5 @@ export class View {
         </div>
       </div>
     `;
-  }
-
-  _getLocationSearchValues() {
-    const search = window.location.search;
-    const queryValues = search
-      .slice(1)
-      .split("?")
-      .map((value) => {
-        return value.split("=")[1];
-      })
-      .join("-");
-
-    return queryValues;
   }
 }
