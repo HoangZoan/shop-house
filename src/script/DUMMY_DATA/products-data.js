@@ -3,7 +3,7 @@ export const productsData = [
     id: "p-01",
     initialPrice: 800000,
     title: "Bộ bát đĩa sứ 16 món Wickham (Test)",
-    category: { value: "kitchen", name: "Phòng bếp" },
+    category: { value: "kitchen", name: "Nhà bếp" },
     distributor: { name: "Phố Xinh", search: "pho-xinh" },
     tags: {
       new: false,

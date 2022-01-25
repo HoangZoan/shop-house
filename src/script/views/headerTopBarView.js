@@ -6,7 +6,12 @@ class HeaderCategoryView extends View {
   _genarateHref(currentPage, sortValue) {
     const headHref = currentPage === "home" ? "./pages" : ".";
 
-    return headHref + "/product-list.html?category=" + sortValue;
+    return (
+      headHref +
+      "/product-list.html?category=" +
+      sortValue +
+      "?arrange=most-purchased"
+    );
   }
 
   _generateMarkup(currentPage) {

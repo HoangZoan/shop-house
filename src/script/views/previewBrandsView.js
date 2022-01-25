@@ -7,17 +7,17 @@ class PreviewBrandsView extends View {
     return this._data
       .map((data) => {
         return `
-        <a href="./pages/product-list.html?category=${data}" class="main-cards__cards__brand-card">
+        <a href="./pages/product-list.html?brand=${data.value}" class="main-cards__cards__brand-card">
             <div class="card-img">
                 <img
-                src="./resources/images/brands/${data}-wall.png"
-                alt="Photo of product from ${data}"
+                src="./resources/images/brands/${data.value}-wall.png"
+                alt="Photo of product from ${data.value}"
                 />
             </div>
             <div class="card-brand-logo">
                 <img
-                src="./resources/images/brands/${data}-logo.png"
-                alt="${data} logo"
+                src="./resources/images/brands/${data.value}-logo.png"
+                alt="${data.value} logo"
                 />
             </div>
         </a>

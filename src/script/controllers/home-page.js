@@ -2,7 +2,7 @@ import PreviewProductsView from "../views/previewProductsView.js";
 import PreviewBrandsView from "../views/previewBrandsView.js";
 import RegisterEmailFormView from "../views/registerEmailFormView.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
-import { brandsData } from "../DUMMY_DATA/brands-data.js";
+import { BRANDS } from "../config.js";
 import {
   initializePageHeader,
   getProductById,
@@ -10,7 +10,7 @@ import {
 } from "../model.js";
 
 const brandsPreviewControl = () => {
-  PreviewBrandsView.renderItems(brandsData);
+  PreviewBrandsView.renderItems(BRANDS);
 };
 
 const cardHeartButtonControl = (productId) => {

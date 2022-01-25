@@ -33,6 +33,9 @@ const productsListSortBarControl = () => {
     ".products-arrange-bar select"
   );
   ProductsListSortBarView.addSortOptionsChangeHandler();
+
+  // Render bread crumbs
+  ProductsListSortBarView.renderBreadCrumbs("products-list");
 };
 
 const productsListControl = () => {

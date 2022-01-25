@@ -4,13 +4,6 @@ export const PRODUCT_DETAIL_SEARCH_QUERIES = [
   { query: "color", value: null },
   { query: "size", value: null },
 ];
-export const PRODUCTS_LIST_SEARCH_QUERIES = [
-  { query: "brand", value: null },
-  { query: "product-type", value: null },
-  { query: "category", value: null },
-  { query: "price-range", value: null },
-  { query: "arrange", value: null },
-];
 export const CATEGORIES = [
   { name: "Phòng khách", value: "living-room" },
   { name: "Phòng ngủ", value: "bed-room" },

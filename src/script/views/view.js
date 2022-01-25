@@ -35,6 +35,7 @@ export class View {
   }
 
   renderBreadCrumbs(page) {
+    const data = this._data;
     let markup = `
       <a class="bread-crumbs__link" href="../index.html">Trang chủ</a>
         &nbsp;
@@ -43,7 +44,6 @@ export class View {
     `;
 
     if (page === "product-detail") {
-      const data = this._data;
       markup +=
         "\n" +
         `
@@ -60,11 +60,48 @@ export class View {
     }
 
     if (page === "favorite-products") {
-      const data = this._data;
       markup +=
         "\n" +
         `
           <a class="bread-crumbs__link" href="#">Sản phẩm yêu thích</a>
+        `;
+    }
+
+    if (page === "products-list") {
+      const linkNameArr = this._getLocationSearchValues(true, true).slice(
+        0,
+        -1
+      );
+      let linkName = [];
+
+      linkNameArr.forEach((value) => {
+        Object.values(data).forEach((dataArr) => {
+          const match = dataArr.find((item) => {
+            return item.value === value;
+          });
+
+          if (match) linkName.push({ name: match.name, value: match.value });
+        });
+      });
+
+      markup +=
+        "\n" +
+        `
+          ${linkName
+            .map((data) => {
+              return `
+                <a class="bread-crumbs__link" href="product-list.html?category=${data.value}">
+                  ${data.name}
+                </a>
+              `;
+            })
+            .join(
+              "\n" +
+                `&nbsp;
+              <span class="bread-crumbs__slash">/</span>
+              &nbsp;` +
+                "\n"
+            )}
         `;
     }
 
@@ -94,42 +131,6 @@ export class View {
     });
   }
 
-  addSortOptionsChangeHandler(currentPage) {
-    const _this = this;
-    let initialQueries = [];
-
-    if (currentPage === "product-detail") {
-      this._searchQueries.forEach(({ query }) => {
-        const queryMatch = _this._data.sort.find((srt) => srt.type === query);
-
-        if (queryMatch) {
-          const defaultValue = queryMatch.values.find(
-            (srt) => srt.default
-          ).value;
-          initialQueries.push({ query, value: defaultValue });
-        }
-      });
-    }
-
-    this._sortSelects.forEach((select) => {
-      select.addEventListener("change", (event) => {
-        if (event.target.vale === "") return;
-
-        const index = initialQueries.findIndex(
-          ({ query }) => query === event.target.dataset.query
-        );
-        initialQueries[index].value = event.target.value;
-        const queriesStr = initialQueries
-          .map(({ query, value }) => {
-            return `?${query}=${value}`;
-          })
-          .join("");
-
-        _this.setLocationSearch(queriesStr);
-      });
-    });
-  }
-
   setCardTypeClass(className) {
     this._parentElement = document.querySelector(className);
   }
@@ -145,7 +146,7 @@ export class View {
   setLocationSearch(search, sort, set = true) {
     const sortData = sort || this._data.sort;
     const defaultSortQuery = sortData
-      .map((data) => {
+      ?.map((data) => {
         return `?${data.type}=${data.defaultValue}`;
       })
       .join("");
@@ -194,16 +195,16 @@ export class View {
     });
   }
 
-  _getLocationSearchValues(value = true, getValuesArray = false) {
+  _getLocationSearchValues(getValue = true, getValuesArray = false) {
     const search = window.location.search;
     const queryValues = search
       .slice(1)
       .split("?")
       .map((value) => {
-        return value.split("=")[`${value || getValuesArray ? 1 : 0}`];
+        return value.split("=")[`${getValue || getValuesArray ? 1 : 0}`];
       });
 
-    return value && !getValuesArray ? queryValues.join("-") : queryValues;
+    return getValue && !getValuesArray ? queryValues.join("-") : queryValues;
   }
 
   _generateOptions(options, defaultValue = null, type = null) {
@@ -246,7 +247,9 @@ export class View {
           ${options
             .map((option) => {
               return `
-              <option value=${option.value}>${option.name}</option>
+              <option ${
+                checkMatchValue(option.value) ? "selected" : ""
+              } value=${option.value}>${option.name}</option>
             `;
             })
             .join("\n")}

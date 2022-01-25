@@ -33,7 +33,7 @@ const productDetailOrderControl = () => {
     "_sortSelects",
     ".product-order__product-filter select"
   );
-  ProductDetailOrderView.addSortOptionsChangeHandler("product-detail");
+  ProductDetailOrderView.addSortOptionsChangeHandler();
 
   // Set favorite button and handle click event
   ProductDetailOrderView.setComponentElementClass(

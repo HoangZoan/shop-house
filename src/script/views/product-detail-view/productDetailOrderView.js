@@ -18,6 +18,38 @@ class ProductDetailOrderView extends View {
     });
   }
 
+  addSortOptionsChangeHandler() {
+    const _this = this;
+    let initialQueries = [];
+
+    this._searchQueries.forEach(({ query }) => {
+      const queryMatch = _this._data.sort.find((srt) => srt.type === query);
+
+      if (queryMatch) {
+        const defaultValue = queryMatch.values.find((srt) => srt.default).value;
+        initialQueries.push({ query, value: defaultValue });
+      }
+    });
+
+    this._sortSelects.forEach((select) => {
+      select.addEventListener("change", (event) => {
+        if (event.target.vale === "") return;
+
+        const index = initialQueries.findIndex(
+          ({ query }) => query === event.target.dataset.query
+        );
+        initialQueries[index].value = event.target.value;
+        const queriesStr = initialQueries
+          .map(({ query, value }) => {
+            return `?${query}=${value}`;
+          })
+          .join("");
+
+        _this.setLocationSearch(queriesStr);
+      });
+    });
+  }
+
   _generatePromotionList(list) {
     return list
       .map((item) => {
