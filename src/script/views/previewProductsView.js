@@ -3,6 +3,40 @@ import { convertPriceNumber, calcSalesPrice } from "../helpers.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
+  _heartButtonsElement;
+
+  _setHeartButtonStyle(heartButton, iconSvg) {
+    heartButton.classList.add("active");
+    iconSvg.style.animation = "growAndShrink 0.4s";
+
+    setTimeout(() => {
+      heartButton.classList.remove("active");
+      iconSvg.style.animation = "none";
+    }, 600);
+  }
+
+  _addHeartButtonClickHandler(handler) {
+    const _this = this;
+
+    this._heartButtonsElement.forEach((element) => {
+      element.addEventListener("click", (event) => {
+        const btn = event.target.closest(".card-favorite-btn");
+        const iconSvg = btn.querySelector("svg");
+        if (!btn) return;
+
+        _this._setHeartButtonStyle(btn, iconSvg);
+        handler(btn.dataset.productId);
+      });
+    });
+  }
+
+  setHeartButtonsElement(handler) {
+    this.setMultiComponentElementsClass(
+      "_heartButtonsElement",
+      ".card-favorite-btn"
+    );
+    this._addHeartButtonClickHandler(handler);
+  }
 
   _generateTags(tagName, data) {
     if (!data) return "";
@@ -108,12 +142,16 @@ export class PreviewProductsView extends View {
                   </div>
               </a>
       
-              <div class="card-favorite-btn center-content">
+              <div class="card-favorite-btn center-content" data-product-id=${
+                data.id
+              }>
                   <svg>
                       <use xlink:href="${
                         homepage ? "" : "../"
                       }resources/icons/sprite.svg#heart-fill"></use>
                   </svg>
+
+                  <div class="card-favorite-btn__pop-up">Đã thêm</div>
               </div>
           </div>
           `;

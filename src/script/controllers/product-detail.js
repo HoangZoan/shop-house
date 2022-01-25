@@ -4,8 +4,7 @@ import ProductDetailDescriptionView from "../views/product-detail-view/productDe
 import {
   toolBoxClickHandler,
   getProductById,
-  persistDataOnLocalStorage,
-  getDataFromLocalStorage,
+  addFavoriteProductToLocalStorageHandler,
 } from "../model.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
@@ -43,26 +42,13 @@ const productDetailOrderControl = () => {
     "_favoriteBtn",
     "product-order__action .btn--sub"
   );
-  ProductDetailOrderView.addFavoriteBtnClickHanlder(favoriteBtnClickControl);
+  ProductDetailOrderView.addFavoriteBtnClickHanlder(
+    addFavoriteProductToLocalStorageHandler
+  );
 };
 
-const favoriteBtnClickControl = (productData) => {
-  const favoriteProducts = getDataFromLocalStorage("favorite-products");
-
-  if (favoriteProducts) {
-    const match = favoriteProducts.find(
-      (product) => productData.id === product.id
-    );
-
-    if (!match) {
-      persistDataOnLocalStorage("favorite-products", [
-        ...favoriteProducts,
-        productData,
-      ]);
-    }
-  } else {
-    persistDataOnLocalStorage("favorite-products", [productData]);
-  }
+const cardHeartButtonControl = (productId) => {
+  addFavoriteProductToLocalStorageHandler(getProductById(productId));
 };
 
 const followingPurchaseProductsControl = () => {
@@ -73,6 +59,9 @@ const followingPurchaseProductsControl = () => {
 const similarProductsControl = () => {
   PreviewProductsView.setCardTypeClass("similar-purchase-preview");
   PreviewProductsView.renderItems(productsData, "branch-page");
+
+  // Set heart button and handle add favorite product click
+  PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
 };
 
 const init = () => {

@@ -33,3 +33,22 @@ export const getDataFromLocalStorage = (storageName) => {
 
   return JSON.parse(dataReceive);
 };
+
+export const addFavoriteProductToLocalStorageHandler = (productData) => {
+  const favoriteProducts = getDataFromLocalStorage("favorite-products");
+
+  if (favoriteProducts) {
+    const match = favoriteProducts.find(
+      (product) => productData.id === product.id
+    );
+
+    if (!match) {
+      persistDataOnLocalStorage("favorite-products", [
+        ...favoriteProducts,
+        productData,
+      ]);
+    }
+  } else {
+    persistDataOnLocalStorage("favorite-products", [productData]);
+  }
+};

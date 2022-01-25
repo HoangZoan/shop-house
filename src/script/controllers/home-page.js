@@ -3,10 +3,18 @@ import PreviewBrandsView from "../views/previewBrandsView.js";
 import RegisterEmailFormView from "../views/registerEmailFormView.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 import { brandsData } from "../DUMMY_DATA/brands-data.js";
-import { toolBoxClickHandler } from "../model.js";
+import {
+  toolBoxClickHandler,
+  getProductById,
+  addFavoriteProductToLocalStorageHandler,
+} from "../model.js";
 
 const brandsPreviewControl = () => {
   PreviewBrandsView.renderItems(brandsData);
+};
+
+const cardHeartButtonControl = (productId) => {
+  addFavoriteProductToLocalStorageHandler(getProductById(productId));
 };
 
 const bestSaleProductsControl = () => {
@@ -17,6 +25,9 @@ const bestSaleProductsControl = () => {
 const newComingProductsControl = () => {
   PreviewProductsView.setCardTypeClass("new-coming-preview");
   PreviewProductsView.renderItems(productsData);
+
+  // Set heart button and handle add favorite product click
+  PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
 };
 
 const registerEmailFormControl = (values) => {

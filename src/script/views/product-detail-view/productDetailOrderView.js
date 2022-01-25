@@ -1,10 +1,5 @@
 import { View } from "../view.js";
-import { persistDataOnLocalStorage } from "../../model.js";
-import {
-  calcSalesPrice,
-  convertPriceNumber,
-  deepCloneArray,
-} from "../../helpers.js";
+import { calcSalesPrice, convertPriceNumber } from "../../helpers.js";
 import { PRODUCT_DETAIL_SEARCH_QUERIES } from "../../config.js";
 
 class ProductDetailOrderView extends View {
@@ -16,10 +11,9 @@ class ProductDetailOrderView extends View {
 
   addSortOptionsChangeHandler() {
     const _this = this;
-    const queries = deepCloneArray(this._searchQueries);
     let initialQueries = [];
 
-    queries.forEach(({ query }) => {
+    this._searchQueries.forEach(({ query }) => {
       const queryMatch = _this._data.sort.find((srt) => srt.type === query);
 
       if (queryMatch) {

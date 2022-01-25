@@ -234,6 +234,10 @@
         @include position-top-right(0.8rem, 0.8rem);
         cursor: pointer;
 
+        &.active .card-favorite-btn__pop-up {
+          display: block;
+        }
+
         &:hover svg {
           color: $color-primary;
         }
@@ -244,6 +248,29 @@
           height: var(--icon-size);
           color: $color-gray-background;
           transition: $trans-short;
+        }
+
+        &__pop-up {
+          border-radius: $border-radius-sm;
+          box-shadow: $box-shadow-slider-btn;
+          text-align: center;
+          font-size: 1.1rem;
+          background-color: $color-white-background;
+          @include position-top-center;
+          top: 160%;
+          min-width: 5rem;
+          animation: fadesInFormAbove 0.3s;
+          display: none;
+        }
+
+        @keyframes fadesInFormAbove {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, calc(-50% - 3px));
+          }
+          100% {
+            opacity: 1;
+          }
         }
       }
     }
