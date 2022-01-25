@@ -92,6 +92,14 @@ export class PreviewProductsView extends View {
     }
   }
 
+  _generateHrefLink(currentPage) {
+    if (currentPage === "home") return "./pages/product-detail.html";
+
+    if (currentPage === "branch-page") return "";
+
+    if (currentPage === "side-page") return "./product-detail.html";
+  }
+
   _generateMarkup(homepage) {
     const _this = this;
 
@@ -100,9 +108,9 @@ export class PreviewProductsView extends View {
         return `
           <div class="main-cards__cards__product-card-container">
               <a 
-                href="${
-                  homepage ? "./pages/product-detail.html" : ""
-                }${_this.setLocationSearch(
+                href="${_this._generateHrefLink(
+                  _this._currentPage
+                )}${_this.setLocationSearch(
           null,
           _this._data[index].sort,
           false
@@ -111,7 +119,7 @@ export class PreviewProductsView extends View {
                   <div class="card-img">
                       <img 
                         src="${
-                          homepage ? "" : "."
+                          homepage === "home" ? "" : "."
                         }./resources/images/products/${data.id}/thmb.jpg" 
                         alt="Product" 
                       />
@@ -147,7 +155,7 @@ export class PreviewProductsView extends View {
               }>
                   <svg>
                       <use xlink:href="${
-                        homepage ? "" : "../"
+                        homepage === "home" ? "" : "../"
                       }resources/icons/sprite.svg#heart-fill"></use>
                   </svg>
 

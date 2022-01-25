@@ -2,20 +2,18 @@ export class View {
   _breadCrumbs = document.querySelector(".bread-crumbs");
   _data;
   _emptyErrorMessage = "Vui lòng nhập thông tin tại đây";
-  _homepage = true;
+  _currentPage;
 
-  renderItems(data, homepage) {
+  renderItems(data, currentPage = "home") {
     if (!Array.isArray(data) || data.length === 0) {
       this._showNotFoundMessage();
       return;
     }
 
     this._data = data;
+    this._currentPage = currentPage;
 
-    if (homepage == "branch-page") {
-      this._homepage = false;
-    }
-    const markup = this._generateMarkup(this._homepage);
+    const markup = this._generateMarkup(this._currentPage);
 
     this._parentElement.innerHTML = "";
     this._parentElement.insertAdjacentHTML("beforeend", markup);

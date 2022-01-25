@@ -38,9 +38,7 @@ class ProductDetailDescriptionView extends View {
     <div class="product-description__gallery">
       <div class="product-description__gallery__big-img">
         <img
-          src="../resources/images/products/${
-            data.id
-          }/thmb-${locationQuery}.jpg"
+          src="../resources/images/products/${data.id}/${locationQuery}-1.jpg"
           alt="Product image"
         />
 
