@@ -14,7 +14,7 @@ class ProductDetailOrderView extends View {
   _sortSelects;
   _favoriteBtn;
 
-  addSortOptionsChangeHandler(handler) {
+  addSortOptionsChangeHandler() {
     const _this = this;
     const queries = deepCloneArray(this._searchQueries);
     let initialQueries = [];
@@ -92,6 +92,14 @@ class ProductDetailOrderView extends View {
   }
 
   _generateOptions(options) {
+    const checkMatchValue = (value) => {
+      const matchedValue = this._getLocationSearchValues(true, true).find(
+        (valueData) => valueData === value
+      );
+
+      return Boolean(matchedValue);
+    };
+
     return options
       .map((option) => {
         return `
@@ -99,7 +107,9 @@ class ProductDetailOrderView extends View {
             ${option.values
               .map((value) => {
                 return `
-                <option value="${value.value}">${option.name}: ${value.name}</option>
+                <option ${
+                  checkMatchValue(value.value) ? "selected" : ""
+                } value="${value.value}">${option.name}: ${value.name}</option>
               `;
               })
               .join("\n")}

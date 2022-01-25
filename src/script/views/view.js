@@ -156,16 +156,16 @@ export class View {
     });
   }
 
-  _getLocationSearchValues(value = true) {
+  _getLocationSearchValues(value = true, getValuesArray = false) {
     const search = window.location.search;
     const queryValues = search
       .slice(1)
       .split("?")
       .map((value) => {
-        return value.split("=")[`${value ? 1 : 0}`];
+        return value.split("=")[`${value || getValuesArray ? 1 : 0}`];
       });
 
-    return value ? queryValues.join("-") : queryValues;
+    return value && !getValuesArray ? queryValues.join("-") : queryValues;
   }
 
   _generateNotFoundMarkup() {
