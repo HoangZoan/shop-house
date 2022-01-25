@@ -2,6 +2,8 @@ export class View {
   _breadCrumbs = document.querySelector(".bread-crumbs");
   _data;
   _emptyErrorMessage = "Vui lòng nhập thông tin tại đây";
+  _productIdNotFoundMessage =
+    "Không tìm thấy sản phẩm này. Xin vui lòng thử lại";
   _currentPage;
 
   renderItems(data, currentPage = "home") {
@@ -21,7 +23,7 @@ export class View {
 
   renderSingleItem(data) {
     if (!data) {
-      this.showNotFoundMessage();
+      this._showNotFoundMessage();
       return;
     }
 
@@ -92,12 +94,48 @@ export class View {
     });
   }
 
+  addSortOptionsChangeHandler(currentPage) {
+    const _this = this;
+    let initialQueries = [];
+
+    if (currentPage === "product-detail") {
+      this._searchQueries.forEach(({ query }) => {
+        const queryMatch = _this._data.sort.find((srt) => srt.type === query);
+
+        if (queryMatch) {
+          const defaultValue = queryMatch.values.find(
+            (srt) => srt.default
+          ).value;
+          initialQueries.push({ query, value: defaultValue });
+        }
+      });
+    }
+
+    this._sortSelects.forEach((select) => {
+      select.addEventListener("change", (event) => {
+        if (event.target.vale === "") return;
+
+        const index = initialQueries.findIndex(
+          ({ query }) => query === event.target.dataset.query
+        );
+        initialQueries[index].value = event.target.value;
+        const queriesStr = initialQueries
+          .map(({ query, value }) => {
+            return `?${query}=${value}`;
+          })
+          .join("");
+
+        _this.setLocationSearch(queriesStr);
+      });
+    });
+  }
+
   setCardTypeClass(className) {
-    this._parentElement = document.querySelector("." + className);
+    this._parentElement = document.querySelector(className);
   }
 
   setComponentElementClass(component, className) {
-    this[component] = document.querySelector("." + className);
+    this[component] = document.querySelector(className);
   }
 
   setMultiComponentElementsClass(component, className) {
@@ -127,8 +165,10 @@ export class View {
   _showNotFoundMessage() {
     const markup = this._generateNotFoundMarkup();
 
-    this._parentElement.innerHTML = "";
-    this._parentElement.insertAdjacentHTML("beforeend", markup);
+    const parentElement = this._productDetailSection || this._parentElement;
+
+    parentElement.innerHTML = "";
+    parentElement.insertAdjacentHTML("beforeend", markup);
   }
 
   _showErrorMessage(message) {
@@ -166,10 +206,63 @@ export class View {
     return value && !getValuesArray ? queryValues.join("-") : queryValues;
   }
 
+  _generateOptions(options, defaultValue = null, type = null) {
+    const checkMatchValue = (value) => {
+      const matchedValue = this._getLocationSearchValues(true, true).find(
+        (valueData) => valueData === value
+      );
+
+      return Boolean(matchedValue);
+    };
+
+    if (!type) {
+      return options
+        .map((option) => {
+          return `
+            <select data-query=${option.type}>
+              ${option.values
+                .map((value) => {
+                  return `
+                  <option ${
+                    checkMatchValue(value.value) ? "selected" : ""
+                  } value="${value.value}">${option.name}: ${
+                    value.name
+                  }</option>
+                `;
+                })
+                .join("\n")}
+            </select>
+          `;
+        })
+        .join("\n");
+    } else {
+      return `
+        <select data-query=${type}>
+          ${
+            defaultValue
+              ? `<option value="" class="text-gray">${defaultValue}</option>`
+              : ""
+          }
+          ${options
+            .map((option) => {
+              return `
+              <option value=${option.value}>${option.name}</option>
+            `;
+            })
+            .join("\n")}
+        </select>
+      `;
+    }
+  }
+
   _generateNotFoundMarkup() {
     return `
         <div class="not-found-message center-content">
-          <p class="not-found-message__text">${this._notFoundMessage}</p>
+          <p class="not-found-message__text">${
+            this._productDetailSection
+              ? this._productIdNotFoundMessage
+              : this._notFoundMessage
+          }</p>
           <a href="../index.html" class="not-found-message__link">
             Tiếp tục mua sắm
           </a>

@@ -17,7 +17,11 @@ class FavoriteProductsView extends View {
           "favorite-products"
         ).filter((product) => product.id !== event.target.dataset.productId);
 
-        persistDataOnLocalStorage("favorite-products", productsAfterDelete);
+        if (productsAfterDelete.length === 0) {
+          window.localStorage.removeItem("favorite-products");
+        } else {
+          persistDataOnLocalStorage("favorite-products", productsAfterDelete);
+        }
         handler();
       });
     });

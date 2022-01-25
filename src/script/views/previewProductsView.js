@@ -92,12 +92,24 @@ export class PreviewProductsView extends View {
     }
   }
 
-  _generateHrefLink(currentPage) {
-    if (currentPage === "home") return "./pages/product-detail.html";
+  _generateHrefLink(currentPage, dataSort, productId) {
+    let headHref;
 
-    if (currentPage === "branch-page") return "";
+    switch (currentPage) {
+      case "home":
+        headHref = "./pages/product-detail.html";
+        break;
+      case "in-page":
+        headHref = "";
+        break;
+      case "side-page":
+        headHref = "./product-detail.html";
+        break;
+    }
 
-    if (currentPage === "side-page") return "./product-detail.html";
+    return (
+      headHref + this.setLocationSearch(null, dataSort, false) + "#" + productId
+    );
   }
 
   _generateMarkup(homepage) {
@@ -109,12 +121,10 @@ export class PreviewProductsView extends View {
           <div class="main-cards__cards__product-card-container">
               <a 
                 href="${_this._generateHrefLink(
-                  _this._currentPage
-                )}${_this.setLocationSearch(
-          null,
-          _this._data[index].sort,
-          false
-        )}#${data.id}" 
+                  _this._currentPage,
+                  _this._data[index].sort,
+                  data.id
+                )}" 
                 class="main-cards__cards__product-card">
                   <div class="card-img">
                       <img 

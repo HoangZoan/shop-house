@@ -1,6 +1,8 @@
 import { productsData } from "./DUMMY_DATA/products-data.js";
+import HeaderTopBarView from "./views/headerTopBarView.js";
+import { CATEGORIES } from "./config.js";
 
-// HEADER TOOLBOX CLICK HANDLER (RESPONSIVE)
+// INITALIZE PAGE HEADER
 const addClickEventHandler = (callerClass, activeClass) => {
   const caller = document.querySelector("." + callerClass);
   const active = document.querySelector("." + activeClass);
@@ -13,9 +15,10 @@ const addClickEventHandler = (callerClass, activeClass) => {
   });
 };
 
-export const toolBoxClickHandler = () => {
+export const initializePageHeader = (currentPage) => {
   addClickEventHandler("tool-icon--menu", "header-category");
   addClickEventHandler("tool-icon--search", "header-bar__search-control");
+  HeaderTopBarView.renderItems(CATEGORIES, currentPage);
 };
 
 // MODEL FUNCTIONALITY

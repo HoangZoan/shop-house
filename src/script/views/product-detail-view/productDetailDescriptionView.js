@@ -3,6 +3,7 @@ import { MINI_IMAGE_AMOUNT } from "../../config.js";
 
 class ProductDetailDescriptionView extends View {
   _parentElement = document.querySelector(".product-description");
+  _productDetailSection = document.querySelector(".section-product-detail");
 
   _generageSmallImages(productId, query) {
     let result = [];

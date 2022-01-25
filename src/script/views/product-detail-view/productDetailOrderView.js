@@ -9,36 +9,6 @@ class ProductDetailOrderView extends View {
   _sortSelects;
   _favoriteBtn;
 
-  addSortOptionsChangeHandler() {
-    const _this = this;
-    let initialQueries = [];
-
-    this._searchQueries.forEach(({ query }) => {
-      const queryMatch = _this._data.sort.find((srt) => srt.type === query);
-
-      if (queryMatch) {
-        const defaultValue = queryMatch.values.find((srt) => srt.default).value;
-        initialQueries.push({ query, value: defaultValue });
-      }
-    });
-
-    this._sortSelects.forEach((select) => {
-      select.addEventListener("change", (event) => {
-        const index = initialQueries.findIndex(
-          ({ query }) => query === event.target.dataset.query
-        );
-        initialQueries[index].value = event.target.value;
-        const queriesStr = initialQueries
-          .map(({ query, value }) => {
-            return `?${query}=${value}`;
-          })
-          .join("");
-
-        _this.setLocationSearch(queriesStr);
-      });
-    });
-  }
-
   addFavoriteBtnClickHanlder(handler) {
     const _this = this;
     this._favoriteBtn.addEventListener("click", () => {
@@ -83,34 +53,6 @@ class ProductDetailOrderView extends View {
         </div>
       `;
     }
-  }
-
-  _generateOptions(options) {
-    const checkMatchValue = (value) => {
-      const matchedValue = this._getLocationSearchValues(true, true).find(
-        (valueData) => valueData === value
-      );
-
-      return Boolean(matchedValue);
-    };
-
-    return options
-      .map((option) => {
-        return `
-          <select data-query=${option.type}>
-            ${option.values
-              .map((value) => {
-                return `
-                <option ${
-                  checkMatchValue(value.value) ? "selected" : ""
-                } value="${value.value}">${option.name}: ${value.name}</option>
-              `;
-              })
-              .join("\n")}
-          </select>
-        `;
-      })
-      .join("\n");
   }
 
   _generatePolicy(policies) {
