@@ -34,6 +34,13 @@ const productsListSortBarControl = () => {
   );
   ProductsListSortBarView.addSortOptionsChangeHandler();
 
+  // Set select for price range and handle change event
+  ProductsListSortBarView.setComponentElementClass(
+    "_sortPrice",
+    ".products-arrange-bar select[data-query='price-range']"
+  );
+  ProductsListSortBarView.addSortPriceOptionsChangeHandler();
+
   // Render bread crumbs
   ProductsListSortBarView.renderBreadCrumbs("products-list");
 };
