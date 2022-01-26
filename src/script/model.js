@@ -55,3 +55,16 @@ export const addProductToLocalStorage = (productData, storageName) => {
     persistDataOnLocalStorage(storageName, [productData]);
   }
 };
+
+export const removeProductFromLocalStorage = (productId, storageName) => {
+  const updatedProducts = getDataFromLocalStorage(storageName).filter(
+    (product) => product.id !== productId
+  );
+
+  if (updatedProducts.length === 0) {
+    window.localStorage.removeItem(storageName);
+    return;
+  }
+
+  window.localStorage.setItem(storageName, JSON.stringify(updatedProducts));
+};

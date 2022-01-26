@@ -8,7 +8,7 @@ import {
 } from "../model.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
-const ProductDetailDescriptionControl = () => {
+const productDetailDescriptionControl = () => {
   // Get product id from hash name and render
   const hash = window.location.hash.slice(1);
   ProductDetailDescriptionView.renderSingleItem(getProductById(hash));
@@ -70,7 +70,7 @@ const similarProductsControl = () => {
 const init = () => {
   initializePageHeader("side-page");
   ProductDetailDescriptionView.addRenderByLocationHandler(
-    ProductDetailDescriptionControl
+    productDetailDescriptionControl
   );
   ProductDetailOrderView.addRenderByLocationHandler(productDetailOrderControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(

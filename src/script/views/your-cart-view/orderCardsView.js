@@ -2,6 +2,13 @@ import { View } from "../view.js";
 
 class OrderCardsView extends View {
   _parentElement = document.querySelector(".order-table-body");
+  _saveButton;
+
+  addSaveButtonClickHandler(handler) {
+    this._saveButton.addEventListener("click", () => {
+      handler(this._saveButton.dataset.productId);
+    });
+  }
 
   _generageImage(productId, query) {
     return `
@@ -99,8 +106,18 @@ class OrderCardsView extends View {
                       </div>
       
                       <div class="order-card__text__action">
-                          <div class="btn--link delete">Xóa</div>
-                          <div class="btn--link save">Lưu lại</div>
+                        <div 
+                            data-product-id=${data.id} 
+                            class="btn--link delete"
+                        >
+                            Xóa
+                        </div>
+                        <div 
+                            data-product-id=${data.id}
+                            class="btn--link save"
+                        >
+                            Lưu lại
+                        </div>
                       </div>
                   </td>
       
