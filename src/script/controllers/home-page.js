@@ -6,7 +6,7 @@ import { BRANDS } from "../config.js";
 import {
   initializePageHeader,
   getProductById,
-  addFavoriteProductToLocalStorageHandler,
+  addProductToLocalStorage,
 } from "../model.js";
 
 const brandsPreviewControl = () => {
@@ -14,7 +14,7 @@ const brandsPreviewControl = () => {
 };
 
 const cardHeartButtonControl = (productId) => {
-  addFavoriteProductToLocalStorageHandler(getProductById(productId));
+  addProductToLocalStorage(getProductById(productId), "favorite-products");
 };
 
 const bestSaleProductsControl = () => {

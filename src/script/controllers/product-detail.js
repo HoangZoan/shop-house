@@ -4,7 +4,7 @@ import ProductDetailDescriptionView from "../views/product-detail-view/productDe
 import {
   initializePageHeader,
   getProductById,
-  addFavoriteProductToLocalStorageHandler,
+  addProductToLocalStorage,
 } from "../model.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
@@ -40,13 +40,18 @@ const productDetailOrderControl = () => {
     "_favoriteBtn",
     ".product-order__action .btn--sub"
   );
-  ProductDetailOrderView.addFavoriteBtnClickHanlder(
-    addFavoriteProductToLocalStorageHandler
+  ProductDetailOrderView.addFavoriteBtnClickHanlder(addProductToLocalStorage);
+
+  // Set add to cart button and handle click event
+  ProductDetailOrderView.setComponentElementClass(
+    "_addToCartBtn",
+    ".product-order__action .btn--primary"
   );
+  ProductDetailOrderView.addAddToCartBtnClickHandler(addProductToLocalStorage);
 };
 
 const cardHeartButtonControl = (productId) => {
-  addFavoriteProductToLocalStorageHandler(getProductById(productId));
+  addProductToLocalStorage(getProductById(productId), "favorite-products");
 };
 
 const followingPurchaseProductsControl = () => {

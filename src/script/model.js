@@ -37,8 +37,8 @@ export const getDataFromLocalStorage = (storageName) => {
   return JSON.parse(dataReceive);
 };
 
-export const addFavoriteProductToLocalStorageHandler = (productData) => {
-  const favoriteProducts = getDataFromLocalStorage("favorite-products");
+export const addProductToLocalStorage = (productData, storageName) => {
+  const favoriteProducts = getDataFromLocalStorage(storageName);
 
   if (favoriteProducts) {
     const match = favoriteProducts.find(
@@ -46,12 +46,13 @@ export const addFavoriteProductToLocalStorageHandler = (productData) => {
     );
 
     if (!match) {
-      persistDataOnLocalStorage("favorite-products", [
+      persistDataOnLocalStorage(storageName, [
         ...favoriteProducts,
         productData,
       ]);
     }
   } else {
-    persistDataOnLocalStorage("favorite-products", [productData]);
+    console.log(storageName, [productData]);
+    persistDataOnLocalStorage(storageName, [productData]);
   }
 };

@@ -8,11 +8,21 @@ class ProductDetailOrderView extends View {
   _searchQueries = PRODUCT_DETAIL_SEARCH_QUERIES;
   _sortSelects;
   _favoriteBtn;
+  _addToCartBtn;
+
+  addAddToCartBtnClickHandler(handler) {
+    const _this = this;
+    this._addToCartBtn.addEventListener("click", () => {
+      handler(_this._data, "in-cart-products");
+
+      _this._buttonChangeTextHandler(_this._addToCartBtn, "Thêm vào giỏ");
+    });
+  }
 
   addFavoriteBtnClickHanlder(handler) {
     const _this = this;
     this._favoriteBtn.addEventListener("click", () => {
-      handler(_this._data);
+      handler(_this._data, "favorite-products");
 
       _this._buttonChangeTextHandler(_this._favoriteBtn, "Yêu thích");
     });

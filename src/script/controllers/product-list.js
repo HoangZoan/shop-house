@@ -1,7 +1,7 @@
 import PreviewProductsView from "../views/previewProductsView.js";
 import ProductsListSortBarView from "../views/productsListSortBarView.js";
 import {
-  addFavoriteProductToLocalStorageHandler,
+  addProductToLocalStorage,
   getProductById,
   initializePageHeader,
 } from "../model.js";
@@ -15,7 +15,7 @@ import {
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
 const cardHeartButtonControl = (productId) => {
-  addFavoriteProductToLocalStorageHandler(getProductById(productId));
+  addProductToLocalStorage(getProductById(productId), "favorite-products");
 };
 
 const productsListSortBarControl = () => {
