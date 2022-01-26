@@ -7,6 +7,7 @@ import {
 
 class FavoriteProductsView extends View {
   _parentElement = document.querySelector(".favorite-product-preview");
+  _addToCartButtons;
   _deleteButtons;
   _notFoundMessage = "Bạn chưa có sản phẩm yêu thích nào";
 
@@ -70,9 +71,9 @@ class FavoriteProductsView extends View {
                     </div>
 
                     <div class="card-content">
-                        <a href="#" class="card-content__title-link">
+                        <div class="card-content__title">
                             ${data.title}
-                        </a>
+                        </div>
 
                         <div>
                             ${_this._generatePrice(
@@ -82,9 +83,16 @@ class FavoriteProductsView extends View {
                         </div>
 
                         <div class="card-content__action">
-                            <button data-product-id=${
-                              data.id
-                            } class="btn--primary">Thêm vào giỏ</button>
+                            <a 
+                              href=${_this._generateHrefLink(
+                                _this._currentPage,
+                                data.sort,
+                                data.id
+                              )}
+                              class="btn--primary"
+                            >
+                              Xem chi tiết
+                            </a>
                             <button data-product-id=${
                               data.id
                             } class="btn--sub">Xóa</button>

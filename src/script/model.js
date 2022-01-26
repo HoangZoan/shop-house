@@ -42,11 +42,17 @@ export const addProductToLocalStorage = (productData, storageName) => {
   const existingData = getDataFromLocalStorage(storageName);
 
   if (existingData) {
-    const match = existingData.find(
-      (product) =>
-        productData.id === product.id &&
-        deepCompareArrays(productData.specifications, product.specifications)
-    );
+    const match = existingData.find((product) => {
+      const compareSpecifications =
+        storageName === "in-cart-products"
+          ? deepCompareArrays(
+              productData.specifications,
+              product.specifications
+            )
+          : true;
+
+      return productData.id === product.id && compareSpecifications;
+    });
 
     if (!match) {
       persistDataOnLocalStorage(storageName, [...existingData, productData]);
@@ -57,9 +63,22 @@ export const addProductToLocalStorage = (productData, storageName) => {
 };
 
 export const removeProductFromLocalStorage = (productId, storageName) => {
-  const updatedProducts = getDataFromLocalStorage(storageName).filter(
+  let updatedProducts = getDataFromLocalStorage(storageName).filter(
     (product) => product.id !== productId
   );
+
+  if (storageName === "in-cart-products") {
+    const removingProduct = getDataFromLocalStorage(storageName).find(
+      (product) => product.id === productId
+    );
+    updatedProducts = getDataFromLocalStorage(storageName).filter(
+      (product) =>
+        !deepCompareArrays(
+          product.specifications,
+          removingProduct.specifications
+        )
+    );
+  }
 
   if (updatedProducts.length === 0) {
     window.localStorage.removeItem(storageName);

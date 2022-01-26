@@ -1123,6 +1123,13 @@ input {
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
+.section-orders-table .order-card__text__title {
+  color: #1e90ff;
+  transition: all 0.2s;
+}
+.section-orders-table .order-card__text__title:hover {
+  color: #6bb6ff;
+}
 .section-orders-table .order-card__text__specification-list {
   max-width: 30rem;
   font-size: 1.2rem;
@@ -1135,12 +1142,20 @@ input {
 }
 .section-orders-table .order-card__text__action {
   margin-top: 2.4rem;
+  display: none;
+}
+.section-orders-table .order-card__text__action.active {
+  display: block;
 }
 .section-orders-table .order-card__text__action .btn--link {
   font-size: 1.4rem;
 }
 .section-orders-table .order-card__text__action .btn--link:not(:last-child) {
   margin-right: 2.4rem;
+}
+.section-orders-table .order-card__text__action .btn--link.delete:hover, .section-orders-table .order-card__text__action .btn--link.confirm-delete:hover {
+  color: #e74c3c;
+  border-bottom: 1px solid #e74c3c;
 }
 @media only screen and (max-width: 50em) {
   .section-orders-table .order-card__price-box.price-box-origin {
@@ -2170,9 +2185,6 @@ input {
   justify-content: space-between;
   transition: all 0.2s;
 }
-.main-cards__cards__favorite-card .card-content:hover .card-content__title-link {
-  color: #1e90ff;
-}
 @media only screen and (max-width: 68.75em) {
   .main-cards__cards__favorite-card .card-content {
     padding-top: 2.8rem;
@@ -2190,13 +2202,13 @@ input {
     padding: 2rem 2.4rem;
   }
 }
-.main-cards__cards__favorite-card .card-content__title-link {
+.main-cards__cards__favorite-card .card-content__title {
   font-size: 1.6rem;
   line-height: 1.5;
   transition: all 0.2s;
 }
 @media only screen and (max-width: 31.25em) {
-  .main-cards__cards__favorite-card .card-content__title-link {
+  .main-cards__cards__favorite-card .card-content__title {
     margin-bottom: 2.4rem;
   }
 }
@@ -2236,6 +2248,7 @@ input {
   }
 }
 .main-cards__cards__favorite-card .card-content__action .btn--primary {
+  text-align: center;
   padding: 0.8rem;
   font-weight: 700;
 }

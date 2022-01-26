@@ -151,7 +151,7 @@ export class View {
     this[component] = document.querySelectorAll(className);
   }
 
-  setLocationSearch(search, sort, set = true) {
+  setLocationSearch(search = null, sort = null, set = true) {
     const sortData = sort || this._data.sort;
     const defaultSortQuery = sortData
       ?.map((data) => {
@@ -213,6 +213,26 @@ export class View {
       });
 
     return getValue && !getValuesArray ? queryValues.join("-") : queryValues;
+  }
+
+  _generateHrefLink(currentPage, dataSort, productId) {
+    let headHref;
+
+    switch (currentPage) {
+      case "home":
+        headHref = "./pages/product-detail.html";
+        break;
+      case "in-page":
+        headHref = "";
+        break;
+      case "side-page":
+        headHref = "./product-detail.html";
+        break;
+    }
+
+    return (
+      headHref + this.setLocationSearch(null, dataSort, false) + "#" + productId
+    );
   }
 
   _generateOptions(options, defaultValue = null, type = null) {

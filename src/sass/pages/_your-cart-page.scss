@@ -138,6 +138,7 @@
       &__title {
         font-size: 1.8rem;
         margin-bottom: 1rem;
+        @include primaryLink(link);
       }
 
       &__specification-list {
@@ -154,12 +155,23 @@
 
       &__action {
         margin-top: 2.4rem;
+        display: none;
+
+        &.active {
+          display: block;
+        }
 
         .btn--link {
           font-size: 1.4rem;
 
           &:not(:last-child) {
             margin-right: 2.4rem;
+          }
+
+          &.delete:hover,
+          &.confirm-delete:hover {
+            color: $color-red;
+            border-bottom: $border-red-thin;
           }
         }
       }

@@ -30,6 +30,7 @@ class ProductDetailOrderView extends View {
     ).deliveryDate;
 
     return {
+      locationSearch: window.location.search,
       searchQueries: this._getLocationSearchValues(),
       id: data.id,
       title: data.title,

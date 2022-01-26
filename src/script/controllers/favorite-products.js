@@ -10,7 +10,7 @@ const breadCrumbsControl = () => {
 const FavoriteProductsControl = () => {
   // Get Favorite products list and render
   const favoriteProducts = getDataFromLocalStorage("favorite-products");
-  FavoriteProductsView.renderItems(favoriteProducts);
+  FavoriteProductsView.renderItems(favoriteProducts, "side-page");
 
   // Set Delete button and handle click event
   FavoriteProductsView.setMultiComponentElementsClass(
@@ -18,11 +18,18 @@ const FavoriteProductsControl = () => {
     ".card-content__action .btn--sub"
   );
   FavoriteProductsView.addDeleteClickHandler(FavoriteProductsControl);
+
+  // Set Add to cart button and handle click event
+  FavoriteProductsView.setMultiComponentElementsClass(
+    "_addToCartButtons",
+    ".card-content__action .btn--primary"
+  );
+  console.log(FavoriteProductsView._addToCartButtons);
 };
 
 const recentlyViewedProductsControl = () => {
   PreviewProductsView.setCardTypeClass(".recently-viewed-prodcuts");
-  PreviewProductsView.renderItems(productsData, "in-page");
+  PreviewProductsView.renderItems(productsData, "side-page");
 };
 
 const init = () => {

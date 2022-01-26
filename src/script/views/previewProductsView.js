@@ -92,26 +92,6 @@ export class PreviewProductsView extends View {
     }
   }
 
-  _generateHrefLink(currentPage, dataSort, productId) {
-    let headHref;
-
-    switch (currentPage) {
-      case "home":
-        headHref = "./pages/product-detail.html";
-        break;
-      case "in-page":
-        headHref = "";
-        break;
-      case "side-page":
-        headHref = "./product-detail.html";
-        break;
-    }
-
-    return (
-      headHref + this.setLocationSearch(null, dataSort, false) + "#" + productId
-    );
-  }
-
   _generateMarkup(homepage) {
     const _this = this;
 

@@ -1,13 +1,43 @@
 import { View } from "../view.js";
+import { getProductById } from "../../model.js";
 
 class OrderCardsView extends View {
   _parentElement = document.querySelector(".order-table-body");
   _saveButton;
+  _deleteButton;
+  _confirmDeleteButton;
+  _cancelDeleteButton;
+
+  addConfirmDeleteButtonClickHandler(handler) {
+    this._confirmDeleteButton?.addEventListener("click", () => {
+      handler(this._confirmDeleteButton.dataset.productId);
+    });
+  }
+
+  addCancelDeleteButtonClickHandler() {
+    this._cancelDeleteButton?.addEventListener("click", () => {
+      this._toggleActionBoxActiveClass();
+    });
+  }
+
+  addDeleteButtonClickHandler() {
+    this._deleteButton?.addEventListener("click", () => {
+      this._toggleActionBoxActiveClass();
+    });
+  }
 
   addSaveButtonClickHandler(handler) {
-    this._saveButton.addEventListener("click", () => {
+    this._saveButton?.addEventListener("click", () => {
       handler(this._saveButton.dataset.productId);
     });
+  }
+
+  _toggleActionBoxActiveClass() {
+    const initialActionBox = document.querySelector(".initial-action-box");
+    const confirmDeleteBox = document.querySelector(".confirm-delete-box");
+
+    initialActionBox.classList.toggle("active");
+    confirmDeleteBox.classList.toggle("active");
   }
 
   _generageImage(productId, query) {
@@ -64,6 +94,10 @@ class OrderCardsView extends View {
     `;
   }
 
+  _generateHrefLink(data) {
+    return `product-detail.html${data.locationSearch}#${data.id}`;
+  }
+
   _generateMarkup() {
     const _this = this;
 
@@ -80,9 +114,12 @@ class OrderCardsView extends View {
                         ${_this._generageImage(data.id, data.searchQueries)}
                       </div>
       
-                      <div class="order-card__text__title">
+                      <a 
+                        href=${_this._generateHrefLink(data)} 
+                        class="order-card__text__title"
+                      >
                           ${data.title}
-                      </div>
+                      </a>
                       <ul class="order-card__text__specification-list">
                           ${_this._generateSpecificationValues(
                             data.specifications
@@ -105,7 +142,7 @@ class OrderCardsView extends View {
                           ${_this._generateProductCounter()}
                       </div>
       
-                      <div class="order-card__text__action">
+                      <div class="order-card__text__action initial-action-box active">
                         <div 
                             data-product-id=${data.id} 
                             class="btn--link delete"
@@ -117,6 +154,17 @@ class OrderCardsView extends View {
                             class="btn--link save"
                         >
                             Lưu lại
+                        </div>
+                      </div>
+
+                      <div class="order-card__text__action confirm-delete-box">
+                        <p>Tiếp tục mua sản phẩm này?</p>
+                        <div class="btn--link cancel-delete">Có</div>
+                        <div 
+                          class="btn--link confirm-delete"
+                          data-product-id=${data.id}
+                        >
+                          Không
                         </div>
                       </div>
                   </td>
