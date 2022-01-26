@@ -42,3 +42,59 @@ export const validateInput = (inputData, type) => {
 export const calcSalesPrice = (price, discount) => {
   return (price * (100 - discount)) / 100;
 };
+
+export const deepCompareArrays = (arr1, arr2) => {
+  function compareObjectValues(object1, object2) {
+    const keysObj1 = Object.keys(object1);
+    const keysObj2 = Object.keys(object2);
+
+    if (!deepCompareArrays(keysObj1, keysObj2)) {
+      return false;
+    }
+
+    for (const key of keysObj1) {
+      if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+        return deepCompareArrays(object1[key], object2[key]);
+      }
+
+      if (object1[key] === null && object2[key] === null) {
+        return true;
+      }
+
+      if (
+        typeof object1[key] === "object" &&
+        typeof object2[key] === "object"
+      ) {
+        return compareObjectValues(object1[key], object2[key]);
+      }
+
+      if (object1[key] !== object2[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  if (arr1.length !== arr2.length) return false;
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (Array.isArray(arr1[i]) && Array.isArray(arr2[i])) {
+      return deepCompareArrays(arr1[i], arr2[i]);
+    }
+
+    if (typeof arr1[i] == "object" && typeof arr2[i] == "object") {
+      return compareObjectValues(arr1[i], arr2[i]);
+    }
+
+    if (String(arr1[i]) === "NaN" && String(arr2[i]) === "NaN") {
+      return true;
+    }
+
+    if (!arr1.includes(arr2[i]) || !arr2.includes(arr1[i])) {
+      return false;
+    }
+  }
+
+  return true;
+};

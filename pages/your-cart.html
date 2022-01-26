@@ -24,12 +24,12 @@
   <body>
     <header class="page-header">
       <div class="header-bar container">
-        <div class="header-bar__logo">
+        <a href="../index.html" class="header-bar__logo">
           <img
             src="../resources/images/logo/vector/default.svg"
             alt="Shop House Logo"
           />
-        </div>
+        </a>
         <div class="header-bar__search-control">
           <div class="search-icon">
             <svg>
@@ -45,23 +45,26 @@
               <use xlink:href="../resources/icons/sprite.svg#search"></use>
             </svg>
           </div>
-          <div class="tool-icon tool-icon--user">
+          <a
+            href="../pages/user-dashboard/user-info.html"
+            class="tool-icon tool-icon--user"
+          >
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#user"></use>
             </svg>
-          </div>
-          <div class="tool-icon tool-icon--heart">
+          </a>
+          <a href="favorite-products.html" class="tool-icon tool-icon--heart">
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#heart"></use>
             </svg>
-          </div>
-          <div class="tool-icon">
+          </a>
+          <a href="your-cart.html" class="tool-icon">
             <svg>
               <use
                 xlink:href="../resources/icons/sprite.svg#shopping-basket"
               ></use>
             </svg>
-          </div>
+          </a>
           <div class="tool-icon tool-icon--menu">
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#menu"></use>
@@ -70,10 +73,11 @@
         </div>
       </div>
 
+      <!-- Add 'active' here -->
       <div class="header-category">
         <ul class="tool-box-menu">
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="../pages/user-dashboard/user-info.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="../resources/icons/sprite.svg#user"></use>
@@ -83,7 +87,7 @@
             </a>
           </li>
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="favorite-products.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="../resources/icons/sprite.svg#heart"></use>
@@ -97,30 +101,14 @@
         <div class="divider"></div>
 
         <ul class="header-category__list">
-          <li class="header-category__list__item">
-            <a href="#">Phòng khách</a>
-          </li>
-          <li class="header-category__list__item"><a href="#">Phòng ngủ</a></li>
-          <li class="header-category__list__item"><a href="#">Nhà bếp</a></li>
-          <li class="header-category__list__item"><a href="#">Trẻ em</a></li>
-          <li class="header-category__list__item"><a href="#">Sân vườn</a></li>
-          <li class="header-category__list__item">
-            <a href="#">Thiết bị nội thất</a>
-          </li>
-          <li class="header-category__list__item">
-            <a href="#">Khuyến mãi</a>
-          </li>
+          <!-- RENDER CATEGORY LIST ITEM -->
         </ul>
       </div>
     </header>
 
     <main class="section-your-cart container main-padding-y">
       <div class="bread-crumbs">
-        <a class="bread-crumbs__link" href="#">Trang chủ</a>
-        &nbsp;
-        <span class="bread-crumbs__slash">/</span>
-        &nbsp;
-        <a class="bread-crumbs__link" href="#">Giỏ hàng</a>
+        <!-- RENDER BREAD CRUMBS -->
       </div>
 
       <h2 class="heading--2">Giỏ hàng của bạn</h2>
@@ -135,11 +123,11 @@
           </tr>
         </thead>
 
-        <tbody>
-          <tr class="order-card">
+        <tbody class="order-table-body">
+          <!-- <tr class="order-card">
             <td class="order-card__img img-origin">
               <img
-                src="../resources/images/products/p1.jpg"
+                src="../resources/images/products/p-01/thmb.jpg"
                 alt="Product image"
               />
             </td>
@@ -147,7 +135,7 @@
             <td class="order-card__text">
               <div class="order-card__img img-responsive">
                 <img
-                  src="../resources/images/products/p1.jpg"
+                  src="../resources/images/products/p-01/thmb.jpg"
                   alt="Product image"
                 />
               </div>
@@ -155,9 +143,13 @@
               <div class="order-card__text__title">
                 Ghế trẻ nhỏ Alcalde Kids Activity
               </div>
-              <div class="order-card__text__delivery-info">
-                Giao hàng trong khoảng 3 - 5 ngày
-              </div>
+              <ul class="order-card__text__specification-list">
+                <li>Màu sắc: <span class="specification-value">Trắng</span></li>
+                <li>Màu sắc: <span class="specification-value">Trắng</span></li>
+                <li>Màu sắc: <span class="specification-value">Trắng</span></li>
+                <li>Màu sắc: <span class="specification-value">Trắng</span></li>
+                <li>Màu sắc: <span class="specification-value">Trắng</span></li>
+              </ul>
 
               <div class="order-card__price-box price-box-responsive">
                 <div
@@ -220,7 +212,7 @@
             <td class="order-card__total-price text-primary total-price-origin">
               3.789.000đ
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
 

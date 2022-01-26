@@ -63,7 +63,7 @@ export class View {
       markup +=
         "\n" +
         `
-          <a class="bread-crumbs__link" href="#">Sản phẩm yêu thích</a>
+          <a class="bread-crumbs__link" href="favorite-products.html">Sản phẩm yêu thích</a>
         `;
     }
 
@@ -102,6 +102,14 @@ export class View {
               &nbsp;` +
                 "\n"
             )}
+        `;
+    }
+
+    if (page === "your-cart") {
+      markup +=
+        "\n" +
+        `
+          <a class="bread-crumbs__link" href="your-cart.html">Giỏ hàng</a>
         `;
     }
 
@@ -226,9 +234,9 @@ export class View {
                   return `
                   <option ${
                     checkMatchValue(value.value) ? "selected" : ""
-                  } value="${value.value}">${option.name}: ${
-                    value.name
-                  }</option>
+                  } value="${value.value}" data-name=${value.name}>${
+                    option.name
+                  }: ${value.name}</option>
                 `;
                 })
                 .join("\n")}

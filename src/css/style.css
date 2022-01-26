@@ -20,7 +20,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
-  line-height: 2.1;
+  line-height: 1.9;
   font-size: 1.4rem;
 }
 
@@ -1058,6 +1058,10 @@ input {
     display: none;
   }
 }
+.section-orders-table .order-card__text {
+  display: flex;
+  flex-direction: column;
+}
 .section-orders-table .order-card__text .img-responsive {
   display: none;
 }
@@ -1078,11 +1082,11 @@ input {
     display: flex;
     justify-content: flex-start;
     margin-top: 2.4rem;
-    margin-bottom: 2.8rem;
   }
 }
 .section-orders-table .order-card__text .price-box-responsive {
   display: none;
+  margin-top: 0.8rem;
 }
 .section-orders-table .order-card__text .price-box-responsive .price-title-repsonsive {
   display: none;
@@ -1117,10 +1121,20 @@ input {
 }
 .section-orders-table .order-card__text__title {
   font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
-.section-orders-table .order-card__text__delivery-info {
-  margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
+.section-orders-table .order-card__text__specification-list {
+  max-width: 30rem;
+  font-size: 1.2rem;
+  color: #7c7c7c;
+  display: flex;
+  flex-wrap: wrap;
+}
+.section-orders-table .order-card__text__specification-list li:not(:last-child) {
+  margin-right: 1.6rem;
+}
+.section-orders-table .order-card__text__action {
+  margin-top: 2.4rem;
 }
 .section-orders-table .order-card__text__action .btn--link {
   font-size: 1.4rem;

@@ -10,10 +10,38 @@ class ProductDetailOrderView extends View {
   _favoriteBtn;
   _addToCartBtn;
 
+  _getInCartProductData() {
+    const data = this._data;
+    let specifications = [];
+    this._searchQueries.forEach((search) => {
+      const hasValueSelect = [...this._sortSelects].find(
+        (select) => select.dataset.query === search.query
+      );
+
+      if (hasValueSelect)
+        specifications.push({
+          name: search.name,
+          value: hasValueSelect.querySelector("option[selected]").dataset.name,
+        });
+    });
+
+    const deliveryDate = data.policy.find(
+      (pol) => pol.deliveryDate
+    ).deliveryDate;
+
+    return {
+      searchQueries: this._getLocationSearchValues(),
+      id: data.id,
+      title: data.title,
+      specifications,
+      deliveryDate,
+    };
+  }
+
   addAddToCartBtnClickHandler(handler) {
     const _this = this;
     this._addToCartBtn.addEventListener("click", () => {
-      handler(_this._data, "in-cart-products");
+      handler(_this._getInCartProductData(), "in-cart-products");
 
       _this._buttonChangeTextHandler(_this._addToCartBtn, "Thêm vào giỏ");
     });

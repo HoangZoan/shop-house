@@ -1,5 +1,6 @@
 import { productsData } from "./DUMMY_DATA/products-data.js";
 import HeaderTopBarView from "./views/headerTopBarView.js";
+import { deepCompareArrays } from "./helpers.js";
 import { CATEGORIES } from "./config.js";
 
 // INITALIZE PAGE HEADER
@@ -38,21 +39,19 @@ export const getDataFromLocalStorage = (storageName) => {
 };
 
 export const addProductToLocalStorage = (productData, storageName) => {
-  const favoriteProducts = getDataFromLocalStorage(storageName);
+  const existingData = getDataFromLocalStorage(storageName);
 
-  if (favoriteProducts) {
-    const match = favoriteProducts.find(
-      (product) => productData.id === product.id
+  if (existingData) {
+    const match = existingData.find(
+      (product) =>
+        productData.id === product.id &&
+        deepCompareArrays(productData.specifications, product.specifications)
     );
 
     if (!match) {
-      persistDataOnLocalStorage(storageName, [
-        ...favoriteProducts,
-        productData,
-      ]);
+      persistDataOnLocalStorage(storageName, [...existingData, productData]);
     }
   } else {
-    console.log(storageName, [productData]);
     persistDataOnLocalStorage(storageName, [productData]);
   }
 };

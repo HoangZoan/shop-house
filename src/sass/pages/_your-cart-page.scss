@@ -75,6 +75,9 @@
     }
 
     &__text {
+      display: flex;
+      flex-direction: column;
+
       .img-responsive {
         display: none;
 
@@ -94,12 +97,12 @@
           display: flex;
           justify-content: flex-start;
           margin-top: 2.4rem;
-          margin-bottom: 2.8rem;
         }
       }
 
       .price-box-responsive {
         display: none;
+        margin-top: 0.8rem;
 
         .price-title-repsonsive {
           display: none;
@@ -134,14 +137,24 @@
 
       &__title {
         font-size: 1.8rem;
+        margin-bottom: 1rem;
       }
 
-      &__delivery-info {
-        margin-top: 1.2rem;
-        margin-bottom: 1.2rem;
+      &__specification-list {
+        max-width: 30rem;
+        font-size: 1.2rem;
+        color: $color-text-gray;
+        display: flex;
+        flex-wrap: wrap;
+
+        li:not(:last-child) {
+          margin-right: 1.6rem;
+        }
       }
 
       &__action {
+        margin-top: 2.4rem;
+
         .btn--link {
           font-size: 1.4rem;
 
