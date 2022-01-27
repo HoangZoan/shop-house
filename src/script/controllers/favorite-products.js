@@ -18,13 +18,6 @@ const FavoriteProductsControl = () => {
     ".card-content__action .btn--sub"
   );
   FavoriteProductsView.addDeleteClickHandler(FavoriteProductsControl);
-
-  // Set Add to cart button and handle click event
-  FavoriteProductsView.setMultiComponentElementsClass(
-    "_addToCartButtons",
-    ".card-content__action .btn--primary"
-  );
-  console.log(FavoriteProductsView._addToCartButtons);
 };
 
 const recentlyViewedProductsControl = () => {

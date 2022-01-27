@@ -1,45 +1,115 @@
 import { View } from "../view.js";
-import { getProductById } from "../../model.js";
+import { convertPriceNumber, calcSalesPrice } from "../../helpers.js";
 
 class OrderCardsView extends View {
   _parentElement = document.querySelector(".order-table-body");
-  _saveButton;
-  _deleteButton;
-  _confirmDeleteButton;
-  _cancelDeleteButton;
+  _saveButtons;
+  _confirmSaveButtons;
+  _deleteButtons;
+  _confirmDeleteButtons;
+  _cancelButtons;
+  _quantityCounterControl;
   _yourCartOrderCards = document.querySelector(".section-orders-table");
   _notFoundMessage = "Bạn chưa có sản phẩm trong giỏ";
 
-  addConfirmDeleteButtonClickHandler(handler) {
-    this._confirmDeleteButton?.addEventListener("click", () => {
-      handler(this._confirmDeleteButton.dataset.productId);
+  addQuantityCounterControlClickHandler() {
+    this._quantityCounterControl?.addEventListener("click", (event) => {
+      const inputEl = this._quantityCounterControl.querySelector("input");
+      const increaseBtn = event.target.closest(".add");
+      const decreaseBtn = event.target.closest(".remove");
+      if (!increaseBtn && !decreaseBtn) return;
+
+      if (increaseBtn) {
+        inputEl.value++;
+      }
+
+      if (decreaseBtn) {
+        inputEl.value > 1 && inputEl.value--;
+      }
     });
   }
 
-  addCancelDeleteButtonClickHandler() {
-    this._cancelDeleteButton?.addEventListener("click", () => {
-      this._toggleActionBoxActiveClass();
+  addSaveButtonClickHandler() {
+    const _this = this;
+
+    this._saveButtons?.forEach((saveBtn) => {
+      const parentDataset = `data-product-specs="${saveBtn.parentElement.dataset.productSpecs}"`;
+      saveBtn.addEventListener("click", () => {
+        _this._toggleActionBoxActiveClass(saveBtn, parentDataset);
+      });
+    });
+  }
+
+  addConfirmSaveButtonClickHandler(handler) {
+    this._confirmSaveButtons?.forEach((button) => {
+      button.addEventListener("click", () => {
+        handler(
+          button.parentElement.dataset.productId,
+          button.parentElement.dataset.productSpecs
+        );
+      });
     });
   }
 
   addDeleteButtonClickHandler() {
-    this._deleteButton?.addEventListener("click", () => {
-      this._toggleActionBoxActiveClass();
+    const _this = this;
+
+    this._deleteButtons?.forEach((deleteBtn) => {
+      const parentDataset = `data-product-specs="${deleteBtn.parentElement.dataset.productSpecs}"`;
+      deleteBtn.addEventListener("click", () => {
+        _this._toggleActionBoxActiveClass(deleteBtn, parentDataset);
+      });
     });
   }
 
-  addSaveButtonClickHandler(handler) {
-    this._saveButton?.addEventListener("click", () => {
-      handler(this._saveButton.dataset.productId);
+  addConfirmDeleteButtonClickHandler(handler) {
+    this._confirmDeleteButtons?.forEach((button) => {
+      button.addEventListener("click", () => {
+        handler(button.parentElement.dataset.productSpecs);
+      });
     });
   }
 
-  _toggleActionBoxActiveClass() {
-    const initialActionBox = document.querySelector(".initial-action-box");
-    const confirmDeleteBox = document.querySelector(".confirm-delete-box");
+  addCancelButtonClickHandler() {
+    const _this = this;
 
-    initialActionBox.classList.toggle("active");
-    confirmDeleteBox.classList.toggle("active");
+    this._cancelButtons?.forEach((button) => {
+      const parentDataset = `data-product-specs="${button.parentElement.dataset.productSpecs}"`;
+      button.addEventListener("click", () => {
+        _this._toggleActionBoxActiveClass(button, parentDataset);
+      });
+    });
+  }
+
+  _toggleActionBoxActiveClass(callingButton, parentDataset) {
+    const initialActionBox = callingButton
+      .closest(".order-card__text")
+      .querySelector(`.initial-action-box[${parentDataset}]`);
+    const confirmDeleteBox = callingButton
+      .closest(".order-card__text")
+      .querySelector(`.confirm-delete-box[${parentDataset}]`);
+    const confirmSaveBox = callingButton
+      .closest(".order-card__text")
+      .querySelector(`.confirm-save-box[${parentDataset}]`);
+
+    // Open confirm delete box
+    if (callingButton.classList.contains("delete")) {
+      initialActionBox.classList.remove("active");
+      confirmDeleteBox.classList.add("active");
+      return;
+    }
+
+    // Open confirm save box
+    if (callingButton.classList.contains("save")) {
+      initialActionBox.classList.remove("active");
+      confirmSaveBox.classList.add("active");
+      return;
+    }
+
+    // Cancel action boxes
+    initialActionBox.classList.add("active");
+    confirmDeleteBox.classList.remove("active");
+    confirmSaveBox.classList.remove("active");
   }
 
   _generageImage(productId, query) {
@@ -61,8 +131,9 @@ class OrderCardsView extends View {
       .join("\n");
   }
 
-  _generatePrice(responsive = false) {
-    return `
+  _generatePrice(initialPrice, discount, responsive = false) {
+    if (!discount) {
+      return `
         <div
             class="order-card__price-box__price order-card__price-box__price--current"
         >
@@ -71,28 +142,46 @@ class OrderCardsView extends View {
                 ? '<span class="price-title-repsonsive text-black">Giá:</span>'
                 : ""
             }
-            3.999.000đ
+            ${convertPriceNumber(initialPrice)}đ
         </div>
-        <div
-            class="order-card__price-box__price order-card__price-box__price--old"
-        >
-            <del class="price-text">4.499.000đ</del>
-        </div>  
-    `;
+      `;
+    } else {
+      return `
+          <div
+              class="order-card__price-box__price order-card__price-box__price--current"
+          >
+              ${
+                responsive === "responsive"
+                  ? '<span class="price-title-repsonsive text-black">Giá:</span>'
+                  : ""
+              }
+              ${convertPriceNumber(calcSalesPrice(initialPrice, discount))}đ
+          </div>
+          <div
+              class="order-card__price-box__price order-card__price-box__price--old"
+          >
+              <del class="price-text">${convertPriceNumber(initialPrice)}đ</del>
+          </div>  
+      `;
+    }
   }
 
   _generateProductCounter() {
     return `
-        <button class="btn--counter add">+</button>
-        <input type="text" readonly value="1" />
-        <button class="btn--counter remove">-</button>
+      <button class="btn--counter remove">-</button>
+      <input type="text" readonly value="1" />
+      <button class="btn--counter add">+</button>
     `;
   }
 
-  _generateTotalPrice(responsive = false) {
+  _generateTotalPrice(initialPrice, discount, responsive = false) {
     return `
-        ${responsive ? '<strong class="text-black">Tổng:</strong>' : ""}
-        3.789.000đ
+      ${responsive ? '<strong class="text-black">Tổng:</strong>' : ""}
+      ${
+        discount
+          ? convertPriceNumber(calcSalesPrice(initialPrice, discount))
+          : convertPriceNumber(initialPrice)
+      }đ
     `;
   }
 
@@ -129,13 +218,21 @@ class OrderCardsView extends View {
                       </ul>
       
                       <div class="order-card__price-box price-box-responsive">
-                          ${_this._generatePrice(true)}
+                          ${_this._generatePrice(
+                            data.initialPrice,
+                            data.discount,
+                            true
+                          )}
                       </div>
       
                       <div
                           class="order-card__total-price text-primary total-price-responsive"
                       >
-                          ${_this._generateTotalPrice(true)}
+                          ${_this._generateTotalPrice(
+                            data.initialPrice,
+                            data.discount,
+                            true
+                          )}
                       </div>
       
                       <div
@@ -144,27 +241,32 @@ class OrderCardsView extends View {
                           ${_this._generateProductCounter()}
                       </div>
       
-                      <div class="order-card__text__action initial-action-box active">
-                        <div 
-                            data-product-id=${data.id} 
-                            class="btn--link delete"
-                        >
-                            Xóa
-                        </div>
-                        <div 
-                            data-product-id=${data.id}
-                            class="btn--link save"
-                        >
-                            Lưu lại
-                        </div>
+                      <div 
+                        class="order-card__text__action initial-action-box active"
+                        data-product-specs=${data.locationSearch}
+                      >
+                        <div class="btn--link delete">Xóa</div>
+                        <div class="btn--link save">Lưu lại</div>
                       </div>
 
-                      <div class="order-card__text__action confirm-delete-box">
+                      <div 
+                        class="order-card__text__action confirm-save-box"
+                        data-product-specs=${data.locationSearch}
+                        data-product-id=${data.id}
+                      >
+                        <p>Lưu lại mua sau?</p>
+                        <div class="btn--link confirm-save">Có</div>
+                        <div class="btn--link cancel">Không</div>
+                      </div>
+
+                      <div 
+                        class="order-card__text__action confirm-delete-box"
+                        data-product-specs=${data.locationSearch}
+                      >
                         <p>Tiếp tục mua sản phẩm này?</p>
-                        <div class="btn--link cancel-delete">Có</div>
+                        <div class="btn--link cancel">Có</div>
                         <div 
                           class="btn--link confirm-delete"
-                          data-product-id=${data.id}
                         >
                           Không
                         </div>
@@ -172,7 +274,7 @@ class OrderCardsView extends View {
                   </td>
       
                   <td class="order-card__price-box price-box-origin">
-                    ${_this._generatePrice()}
+                    ${_this._generatePrice(data.initialPrice, data.discount)}
                   </td>
       
                   <td class="order-card__product-quantity">
@@ -184,7 +286,10 @@ class OrderCardsView extends View {
                   </td>
       
                   <td class="order-card__total-price text-primary total-price-origin">
-                    ${_this._generateTotalPrice()}
+                    ${_this._generateTotalPrice(
+                      data.initialPrice,
+                      data.discount
+                    )}
                   </td>
               </tr>
           `;

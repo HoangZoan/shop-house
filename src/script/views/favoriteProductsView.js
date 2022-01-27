@@ -7,7 +7,6 @@ import {
 
 class FavoriteProductsView extends View {
   _parentElement = document.querySelector(".favorite-product-preview");
-  _addToCartButtons;
   _deleteButtons;
   _notFoundMessage = "Bạn chưa có sản phẩm yêu thích nào";
 

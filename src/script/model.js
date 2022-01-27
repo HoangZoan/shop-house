@@ -62,21 +62,14 @@ export const addProductToLocalStorage = (productData, storageName) => {
   }
 };
 
-export const removeProductFromLocalStorage = (productId, storageName) => {
+export const removeProductFromLocalStorage = (productData, storageName) => {
   let updatedProducts = getDataFromLocalStorage(storageName).filter(
-    (product) => product.id !== productId
+    (product) => product.id !== productData
   );
 
   if (storageName === "in-cart-products") {
-    const removingProduct = getDataFromLocalStorage(storageName).find(
-      (product) => product.id === productId
-    );
     updatedProducts = getDataFromLocalStorage(storageName).filter(
-      (product) =>
-        !deepCompareArrays(
-          product.specifications,
-          removingProduct.specifications
-        )
+      (product) => product.locationSearch !== productData
     );
   }
 

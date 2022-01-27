@@ -7,19 +7,19 @@ import {
   removeProductFromLocalStorage,
 } from "../model.js";
 
-function saveButtonControl(productId) {
+function saveButtonControl(productId, productSpecs) {
   // Save the product for later
   const savedProduct = getProductById(productId);
   addProductToLocalStorage(savedProduct, "favorite-products");
 
   // Remove the product from orders table
-  removeProductFromLocalStorage(productId, "in-cart-products");
+  removeProductFromLocalStorage(productSpecs, "in-cart-products");
   orderCardsControl();
 }
 
-function confirmDeleteButtonControl(productId) {
+function confirmDeleteButtonControl(productSpecs) {
   // Remove the product from orders table
-  removeProductFromLocalStorage(productId, "in-cart-products");
+  removeProductFromLocalStorage(productSpecs, "in-cart-products");
   orderCardsControl();
 }
 
@@ -29,32 +29,47 @@ function orderCardsControl() {
   OrderCardsView.renderItems(inCartProducts);
 
   // Set save product button and handle click event
-  OrderCardsView.setComponentElementClass(
-    "_saveButton",
+  OrderCardsView.setMultiComponentElementsClass(
+    "_saveButtons",
     ".order-card__text__action .btn--link.save"
   );
-  OrderCardsView.addSaveButtonClickHandler(saveButtonControl);
+  OrderCardsView.addSaveButtonClickHandler();
+
+  // Set confirm save button and handle click event
+  OrderCardsView.setMultiComponentElementsClass(
+    "_confirmSaveButtons",
+    ".order-card__text__action .btn--link.confirm-save"
+  );
+  OrderCardsView.addConfirmSaveButtonClickHandler(saveButtonControl);
 
   // Set delete product button and handle click event
-  OrderCardsView.setComponentElementClass(
-    "_deleteButton",
+  OrderCardsView.setMultiComponentElementsClass(
+    "_deleteButtons",
     ".order-card__text__action .btn--link.delete"
   );
   OrderCardsView.addDeleteButtonClickHandler();
 
-  // Set cancel delete button and handle click event
-  OrderCardsView.setComponentElementClass(
-    "_cancelDeleteButton",
-    ".order-card__text__action .btn--link.cancel-delete"
-  );
-  OrderCardsView.addCancelDeleteButtonClickHandler();
-
   // Set confirm delete button and handle click event
-  OrderCardsView.setComponentElementClass(
-    "_confirmDeleteButton",
+  OrderCardsView.setMultiComponentElementsClass(
+    "_confirmDeleteButtons",
     ".order-card__text__action .btn--link.confirm-delete"
   );
   OrderCardsView.addConfirmDeleteButtonClickHandler(confirmDeleteButtonControl);
+
+  // Set cancel button and handle click event
+  OrderCardsView.setMultiComponentElementsClass(
+    "_cancelButtons",
+    ".order-card__text__action .btn--link.cancel"
+  );
+  OrderCardsView.addCancelButtonClickHandler();
+
+  // // Set product counter and handle click event
+  // const responsive = window.matchMedia("(max-width: 60em)").matches;
+  // OrderCardsView.setComponentElementClass(
+  //   "_quantityCounterControl",
+  //   responsive ? ".quantity-control-responsive" : ".quantity-control-origin"
+  // );
+  // OrderCardsView.addQuantityCounterControlClickHandler();
 }
 
 const init = () => {
