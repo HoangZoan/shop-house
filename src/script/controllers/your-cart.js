@@ -64,12 +64,12 @@ function orderCardsControl() {
   OrderCardsView.addCancelButtonClickHandler();
 
   // // Set product counter and handle click event
-  // const responsive = window.matchMedia("(max-width: 60em)").matches;
-  // OrderCardsView.setComponentElementClass(
-  //   "_quantityCounterControl",
-  //   responsive ? ".quantity-control-responsive" : ".quantity-control-origin"
-  // );
-  // OrderCardsView.addQuantityCounterControlClickHandler();
+  const responsive = window.matchMedia("(max-width: 60em)").matches;
+  OrderCardsView.setMultiComponentElementsClass(
+    "_quantityCounterControls",
+    responsive ? ".quantity-control-responsive" : ".quantity-control-origin"
+  );
+  OrderCardsView.addQuantityCounterControlClickHandler();
 }
 
 const init = () => {

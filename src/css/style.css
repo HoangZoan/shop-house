@@ -1217,6 +1217,9 @@ input {
 .section-orders-table .order-card__total-price {
   text-align: right;
 }
+.section-orders-table .order-card__total-price.total-price-origin {
+  min-width: 9rem;
+}
 @media only screen and (max-width: 40em) {
   .section-orders-table .order-card__total-price.total-price-origin {
     display: none;

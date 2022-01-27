@@ -228,6 +228,8 @@
       text-align: right;
 
       &.total-price-origin {
+        min-width: 9rem;
+
         @include respond(md) {
           display: none;
         }

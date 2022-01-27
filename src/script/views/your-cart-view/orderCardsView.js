@@ -8,24 +8,63 @@ class OrderCardsView extends View {
   _deleteButtons;
   _confirmDeleteButtons;
   _cancelButtons;
-  _quantityCounterControl;
+  _quantityCounterControls;
   _yourCartOrderCards = document.querySelector(".section-orders-table");
   _notFoundMessage = "Bạn chưa có sản phẩm trong giỏ";
 
+  _generateTotalPriceByCounter(match, value = 1) {
+    const totalPriceEls = document.querySelectorAll(".order-card__total-price");
+    let priceData = {};
+
+    this._data.forEach((data) => {
+      if (data.locationSearch === match) {
+        priceData.initialPrice = data.initialPrice;
+        priceData.discount = data.discount;
+        return;
+      }
+    });
+
+    const { initialPrice, discount } = priceData;
+
+    const targetPriceEls = [...totalPriceEls].filter((el) => {
+      return el.closest(".order-card").dataset.productSpecs === match;
+    });
+
+    targetPriceEls.forEach((el) => {
+      const responsive = el.classList.contains("total-price-responsive");
+
+      el.innerHTML = `
+        ${responsive ? '<strong class="text-black">Tổng:</strong>' : ""}
+        ${
+          discount
+            ? convertPriceNumber(calcSalesPrice(initialPrice, discount) * value)
+            : convertPriceNumber(initialPrice * value)
+        }đ
+      `;
+    });
+  }
+
   addQuantityCounterControlClickHandler() {
-    this._quantityCounterControl?.addEventListener("click", (event) => {
-      const inputEl = this._quantityCounterControl.querySelector("input");
-      const increaseBtn = event.target.closest(".add");
-      const decreaseBtn = event.target.closest(".remove");
-      if (!increaseBtn && !decreaseBtn) return;
+    const _this = this;
 
-      if (increaseBtn) {
-        inputEl.value++;
-      }
+    this._quantityCounterControls?.forEach((control) => {
+      control.addEventListener("click", (event) => {
+        const match = control.closest(".order-card").dataset.productSpecs;
+        const inputEl = control.querySelector("input");
+        const increaseBtn = event.target.closest(".add");
+        const decreaseBtn = event.target.closest(".remove");
+        if (!increaseBtn && !decreaseBtn) return;
 
-      if (decreaseBtn) {
-        inputEl.value > 1 && inputEl.value--;
-      }
+        if (increaseBtn) {
+          inputEl.value++;
+        }
+
+        if (decreaseBtn) {
+          inputEl.value > 1 && inputEl.value--;
+        }
+
+        _this._generateTotalPriceByCounter(match, inputEl.value);
+      });
     });
   }
 
@@ -33,7 +72,9 @@ class OrderCardsView extends View {
     const _this = this;
 
     this._saveButtons?.forEach((saveBtn) => {
-      const parentDataset = `data-product-specs="${saveBtn.parentElement.dataset.productSpecs}"`;
+      const parentDataset = `data-product-specs="${
+        saveBtn.closest(".order-card").dataset.productSpecs
+      }"`;
       saveBtn.addEventListener("click", () => {
         _this._toggleActionBoxActiveClass(saveBtn, parentDataset);
       });
@@ -44,8 +85,8 @@ class OrderCardsView extends View {
     this._confirmSaveButtons?.forEach((button) => {
       button.addEventListener("click", () => {
         handler(
-          button.parentElement.dataset.productId,
-          button.parentElement.dataset.productSpecs
+          button.closest(".order-card").dataset.productId,
+          button.closest(".order-card").dataset.productSpecs
         );
       });
     });
@@ -55,7 +96,9 @@ class OrderCardsView extends View {
     const _this = this;
 
     this._deleteButtons?.forEach((deleteBtn) => {
-      const parentDataset = `data-product-specs="${deleteBtn.parentElement.dataset.productSpecs}"`;
+      const parentDataset = `data-product-specs="${
+        deleteBtn.closest(".order-card").dataset.productSpecs
+      }"`;
       deleteBtn.addEventListener("click", () => {
         _this._toggleActionBoxActiveClass(deleteBtn, parentDataset);
       });
@@ -65,7 +108,7 @@ class OrderCardsView extends View {
   addConfirmDeleteButtonClickHandler(handler) {
     this._confirmDeleteButtons?.forEach((button) => {
       button.addEventListener("click", () => {
-        handler(button.parentElement.dataset.productSpecs);
+        handler(button.closest(".order-card").dataset.productSpecs);
       });
     });
   }
@@ -74,7 +117,9 @@ class OrderCardsView extends View {
     const _this = this;
 
     this._cancelButtons?.forEach((button) => {
-      const parentDataset = `data-product-specs="${button.parentElement.dataset.productSpecs}"`;
+      const parentDataset = `data-product-specs="${
+        button.closest(".order-card").dataset.productSpecs
+      }"`;
       button.addEventListener("click", () => {
         _this._toggleActionBoxActiveClass(button, parentDataset);
       });
@@ -82,15 +127,10 @@ class OrderCardsView extends View {
   }
 
   _toggleActionBoxActiveClass(callingButton, parentDataset) {
-    const initialActionBox = callingButton
-      .closest(".order-card__text")
-      .querySelector(`.initial-action-box[${parentDataset}]`);
-    const confirmDeleteBox = callingButton
-      .closest(".order-card__text")
-      .querySelector(`.confirm-delete-box[${parentDataset}]`);
-    const confirmSaveBox = callingButton
-      .closest(".order-card__text")
-      .querySelector(`.confirm-save-box[${parentDataset}]`);
+    const orderCardEl = callingButton.closest(`.order-card[${parentDataset}]`);
+    const initialActionBox = orderCardEl.querySelector(`.initial-action-box`);
+    const confirmDeleteBox = orderCardEl.querySelector(`.confirm-delete-box`);
+    const confirmSaveBox = orderCardEl.querySelector(`.confirm-save-box`);
 
     // Open confirm delete box
     if (callingButton.classList.contains("delete")) {
@@ -195,7 +235,10 @@ class OrderCardsView extends View {
     return this._data
       .map((data) => {
         return `
-              <tr class="order-card">
+              <tr class="order-card" 
+                  data-product-id=${data.id} 
+                  data-product-specs=${data.locationSearch}
+              >
                   <td class="order-card__img img-origin">
                     ${_this._generageImage(data.id, data.searchQueries)}
                   </td>
@@ -241,10 +284,7 @@ class OrderCardsView extends View {
                           ${_this._generateProductCounter()}
                       </div>
       
-                      <div 
-                        class="order-card__text__action initial-action-box active"
-                        data-product-specs=${data.locationSearch}
-                      >
+                      <div class="order-card__text__action initial-action-box active">
                         <div class="btn--link delete">Xóa</div>
                         <div class="btn--link save">Lưu lại</div>
                       </div>
