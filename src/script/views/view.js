@@ -174,7 +174,10 @@ export class View {
   _showNotFoundMessage() {
     const markup = this._generateNotFoundMarkup();
 
-    const parentElement = this._productDetailSection || this._parentElement;
+    const parentElement =
+      this._productDetailSection ||
+      this._yourCartOrderCards ||
+      this._parentElement;
 
     parentElement.innerHTML = "";
     parentElement.insertAdjacentHTML("beforeend", markup);

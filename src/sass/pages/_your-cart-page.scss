@@ -2,6 +2,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 4.8rem;
+  @include setNotFoundMessage;
 
   .order-table-head {
     @include setDivider;

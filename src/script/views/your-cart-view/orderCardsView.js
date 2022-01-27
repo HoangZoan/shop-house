@@ -7,6 +7,8 @@ class OrderCardsView extends View {
   _deleteButton;
   _confirmDeleteButton;
   _cancelDeleteButton;
+  _yourCartOrderCards = document.querySelector(".section-orders-table");
+  _notFoundMessage = "Bạn chưa có sản phẩm trong giỏ";
 
   addConfirmDeleteButtonClickHandler(handler) {
     this._confirmDeleteButton?.addEventListener("click", () => {
