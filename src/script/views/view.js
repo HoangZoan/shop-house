@@ -117,12 +117,18 @@ export class View {
     this._breadCrumbs.insertAdjacentHTML("beforeend", markup);
   }
 
-  addSubmitFormHandler(handler) {
+  addSubmitFormHandler(handler, page) {
     this._formEl.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      if (this._validateInputValues()) {
+      if (page === "home") {
+        if (!this._validateInputValues(this._inputEl)) return;
+
         handler(Object.fromEntries([...new FormData(this._formEl)]));
+      }
+
+      if (page === "your-cart") {
+        handler();
       }
     });
   }
@@ -183,12 +189,12 @@ export class View {
     parentElement.insertAdjacentHTML("beforeend", markup);
   }
 
-  _showErrorMessage(message) {
+  _showInputErrorMessage(showElement, message) {
     const markup = `
       <p class="input-error">${message}</p>
     `;
 
-    this._formControlEl.insertAdjacentHTML("beforeend", markup);
+    showElement.insertAdjacentHTML("beforeend", markup);
   }
 
   _removeMessageNodeHandler(inputEl) {

@@ -39,6 +39,6 @@ const init = () => {
   PreviewBrandsView.addRenderWhenLoadedHanlder(brandsPreviewControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(bestSaleProductsControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(newComingProductsControl);
-  RegisterEmailFormView.addSubmitFormHandler(registerEmailFormControl);
+  RegisterEmailFormView.addSubmitFormHandler(registerEmailFormControl, "home");
 };
 init();
