@@ -1,4 +1,8 @@
-export const convertPriceNumber = (number) => {
+export const convertPriceStringToNumber = (string) => {
+  return Number(string.slice(0, -1).split(".").join(""));
+};
+
+export const convertNumberToPriceString = (number) => {
   const beforeConvertNumberStr = String(Math.round(number) - 1);
 
   const numberStr = [
@@ -26,6 +30,10 @@ export const convertPriceNumber = (number) => {
   return splitStr.join(".");
 };
 
+export const calcSalesPrice = (price, discount) => {
+  return (price * (100 - discount)) / 100;
+};
+
 export const validateInput = (inputData, type) => {
   const data = inputData.trim();
 
@@ -37,10 +45,6 @@ export const validateInput = (inputData, type) => {
   }
 
   return { isValid: true };
-};
-
-export const calcSalesPrice = (price, discount) => {
-  return (price * (100 - discount)) / 100;
 };
 
 export const deepCompareArrays = (arr1, arr2) => {

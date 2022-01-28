@@ -1,3 +1,8 @@
+import {
+  convertPriceStringToNumber,
+  convertNumberToPriceString,
+} from "../helpers.js";
+
 export class View {
   _breadCrumbs = document.querySelector(".bread-crumbs");
   _data;
@@ -168,6 +173,52 @@ export class View {
     if (set) window.location.search = search || defaultSortQuery;
 
     if (!set) return defaultSortQuery;
+  }
+
+  generateReceiptPriceDetail() {
+    const netPriceEl = document.querySelector(
+      ".payment-info-field__segment__form .price-net"
+    );
+    const promotionCodeReduceEl = document.querySelector(
+      ".price-decrement .extra-count-box__amount"
+    );
+    const shipmentChargeEl = document.querySelector(
+      ".shipment-charge .extra-count-box__amount"
+    );
+    const totalBillEl = document.querySelector(
+      ".payment-info-field__total__amount"
+    );
+    const totalPriceEls =
+      this._totalPriceEls || document.querySelectorAll(".total-price-origin");
+    let totalPrices = [];
+
+    totalPriceEls.forEach((el) =>
+      totalPrices.push(convertPriceStringToNumber(el.innerText))
+    );
+
+    const netPrice =
+      totalPrices.length === 0
+        ? 0
+        : totalPrices.reduce((prevNum, curNum) => {
+            return prevNum + curNum;
+          });
+    const promotionCodeReduce = convertPriceStringToNumber(
+      promotionCodeReduceEl.innerText
+    );
+    const shipmentCharge = convertPriceStringToNumber(
+      shipmentChargeEl.innerText
+    );
+
+    netPriceEl.innerText =
+      totalPrices.length === 0
+        ? "0đ"
+        : convertNumberToPriceString(netPrice + 1000) + "đ";
+    totalBillEl.innerText =
+      totalPrices.length === 0
+        ? "0đ"
+        : convertNumberToPriceString(
+            netPrice - promotionCodeReduce + shipmentCharge + 1000
+          ) + "đ";
   }
 
   _buttonChangeTextHandler(buttonEl, originText) {

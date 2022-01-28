@@ -1,5 +1,5 @@
 import { View } from "../view.js";
-import { calcSalesPrice, convertPriceNumber } from "../../helpers.js";
+import { calcSalesPrice, convertNumberToPriceString } from "../../helpers.js";
 import { PRODUCT_DETAIL_SEARCH_QUERIES } from "../../config.js";
 
 class ProductDetailOrderView extends View {
@@ -110,18 +110,18 @@ class ProductDetailOrderView extends View {
   _generatePrice(price, discount) {
     if (!discount) {
       return `
-        <div class="product-order__price-tag">${convertPriceNumber(
+        <div class="product-order__price-tag">${convertNumberToPriceString(
           price
         )}đ</div>
       `;
     } else {
       return `
         <div class="product-order__price-container">
-          <div class="product-order__price-tag">${convertPriceNumber(
+          <div class="product-order__price-tag">${convertNumberToPriceString(
             calcSalesPrice(price, discount)
           )}đ</div>
           <div class="product-order__price-tag--old">
-            <del>${convertPriceNumber(price)}đ</del>
+            <del>${convertNumberToPriceString(price)}đ</del>
           </div>
         </div>
       `;

@@ -1,5 +1,5 @@
 import { View } from "./view.js";
-import { convertPriceNumber, calcSalesPrice } from "../helpers.js";
+import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
@@ -72,7 +72,7 @@ export class PreviewProductsView extends View {
     if (!discount) {
       return `
         <div class="card-text__price--current">
-            Giá: <span class="price-text">${convertPriceNumber(
+            Giá: <span class="price-text">${convertNumberToPriceString(
               initialPrice
             )}đ</span>
         </div>
@@ -80,13 +80,15 @@ export class PreviewProductsView extends View {
     } else {
       return `
         <div class="card-text__price--current">
-            Giá: <span class="price-text">${convertPriceNumber(
+            Giá: <span class="price-text">${convertNumberToPriceString(
               calcSalesPrice(initialPrice, discount)
             )}đ</span>
         </div>
         
         <div class="card-text__price--old">
-            <del class="price-text">${convertPriceNumber(initialPrice)}đ</del>
+            <del class="price-text">${convertNumberToPriceString(
+              initialPrice
+            )}đ</del>
         </div>
         `;
     }

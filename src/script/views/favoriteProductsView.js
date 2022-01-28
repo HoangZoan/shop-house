@@ -1,5 +1,5 @@
 import { View } from "./view.js";
-import { convertPriceNumber, calcSalesPrice } from "../helpers.js";
+import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
 import {
   persistDataOnLocalStorage,
   getDataFromLocalStorage,
@@ -31,7 +31,7 @@ class FavoriteProductsView extends View {
     if (!discount) {
       return `
           <div class="card-content__price card-content__price--current">
-              Giá: <span class="price-text">${convertPriceNumber(
+              Giá: <span class="price-text">${convertNumberToPriceString(
                 initialPrice
               )}đ</span>
           </div>
@@ -39,13 +39,15 @@ class FavoriteProductsView extends View {
     } else {
       return `
           <div class="card-content__price card-content__price--current">
-              Giá: <span class="price-text">${convertPriceNumber(
+              Giá: <span class="price-text">${convertNumberToPriceString(
                 calcSalesPrice(initialPrice, discount)
               )}đ</span>
           </div>
           
           <div class="card-content__price card-content__price--old">
-              <del class="price-text">${convertPriceNumber(initialPrice)}đ</del>
+              <del class="price-text">${convertNumberToPriceString(
+                initialPrice
+              )}đ</del>
           </div>
           `;
     }

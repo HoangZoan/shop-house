@@ -134,19 +134,32 @@
 
           <div class="user-info-field__form-control">
             <label for="user-name">Họ và tên:<sup>*</sup></label>
-            <input class="input-border" type="text" id="user-name" required />
+            <div class="input-wrapper">
+              <input class="input-border" type="text" id="user-name" required />
+            </div>
           </div>
           <div class="user-info-field__form-control">
             <label for="phone-number">Số điện thoại:<sup>*</sup></label>
-            <input class="input-border" type="tel" id="phone-number" required />
+            <div class="input-wrapper">
+              <input
+                class="input-border"
+                type="tel"
+                id="phone-number"
+                required
+              />
+            </div>
           </div>
           <div class="user-info-field__form-control">
             <label for="address">Địa chỉ nhận hàng:<sup>*</sup></label>
-            <input class="input-border" type="text" id="address" required />
+            <div class="input-wrapper">
+              <input class="input-border" type="text" id="address" required />
+            </div>
           </div>
           <div class="user-info-field__form-control">
             <label for="email">Email:</label>
-            <input class="input-border" type="email" id="email" />
+            <div class="input-wrapper">
+              <input class="input-border" type="email" id="email" />
+            </div>
           </div>
         </div>
 
@@ -196,6 +209,11 @@
               <div class="shipment-location">
                 <span>Giao hàng tại <strong>Hà Nội</strong></span>
                 <div class="btn--link fz-small-link-btn">Thay đổi</div>
+              </div>
+
+              <div class="extra-count-box shipment-charge">
+                <div class="extra-count-box__title">Phí vận chuyển:</div>
+                <div class="extra-count-box__amount text-primary">0đ</div>
               </div>
             </div>
           </div>

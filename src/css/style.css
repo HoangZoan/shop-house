@@ -1298,9 +1298,12 @@ input {
 .section-form-check-out .user-info-field__form-control label sup {
   color: #e74c3c;
 }
-.section-form-check-out .user-info-field__form-control input {
+.section-form-check-out .user-info-field__form-control .input-wrapper {
   flex: 1;
+}
+.section-form-check-out .user-info-field__form-control input {
   padding: 0.8rem 1.2rem;
+  width: 100%;
 }
 @media only screen and (max-width: 60em) {
   .section-form-check-out .user-info-field__form-control input {
@@ -1310,6 +1313,7 @@ input {
 @media only screen and (max-width: 50em) {
   .section-form-check-out .user-info-field__form-control input {
     margin-right: 16rem;
+    max-width: 45rem;
   }
 }
 @media only screen and (max-width: 40em) {

@@ -1,5 +1,5 @@
 import { View } from "../view.js";
-import { convertPriceNumber, calcSalesPrice } from "../../helpers.js";
+import { convertNumberToPriceString, calcSalesPrice } from "../../helpers.js";
 
 class OrderCardsView extends View {
   _parentElement = document.querySelector(".order-table-body");
@@ -11,38 +11,6 @@ class OrderCardsView extends View {
   _quantityCounterControls;
   _yourCartOrderCards = document.querySelector(".section-orders-table");
   _notFoundMessage = "Bạn chưa có sản phẩm trong giỏ";
-
-  _generateTotalPriceByCounter(match, value = 1) {
-    const totalPriceEls = document.querySelectorAll(".order-card__total-price");
-    let priceData = {};
-
-    this._data.forEach((data) => {
-      if (data.locationSearch === match) {
-        priceData.initialPrice = data.initialPrice;
-        priceData.discount = data.discount;
-        return;
-      }
-    });
-
-    const { initialPrice, discount } = priceData;
-
-    const targetPriceEls = [...totalPriceEls].filter((el) => {
-      return el.closest(".order-card").dataset.productSpecs === match;
-    });
-
-    targetPriceEls.forEach((el) => {
-      const responsive = el.classList.contains("total-price-responsive");
-
-      el.innerHTML = `
-        ${responsive ? '<strong class="text-black">Tổng:</strong>' : ""}
-        ${
-          discount
-            ? convertPriceNumber(calcSalesPrice(initialPrice, discount) * value)
-            : convertPriceNumber(initialPrice * value)
-        }đ
-      `;
-    });
-  }
 
   addQuantityCounterControlClickHandler() {
     const _this = this;
@@ -64,6 +32,7 @@ class OrderCardsView extends View {
         }
 
         _this._generateTotalPriceByCounter(match, inputEl.value);
+        _this.generateReceiptPriceDetail();
       });
     });
   }
@@ -82,12 +51,16 @@ class OrderCardsView extends View {
   }
 
   addConfirmSaveButtonClickHandler(handler) {
+    const _this = this;
+
     this._confirmSaveButtons?.forEach((button) => {
       button.addEventListener("click", () => {
         handler(
           button.closest(".order-card").dataset.productId,
           button.closest(".order-card").dataset.productSpecs
         );
+
+        _this.generateReceiptPriceDetail();
       });
     });
   }
@@ -106,9 +79,13 @@ class OrderCardsView extends View {
   }
 
   addConfirmDeleteButtonClickHandler(handler) {
+    const _this = this;
+
     this._confirmDeleteButtons?.forEach((button) => {
       button.addEventListener("click", () => {
         handler(button.closest(".order-card").dataset.productSpecs);
+
+        _this.generateReceiptPriceDetail();
       });
     });
   }
@@ -152,6 +129,40 @@ class OrderCardsView extends View {
     confirmSaveBox.classList.remove("active");
   }
 
+  _generateTotalPriceByCounter(match, value = 1) {
+    const totalPriceEls = document.querySelectorAll(".order-card__total-price");
+    let priceData = {};
+
+    this._data.forEach((data) => {
+      if (data.locationSearch === match) {
+        priceData.initialPrice = data.initialPrice;
+        priceData.discount = data.discount;
+        return;
+      }
+    });
+
+    const { initialPrice, discount } = priceData;
+
+    const targetPriceEls = [...totalPriceEls].filter((el) => {
+      return el.closest(".order-card").dataset.productSpecs === match;
+    });
+
+    targetPriceEls.forEach((el) => {
+      const responsive = el.classList.contains("total-price-responsive");
+
+      el.innerHTML = `
+        ${responsive ? '<strong class="text-black">Tổng:</strong>' : ""}
+        ${
+          discount
+            ? convertNumberToPriceString(
+                calcSalesPrice(initialPrice, discount) * value
+              )
+            : convertNumberToPriceString(initialPrice * value)
+        }đ
+      `;
+    });
+  }
+
   _generageImage(productId, query) {
     return `
         <img
@@ -182,7 +193,7 @@ class OrderCardsView extends View {
                 ? '<span class="price-title-repsonsive text-black">Giá:</span>'
                 : ""
             }
-            ${convertPriceNumber(initialPrice)}đ
+            ${convertNumberToPriceString(initialPrice)}đ
         </div>
       `;
     } else {
@@ -195,12 +206,16 @@ class OrderCardsView extends View {
                   ? '<span class="price-title-repsonsive text-black">Giá:</span>'
                   : ""
               }
-              ${convertPriceNumber(calcSalesPrice(initialPrice, discount))}đ
+              ${convertNumberToPriceString(
+                calcSalesPrice(initialPrice, discount)
+              )}đ
           </div>
           <div
               class="order-card__price-box__price order-card__price-box__price--old"
           >
-              <del class="price-text">${convertPriceNumber(initialPrice)}đ</del>
+              <del class="price-text">${convertNumberToPriceString(
+                initialPrice
+              )}đ</del>
           </div>  
       `;
     }
@@ -219,8 +234,8 @@ class OrderCardsView extends View {
       ${responsive ? '<strong class="text-black">Tổng:</strong>' : ""}
       ${
         discount
-          ? convertPriceNumber(calcSalesPrice(initialPrice, discount))
-          : convertPriceNumber(initialPrice)
+          ? convertNumberToPriceString(calcSalesPrice(initialPrice, discount))
+          : convertNumberToPriceString(initialPrice)
       }đ
     `;
   }

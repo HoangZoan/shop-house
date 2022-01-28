@@ -1,4 +1,5 @@
 import OrderCardsView from "../views/your-cart-view/orderCardsView.js";
+import CheckOutFormView from "../views/your-cart-view/checkOutFormView.js";
 import {
   initializePageHeader,
   getDataFromLocalStorage,
@@ -63,7 +64,7 @@ function orderCardsControl() {
   );
   OrderCardsView.addCancelButtonClickHandler();
 
-  // // Set product counter and handle click event
+  // Set product counter and handle click event
   const responsive = window.matchMedia("(max-width: 60em)").matches;
   OrderCardsView.setMultiComponentElementsClass(
     "_quantityCounterControls",
@@ -72,9 +73,21 @@ function orderCardsControl() {
   OrderCardsView.addQuantityCounterControlClickHandler();
 }
 
+function checkOutFormControl() {
+  // CheckOutFormView.renderSingleItem(true);
+
+  // Set product total prices and render initial receipt price detail
+  CheckOutFormView.setMultiComponentElementsClass(
+    "_totalPriceEls",
+    ".total-price-origin"
+  );
+  CheckOutFormView.generateReceiptPriceDetail();
+}
+
 const init = () => {
   initializePageHeader("side-page");
   OrderCardsView.renderBreadCrumbs("your-cart");
   OrderCardsView.addRenderWhenLoadedHanlder(orderCardsControl);
+  CheckOutFormView.addRenderWhenLoadedHanlder(checkOutFormControl);
 };
 init();
