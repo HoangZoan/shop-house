@@ -10,16 +10,13 @@ class RegisterEmailFormView extends View {
 
   constructor() {
     super();
-    this._clearMessageWhenTyping(this._inputEl);
+    this._clearErrorMessageWhenTyping(this._inputEl);
   }
 
   _validateInputValues() {
-    const inputValidation = validateInput(this._inputEl.value, "email");
+    const inputIsValid = this._handleEmptyTextFieldError(this._inputEl);
 
-    if (!inputValidation.isValid && inputValidation.status == "empty") {
-      this._showInputErrorMessage(this._formControlEl, this._emptyErrorMessage);
-      return false;
-    } else {
+    if (inputIsValid) {
       this._showSuccessMessage(this._succesMessage);
       return true;
     }

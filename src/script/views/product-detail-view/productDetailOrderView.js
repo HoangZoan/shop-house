@@ -111,17 +111,17 @@ class ProductDetailOrderView extends View {
     if (!discount) {
       return `
         <div class="product-order__price-tag">${convertNumberToPriceString(
-          price
+          price - 1
         )}đ</div>
       `;
     } else {
       return `
         <div class="product-order__price-container">
           <div class="product-order__price-tag">${convertNumberToPriceString(
-            calcSalesPrice(price, discount)
+            calcSalesPrice(price, discount) - 1
           )}đ</div>
           <div class="product-order__price-tag--old">
-            <del>${convertNumberToPriceString(price)}đ</del>
+            <del>${convertNumberToPriceString(price - 1)}đ</del>
           </div>
         </div>
       `;

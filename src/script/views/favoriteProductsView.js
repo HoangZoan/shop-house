@@ -32,7 +32,7 @@ class FavoriteProductsView extends View {
       return `
           <div class="card-content__price card-content__price--current">
               Giá: <span class="price-text">${convertNumberToPriceString(
-                initialPrice
+                initialPrice - 1000
               )}đ</span>
           </div>
           `;
@@ -40,13 +40,13 @@ class FavoriteProductsView extends View {
       return `
           <div class="card-content__price card-content__price--current">
               Giá: <span class="price-text">${convertNumberToPriceString(
-                calcSalesPrice(initialPrice, discount)
+                calcSalesPrice(initialPrice, discount) - 1
               )}đ</span>
           </div>
           
           <div class="card-content__price card-content__price--old">
               <del class="price-text">${convertNumberToPriceString(
-                initialPrice
+                initialPrice - 1000
               )}đ</del>
           </div>
           `;

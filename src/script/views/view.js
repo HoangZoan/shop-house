@@ -1,6 +1,7 @@
 import {
   convertPriceStringToNumber,
   convertNumberToPriceString,
+  validateInput,
 } from "../helpers.js";
 
 export class View {
@@ -133,6 +134,8 @@ export class View {
       }
 
       if (page === "your-cart") {
+        if (!this._validateInputValues()) return;
+
         handler({
           ...Object.fromEntries([...new FormData(this._formEl)]),
           ...this._getReceiptDetail(),
@@ -216,7 +219,7 @@ export class View {
     netPriceEl.innerText =
       totalPrices.length === 0
         ? "0đ"
-        : convertNumberToPriceString(netPrice + 1000) + "đ";
+        : convertNumberToPriceString(netPrice) + "đ";
     promotionCodeReduceEl.innerText =
       totalPrices.length === 0
         ? "0đ"
@@ -229,8 +232,18 @@ export class View {
       totalPrices.length === 0
         ? "0đ"
         : convertNumberToPriceString(
-            netPrice - promotionCodeReduce + shipmentCharge + 1000
+            netPrice - promotionCodeReduce + shipmentCharge
           ) + "đ";
+  }
+
+  _handleEmptyTextFieldError(input) {
+    const inputIsValid = validateInput(input.value);
+
+    if (!inputIsValid.isValid && inputIsValid.status === "empty") {
+      this._showInputErrorMessage(input.parentElement, this._emptyErrorMessage);
+
+      return false;
+    }
   }
 
   _buttonChangeTextHandler(buttonEl, originText) {
@@ -253,6 +266,9 @@ export class View {
   }
 
   _showInputErrorMessage(showElement, message) {
+    const errorMessageEl = showElement.querySelector(".input-error");
+    if (errorMessageEl) return;
+
     const markup = `
       <p class="input-error">${message}</p>
     `;
@@ -268,10 +284,12 @@ export class View {
     }
   }
 
-  _clearMessageWhenTyping(inputEl) {
+  _clearErrorMessageWhenTyping(inputEl) {
     const _this = this;
-    inputEl.addEventListener("keydown", () => {
-      _this._removeMessageNodeHandler(inputEl);
+    ["click", "keydown"].forEach((event) => {
+      inputEl.addEventListener(event, () => {
+        _this._removeMessageNodeHandler(inputEl);
+      });
     });
   }
 

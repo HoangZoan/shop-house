@@ -5,7 +5,7 @@ export const convertPriceStringToNumber = (string) => {
 export const convertNumberToPriceString = (number) => {
   if (number === 0) return "0";
 
-  const beforeConvertNumberStr = String(Math.round(number) - 1);
+  const beforeConvertNumberStr = String(Math.round(number));
 
   const numberStr = [
     beforeConvertNumberStr.slice(0, beforeConvertNumberStr.length - 3),
@@ -103,4 +103,13 @@ export const deepCompareArrays = (arr1, arr2) => {
   }
 
   return true;
+};
+
+export const calcPromotionCodePrice = (netPrice, promotionCode) => {
+  const [code, discount] = [promotionCode.slice(0, 4), promotionCode.slice(4)];
+  const discountNumber = Number(discount);
+
+  if (code !== "GIAM" || discountNumber > 100) return false;
+
+  return (netPrice * discountNumber) / 100;
 };

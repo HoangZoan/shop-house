@@ -1267,7 +1267,7 @@ input {
 }
 .section-form-check-out .user-info-field__form-control {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 2.4rem;
 }
 @media only screen and (max-width: 60em) {
@@ -1289,7 +1289,7 @@ input {
   }
 }
 .section-form-check-out .user-info-field__form-control:not(:last-child) {
-  margin-bottom: 1.6rem;
+  margin-bottom: 3.2rem;
 }
 .section-form-check-out .user-info-field__form-control label {
   width: 100%;
@@ -1300,6 +1300,12 @@ input {
 }
 .section-form-check-out .user-info-field__form-control .input-wrapper {
   flex: 1;
+  position: relative;
+}
+.section-form-check-out .user-info-field__form-control .input-wrapper .input-error {
+  position: absolute;
+  bottom: -80%;
+  left: 0;
 }
 .section-form-check-out .user-info-field__form-control input {
   padding: 0.8rem 1.2rem;
@@ -1337,7 +1343,7 @@ input {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-top: 2.4rem;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.8rem;
 }
 @media only screen and (max-width: 60em) {
   .section-form-check-out .payment-info-field__segment {
@@ -1369,20 +1375,27 @@ input {
   display: grid;
   grid-template-columns: 1fr 10rem;
   justify-items: flex-end;
-  margin: 1.2rem 0;
+  margin-top: 1.2rem;
 }
 .section-form-check-out .payment-info-field__segment__form .promotion-code {
+  position: relative;
+  margin-top: 1.2rem;
   display: flex;
 }
 .section-form-check-out .payment-info-field__segment__form .promotion-code input {
   margin-left: auto;
   margin-right: 1rem;
   padding: 0 1.2rem;
-  width: 45%;
 }
 .section-form-check-out .payment-info-field__segment__form .promotion-code button {
-  padding: 0.6rem 1rem;
+  padding: 0.8rem 1rem;
   font-size: 1.2rem;
+  flex: 0 0 8.6rem;
+}
+.section-form-check-out .payment-info-field__segment__form .promotion-code .input-error {
+  position: absolute;
+  bottom: -90%;
+  left: 0;
 }
 .section-form-check-out .payment-info-field__segment__form .payment-form-checkbox {
   display: flex;
@@ -1391,10 +1404,6 @@ input {
 }
 .section-form-check-out .payment-info-field__segment__form .payment-form-checkbox input {
   margin-right: 0.8rem;
-}
-.section-form-check-out .payment-info-field__segment__form .shipment-location {
-  display: flex;
-  align-items: center;
 }
 .section-form-check-out .payment-info-field__total {
   border-top: 2px solid #1e90ff;

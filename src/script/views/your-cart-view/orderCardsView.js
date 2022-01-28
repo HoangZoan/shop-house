@@ -155,9 +155,9 @@ class OrderCardsView extends View {
         ${
           discount
             ? convertNumberToPriceString(
-                calcSalesPrice(initialPrice, discount) * value
+                calcSalesPrice(initialPrice - 1000, discount) * value
               )
-            : convertNumberToPriceString(initialPrice * value)
+            : convertNumberToPriceString((initialPrice - 1000) * value)
         }đ
       `;
     });
@@ -193,7 +193,7 @@ class OrderCardsView extends View {
                 ? '<span class="price-title-repsonsive text-black">Giá:</span>'
                 : ""
             }
-            ${convertNumberToPriceString(initialPrice)}đ
+            ${convertNumberToPriceString(initialPrice - 1000)}đ
         </div>
       `;
     } else {
@@ -207,14 +207,14 @@ class OrderCardsView extends View {
                   : ""
               }
               ${convertNumberToPriceString(
-                calcSalesPrice(initialPrice, discount)
+                calcSalesPrice(initialPrice, discount) - 1
               )}đ
           </div>
           <div
               class="order-card__price-box__price order-card__price-box__price--old"
           >
               <del class="price-text">${convertNumberToPriceString(
-                initialPrice
+                initialPrice - 1000
               )}đ</del>
           </div>  
       `;
@@ -234,8 +234,10 @@ class OrderCardsView extends View {
       ${responsive ? '<strong class="text-black">Tổng:</strong>' : ""}
       ${
         discount
-          ? convertNumberToPriceString(calcSalesPrice(initialPrice, discount))
-          : convertNumberToPriceString(initialPrice)
+          ? convertNumberToPriceString(
+              calcSalesPrice(initialPrice, discount) - 1
+            )
+          : convertNumberToPriceString(initialPrice - 1000)
       }đ
     `;
   }

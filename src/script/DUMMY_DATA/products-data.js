@@ -8,7 +8,7 @@ export const productsData = [
     tags: {
       new: false,
       bestSeller: true,
-      discount: 30,
+      discount: 20,
       freeShip: false,
       gift: false,
     },

@@ -273,7 +273,7 @@
 
     &__form-control {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       margin-top: 2.4rem;
 
       @include respond(lg) {
@@ -292,7 +292,7 @@
       }
 
       &:not(:last-child) {
-        margin-bottom: 1.6rem;
+        margin-bottom: 3.2rem;
       }
 
       label {
@@ -306,6 +306,13 @@
 
       .input-wrapper {
         flex: 1;
+        position: relative;
+
+        .input-error {
+          position: absolute;
+          bottom: -80%;
+          left: 0;
+        }
       }
 
       input {
@@ -343,7 +350,7 @@
       display: grid;
       grid-template-columns: 1fr 2fr;
       margin-top: 2.4rem;
-      margin-bottom: 2.4rem;
+      margin-bottom: 2.8rem;
 
       @include respond(lg) {
         grid-template-columns: 1fr 2.8fr;
@@ -376,22 +383,30 @@
           display: grid;
           grid-template-columns: 1fr 10rem;
           justify-items: flex-end;
-          margin: 1.2rem 0;
+          margin-top: 1.2rem;
         }
 
         .promotion-code {
+          position: relative;
+          margin-top: 1.2rem;
           display: flex;
 
           input {
             margin-left: auto;
             margin-right: 1rem;
             padding: 0 1.2rem;
-            width: 45%;
           }
 
           button {
-            padding: 0.6rem 1rem;
+            padding: 0.8rem 1rem;
             font-size: 1.2rem;
+            flex: 0 0 8.6rem;
+          }
+
+          .input-error {
+            position: absolute;
+            bottom: -90%;
+            left: 0;
           }
         }
 
@@ -403,11 +418,6 @@
           input {
             margin-right: 0.8rem;
           }
-        }
-
-        .shipment-location {
-          display: flex;
-          align-items: center;
         }
       }
     }

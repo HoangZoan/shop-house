@@ -141,7 +141,6 @@
                 id="user-name"
                 name="fullName"
                 value="Nguyễn Văn A"
-                required
               />
             </div>
           </div>
@@ -154,7 +153,6 @@
                 id="phone-number"
                 name="phoneNumber"
                 value="0379998880"
-                required
               />
             </div>
           </div>
@@ -167,10 +165,28 @@
                 id="address"
                 name="address"
                 value="abc"
-                required
               />
             </div>
           </div>
+          <div class="user-info-field__form-control">
+            <label for="city">Thành phố/tỉnh:<sup>*</sup></label>
+            <div class="input-wrapper">
+              <select class="input-border" id="city" name="city">
+                <option value="">-- Chọn --</option>
+                <option value="ha-noi">Hà Nội</option>
+              </select>
+            </div>
+          </div>
+          <div class="user-info-field__form-control">
+            <label for="district">Quận/huyện:<sup>*</sup></label>
+            <div class="input-wrapper">
+              <select class="input-border" id="district" name="district">
+                <option value="">-- Chọn --</option>
+                <option value="dong-da">Đống Đa</option>
+              </select>
+            </div>
+          </div>
+
           <div class="user-info-field__form-control">
             <label for="email">Email:</label>
             <div class="input-wrapper">
@@ -198,7 +214,7 @@
               </div>
               <div class="promotion-code">
                 <input class="input-border" type="text" />
-                <button type="submit" class="btn--primary">Mã giảm giá</button>
+                <button type="button" class="btn--primary">Mã giảm giá</button>
               </div>
             </div>
           </div>
@@ -227,11 +243,6 @@
                 />
                 <span>Giao hàng nhanh</span>
               </label>
-              <div class="shipment-location">
-                <span>Giao hàng tại <strong>Hà Nội</strong></span>
-                <div class="btn--link fz-small-link-btn">Thay đổi</div>
-              </div>
-
               <div class="extra-count-box shipment-charge">
                 <div class="extra-count-box__title">Phí vận chuyển:</div>
                 <div class="extra-count-box__amount text-primary"></div>

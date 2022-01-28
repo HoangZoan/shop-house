@@ -73,7 +73,7 @@ export class PreviewProductsView extends View {
       return `
         <div class="card-text__price--current">
             Giá: <span class="price-text">${convertNumberToPriceString(
-              initialPrice
+              initialPrice - 1000
             )}đ</span>
         </div>
         `;
@@ -81,13 +81,13 @@ export class PreviewProductsView extends View {
       return `
         <div class="card-text__price--current">
             Giá: <span class="price-text">${convertNumberToPriceString(
-              calcSalesPrice(initialPrice, discount)
+              calcSalesPrice(initialPrice, discount) - 1
             )}đ</span>
         </div>
         
         <div class="card-text__price--old">
             <del class="price-text">${convertNumberToPriceString(
-              initialPrice
+              initialPrice - 1000
             )}đ</del>
         </div>
         `;

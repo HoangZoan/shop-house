@@ -84,6 +84,9 @@ function checkOutFormControl() {
     ".total-price-origin"
   );
   CheckOutFormView.generateReceiptPriceDetail();
+
+  // Handle applying promotion code
+  CheckOutFormView.addPromotionCodeClickHandler();
 }
 
 const init = () => {
