@@ -133,7 +133,11 @@ export class View {
       }
 
       if (page === "your-cart") {
-        handler();
+        handler({
+          ...Object.fromEntries([...new FormData(this._formEl)]),
+          ...this._getReceiptDetail(),
+          orderId: String(Date.now()).slice(String(Date.now()).length - 6),
+        });
       }
     });
   }
@@ -213,6 +217,14 @@ export class View {
       totalPrices.length === 0
         ? "0đ"
         : convertNumberToPriceString(netPrice + 1000) + "đ";
+    promotionCodeReduceEl.innerText =
+      totalPrices.length === 0
+        ? "0đ"
+        : convertNumberToPriceString(promotionCodeReduce) + "đ";
+    shipmentChargeEl.innerText =
+      totalPrices.length === 0
+        ? "0đ"
+        : convertNumberToPriceString(shipmentCharge) + "đ";
     totalBillEl.innerText =
       totalPrices.length === 0
         ? "0đ"

@@ -135,7 +135,14 @@
           <div class="user-info-field__form-control">
             <label for="user-name">Họ và tên:<sup>*</sup></label>
             <div class="input-wrapper">
-              <input class="input-border" type="text" id="user-name" required />
+              <input
+                class="input-border"
+                type="text"
+                id="user-name"
+                name="fullName"
+                value="Nguyễn Văn A"
+                required
+              />
             </div>
           </div>
           <div class="user-info-field__form-control">
@@ -145,6 +152,8 @@
                 class="input-border"
                 type="tel"
                 id="phone-number"
+                name="phoneNumber"
+                value="0379998880"
                 required
               />
             </div>
@@ -152,13 +161,25 @@
           <div class="user-info-field__form-control">
             <label for="address">Địa chỉ nhận hàng:<sup>*</sup></label>
             <div class="input-wrapper">
-              <input class="input-border" type="text" id="address" required />
+              <input
+                class="input-border"
+                type="text"
+                id="address"
+                name="address"
+                value="abc"
+                required
+              />
             </div>
           </div>
           <div class="user-info-field__form-control">
             <label for="email">Email:</label>
             <div class="input-wrapper">
-              <input class="input-border" type="email" id="email" />
+              <input
+                class="input-border"
+                type="email"
+                id="email"
+                name="email"
+              />
             </div>
           </div>
         </div>
@@ -170,10 +191,10 @@
             <div class="payment-info-field__segment__title">Tạm tính</div>
 
             <div class="payment-info-field__segment__form">
-              <div class="price-net text-primary">4.688.000đ</div>
+              <div class="price-net text-primary"></div>
               <div class="extra-count-box price-decrement">
                 <div class="extra-count-box__title">Giảm giá:</div>
-                <div class="extra-count-box__amount text-primary">0đ</div>
+                <div class="extra-count-box__amount text-primary"></div>
               </div>
               <div class="promotion-code">
                 <input class="input-border" type="text" />
@@ -189,7 +210,7 @@
             <div class="payment-info-field__segment__form">
               <label class="payment-form-checkbox" for="delivery-standard">
                 <input
-                  name="delivery"
+                  name="deliveryType"
                   type="radio"
                   id="delivery-standard"
                   value="delivery-standard"
@@ -199,7 +220,7 @@
               </label>
               <label class="payment-form-checkbox" for="delivery-fast">
                 <input
-                  name="delivery"
+                  name="deliveryType"
                   type="radio"
                   id="delivery-fast"
                   value="delivery-fast"
@@ -213,7 +234,7 @@
 
               <div class="extra-count-box shipment-charge">
                 <div class="extra-count-box__title">Phí vận chuyển:</div>
-                <div class="extra-count-box__amount text-primary">0đ</div>
+                <div class="extra-count-box__amount text-primary"></div>
               </div>
             </div>
           </div>
@@ -225,7 +246,7 @@
             <div class="payment-info-field__segment__form">
               <label class="payment-form-checkbox" for="payment-cod">
                 <input
-                  name="payment"
+                  name="paymentMethod"
                   type="radio"
                   id="payment-cod"
                   value="cod"
@@ -236,7 +257,7 @@
 
               <label class="payment-form-checkbox" for="payment-card">
                 <input
-                  name="payment"
+                  name="paymentMethod"
                   type="radio"
                   id="payment-card"
                   value="credit-card"
@@ -247,7 +268,7 @@
 
               <label class="payment-form-checkbox" for="payment-wallet">
                 <input
-                  name="payment"
+                  name="paymentMethod"
                   type="radio"
                   id="payment-wallet"
                   value="e-wallet"

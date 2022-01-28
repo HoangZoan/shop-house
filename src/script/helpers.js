@@ -3,6 +3,8 @@ export const convertPriceStringToNumber = (string) => {
 };
 
 export const convertNumberToPriceString = (number) => {
+  if (number === 0) return "0";
+
   const beforeConvertNumberStr = String(Math.round(number) - 1);
 
   const numberStr = [

@@ -73,9 +73,11 @@ function orderCardsControl() {
   OrderCardsView.addQuantityCounterControlClickHandler();
 }
 
-function checkOutFormControl() {
-  // CheckOutFormView.renderSingleItem(true);
+function submitFormData(formData) {
+  console.log(formData);
+}
 
+function checkOutFormControl() {
   // Set product total prices and render initial receipt price detail
   CheckOutFormView.setMultiComponentElementsClass(
     "_totalPriceEls",
@@ -89,5 +91,6 @@ const init = () => {
   OrderCardsView.renderBreadCrumbs("your-cart");
   OrderCardsView.addRenderWhenLoadedHanlder(orderCardsControl);
   CheckOutFormView.addRenderWhenLoadedHanlder(checkOutFormControl);
+  CheckOutFormView.addSubmitFormHandler(submitFormData, "your-cart");
 };
 init();
