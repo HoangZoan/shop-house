@@ -26,18 +26,16 @@ class OrderCardsView extends View {
 
     actionBtn.addEventListener("click", () => {
       const btnText = actionBtn.innerText;
+
+      if (btnText === "Tiến hành thanh toán") {
+        _this.generateReceiptPriceDetail();
+      }
+      formEl.classList.toggle("active");
+
       actionBtn.textContent =
         btnText === "Tiến hành thanh toán"
           ? "Thay đổi đặt hàng"
           : "Tiến hành thanh toán";
-
-      formEl.classList.toggle("active");
-
-      // if (!formEl.classList.contains("active")) {
-      //   formEl.classList.add("active");
-      // } else {
-      //   formEl.classList.remove("active");
-      // }
     });
   }
 
@@ -80,16 +78,12 @@ class OrderCardsView extends View {
   }
 
   addConfirmSaveButtonClickHandler(handler) {
-    const _this = this;
-
     this._confirmSaveButtons?.forEach((button) => {
       button.addEventListener("click", () => {
         handler(
           button.closest(".order-card").dataset.productId,
           button.closest(".order-card").dataset.productSpecs
         );
-
-        _this.generateReceiptPriceDetail();
       });
     });
   }
@@ -108,13 +102,9 @@ class OrderCardsView extends View {
   }
 
   addConfirmDeleteButtonClickHandler(handler) {
-    const _this = this;
-
     this._confirmDeleteButtons?.forEach((button) => {
       button.addEventListener("click", () => {
         handler(button.closest(".order-card").dataset.productSpecs);
-
-        _this.generateReceiptPriceDetail();
       });
     });
   }

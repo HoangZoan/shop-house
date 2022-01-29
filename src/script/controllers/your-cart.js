@@ -78,9 +78,6 @@ function orderCardsControl() {
     ".total-price-origin"
   );
   OrderCardsView.generateOrderCardNetPrice();
-
-  // Set table action button and handle click event
-  OrderCardsView.addOrderTableActionButtonClickHandler();
 }
 
 function submitFormData(formData) {
@@ -97,6 +94,9 @@ function checkOutFormControl() {
 
   // Handle applying promotion code
   CheckOutFormView.addPromotionCodeClickHandler();
+
+  // Set table action button and handle click event (Set here to avoid rerendering this function)
+  OrderCardsView.addOrderTableActionButtonClickHandler();
 }
 
 const init = () => {
