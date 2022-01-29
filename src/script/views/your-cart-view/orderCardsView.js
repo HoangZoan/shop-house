@@ -1,8 +1,13 @@
 import { View } from "../view.js";
-import { convertNumberToPriceString, calcSalesPrice } from "../../helpers.js";
+import {
+  convertNumberToPriceString,
+  calcSalesPrice,
+  convertPriceStringToNumber,
+} from "../../helpers.js";
 
 class OrderCardsView extends View {
   _parentElement = document.querySelector(".order-table-body");
+  _totalPriceEls;
   _saveButtons;
   _confirmSaveButtons;
   _deleteButtons;
@@ -11,6 +16,30 @@ class OrderCardsView extends View {
   _quantityCounterControls;
   _yourCartOrderCards = document.querySelector(".section-orders-table");
   _notFoundMessage = "Bạn chưa có sản phẩm trong giỏ";
+
+  addOrderTableActionButtonClickHandler() {
+    const _this = this;
+    const formEl = document.querySelector(".section-form-check-out");
+    const actionBtn = document.querySelector(
+      ".order-table-footer .table-action-button"
+    );
+
+    actionBtn.addEventListener("click", () => {
+      const btnText = actionBtn.innerText;
+      actionBtn.textContent =
+        btnText === "Tiến hành thanh toán"
+          ? "Thay đổi đặt hàng"
+          : "Tiến hành thanh toán";
+
+      formEl.classList.toggle("active");
+
+      // if (!formEl.classList.contains("active")) {
+      //   formEl.classList.add("active");
+      // } else {
+      //   formEl.classList.remove("active");
+      // }
+    });
+  }
 
   addQuantityCounterControlClickHandler() {
     const _this = this;
@@ -32,7 +61,7 @@ class OrderCardsView extends View {
         }
 
         _this._generateTotalPriceByCounter(match, inputEl.value);
-        _this.generateReceiptPriceDetail();
+        _this.generateOrderCardNetPrice();
       });
     });
   }
@@ -101,6 +130,29 @@ class OrderCardsView extends View {
         _this._toggleActionBoxActiveClass(button, parentDataset);
       });
     });
+  }
+
+  generateOrderCardNetPrice() {
+    const footerNetPrice = document.querySelector(
+      ".order-table-footer .footer-net-price"
+    );
+
+    const totalPriceEls = this._totalPriceEls;
+    let totalPrices = [];
+
+    totalPriceEls.forEach((el) =>
+      totalPrices.push(convertPriceStringToNumber(el.innerText))
+    );
+
+    const netPrice =
+      totalPrices.length === 0
+        ? 0
+        : totalPrices.reduce((prevNum, curNum) => {
+            return prevNum + curNum;
+          });
+
+    if (!footerNetPrice) return;
+    footerNetPrice.textContent = convertNumberToPriceString(netPrice) + "đ";
   }
 
   _toggleActionBoxActiveClass(callingButton, parentDataset) {

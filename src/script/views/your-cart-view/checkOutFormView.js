@@ -43,7 +43,7 @@ class CheckOutFormView extends View {
       }
 
       promotionCodePriceEl.textContent =
-        convertNumberToPriceString(promotionCodePrice) + "đ";
+        convertNumberToPriceString(promotionCodePrice, false) + "đ";
       _this.generateReceiptPriceDetail();
     });
   }

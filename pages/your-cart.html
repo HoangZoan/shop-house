@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -126,6 +126,25 @@
         <tbody class="order-table-body">
           <!-- RENDER ORDER CARD -->
         </tbody>
+
+        <tfoot class="order-table-footer">
+          <tr>
+            <td colspan="5">
+              <strong>Tạm tính:</strong>
+              <strong class="text-primary footer-net-price">1.000.000đ</strong>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <button
+                class="btn--sub table-action-button"
+                data-execute-payment=""
+              >
+                Tiến hành thanh toán
+              </button>
+            </td>
+          </tr>
+        </tfoot>
       </table>
 
       <form class="section-form-check-out">
@@ -294,9 +313,7 @@
 
           <div class="payment-info-field__total">
             <div class="payment-info-field__total__title">Tổng hóa đơn</div>
-            <div class="payment-info-field__total__amount text-primary">
-              4.688.000đ
-            </div>
+            <div class="payment-info-field__total__amount text-primary"></div>
           </div>
 
           <button type="submit" class="btn--primary button-submit">

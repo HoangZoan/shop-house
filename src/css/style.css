@@ -105,9 +105,8 @@ input {
 }
 
 .main-padding-y {
-  --padding-y: 6.4rem;
-  padding-top: var(--padding-y);
-  padding-bottom: var(--padding-y);
+  padding-top: 6.4rem;
+  padding-bottom: 14rem;
 }
 @media only screen and (max-width: 31.25em) {
   .main-padding-y {
@@ -1225,12 +1224,26 @@ input {
     display: none;
   }
 }
+.section-orders-table .order-table-footer {
+  text-align: right;
+}
+.section-orders-table .order-table-footer strong {
+  display: inline-block;
+  padding: 1.2rem 0;
+}
+.section-orders-table .order-table-footer button {
+  padding: 1.2rem 1.6rem;
+  font-size: 1.6rem;
+}
 
 .section-form-check-out {
-  display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 16rem;
   margin-top: 8rem;
+  display: none;
+}
+.section-form-check-out.active {
+  display: grid;
 }
 @media only screen and (max-width: 68.75em) {
   .section-form-check-out {

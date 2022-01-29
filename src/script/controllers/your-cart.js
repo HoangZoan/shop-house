@@ -71,6 +71,16 @@ function orderCardsControl() {
     responsive ? ".quantity-control-responsive" : ".quantity-control-origin"
   );
   OrderCardsView.addQuantityCounterControlClickHandler();
+
+  // Set and render order table footer net price
+  OrderCardsView.setMultiComponentElementsClass(
+    "_totalPriceEls",
+    ".total-price-origin"
+  );
+  OrderCardsView.generateOrderCardNetPrice();
+
+  // Set table action button and handle click event
+  OrderCardsView.addOrderTableActionButtonClickHandler();
 }
 
 function submitFormData(formData) {

@@ -183,6 +183,9 @@ export class View {
   }
 
   generateReceiptPriceDetail() {
+    const footerNetPrice = document.querySelector(
+      ".order-table-footer .footer-net-price"
+    );
     const netPriceEl = document.querySelector(
       ".payment-info-field__segment__form .price-net"
     );
@@ -203,36 +206,27 @@ export class View {
       totalPrices.push(convertPriceStringToNumber(el.innerText))
     );
 
-    const netPrice =
-      totalPrices.length === 0
-        ? 0
-        : totalPrices.reduce((prevNum, curNum) => {
-            return prevNum + curNum;
-          });
     const promotionCodeReduce = convertPriceStringToNumber(
       promotionCodeReduceEl.innerText
     );
     const shipmentCharge = convertPriceStringToNumber(
       shipmentChargeEl.innerText
     );
-
     netPriceEl.innerText =
-      totalPrices.length === 0
-        ? "0đ"
-        : convertNumberToPriceString(netPrice) + "đ";
+      totalPrices.length === 0 ? "0đ" : footerNetPrice.innerText;
+
     promotionCodeReduceEl.innerText =
-      totalPrices.length === 0
-        ? "0đ"
-        : convertNumberToPriceString(promotionCodeReduce) + "đ";
+      convertNumberToPriceString(promotionCodeReduce, false) + "đ";
     shipmentChargeEl.innerText =
-      totalPrices.length === 0
-        ? "0đ"
-        : convertNumberToPriceString(shipmentCharge) + "đ";
+      convertNumberToPriceString(shipmentCharge) + "đ";
     totalBillEl.innerText =
       totalPrices.length === 0
         ? "0đ"
         : convertNumberToPriceString(
-            netPrice - promotionCodeReduce + shipmentCharge
+            convertPriceStringToNumber(netPriceEl.innerText) -
+              promotionCodeReduce +
+              shipmentCharge,
+            false
           ) + "đ";
   }
 

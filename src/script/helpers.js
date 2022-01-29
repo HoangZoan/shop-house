@@ -2,15 +2,20 @@ export const convertPriceStringToNumber = (string) => {
   return Number(string.slice(0, -1).split(".").join(""));
 };
 
-export const convertNumberToPriceString = (number) => {
+export const convertNumberToPriceString = (
+  number,
+  autoGenerateThousandUnit = true
+) => {
   if (number === 0) return "0";
 
   const beforeConvertNumberStr = String(Math.round(number));
 
-  const numberStr = [
-    beforeConvertNumberStr.slice(0, beforeConvertNumberStr.length - 3),
-    "000",
-  ].join("");
+  const numberStr = !autoGenerateThousandUnit
+    ? beforeConvertNumberStr
+    : [
+        beforeConvertNumberStr.slice(0, beforeConvertNumberStr.length - 3),
+        "000",
+      ].join("");
 
   let splitStr = [];
 

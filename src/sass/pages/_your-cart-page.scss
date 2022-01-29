@@ -236,13 +236,31 @@
       }
     }
   }
+
+  .order-table-footer {
+    text-align: right;
+
+    strong {
+      display: inline-block;
+      padding: 1.2rem 0;
+    }
+
+    button {
+      padding: 1.2rem 1.6rem;
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .section-form-check-out {
-  display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 16rem;
   margin-top: 8rem;
+  display: none;
+
+  &.active {
+    display: grid;
+  }
 
   @include respond(xlg) {
     grid-template-columns: 1fr 1.2fr;
