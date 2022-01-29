@@ -20,8 +20,17 @@ class OrderCardsView extends View {
   addOrderTableActionButtonClickHandler() {
     const _this = this;
     const formEl = document.querySelector(".section-form-check-out");
+    const orderCardActionButtonEls = document.querySelectorAll(
+      ".order-card__text__action.initial-action-box"
+    );
+    const counterControlEls = document.querySelectorAll(
+      ".order-card__product-quantity__form-control"
+    );
     const actionBtn = document.querySelector(
       ".order-table-footer .table-action-button"
+    );
+    const footerNetPrice = document.querySelector(
+      ".footer-net-price-container"
     );
 
     actionBtn.addEventListener("click", () => {
@@ -31,6 +40,9 @@ class OrderCardsView extends View {
         _this.generateReceiptPriceDetail();
       }
       formEl.classList.toggle("active");
+      orderCardActionButtonEls.forEach((el) => el.classList.toggle("active"));
+      counterControlEls.forEach((el) => el.classList.toggle("execute-payment"));
+      footerNetPrice.classList.toggle("hidden");
 
       actionBtn.textContent =
         btnText === "Tiến hành thanh toán"
@@ -48,6 +60,9 @@ class OrderCardsView extends View {
         const inputEl = control.querySelector("input");
         const increaseBtn = event.target.closest(".add");
         const decreaseBtn = event.target.closest(".remove");
+        const counterTextNumber = control.querySelector(
+          ".counter-text__number__value"
+        );
         if (!increaseBtn && !decreaseBtn) return;
 
         if (increaseBtn) {
@@ -58,6 +73,7 @@ class OrderCardsView extends View {
           inputEl.value > 1 && inputEl.value--;
         }
 
+        counterTextNumber.innerText = inputEl.value;
         _this._generateTotalPriceByCounter(match, inputEl.value);
         _this.generateOrderCardNetPrice();
       });
@@ -264,10 +280,23 @@ class OrderCardsView extends View {
   }
 
   _generateProductCounter() {
+    const responsive = window.matchMedia("(max-width: 60em)").matches;
     return `
       <button class="btn--counter remove">-</button>
       <input type="text" readonly value="1" />
       <button class="btn--counter add">+</button>
+
+      <div class="counter-text text-gray">
+        ${
+          responsive
+            ? '<span class="counter-text__title">Số lượng: </span>'
+            : ""
+        }
+        <span class="counter-text__number">
+          ${!responsive ? "x" : ""}
+          <span class="counter-text__number__value">1</span>
+          </span>
+      </div>
     `;
   }
 

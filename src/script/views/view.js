@@ -130,6 +130,7 @@ export class View {
       if (page === "home") {
         if (!this._validateInputValues(this._inputEl)) return;
 
+        this._inputEl.value = "";
         handler(Object.fromEntries([...new FormData(this._formEl)]));
       }
 
@@ -238,6 +239,8 @@ export class View {
 
       return false;
     }
+
+    return true;
   }
 
   _buttonChangeTextHandler(buttonEl, originText) {

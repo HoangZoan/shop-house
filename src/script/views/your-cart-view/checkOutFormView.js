@@ -84,26 +84,42 @@ class CheckOutFormView extends View {
     const selectEls = document.querySelectorAll(
       ".user-info-field__form-control select"
     );
+    let inputsAreValid = true;
 
     inputEls.forEach((input) => {
       if (input.name === "email") return;
       _this._clearErrorMessageWhenTyping(input);
 
-      const inputIsValid = _this._handleEmptyTextFieldError(input);
-      if (!inputIsValid) {
-        return false;
+      const inputIsEmpty = !_this._handleEmptyTextFieldError(input);
+      if (inputIsEmpty) {
+        inputsAreValid = false;
+        return;
+      }
+
+      if (input.name === "phoneNumber") {
+        const inputValidation = validateInput(input.value, input.name);
+
+        if (!inputValidation.isValid) {
+          inputsAreValid = false;
+          _this._showInputErrorMessage(
+            input.parentElement,
+            inputValidation.message
+          );
+          return;
+        }
       }
     });
 
     selectEls.forEach((input) => {
       _this._clearErrorMessageWhenTyping(input);
-      const inputIsValid = _this._handleEmptyTextFieldError(input);
-      if (!inputIsValid) {
-        return false;
+      const inputIsEmpty = !_this._handleEmptyTextFieldError(input);
+
+      if (inputIsEmpty) {
+        inputsAreValid = false;
       }
     });
 
-    return true;
+    return inputsAreValid;
   }
 }
 

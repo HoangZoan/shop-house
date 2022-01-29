@@ -41,3 +41,12 @@ input {
     transform: scale(1);
   }
 }
+
+@keyframes fadesIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

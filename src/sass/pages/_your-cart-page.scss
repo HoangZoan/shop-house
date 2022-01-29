@@ -198,6 +198,18 @@
       &__form-control {
         display: flex;
         justify-content: center;
+        min-width: 14rem;
+
+        &.execute-payment {
+          .btn--counter,
+          input {
+            display: none;
+          }
+
+          .counter-text {
+            display: block;
+          }
+        }
 
         &.quantity-control-origin {
           @include respond(lg) {
@@ -221,6 +233,10 @@
           border-top: $border-gray-thin;
           border-bottom: $border-gray-thin;
         }
+
+        .counter-text {
+          display: none;
+        }
       }
     }
 
@@ -240,12 +256,17 @@
   .order-table-footer {
     text-align: right;
 
+    .footer-net-price-container.hidden {
+      display: none;
+    }
+
     strong {
       display: inline-block;
-      padding: 1.2rem 0;
+      padding-top: 1.2rem;
     }
 
     button {
+      margin-top: 2.4rem;
       padding: 1.2rem 1.6rem;
       font-size: 1.6rem;
     }
@@ -257,6 +278,7 @@
   column-gap: 16rem;
   margin-top: 8rem;
   display: none;
+  animation: fadesIn 0.6s;
 
   &.active {
     display: grid;

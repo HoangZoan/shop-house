@@ -48,7 +48,13 @@ export const validateInput = (inputData, type) => {
     return { isValid: false, status: "empty" };
   }
 
-  if (type === "email") {
+  if (type === "phoneNumber") {
+    return Number.isNaN(Number(inputData))
+      ? {
+          isValid: false,
+          message: "Số điện thoại không hợp lệ. Vui lòng kiểm tra lại",
+        }
+      : { isValid: true };
   }
 
   return { isValid: true };
