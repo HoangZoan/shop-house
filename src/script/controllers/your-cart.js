@@ -95,6 +95,9 @@ function checkOutFormControl() {
   // Handle applying promotion code
   CheckOutFormView.addPromotionCodeClickHandler();
 
+  // Handle selecting delivery option
+  CheckOutFormView.addDeliveryOptionSelectHandler();
+
   // Set table action button and handle click event (Set here to avoid rerendering this function)
   OrderCardsView.addOrderTableActionButtonClickHandler();
 }

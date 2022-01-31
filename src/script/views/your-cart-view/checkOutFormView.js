@@ -12,6 +12,35 @@ class CheckOutFormView extends View {
   _promotionCodeNotFoundMessage = "Không có mã này. Vui lòng thử lại";
   _totalPriceEls;
 
+  addDeliveryOptionSelectHandler() {
+    const _this = this;
+    const formCheckBoxLabelEls = document.querySelectorAll(
+      ".delivery-form .payment-form-checkbox"
+    );
+    const deliveryPriceEl = document.querySelector(
+      ".shipment-charge .extra-count-box__amount"
+    );
+
+    formCheckBoxLabelEls.forEach((el) => {
+      el.addEventListener("click", (event) => {
+        const optionValue = event.target
+          .closest(".payment-form-checkbox")
+          .querySelector("input").value;
+        let deliveryChargeText;
+
+        if (optionValue === "delivery-standard") {
+          deliveryChargeText = "50.000đ";
+        }
+        if (optionValue === "delivery-fast") {
+          deliveryChargeText = "80.000đ";
+        }
+
+        deliveryPriceEl.textContent = deliveryChargeText;
+        _this.generateReceiptPriceDetail(deliveryChargeText);
+      });
+    });
+  }
+
   addPromotionCodeClickHandler() {
     const _this = this;
     const applyBtn = document.querySelector(".promotion-code button");
