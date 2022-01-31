@@ -1,6 +1,6 @@
 import FavoriteProductsView from "../views/favoriteProductsView.js";
 import PreviewProductsView from "../views/previewProductsView.js";
-import { toolBoxClickHandler, getDataFromLocalStorage } from "../model.js";
+import { initializePageHeader, getDataFromLocalStorage } from "../model.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
 const breadCrumbsControl = () => {
@@ -10,7 +10,7 @@ const breadCrumbsControl = () => {
 const FavoriteProductsControl = () => {
   // Get Favorite products list and render
   const favoriteProducts = getDataFromLocalStorage("favorite-products");
-  FavoriteProductsView.renderItems(favoriteProducts);
+  FavoriteProductsView.renderItems(favoriteProducts, "side-page");
 
   // Set Delete button and handle click event
   FavoriteProductsView.setMultiComponentElementsClass(
@@ -21,15 +21,15 @@ const FavoriteProductsControl = () => {
 };
 
 const recentlyViewedProductsControl = () => {
-  PreviewProductsView.setCardTypeClass("recently-viewed-prodcuts");
-  PreviewProductsView.renderItems(productsData, "branch-page");
+  PreviewProductsView.setCardTypeClass(".recently-viewed-prodcuts");
+  PreviewProductsView.renderItems(productsData, "side-page");
 };
 
 const init = () => {
   FavoriteProductsView.addRenderWhenLoadedHanlder(breadCrumbsControl);
   FavoriteProductsView.addRenderWhenLoadedHanlder(FavoriteProductsControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(recentlyViewedProductsControl);
-  toolBoxClickHandler();
+  initializePageHeader("side-page");
 };
 
 init();

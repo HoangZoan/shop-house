@@ -1,8 +1,42 @@
 import { View } from "./view.js";
-import { convertPriceNumber, calcSalesPrice } from "../helpers.js";
+import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
+  _heartButtonsElement;
+
+  _setHeartButtonStyle(heartButton, iconSvg) {
+    heartButton.classList.add("active");
+    iconSvg.style.animation = "growAndShrink 0.4s";
+
+    setTimeout(() => {
+      heartButton.classList.remove("active");
+      iconSvg.style.animation = "none";
+    }, 600);
+  }
+
+  _addHeartButtonClickHandler(handler) {
+    const _this = this;
+
+    this._heartButtonsElement.forEach((element) => {
+      element.addEventListener("click", (event) => {
+        const btn = event.target.closest(".card-favorite-btn");
+        const iconSvg = btn.querySelector("svg");
+        if (!btn) return;
+
+        _this._setHeartButtonStyle(btn, iconSvg);
+        handler(btn.dataset.productId);
+      });
+    });
+  }
+
+  setHeartButtonsElement(handler) {
+    this.setMultiComponentElementsClass(
+      "_heartButtonsElement",
+      ".card-favorite-btn"
+    );
+    this._addHeartButtonClickHandler(handler);
+  }
 
   _generateTags(tagName, data) {
     if (!data) return "";
@@ -38,21 +72,23 @@ export class PreviewProductsView extends View {
     if (!discount) {
       return `
         <div class="card-text__price--current">
-            Giá: <span class="price-text">${convertPriceNumber(
-              initialPrice
+            Giá: <span class="price-text">${convertNumberToPriceString(
+              initialPrice - 1000
             )}đ</span>
         </div>
         `;
     } else {
       return `
         <div class="card-text__price--current">
-            Giá: <span class="price-text">${convertPriceNumber(
-              calcSalesPrice(initialPrice, discount)
+            Giá: <span class="price-text">${convertNumberToPriceString(
+              calcSalesPrice(initialPrice, discount) - 1
             )}đ</span>
         </div>
         
         <div class="card-text__price--old">
-            <del class="price-text">${convertPriceNumber(initialPrice)}đ</del>
+            <del class="price-text">${convertNumberToPriceString(
+              initialPrice - 1000
+            )}đ</del>
         </div>
         `;
     }
@@ -66,18 +102,16 @@ export class PreviewProductsView extends View {
         return `
           <div class="main-cards__cards__product-card-container">
               <a 
-                href="${
-                  homepage ? "./pages/product-detail.html" : ""
-                }${_this.setLocationSearch(
-          null,
-          _this._data[index].sort,
-          false
-        )}#${data.id}" 
+                href="${_this._generateHrefLink(
+                  _this._currentPage,
+                  _this._data[index].sort,
+                  data.id
+                )}" 
                 class="main-cards__cards__product-card">
                   <div class="card-img">
                       <img 
                         src="${
-                          homepage ? "" : "."
+                          homepage === "home" ? "" : "."
                         }./resources/images/products/${data.id}/thmb.jpg" 
                         alt="Product" 
                       />
@@ -108,12 +142,16 @@ export class PreviewProductsView extends View {
                   </div>
               </a>
       
-              <div class="card-favorite-btn center-content">
+              <div class="card-favorite-btn center-content" data-product-id=${
+                data.id
+              }>
                   <svg>
                       <use xlink:href="${
-                        homepage ? "" : "../"
+                        homepage === "home" ? "" : "../"
                       }resources/icons/sprite.svg#heart-fill"></use>
                   </svg>
+
+                  <div class="card-favorite-btn__pop-up">Đã thêm</div>
               </div>
           </div>
           `;

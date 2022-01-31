@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,12 +24,12 @@
   <body>
     <header class="page-header">
       <div class="header-bar container">
-        <div class="header-bar__logo">
+        <a href="../index.html" class="header-bar__logo">
           <img
             src="../resources/images/logo/vector/default.svg"
             alt="Shop House Logo"
           />
-        </div>
+        </a>
         <div class="header-bar__search-control">
           <div class="search-icon">
             <svg>
@@ -45,23 +45,26 @@
               <use xlink:href="../resources/icons/sprite.svg#search"></use>
             </svg>
           </div>
-          <div class="tool-icon tool-icon--user">
+          <a
+            href="../pages/user-dashboard/user-info.html"
+            class="tool-icon tool-icon--user"
+          >
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#user"></use>
             </svg>
-          </div>
-          <div class="tool-icon tool-icon--heart">
+          </a>
+          <a href="favorite-products.html" class="tool-icon tool-icon--heart">
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#heart"></use>
             </svg>
-          </div>
-          <div class="tool-icon">
+          </a>
+          <a href="your-cart.html" class="tool-icon">
             <svg>
               <use
                 xlink:href="../resources/icons/sprite.svg#shopping-basket"
               ></use>
             </svg>
-          </div>
+          </a>
           <div class="tool-icon tool-icon--menu">
             <svg>
               <use xlink:href="../resources/icons/sprite.svg#menu"></use>
@@ -70,10 +73,11 @@
         </div>
       </div>
 
+      <!-- Add 'active' here -->
       <div class="header-category">
         <ul class="tool-box-menu">
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="../pages/user-dashboard/user-info.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="../resources/icons/sprite.svg#user"></use>
@@ -83,7 +87,7 @@
             </a>
           </li>
           <li class="tool-box-menu__item">
-            <a href="#">
+            <a href="favorite-products.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
                   <use xlink:href="../resources/icons/sprite.svg#heart"></use>
@@ -97,30 +101,14 @@
         <div class="divider"></div>
 
         <ul class="header-category__list">
-          <li class="header-category__list__item">
-            <a href="#">Phòng khách</a>
-          </li>
-          <li class="header-category__list__item"><a href="#">Phòng ngủ</a></li>
-          <li class="header-category__list__item"><a href="#">Nhà bếp</a></li>
-          <li class="header-category__list__item"><a href="#">Trẻ em</a></li>
-          <li class="header-category__list__item"><a href="#">Sân vườn</a></li>
-          <li class="header-category__list__item">
-            <a href="#">Thiết bị nội thất</a>
-          </li>
-          <li class="header-category__list__item">
-            <a href="#">Khuyến mãi</a>
-          </li>
+          <!-- RENDER CATEGORY LIST ITEM -->
         </ul>
       </div>
     </header>
 
     <main class="section-your-cart container main-padding-y">
       <div class="bread-crumbs">
-        <a class="bread-crumbs__link" href="#">Trang chủ</a>
-        &nbsp;
-        <span class="bread-crumbs__slash">/</span>
-        &nbsp;
-        <a class="bread-crumbs__link" href="#">Giỏ hàng</a>
+        <!-- RENDER BREAD CRUMBS -->
       </div>
 
       <h2 class="heading--2">Giỏ hàng của bạn</h2>
@@ -135,93 +123,28 @@
           </tr>
         </thead>
 
-        <tbody>
-          <tr class="order-card">
-            <td class="order-card__img img-origin">
-              <img
-                src="../resources/images/products/p1.jpg"
-                alt="Product image"
-              />
-            </td>
+        <tbody class="order-table-body">
+          <!-- RENDER ORDER CARD -->
+        </tbody>
 
-            <td class="order-card__text">
-              <div class="order-card__img img-responsive">
-                <img
-                  src="../resources/images/products/p1.jpg"
-                  alt="Product image"
-                />
-              </div>
-
-              <div class="order-card__text__title">
-                Ghế trẻ nhỏ Alcalde Kids Activity
-              </div>
-              <div class="order-card__text__delivery-info">
-                Giao hàng trong khoảng 3 - 5 ngày
-              </div>
-
-              <div class="order-card__price-box price-box-responsive">
-                <div
-                  class="order-card__price-box__price order-card__price-box__price--current"
-                >
-                  <span class="price-title-repsonsive text-black">Giá:</span>
-                  3.999.000đ
-                </div>
-                <div
-                  class="order-card__price-box__price order-card__price-box__price--old"
-                >
-                  <del class="price-text">4.499.000đ</del>
-                </div>
-              </div>
-
-              <div
-                class="order-card__total-price text-primary total-price-responsive"
-              >
-                <strong class="text-black">Tổng:</strong>
-                3.789.000đ
-              </div>
-
-              <div
-                class="order-card__product-quantity__form-control quantity-control-responsive"
-              >
-                <button class="btn--counter add">+</button>
-                <input type="text" readonly value="1" />
-                <button class="btn--counter remove">-</button>
-              </div>
-
-              <div class="order-card__text__action">
-                <div class="btn--link delete">Xóa</div>
-                <div class="btn--link save">Lưu lại</div>
-              </div>
-            </td>
-
-            <td class="order-card__price-box price-box-origin">
-              <div
-                class="order-card__price-box__price order-card__price-box__price--current"
-              >
-                3.999.000đ
-              </div>
-              <div
-                class="order-card__price-box__price order-card__price-box__price--old"
-              >
-                <del class="price-text">4.499.000đ</del>
-              </div>
-            </td>
-
-            <td class="order-card__product-quantity">
-              <div
-                class="order-card__product-quantity__form-control quantity-control-origin"
-              >
-                <button class="btn--counter add">+</button>
-                <input type="text" readonly value="1" />
-                <button class="btn--counter remove">-</button>
-              </div>
-            </td>
-
-            <td class="order-card__total-price text-primary total-price-origin">
-              3.789.000đ
+        <tfoot class="order-table-footer">
+          <tr>
+            <td class="footer-net-price-container" colspan="5">
+              <strong>Tạm tính:</strong>
+              <strong class="text-primary footer-net-price">1.000.000đ</strong>
             </td>
           </tr>
-        </tbody>
+          <tr>
+            <td colspan="5">
+              <button
+                class="btn--sub table-action-button"
+                data-execute-payment=""
+              >
+                Tiến hành thanh toán
+              </button>
+            </td>
+          </tr>
+        </tfoot>
       </table>
 
       <form class="section-form-check-out">
@@ -230,29 +153,69 @@
 
           <div class="user-info-field__form-control">
             <label for="user-name">Họ và tên:<sup>*</sup></label>
-            <input class="input-border" type="text" id="user-name" required />
+            <div class="input-wrapper">
+              <input
+                class="input-border"
+                type="text"
+                id="user-name"
+                name="fullName"
+                value="Nguyễn Văn A"
+              />
+            </div>
           </div>
           <div class="user-info-field__form-control">
             <label for="phone-number">Số điện thoại:<sup>*</sup></label>
-            <input
-              class="input-border"
-              type="text"
-              id="phone-number"
-              required
-            />
+            <div class="input-wrapper">
+              <input
+                class="input-border"
+                type="tel"
+                id="phone-number"
+                name="phoneNumber"
+                value="0379998880"
+              />
+            </div>
           </div>
           <div class="user-info-field__form-control">
-            <label for="phone-number">Địa chỉ nhận hàng:<sup>*</sup></label>
-            <input
-              class="input-border"
-              type="text"
-              id="phone-number"
-              required
-            />
+            <label for="address">Địa chỉ nhận hàng:<sup>*</sup></label>
+            <div class="input-wrapper">
+              <input
+                class="input-border"
+                type="text"
+                id="address"
+                name="address"
+                value="abc"
+              />
+            </div>
           </div>
           <div class="user-info-field__form-control">
-            <label for="user-name">Email:</label>
-            <input class="input-border" type="email" id="user-name" />
+            <label for="city">Thành phố/tỉnh:<sup>*</sup></label>
+            <div class="input-wrapper">
+              <select class="input-border" id="city" name="city">
+                <option value="">-- Chọn --</option>
+                <option value="ha-noi">Hà Nội</option>
+              </select>
+            </div>
+          </div>
+          <div class="user-info-field__form-control">
+            <label for="district">Quận/huyện:<sup>*</sup></label>
+            <div class="input-wrapper">
+              <select class="input-border" id="district" name="district">
+                <option value="">-- Chọn --</option>
+                <option value="dong-da">Đống Đa</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="user-info-field__form-control">
+            <label for="email">Email:</label>
+            <div class="input-wrapper">
+              <input
+                class="input-border"
+                type="email"
+                id="email"
+                name="email"
+              />
+            </div>
           </div>
         </div>
 
@@ -263,14 +226,14 @@
             <div class="payment-info-field__segment__title">Tạm tính</div>
 
             <div class="payment-info-field__segment__form">
-              <div class="price-net text-primary">4.688.000đ</div>
+              <div class="price-net text-primary"></div>
               <div class="extra-count-box price-decrement">
                 <div class="extra-count-box__title">Giảm giá:</div>
-                <div class="extra-count-box__amount text-primary">0đ</div>
+                <div class="extra-count-box__amount text-primary"></div>
               </div>
               <div class="promotion-code">
                 <input class="input-border" type="text" />
-                <button type="submit" class="btn--primary">Mã giảm giá</button>
+                <button type="button" class="btn--primary">Mã giảm giá</button>
               </div>
             </div>
           </div>
@@ -279,10 +242,10 @@
           <div class="payment-info-field__segment">
             <div class="payment-info-field__segment__title">Giao hàng</div>
 
-            <div class="payment-info-field__segment__form">
+            <div class="payment-info-field__segment__form delivery-form">
               <label class="payment-form-checkbox" for="delivery-standard">
                 <input
-                  name="delivery"
+                  name="deliveryType"
                   type="radio"
                   id="delivery-standard"
                   value="delivery-standard"
@@ -292,16 +255,16 @@
               </label>
               <label class="payment-form-checkbox" for="delivery-fast">
                 <input
-                  name="delivery"
+                  name="deliveryType"
                   type="radio"
                   id="delivery-fast"
                   value="delivery-fast"
                 />
-                <span>Giao hàng nhanh</span>
+                <span>Giao hàng nhanh (1 - 2 ngày)</span>
               </label>
-              <div class="shipment-location">
-                <span>Giao hàng tại <strong>Hà Nội</strong></span>
-                <div class="btn--link fz-small-link-btn">Thay đổi</div>
+              <div class="extra-count-box shipment-charge">
+                <div class="extra-count-box__title">Phí vận chuyển:</div>
+                <div class="extra-count-box__amount text-primary"></div>
               </div>
             </div>
           </div>
@@ -313,7 +276,7 @@
             <div class="payment-info-field__segment__form">
               <label class="payment-form-checkbox" for="payment-cod">
                 <input
-                  name="payment"
+                  name="paymentMethod"
                   type="radio"
                   id="payment-cod"
                   value="cod"
@@ -324,7 +287,7 @@
 
               <label class="payment-form-checkbox" for="payment-card">
                 <input
-                  name="payment"
+                  name="paymentMethod"
                   type="radio"
                   id="payment-card"
                   value="credit-card"
@@ -335,7 +298,7 @@
 
               <label class="payment-form-checkbox" for="payment-wallet">
                 <input
-                  name="payment"
+                  name="paymentMethod"
                   type="radio"
                   id="payment-wallet"
                   value="e-wallet"
@@ -350,9 +313,7 @@
 
           <div class="payment-info-field__total">
             <div class="payment-info-field__total__title">Tổng hóa đơn</div>
-            <div class="payment-info-field__total__amount text-primary">
-              4.688.000đ
-            </div>
+            <div class="payment-info-field__total__amount text-primary"></div>
           </div>
 
           <button type="submit" class="btn--primary button-submit">

@@ -1,10 +1,5 @@
 import { View } from "../view.js";
-import { persistDataOnLocalStorage } from "../../model.js";
-import {
-  calcSalesPrice,
-  convertPriceNumber,
-  deepCloneArray,
-} from "../../helpers.js";
+import { calcSalesPrice, convertNumberToPriceString } from "../../helpers.js";
 import { PRODUCT_DETAIL_SEARCH_QUERIES } from "../../config.js";
 
 class ProductDetailOrderView extends View {
@@ -13,13 +8,62 @@ class ProductDetailOrderView extends View {
   _searchQueries = PRODUCT_DETAIL_SEARCH_QUERIES;
   _sortSelects;
   _favoriteBtn;
+  _addToCartBtn;
 
-  addSortOptionsChangeHandler(handler) {
+  _getInCartProductData() {
+    const data = this._data;
+    let specifications = [];
+    this._searchQueries.forEach((search) => {
+      const hasValueSelect = [...this._sortSelects].find(
+        (select) => select.dataset.query === search.query
+      );
+
+      if (hasValueSelect)
+        specifications.push({
+          name: search.name,
+          value: hasValueSelect.querySelector("option[selected]").dataset.name,
+        });
+    });
+
+    const deliveryDate = data.policy.find(
+      (pol) => pol.deliveryDate
+    ).deliveryDate;
+
+    return {
+      initialPrice: data.initialPrice,
+      discount: data.tags.discount,
+      locationSearch: window.location.search,
+      searchQueries: this._getLocationSearchValues(),
+      id: data.id,
+      title: data.title,
+      specifications,
+      deliveryDate,
+    };
+  }
+
+  addAddToCartBtnClickHandler(handler) {
     const _this = this;
-    const queries = deepCloneArray(this._searchQueries);
+    this._addToCartBtn.addEventListener("click", () => {
+      handler(_this._getInCartProductData(), "in-cart-products");
+
+      _this._buttonChangeTextHandler(_this._addToCartBtn, "Thêm vào giỏ");
+    });
+  }
+
+  addFavoriteBtnClickHanlder(handler) {
+    const _this = this;
+    this._favoriteBtn.addEventListener("click", () => {
+      handler(_this._data, "favorite-products");
+
+      _this._buttonChangeTextHandler(_this._favoriteBtn, "Yêu thích");
+    });
+  }
+
+  addSortOptionsChangeHandler() {
+    const _this = this;
     let initialQueries = [];
 
-    queries.forEach(({ query }) => {
+    this._searchQueries.forEach(({ query }) => {
       const queryMatch = _this._data.sort.find((srt) => srt.type === query);
 
       if (queryMatch) {
@@ -30,6 +74,8 @@ class ProductDetailOrderView extends View {
 
     this._sortSelects.forEach((select) => {
       select.addEventListener("change", (event) => {
+        if (event.target.vale === "") return;
+
         const index = initialQueries.findIndex(
           ({ query }) => query === event.target.dataset.query
         );
@@ -42,15 +88,6 @@ class ProductDetailOrderView extends View {
 
         _this.setLocationSearch(queriesStr);
       });
-    });
-  }
-
-  addFavoriteBtnClickHanlder(handler) {
-    const _this = this;
-    this._favoriteBtn.addEventListener("click", () => {
-      handler(_this._data);
-
-      _this._buttonChangeTextHandler(_this._favoriteBtn, "Yêu thích");
     });
   }
 
@@ -73,40 +110,22 @@ class ProductDetailOrderView extends View {
   _generatePrice(price, discount) {
     if (!discount) {
       return `
-        <div class="product-order__price-tag">${convertPriceNumber(
-          price
+        <div class="product-order__price-tag">${convertNumberToPriceString(
+          price - 1
         )}đ</div>
       `;
     } else {
       return `
         <div class="product-order__price-container">
-          <div class="product-order__price-tag">${convertPriceNumber(
-            calcSalesPrice(price, discount)
+          <div class="product-order__price-tag">${convertNumberToPriceString(
+            calcSalesPrice(price, discount) - 1
           )}đ</div>
           <div class="product-order__price-tag--old">
-            <del>${convertPriceNumber(price)}đ</del>
+            <del>${convertNumberToPriceString(price - 1)}đ</del>
           </div>
         </div>
       `;
     }
-  }
-
-  _generateOptions(options) {
-    return options
-      .map((option) => {
-        return `
-          <select data-query=${option.type}>
-            ${option.values
-              .map((value) => {
-                return `
-                <option value="${value.value}">${option.name}: ${value.name}</option>
-              `;
-              })
-              .join("\n")}
-          </select>
-        `;
-      })
-      .join("\n");
   }
 
   _generatePolicy(policies) {

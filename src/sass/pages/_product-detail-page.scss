@@ -4,6 +4,9 @@
   column-gap: 3.2rem;
   align-items: flex-start;
 
+  // NOT FOUND MESSAGE
+  @include setNotFoundMessage;
+
   @include respond(bg) {
     grid-template-columns: 1fr;
   }
@@ -13,16 +16,6 @@
 
     &__gallery {
       margin-bottom: 4.2rem;
-
-      @keyframes buttonsFadeIn {
-        0% {
-          opacity: 0;
-        }
-
-        100% {
-          opacity: 1;
-        }
-      }
 
       &__big-img {
         @include placeImg;

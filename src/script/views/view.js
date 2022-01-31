@@ -1,21 +1,27 @@
+import {
+  convertPriceStringToNumber,
+  convertNumberToPriceString,
+  validateInput,
+} from "../helpers.js";
+
 export class View {
   _breadCrumbs = document.querySelector(".bread-crumbs");
   _data;
   _emptyErrorMessage = "Vui lòng nhập thông tin tại đây";
-  _homepage = true;
+  _productIdNotFoundMessage =
+    "Không tìm thấy sản phẩm này. Xin vui lòng thử lại";
+  _currentPage;
 
-  renderItems(data, homepage) {
+  renderItems(data, currentPage = "home") {
     if (!Array.isArray(data) || data.length === 0) {
       this._showNotFoundMessage();
       return;
     }
 
     this._data = data;
+    this._currentPage = currentPage;
 
-    if (homepage == "branch-page") {
-      this._homepage = false;
-    }
-    const markup = this._generateMarkup(this._homepage);
+    const markup = this._generateMarkup(this._currentPage);
 
     this._parentElement.innerHTML = "";
     this._parentElement.insertAdjacentHTML("beforeend", markup);
@@ -23,7 +29,7 @@ export class View {
 
   renderSingleItem(data) {
     if (!data) {
-      this.showNotFoundMessage();
+      this._showNotFoundMessage();
       return;
     }
 
@@ -35,6 +41,7 @@ export class View {
   }
 
   renderBreadCrumbs(page) {
+    const data = this._data;
     let markup = `
       <a class="bread-crumbs__link" href="../index.html">Trang chủ</a>
         &nbsp;
@@ -43,7 +50,6 @@ export class View {
     `;
 
     if (page === "product-detail") {
-      const data = this._data;
       markup +=
         "\n" +
         `
@@ -60,11 +66,56 @@ export class View {
     }
 
     if (page === "favorite-products") {
-      const data = this._data;
       markup +=
         "\n" +
         `
-          <a class="bread-crumbs__link" href="#">Sản phẩm yêu thích</a>
+          <a class="bread-crumbs__link" href="favorite-products.html">Sản phẩm yêu thích</a>
+        `;
+    }
+
+    if (page === "products-list") {
+      const linkNameArr = this._getLocationSearchValues(true, true).slice(
+        0,
+        -1
+      );
+      let linkName = [];
+
+      linkNameArr.forEach((value) => {
+        Object.values(data).forEach((dataArr) => {
+          const match = dataArr.find((item) => {
+            return item.value === value;
+          });
+
+          if (match) linkName.push({ name: match.name, value: match.value });
+        });
+      });
+
+      markup +=
+        "\n" +
+        `
+          ${linkName
+            .map((data) => {
+              return `
+                <a class="bread-crumbs__link" href="product-list.html?category=${data.value}">
+                  ${data.name}
+                </a>
+              `;
+            })
+            .join(
+              "\n" +
+                `&nbsp;
+              <span class="bread-crumbs__slash">/</span>
+              &nbsp;` +
+                "\n"
+            )}
+        `;
+    }
+
+    if (page === "your-cart") {
+      markup +=
+        "\n" +
+        `
+          <a class="bread-crumbs__link" href="your-cart.html">Giỏ hàng</a>
         `;
     }
 
@@ -72,12 +123,26 @@ export class View {
     this._breadCrumbs.insertAdjacentHTML("beforeend", markup);
   }
 
-  addSubmitFormHandler(handler) {
+  addSubmitFormHandler(handler, page) {
     this._formEl.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      if (this._validateInputValues()) {
+      if (page === "home") {
+        if (!this._validateInputValues(this._inputEl)) return;
+
+        this._inputEl.value = "";
         handler(Object.fromEntries([...new FormData(this._formEl)]));
+      }
+
+      if (page === "your-cart") {
+        if (!this._validateInputValues()) return;
+
+        handler({
+          ...Object.fromEntries([...new FormData(this._formEl)]),
+          ...this._getReceiptDetail(),
+          orderId: String(Date.now()).slice(String(Date.now()).length - 6),
+          orderDate: new Date().toISOString(),
+        });
       }
     });
   }
@@ -95,21 +160,21 @@ export class View {
   }
 
   setCardTypeClass(className) {
-    this._parentElement = document.querySelector("." + className);
+    this._parentElement = document.querySelector(className);
   }
 
   setComponentElementClass(component, className) {
-    this[component] = document.querySelector("." + className);
+    this[component] = document.querySelector(className);
   }
 
   setMultiComponentElementsClass(component, className) {
     this[component] = document.querySelectorAll(className);
   }
 
-  setLocationSearch(search, sort, set = true) {
+  setLocationSearch(search = null, sort = null, set = true) {
     const sortData = sort || this._data.sort;
     const defaultSortQuery = sortData
-      .map((data) => {
+      ?.map((data) => {
         return `?${data.type}=${data.defaultValue}`;
       })
       .join("");
@@ -117,6 +182,66 @@ export class View {
     if (set) window.location.search = search || defaultSortQuery;
 
     if (!set) return defaultSortQuery;
+  }
+
+  generateReceiptPriceDetail(shipmentChargeText = null) {
+    const footerNetPrice = document.querySelector(
+      ".order-table-footer .footer-net-price"
+    );
+    const netPriceEl = document.querySelector(
+      ".payment-info-field__segment__form .price-net"
+    );
+    const promotionCodeReduceEl = document.querySelector(
+      ".price-decrement .extra-count-box__amount"
+    );
+    const shipmentChargeEl = document.querySelector(
+      ".shipment-charge .extra-count-box__amount"
+    );
+    const totalBillEl = document.querySelector(
+      ".payment-info-field__total__amount"
+    );
+    const totalPriceEls =
+      this._totalPriceEls || document.querySelectorAll(".total-price-origin");
+    let totalPrices = [];
+
+    totalPriceEls.forEach((el) =>
+      totalPrices.push(convertPriceStringToNumber(el.innerText))
+    );
+
+    const promotionCodeReduce = convertPriceStringToNumber(
+      promotionCodeReduceEl.innerText
+    );
+    const shipmentCharge = shipmentChargeText
+      ? convertPriceStringToNumber(shipmentChargeText)
+      : 50000;
+    netPriceEl.innerText =
+      totalPrices.length === 0 ? "0đ" : footerNetPrice.innerText;
+
+    promotionCodeReduceEl.innerText =
+      convertNumberToPriceString(promotionCodeReduce, false) + "đ";
+    shipmentChargeEl.innerText =
+      shipmentChargeText || convertNumberToPriceString(shipmentCharge) + "đ";
+    totalBillEl.innerText =
+      totalPrices.length === 0
+        ? "0đ"
+        : convertNumberToPriceString(
+            convertPriceStringToNumber(netPriceEl.innerText) -
+              promotionCodeReduce +
+              shipmentCharge,
+            false
+          ) + "đ";
+  }
+
+  _handleEmptyTextFieldError(input) {
+    const inputIsValid = validateInput(input.value);
+
+    if (!inputIsValid.isValid && inputIsValid.status === "empty") {
+      this._showInputErrorMessage(input.parentElement, this._emptyErrorMessage);
+
+      return false;
+    }
+
+    return true;
   }
 
   _buttonChangeTextHandler(buttonEl, originText) {
@@ -129,16 +254,24 @@ export class View {
   _showNotFoundMessage() {
     const markup = this._generateNotFoundMarkup();
 
-    this._parentElement.innerHTML = "";
-    this._parentElement.insertAdjacentHTML("beforeend", markup);
+    const parentElement =
+      this._productDetailSection ||
+      this._yourCartOrderCards ||
+      this._parentElement;
+
+    parentElement.innerHTML = "";
+    parentElement.insertAdjacentHTML("beforeend", markup);
   }
 
-  _showErrorMessage(message) {
+  _showInputErrorMessage(showElement, message) {
+    const errorMessageEl = showElement.querySelector(".input-error");
+    if (errorMessageEl) return;
+
     const markup = `
       <p class="input-error">${message}</p>
     `;
 
-    this._formControlEl.insertAdjacentHTML("beforeend", markup);
+    showElement.insertAdjacentHTML("beforeend", markup);
   }
 
   _removeMessageNodeHandler(inputEl) {
@@ -149,29 +282,106 @@ export class View {
     }
   }
 
-  _clearMessageWhenTyping(inputEl) {
+  _clearErrorMessageWhenTyping(inputEl) {
     const _this = this;
-    inputEl.addEventListener("keydown", () => {
-      _this._removeMessageNodeHandler(inputEl);
+    ["click", "keydown"].forEach((event) => {
+      inputEl.addEventListener(event, () => {
+        _this._removeMessageNodeHandler(inputEl);
+      });
     });
   }
 
-  _getLocationSearchValues(value = true) {
+  _getLocationSearchValues(getValue = true, getValuesArray = false) {
     const search = window.location.search;
     const queryValues = search
       .slice(1)
       .split("?")
       .map((value) => {
-        return value.split("=")[`${value ? 1 : 0}`];
+        return value.split("=")[`${getValue || getValuesArray ? 1 : 0}`];
       });
 
-    return value ? queryValues.join("-") : queryValues;
+    return getValue && !getValuesArray ? queryValues.join("-") : queryValues;
+  }
+
+  _generateHrefLink(currentPage, dataSort, productId) {
+    let headHref;
+
+    switch (currentPage) {
+      case "home":
+        headHref = "./pages/product-detail.html";
+        break;
+      case "in-page":
+        headHref = "";
+        break;
+      case "side-page":
+        headHref = "./product-detail.html";
+        break;
+    }
+
+    return (
+      headHref + this.setLocationSearch(null, dataSort, false) + "#" + productId
+    );
+  }
+
+  _generateOptions(options, defaultValue = null, type = null) {
+    const checkMatchValue = (value) => {
+      const matchedValue = this._getLocationSearchValues(true, true).find(
+        (valueData) => valueData === value
+      );
+
+      return Boolean(matchedValue);
+    };
+
+    if (!type) {
+      return options
+        .map((option) => {
+          return `
+            <select data-query=${option.type}>
+              ${option.values
+                .map((value) => {
+                  return `
+                  <option ${
+                    checkMatchValue(value.value) ? "selected" : ""
+                  } value="${value.value}" data-name=${value.name}>${
+                    option.name
+                  }: ${value.name}</option>
+                `;
+                })
+                .join("\n")}
+            </select>
+          `;
+        })
+        .join("\n");
+    } else {
+      return `
+        <select data-query=${type}>
+          ${
+            defaultValue
+              ? `<option value="" class="text-gray">${defaultValue}</option>`
+              : ""
+          }
+          ${options
+            .map((option) => {
+              return `
+              <option ${
+                checkMatchValue(option.value) ? "selected" : ""
+              } value=${option.value}>${option.name}</option>
+            `;
+            })
+            .join("\n")}
+        </select>
+      `;
+    }
   }
 
   _generateNotFoundMarkup() {
     return `
         <div class="not-found-message center-content">
-          <p class="not-found-message__text">${this._notFoundMessage}</p>
+          <p class="not-found-message__text">${
+            this._productDetailSection
+              ? this._productIdNotFoundMessage
+              : this._notFoundMessage
+          }</p>
           <a href="../index.html" class="not-found-message__link">
             Tiếp tục mua sắm
           </a>

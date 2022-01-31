@@ -2,14 +2,13 @@ import PreviewProductsView from "../views/previewProductsView.js";
 import ProductDetailOrderView from "../views/product-detail-view/productDetailOrderView.js";
 import ProductDetailDescriptionView from "../views/product-detail-view/productDetailDescriptionView.js";
 import {
-  toolBoxClickHandler,
+  initializePageHeader,
   getProductById,
-  persistDataOnLocalStorage,
-  getDataFromLocalStorage,
+  addProductToLocalStorage,
 } from "../model.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
-const ProductDetailDescriptionControl = () => {
+const productDetailDescriptionControl = () => {
   // Get product id from hash name and render
   const hash = window.location.hash.slice(1);
   ProductDetailDescriptionView.renderSingleItem(getProductById(hash));
@@ -22,7 +21,7 @@ const productDetailOrderControl = () => {
   // Render product order card by break-point
   const responsive = window.matchMedia("(max-width: 50em)").matches;
   ProductDetailOrderView.setCardTypeClass(
-    `${responsive ? "product-order--responsive" : "product-order--origin"}`
+    `${responsive ? ".product-order--responsive" : ".product-order--origin"}`
   );
 
   // Get product id from hash name and render
@@ -34,51 +33,44 @@ const productDetailOrderControl = () => {
     "_sortSelects",
     ".product-order__product-filter select"
   );
-  ProductDetailOrderView.addSortOptionsChangeHandler(
-    ProductDetailDescriptionControl
-  );
+  ProductDetailOrderView.addSortOptionsChangeHandler();
 
   // Set favorite button and handle click event
   ProductDetailOrderView.setComponentElementClass(
     "_favoriteBtn",
-    "product-order__action .btn--sub"
+    ".product-order__action .btn--sub"
   );
-  ProductDetailOrderView.addFavoriteBtnClickHanlder(favoriteBtnClickControl);
+  ProductDetailOrderView.addFavoriteBtnClickHanlder(addProductToLocalStorage);
+
+  // Set add to cart button and handle click event
+  ProductDetailOrderView.setComponentElementClass(
+    "_addToCartBtn",
+    ".product-order__action .btn--primary"
+  );
+  ProductDetailOrderView.addAddToCartBtnClickHandler(addProductToLocalStorage);
 };
 
-const favoriteBtnClickControl = (productData) => {
-  const favoriteProducts = getDataFromLocalStorage("favorite-products");
-
-  if (favoriteProducts) {
-    const match = favoriteProducts.find(
-      (product) => productData.id === product.id
-    );
-
-    if (!match) {
-      persistDataOnLocalStorage("favorite-products", [
-        ...favoriteProducts,
-        productData,
-      ]);
-    }
-  } else {
-    persistDataOnLocalStorage("favorite-products", [productData]);
-  }
+const cardHeartButtonControl = (productId) => {
+  addProductToLocalStorage(getProductById(productId), "favorite-products");
 };
 
 const followingPurchaseProductsControl = () => {
-  PreviewProductsView.setCardTypeClass("following-purchase-preview");
-  PreviewProductsView.renderItems(productsData, "branch-page");
+  PreviewProductsView.setCardTypeClass(".following-purchase-preview");
+  PreviewProductsView.renderItems(productsData, "in-page");
 };
 
 const similarProductsControl = () => {
-  PreviewProductsView.setCardTypeClass("similar-purchase-preview");
-  PreviewProductsView.renderItems(productsData, "branch-page");
+  PreviewProductsView.setCardTypeClass(".similar-purchase-preview");
+  PreviewProductsView.renderItems(productsData, "in-page");
+
+  // Set heart button and handle add favorite product click
+  PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
 };
 
 const init = () => {
-  toolBoxClickHandler();
+  initializePageHeader("side-page");
   ProductDetailDescriptionView.addRenderByLocationHandler(
-    ProductDetailDescriptionControl
+    productDetailDescriptionControl
   );
   ProductDetailOrderView.addRenderByLocationHandler(productDetailOrderControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(

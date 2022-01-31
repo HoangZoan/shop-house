@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
-  line-height: 2.1;
+  line-height: 1.9;
   font-size: 1.4rem;
 }
 
@@ -30,4 +30,23 @@ select {
 input {
   outline: none;
   border: none;
+}
+
+@keyframes growAndShrink {
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadesIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

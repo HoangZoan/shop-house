@@ -1,5 +1,5 @@
 import { View } from "./view.js";
-import { convertPriceNumber, calcSalesPrice } from "../helpers.js";
+import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
 import {
   persistDataOnLocalStorage,
   getDataFromLocalStorage,
@@ -17,7 +17,11 @@ class FavoriteProductsView extends View {
           "favorite-products"
         ).filter((product) => product.id !== event.target.dataset.productId);
 
-        persistDataOnLocalStorage("favorite-products", productsAfterDelete);
+        if (productsAfterDelete.length === 0) {
+          window.localStorage.removeItem("favorite-products");
+        } else {
+          persistDataOnLocalStorage("favorite-products", productsAfterDelete);
+        }
         handler();
       });
     });
@@ -27,21 +31,23 @@ class FavoriteProductsView extends View {
     if (!discount) {
       return `
           <div class="card-content__price card-content__price--current">
-              Giá: <span class="price-text">${convertPriceNumber(
-                initialPrice
+              Giá: <span class="price-text">${convertNumberToPriceString(
+                initialPrice - 1000
               )}đ</span>
           </div>
           `;
     } else {
       return `
           <div class="card-content__price card-content__price--current">
-              Giá: <span class="price-text">${convertPriceNumber(
-                calcSalesPrice(initialPrice, discount)
+              Giá: <span class="price-text">${convertNumberToPriceString(
+                calcSalesPrice(initialPrice, discount) - 1
               )}đ</span>
           </div>
           
           <div class="card-content__price card-content__price--old">
-              <del class="price-text">${convertPriceNumber(initialPrice)}đ</del>
+              <del class="price-text">${convertNumberToPriceString(
+                initialPrice - 1000
+              )}đ</del>
           </div>
           `;
     }
@@ -66,9 +72,9 @@ class FavoriteProductsView extends View {
                     </div>
 
                     <div class="card-content">
-                        <a href="#" class="card-content__title-link">
+                        <div class="card-content__title">
                             ${data.title}
-                        </a>
+                        </div>
 
                         <div>
                             ${_this._generatePrice(
@@ -78,9 +84,16 @@ class FavoriteProductsView extends View {
                         </div>
 
                         <div class="card-content__action">
-                            <button data-product-id=${
-                              data.id
-                            } class="btn--primary">Thêm vào giỏ</button>
+                            <a 
+                              href=${_this._generateHrefLink(
+                                _this._currentPage,
+                                data.sort,
+                                data.id
+                              )}
+                              class="btn--primary"
+                            >
+                              Xem chi tiết
+                            </a>
                             <button data-product-id=${
                               data.id
                             } class="btn--sub">Xóa</button>

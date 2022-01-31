@@ -1,10 +1,21 @@
-export const convertPriceNumber = (number) => {
-  const beforeConvertNumberStr = String(Math.round(number) - 1);
+export const convertPriceStringToNumber = (string) => {
+  return Number(string.slice(0, -1).split(".").join(""));
+};
 
-  const numberStr = [
-    beforeConvertNumberStr.slice(0, beforeConvertNumberStr.length - 3),
-    "000",
-  ].join("");
+export const convertNumberToPriceString = (
+  number,
+  autoGenerateThousandUnit = true
+) => {
+  if (number === 0) return "0";
+
+  const beforeConvertNumberStr = String(Math.round(number));
+
+  const numberStr = !autoGenerateThousandUnit
+    ? beforeConvertNumberStr
+    : [
+        beforeConvertNumberStr.slice(0, beforeConvertNumberStr.length - 3),
+        "000",
+      ].join("");
 
   let splitStr = [];
 
@@ -26,6 +37,10 @@ export const convertPriceNumber = (number) => {
   return splitStr.join(".");
 };
 
+export const calcSalesPrice = (price, discount) => {
+  return (price * (100 - discount)) / 100;
+};
+
 export const validateInput = (inputData, type) => {
   const data = inputData.trim();
 
@@ -33,58 +48,79 @@ export const validateInput = (inputData, type) => {
     return { isValid: false, status: "empty" };
   }
 
-  if (type === "email") {
+  if (type === "phoneNumber") {
+    return Number.isNaN(Number(inputData))
+      ? {
+          isValid: false,
+          message: "Số điện thoại không hợp lệ. Vui lòng kiểm tra lại",
+        }
+      : { isValid: true };
   }
 
   return { isValid: true };
 };
 
-export const calcSalesPrice = (price, discount) => {
-  return (price * (100 - discount)) / 100;
+export const deepCompareArrays = (arr1, arr2) => {
+  function compareObjectValues(object1, object2) {
+    const keysObj1 = Object.keys(object1);
+    const keysObj2 = Object.keys(object2);
+
+    if (!deepCompareArrays(keysObj1, keysObj2)) {
+      return false;
+    }
+
+    for (const key of keysObj1) {
+      if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+        return deepCompareArrays(object1[key], object2[key]);
+      }
+
+      if (object1[key] === null && object2[key] === null) {
+        return true;
+      }
+
+      if (
+        typeof object1[key] === "object" &&
+        typeof object2[key] === "object"
+      ) {
+        return compareObjectValues(object1[key], object2[key]);
+      }
+
+      if (object1[key] !== object2[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  if (arr1.length !== arr2.length) return false;
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (Array.isArray(arr1[i]) && Array.isArray(arr2[i])) {
+      return deepCompareArrays(arr1[i], arr2[i]);
+    }
+
+    if (typeof arr1[i] == "object" && typeof arr2[i] == "object") {
+      return compareObjectValues(arr1[i], arr2[i]);
+    }
+
+    if (String(arr1[i]) === "NaN" && String(arr2[i]) === "NaN") {
+      return true;
+    }
+
+    if (!arr1.includes(arr2[i]) || !arr2.includes(arr1[i])) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
-export const deepCloneArray = (arr) => {
-  const cloneObject = (object) => {
-    if (object === null) {
-      return null;
-    }
+export const calcPromotionCodePrice = (netPrice, promotionCode) => {
+  const [code, discount] = [promotionCode.slice(0, 4), promotionCode.slice(4)];
+  const discountNumber = Number(discount);
 
-    const keysObj = Object.keys(object);
-    const output = {};
+  if (code !== "GIAM" || discountNumber > 100) return false;
 
-    keysObj.forEach((key) => {
-      if (Array.isArray(object[key])) {
-        output[key] =
-          object[key].length === 0 ? [] : deepCloneArray(object[key]);
-        return;
-      }
-
-      if (typeof object[key] === "object") {
-        output[key] = cloneObject(object[key]);
-        return;
-      }
-
-      output[key] = object[key];
-    });
-
-    return output;
-  };
-
-  const output = [];
-
-  arr.forEach((value, i) => {
-    if (Array.isArray(value)) {
-      output[i] = value.length === 0 ? [] : deepCloneArray(value);
-      return;
-    }
-
-    if (typeof value === "object") {
-      output[i] = cloneObject(value);
-      return;
-    }
-
-    output[i] = value;
-  });
-
-  return output;
+  return (netPrice * discountNumber) / 100;
 };
