@@ -4,7 +4,19 @@ class HeaderCategoryView extends View {
   _parentElement = document.querySelector(".header-category__list");
 
   _genarateHref(currentPage, sortValue) {
-    const headHref = currentPage === "home" ? "./pages" : ".";
+    let headHref;
+
+    switch (currentPage) {
+      case "home":
+        headHref = "./pages";
+        break;
+      case "side-page":
+        headHref = ".";
+        break;
+      case "nested-page":
+        headHref = "..";
+        break;
+    }
 
     return (
       headHref +

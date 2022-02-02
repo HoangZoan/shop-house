@@ -24,7 +24,7 @@ export const initializePageHeader = (currentPage) => {
 
 // MODEL FUNCTIONALITY
 export const getProductById = (id) => {
-  return productsData.find((product) => product.id === id);
+  return productsData.find((product) => product.id || product.orderId === id);
 };
 
 export const persistDataOnLocalStorage = (storageName, data) => {
@@ -43,6 +43,8 @@ export const addProductToLocalStorage = (productData, storageName) => {
 
   if (existingData) {
     const match = existingData.find((product) => {
+      if (storageName === "orders") return false;
+
       const compareSpecifications =
         storageName === "in-cart-products"
           ? deepCompareArrays(
@@ -79,4 +81,8 @@ export const removeProductFromLocalStorage = (productData, storageName) => {
   }
 
   window.localStorage.setItem(storageName, JSON.stringify(updatedProducts));
+};
+
+export const clearLocalStorage = (storageName) => {
+  window.localStorage.removeItem(storageName);
 };

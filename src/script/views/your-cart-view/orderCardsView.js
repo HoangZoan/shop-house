@@ -1,4 +1,5 @@
 import { View } from "../view.js";
+import CheckOutFormView from "./checkOutFormView.js";
 import {
   convertNumberToPriceString,
   calcSalesPrice,
@@ -17,6 +18,10 @@ class OrderCardsView extends View {
   _yourCartOrderCards = document.querySelector(".section-orders-table");
   _notFoundMessage = "Bạn chưa có sản phẩm trong giỏ";
 
+  clearOrderCards() {
+    this._parentElement.innerHTML = "";
+  }
+
   addOrderTableActionButtonClickHandler() {
     const _this = this;
     const formEl = document.querySelector(".section-form-check-out");
@@ -33,7 +38,7 @@ class OrderCardsView extends View {
       ".footer-net-price-container"
     );
 
-    actionBtn.addEventListener("click", () => {
+    actionBtn?.addEventListener("click", () => {
       const btnText = actionBtn.innerText;
 
       if (btnText === "Tiến hành thanh toán") {
@@ -48,6 +53,27 @@ class OrderCardsView extends View {
         btnText === "Tiến hành thanh toán"
           ? "Thay đổi đặt hàng"
           : "Tiến hành thanh toán";
+
+      // Send in-cart products data to 'CheckOutFormView'
+      const quantityControlEls = document.querySelectorAll(
+        ".quantity-control-origin input"
+      );
+      const orderCardTotalPriceEls = document.querySelectorAll(
+        ".order-card__total-price.total-price-origin"
+      );
+      const totalPrices = [...orderCardTotalPriceEls].map((el) =>
+        convertPriceStringToNumber(el.innerText)
+      );
+      const inCartProductsData = [...quantityControlEls].map((el, index) => ({
+        distributor: _this._data[index].distributor,
+        productId: _this._data[index].id,
+        title: _this._data[index].title,
+        specifications: _this._data[index].specifications,
+        orderQuantity: el.value,
+        totalPrice: totalPrices[index],
+      }));
+
+      CheckOutFormView._ordersData = inCartProductsData;
     });
   }
 

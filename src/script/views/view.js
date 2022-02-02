@@ -142,6 +142,7 @@ export class View {
           ...this._getReceiptDetail(),
           orderId: String(Date.now()).slice(String(Date.now()).length - 6),
           orderDate: new Date().toISOString(),
+          products: this._ordersData,
         });
       }
     });

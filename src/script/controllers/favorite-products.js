@@ -26,10 +26,10 @@ const recentlyViewedProductsControl = () => {
 };
 
 const init = () => {
+  initializePageHeader("side-page");
   FavoriteProductsView.addRenderWhenLoadedHanlder(breadCrumbsControl);
   FavoriteProductsView.addRenderWhenLoadedHanlder(FavoriteProductsControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(recentlyViewedProductsControl);
-  initializePageHeader("side-page");
 };
 
 init();

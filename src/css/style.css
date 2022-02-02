@@ -2716,3 +2716,94 @@ input {
 .section-more-products .heading--2 {
   font-size: 2.4rem;
 }
+
+/* MODAL */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px) brightness(60%);
+  z-index: 300;
+  animation: fadesIn 0.3s;
+  display: none;
+}
+.modal.active {
+  display: block;
+}
+.modal__box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 4.8rem;
+  width: 100%;
+  max-width: 48rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .modal__box {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+  }
+}
+.modal__box__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6.4rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .modal__box__title {
+    margin-bottom: 3.6rem;
+  }
+}
+.modal__box__title span {
+  font-size: 2.8rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .modal__box__title span {
+    font-size: 2.1rem;
+  }
+}
+.modal__box__title svg {
+  color: #1e90ff;
+  margin-right: 2.4rem;
+  height: 5.6rem;
+  width: 5.6rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .modal__box__title svg {
+    height: 3.6rem;
+    width: 3.6rem;
+    margin-right: 1.2rem;
+  }
+}
+.modal__box__action {
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 31.25em) {
+  .modal__box__action {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.modal__box__action a {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-size: 1.6rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .modal__box__action a {
+    text-align: center;
+    padding: 0.4rem 2rem;
+    min-width: 18rem;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .modal__box__action a:not(:last-child) {
+    margin-bottom: 1.2rem;
+  }
+}

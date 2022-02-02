@@ -11,6 +11,15 @@ class CheckOutFormView extends View {
   _formEl = this._parentElement;
   _promotionCodeNotFoundMessage = "Không có mã này. Vui lòng thử lại";
   _totalPriceEls;
+  _ordersData;
+
+  handlePopupModal(orderId) {
+    const modal = document.querySelector(".modal");
+    const linkToOrderDetail = document.querySelector(".link-to-order-detail");
+    console.log(linkToOrderDetail);
+    linkToOrderDetail.href += "#" + orderId;
+    modal.classList.add("active");
+  }
 
   addDeliveryOptionSelectHandler() {
     const _this = this;

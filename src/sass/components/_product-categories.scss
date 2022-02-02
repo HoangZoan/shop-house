@@ -89,7 +89,7 @@
       transition: $trans-medium;
 
       .category-title {
-        @include position-top-center;
+        @include position-center;
         text-align: center;
         top: 75%;
         color: $color-white;
