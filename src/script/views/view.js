@@ -142,7 +142,8 @@ export class View {
           ...this._getReceiptDetail(),
           orderId: String(Date.now()).slice(String(Date.now()).length - 6),
           orderDate: new Date().toISOString(),
-          products: this._ordersData,
+          products: this._ordersData.products,
+          deliveryDateStandard: this._ordersData.deliveryDateStandard,
         });
       }
     });
@@ -302,6 +303,18 @@ export class View {
       });
 
     return getValue && !getValuesArray ? queryValues.join("-") : queryValues;
+  }
+
+  _calcDeliveryFastEstimatedDate({ from, to }) {
+    let inDay = false;
+    let fromFast = from - 5;
+    let toFast = to - 5;
+
+    if (fromFast <= 0) fromFast = 1;
+    if (toFast <= 0) toFast = 1;
+    if (fromFast === 1 && toFast === 1) inDay = true;
+
+    return { inDay, from: fromFast, to: toFast };
   }
 
   _generateHrefLink(currentPage, dataSort, productId) {

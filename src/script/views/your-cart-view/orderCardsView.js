@@ -22,6 +22,13 @@ class OrderCardsView extends View {
     this._parentElement.innerHTML = "";
   }
 
+  _generateEstimatedDeliveryDate(dateDatas) {
+    const fromDates = dateDatas.map((data) => data.from);
+    const toDates = dateDatas.map((data) => data.to);
+
+    return { from: Math.max(...fromDates), to: Math.max(...toDates) };
+  }
+
   addOrderTableActionButtonClickHandler() {
     const _this = this;
     const formEl = document.querySelector(".section-form-check-out");
@@ -54,9 +61,33 @@ class OrderCardsView extends View {
           ? "Thay đổi đặt hàng"
           : "Tiến hành thanh toán";
 
+      // Set estimated delivery date
+      const standardDeliveryTextEl = document.querySelector(
+        "label[for='delivery-standard'] span"
+      );
+      const deliveryFastTextEl = document.querySelector(
+        "label[for='delivery-fast'] span"
+      );
+      const deliveryDateStandard = _this._generateEstimatedDeliveryDate(
+        this._data.map((data) => data.deliveryDate)
+      );
+      const { from, to } = deliveryDateStandard;
+      const deliveryDateFast =
+        _this._calcDeliveryFastEstimatedDate(deliveryDateStandard);
+
+      standardDeliveryTextEl.textContent = `Giao hàng tiêu chuẩn (${from} - ${to} ngày)`;
+
+      if (deliveryDateFast.inDay) {
+        deliveryFastTextEl.textContent =
+          "Giao hàng nhanh (Giao hàng trong ngày)";
+      } else {
+        const { from, to } = deliveryDateFast;
+        deliveryFastTextEl.textContent = `Giao hàng nhanh (${from} - ${to} ngày)`;
+      }
+
       // Send in-cart products data to 'CheckOutFormView'
       const quantityControlEls = document.querySelectorAll(
-        ".quantity-control-origin input"
+        ".quantity-control-origin .counter-text__number__value"
       );
       const orderCardTotalPriceEls = document.querySelectorAll(
         ".order-card__total-price.total-price-origin"
@@ -69,11 +100,15 @@ class OrderCardsView extends View {
         productId: _this._data[index].id,
         title: _this._data[index].title,
         specifications: _this._data[index].specifications,
-        orderQuantity: el.value,
+        orderQuantity: el.innerText,
         totalPrice: totalPrices[index],
+        searchQueries: _this._data[index].searchQueries,
       }));
 
-      CheckOutFormView._ordersData = inCartProductsData;
+      CheckOutFormView._ordersData = {
+        products: inCartProductsData,
+        deliveryDateStandard,
+      };
     });
   }
 

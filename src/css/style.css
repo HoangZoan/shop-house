@@ -1816,7 +1816,7 @@ input {
   row-gap: 3.6rem;
   align-items: flex-start;
 }
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 50em) {
   .order-info {
     grid-template-columns: 1fr;
   }

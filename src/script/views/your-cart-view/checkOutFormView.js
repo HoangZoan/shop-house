@@ -16,7 +16,7 @@ class CheckOutFormView extends View {
   handlePopupModal(orderId) {
     const modal = document.querySelector(".modal");
     const linkToOrderDetail = document.querySelector(".link-to-order-detail");
-    console.log(linkToOrderDetail);
+
     linkToOrderDetail.href += "#" + orderId;
     modal.classList.add("active");
   }
