@@ -30,6 +30,7 @@ class ProductDetailOrderView extends View {
     ).deliveryDate;
 
     return {
+      distributor: data.distributor,
       initialPrice: data.initialPrice,
       discount: data.tags.discount,
       locationSearch: window.location.search,

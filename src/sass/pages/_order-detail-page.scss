@@ -25,7 +25,7 @@
   row-gap: 3.6rem;
   align-items: flex-start;
 
-  @include respond(md) {
+  @include respond(bg) {
     grid-template-columns: 1fr;
   }
 

@@ -6,6 +6,7 @@ import {
   getProductById,
   addProductToLocalStorage,
   removeProductFromLocalStorage,
+  clearLocalStorage,
 } from "../model.js";
 
 function saveButtonControl(productId, productSpecs) {
@@ -81,7 +82,13 @@ function orderCardsControl() {
 }
 
 function submitFormData(formData) {
-  console.log(formData);
+  // Submit form data and show success message modal
+  addProductToLocalStorage(formData, "orders");
+  CheckOutFormView.handlePopupModal(formData.orderId);
+
+  // Remove in-cart products from order cards and local storage
+  OrderCardsView.clearOrderCards();
+  clearLocalStorage("in-cart-products");
 }
 
 function checkOutFormControl() {

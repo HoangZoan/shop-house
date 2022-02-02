@@ -32,7 +32,7 @@ export const productsData = [
     ],
     policy: [
       { warranty: { time: 2, unit: "năm" }, icon: "warranty" },
-      { deliveryDate: { from: 2, to: 5 }, icon: "delivery" },
+      { deliveryDate: { from: 4, to: 7 }, icon: "delivery" },
       { gift: true, icon: "gift" },
     ],
     specs: { size: null, madeIn: "Việt Nam", material: "Sứ", belongings: null },
