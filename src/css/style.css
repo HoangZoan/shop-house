@@ -1506,6 +1506,15 @@ input {
   flex-direction: column;
   align-items: center;
 }
+.user-info-container .user-update.update .user-update__form-control__value {
+  display: none;
+}
+.user-info-container .user-update.update input {
+  display: block;
+}
+.user-info-container .user-update.update .form-action .btn--sub {
+  display: block;
+}
 .user-info-container .user-update .user-update-container {
   width: 100%;
 }
@@ -1549,6 +1558,15 @@ input {
   .user-info-container .user-update__form-control input:not(input[type=date]) {
     width: 100%;
   }
+}
+.user-info-container .user-update .form-action {
+  display: flex;
+}
+.user-info-container .user-update .form-action button:not(:last-child) {
+  margin-right: 2.4rem;
+}
+.user-info-container .user-update .form-action .btn--sub {
+  display: none;
 }
 
 .payment-method {
