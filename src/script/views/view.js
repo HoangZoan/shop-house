@@ -144,6 +144,7 @@ export class View {
           orderDate: new Date().toISOString(),
           products: this._ordersData.products,
           deliveryDateStandard: this._ordersData.deliveryDateStandard,
+          orderStatus: "on-delivery",
         });
       }
     });
@@ -317,6 +318,27 @@ export class View {
     return { inDay, from: fromFast, to: toFast };
   }
 
+  _generateDeliveryDate({ from, to, inDay = false }) {
+    let fromDate, toDate;
+
+    if (inDay) {
+      return new Intl.DateTimeFormat("en-GB").format(Date.now());
+    }
+
+    fromDate = new Date(Date.now() + from * 24 * 60 * 60 * 1000);
+    toDate = new Date(Date.now() + to * 24 * 60 * 60 * 1000);
+
+    if (fromDate.getFullYear() === toDate.getFullYear()) {
+      return `${new Intl.DateTimeFormat("en-GB")
+        .format(fromDate)
+        .slice(0, -5)} - ${new Intl.DateTimeFormat("en-GB").format(toDate)}`;
+    } else {
+      return `${new Intl.DateTimeFormat("en-GB").format(
+        fromDate
+      )} - ${new Intl.DateTimeFormat("en-GB").format(toDate)}`;
+    }
+  }
+
   _generateHrefLink(currentPage, dataSort, productId) {
     let headHref;
 
@@ -389,6 +411,10 @@ export class View {
   }
 
   _generateNotFoundMarkup() {
+    const nestedPage = this._parentElement.classList.contains(
+      "order-manage-cards-container"
+    );
+
     return `
         <div class="not-found-message center-content">
           <p class="not-found-message__text">${
@@ -396,7 +422,9 @@ export class View {
               ? this._productIdNotFoundMessage
               : this._notFoundMessage
           }</p>
-          <a href="../index.html" class="not-found-message__link">
+          <a href="${
+            nestedPage ? "../" : ""
+          }../index.html" class="not-found-message__link">
             Tiếp tục mua sắm
           </a>
         </div>
