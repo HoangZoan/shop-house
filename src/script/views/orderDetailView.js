@@ -151,7 +151,10 @@ class OrderDetailView extends View {
                 <li class="order-info__box__list-item">
                   <div class="order-list-title">Mã giảm giá</div>
                   <div class="order-list-detail">
-                    - ${convertNumberToPriceString(data.promotionReduce)}đ
+                    - ${convertNumberToPriceString(
+                      data.promotionReduce,
+                      false
+                    )}đ
                   </div>
                 </li>
                 <li class="order-info__box__list-item">
@@ -166,7 +169,8 @@ class OrderDetailView extends View {
                 <div class="order-info__box__list-item">
                   <div class="order-list-title">Tổng</div>
                   <div class="order-list-detail">${convertNumberToPriceString(
-                    data.receiptTotal
+                    data.receiptTotal,
+                    false
                   )}đ</div>
                 </div>
               </div>

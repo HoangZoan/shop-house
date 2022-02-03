@@ -37,6 +37,22 @@
     flex-direction: column;
     align-items: center;
 
+    &.update {
+      .user-update__form-control__value {
+        display: none;
+      }
+
+      input {
+        display: block;
+      }
+
+      .form-action {
+        .btn--sub {
+          display: block;
+        }
+      }
+    }
+
     .user-update-container {
       width: 100%;
     }
@@ -56,7 +72,6 @@
       }
 
       &__value {
-        // display: none;
         font-weight: 500;
       }
 
@@ -81,6 +96,18 @@
         @include respond(xs) {
           width: 100%;
         }
+      }
+    }
+
+    .form-action {
+      display: flex;
+
+      button:not(:last-child) {
+        margin-right: 2.4rem;
+      }
+
+      .btn--sub {
+        display: none;
       }
     }
   }

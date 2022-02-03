@@ -112,7 +112,8 @@ class OrdersManageView extends View {
                       }" class="btn--sub">Xem chi tiết</a>
                       <div class="order-manage-card__footer__total">
                           Tổng tiền: <span class="text-black">${convertNumberToPriceString(
-                            data.receiptTotal
+                            data.receiptTotal,
+                            false
                           )}đ</span>
                       </div>
                   </footer>
