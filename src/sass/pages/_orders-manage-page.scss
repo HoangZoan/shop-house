@@ -48,6 +48,10 @@
   }
 }
 
+.order-manage-cards-container {
+  @include setNotFoundMessage;
+}
+
 .order-manage-card {
   &.on-delivery .order-manage-card__header {
     color: $color-primary;

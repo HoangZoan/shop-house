@@ -4,27 +4,6 @@ import { convertNumberToPriceString } from "../helpers.js";
 class OrderDetailView extends View {
   _parentElement = document.querySelector(".user-content");
 
-  _generateDeliveryDate({ from, to, inDay = false }) {
-    let fromDate, toDate;
-
-    if (inDay) {
-      return new Intl.DateTimeFormat("en-GB").format(Date.now());
-    }
-
-    fromDate = new Date(Date.now() + from * 24 * 60 * 60 * 1000);
-    toDate = new Date(Date.now() + to * 24 * 60 * 60 * 1000);
-
-    if (fromDate.getFullYear() === toDate.getFullYear()) {
-      return `${new Intl.DateTimeFormat("en-GB")
-        .format(fromDate)
-        .slice(0, -5)} - ${new Intl.DateTimeFormat("en-GB").format(toDate)}`;
-    } else {
-      return `${new Intl.DateTimeFormat("en-GB").format(
-        fromDate
-      )} - ${new Intl.DateTimeFormat("en-GB").format(toDate)}`;
-    }
-  }
-
   _generateOrderItems(data) {
     return data
       .map((item) => {
@@ -87,7 +66,7 @@ class OrderDetailView extends View {
         textContent = "Thanh toán khi nhận hàng";
         break;
       case "credit-card":
-        textContent = "Thẻ ngân hàng/Thẻ tín dụng";
+        textContent = "Thẻ ngân hàng";
         break;
       case "e-wallet":
         textContent = "Ví điện tử";

@@ -1652,6 +1652,25 @@ input {
   color: #1e90ff;
 }
 
+.order-manage-cards-container .not-found-message {
+  width: 100%;
+  grid-column: 1/-1;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 3.2rem 0;
+}
+.order-manage-cards-container .not-found-message__text {
+  font-size: 1.8rem;
+  margin-bottom: 2.8rem;
+}
+.order-manage-cards-container .not-found-message__link {
+  color: #1e90ff;
+  transition: all 0.2s;
+}
+.order-manage-cards-container .not-found-message__link:hover {
+  color: #6bb6ff;
+}
+
 .order-manage-card.on-delivery .order-manage-card__header {
   color: #1e90ff;
 }

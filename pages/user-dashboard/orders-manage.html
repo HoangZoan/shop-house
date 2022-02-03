@@ -102,19 +102,7 @@
         <div class="divider"></div>
 
         <ul class="header-category__list">
-          <li class="header-category__list__item">
-            <a href="#">Phòng khách</a>
-          </li>
-          <li class="header-category__list__item"><a href="#">Phòng ngủ</a></li>
-          <li class="header-category__list__item"><a href="#">Nhà bếp</a></li>
-          <li class="header-category__list__item"><a href="#">Trẻ em</a></li>
-          <li class="header-category__list__item"><a href="#">Sân vườn</a></li>
-          <li class="header-category__list__item">
-            <a href="#">Thiết bị nội thất</a>
-          </li>
-          <li class="header-category__list__item">
-            <a href="#">Khuyến mãi</a>
-          </li>
+          <!-- RENDER CATEGORY LIST -->
         </ul>
       </div>
     </header>
@@ -166,18 +154,19 @@
 
         <!--  CONTENT HERE! -->
         <div class="user-content">
-            <div class="user-container-detach bg--white">
-                <div class="heading--3">Quản lý đơn hàng</div>
+          <div class="user-container-detach bg--white">
+            <div class="heading--3">Quản lý đơn hàng</div>
 
-                <ul class="orders-manage-nav">
-                <li class="active">Tất cả</li>
-                <li>Đang vận chuyển</li>
-                <li>Đã mua</li>
-                <li>Đã hủy</li>
-                </ul>
-            </div>
+            <ul class="orders-manage-nav">
+              <li class="active" data-type="all">Tất cả</li>
+              <li data-type="on-delivery">Đang vận chuyển</li>
+              <li data-type="purchased">Đã mua</li>
+              <li data-type="canceled">Đã hủy</li>
+            </ul>
+          </div>
 
-            <div class="order-manage-card on-delivery user-container-detach bg--white">
+          <div class="order-manage-cards-container">
+            <!-- <div class="order-manage-card on-delivery user-container-detach bg--white">
                 <header class="order-manage-card__header">
                     <div class="order-manage-card__header__icon center-content">
                         <svg>
@@ -190,7 +179,7 @@
                         Giao hàng dự kiến 12/01 - 14/01/2022
                     </div>
                 </header>
-
+  
                 <ul class="order-manage-card__cards-list">
                     <li class="order-manage-card__cards-list__item">
                         <div class="order-card-img">
@@ -199,7 +188,7 @@
                                 alt="Product img"
                             />
                         </div>
-
+  
                         <div class="order-card-content">
                             <div class="order-card-content__title">
                               Bộ rèm phòng tắm Lush Decor Bộ rèm phòng tắm Lush Decor Bộ rèm phòng tắm Lush Decor
@@ -212,7 +201,7 @@
                                         ></use>
                                     </svg>
                                 </div>
-
+  
                                 <a href="#" class="order-card-content__distributor__link">
                                     Phố Xinh
                                 </a>
@@ -223,7 +212,7 @@
                         <div class="order-card-price order-card-price--origin">3.789.000đ</div>
                     </li>
                 </ul>
-
+  
                 <footer class="order-manage-card__footer">
                     <a href="./order-detail.html" class="btn--sub">Xem chi tiết</a>
                     <div class="order-manage-card__footer__total">
@@ -231,7 +220,7 @@
                     </div>
                 </footer>
             </div>
-
+  
             <div class="order-manage-card delivered user-container-detach bg--white">
                 <header class="order-manage-card__header">
                     <div class="order-manage-card__header__icon center-content">
@@ -245,7 +234,7 @@
                         Hàng đã giao 24/12/2021
                     </div>
                 </header>
-
+  
                 <ul class="order-manage-card__cards-list">
                     <li class="order-manage-card__cards-list__item">
                         <div class="order-card-img">
@@ -254,7 +243,7 @@
                                 alt="Product img"
                             />
                         </div>
-
+  
                         <div class="order-card-content">
                             <div class="order-card-content__title">
                                 Bộ rèm phòng tắm Lush Decor
@@ -267,7 +256,7 @@
                                         ></use>
                                     </svg>
                                 </div>
-
+  
                                 <a href="#" class="order-card-content__distributor__link">
                                     Phố Xinh
                                 </a>
@@ -277,14 +266,15 @@
                         <div class="order-card-price">3.789.000đ</div>
                     </li>
                 </ul>
-
+  
                 <footer class="order-manage-card__footer">
                     <a href="./order-detail.html" class="btn--sub">Xem chi tiết</a>
                     <div class="order-manage-card__footer__total">
                         Tổng tiền: <span class="text-black">4.688.000đ</span>
                     </div>
                 </footer>
-            </div>
+            </div> -->
+          </div>
         </div>
 
         
