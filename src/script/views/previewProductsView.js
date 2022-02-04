@@ -131,14 +131,14 @@ export class PreviewProductsView extends View {
                       </div>
                   </div>
                   <div class="card-text">
+                      <div class="card-text__product-title">
+                          ${data.title}
+                      </div>
+
                       ${_this._generatePrice(
                         data.initialPrice,
                         data.tags.discount
                       )}
-
-                      <div class="card-text__product-title">
-                          ${data.title}
-                      </div>
                   </div>
               </a>
       

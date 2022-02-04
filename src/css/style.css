@@ -903,6 +903,9 @@ input {
   padding: 1.6rem 1.6rem 1.6rem 2.8rem;
   margin-bottom: 3.2rem;
 }
+.section-product-detail .product-order__promotion-list li:not(:last-child) {
+  margin-bottom: 1.2rem;
+}
 .section-product-detail .product-order__price-container {
   display: flex;
   align-items: flex-end;
@@ -2236,7 +2239,8 @@ input {
 }
 .main-cards__cards__product-card .card-text__product-title {
   font-size: 1.8rem;
-  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  height: 6rem;
 }
 @media only screen and (max-width: 68.75em) {
   .main-cards__cards__product-card .card-text__product-title {

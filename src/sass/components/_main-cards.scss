@@ -309,7 +309,8 @@
 
         &__product-title {
           font-size: 1.8rem;
-          margin-top: 1.6rem;
+          margin-bottom: 1.6rem;
+          height: 6rem;
 
           @include respond(xlg) {
             font-size: 1.6rem;

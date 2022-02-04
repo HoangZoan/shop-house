@@ -19,12 +19,12 @@ const cardHeartButtonControl = (productId) => {
 
 const bestSaleProductsControl = () => {
   PreviewProductsView.setCardTypeClass(".best-seller-preview");
-  PreviewProductsView.renderItems(productsData);
+  // PreviewProductsView.renderItems(productsData);
 };
 
 const newComingProductsControl = () => {
   PreviewProductsView.setCardTypeClass(".new-coming-preview");
-  PreviewProductsView.renderItems(productsData);
+  // PreviewProductsView.renderItems(productsData);
 
   // Set heart button and handle add favorite product click
   PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);

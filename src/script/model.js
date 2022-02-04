@@ -24,7 +24,9 @@ export const initializePageHeader = (currentPage) => {
 
 // MODEL FUNCTIONALITY
 export const getProductById = (id) => {
-  return productsData.find((product) => product.id || product.orderId === id);
+  return productsData.find(
+    (product) => product.id === id || product.orderId === id
+  );
 };
 
 export const persistDataOnLocalStorage = (storageName, data) => {

@@ -12,7 +12,9 @@ class ProductDetailDescriptionView extends View {
       result.push(`
         <div class="small-image ${i === 1 ? "active" : ""}">
           <img
-            src="../resources/images/products/${productId}/${query}-${i}.jpg"
+            src="../resources/images/products/${productId}/${
+        query && query.length !== 0 ? query + "-" : ""
+      }${i}.jpg"
             alt="Product image"
           />
         </div>
@@ -26,7 +28,7 @@ class ProductDetailDescriptionView extends View {
     return `
       <li>Kích thước: ${specs.size || ""}</li>
       <li>Nơi sản xuất: ${specs.madeIn || ""}</li>
-      <li>Chất liệu: ${specs.material || ""}</li>
+      <li>Chất liệu: ${specs.material.join(", ") || ""}</li>
       <li>Kèm theo: ${specs.belongings || ""}</li>
     `;
   }
@@ -39,7 +41,9 @@ class ProductDetailDescriptionView extends View {
     <div class="product-description__gallery">
       <div class="product-description__gallery__big-img">
         <img
-          src="../resources/images/products/${data.id}/${locationQuery}-1.jpg"
+          src="../resources/images/products/${data.id}/${
+      locationQuery && locationQuery.length !== 0 ? locationQuery + "-" : ""
+    }1.jpg"
           alt="Product image"
         />
 
