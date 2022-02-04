@@ -53,14 +53,17 @@ export class View {
       markup +=
         "\n" +
         `
-          <a class="bread-crumbs__link" href="product-list.html?category=${data.category.value}">
+          <a 
+            class="bread-crumbs__link" 
+            href="product-list.html?category=${data.category.value}?arrange=most-purchased"
+          >
             ${data.category.name}
           </a>
             &nbsp;
           <span class="bread-crumbs__slash">/</span>
             &nbsp;
           <a class="bread-crumbs__link" href="#${data.id}">
-            Bộ bát đĩa sứ 16 món Wickham
+            ${data.title}
           </a> 
         `;
     }

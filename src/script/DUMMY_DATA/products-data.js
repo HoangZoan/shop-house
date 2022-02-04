@@ -309,4 +309,186 @@ export const productsData = [
       belongings: null,
     },
   },
+  {
+    id: "p-10",
+    initialPrice: 4700000,
+    title: "Bộ 4 ghế phòng ăn Polyurethane",
+    category: { value: "kitchen", name: "Nhà bếp" },
+    productType: "chair",
+    distributor: { name: "Phố Xinh", search: "pho-xinh" },
+    tags: {
+      new: false,
+      bestSeller: true,
+      discount: 20,
+      freeShip: true,
+      gift: false,
+    },
+    promotion: [
+      {
+        freeShipCode: "PhoXinhFreeShip",
+      },
+    ],
+    sort: [
+      {
+        type: "color",
+        defaultValue: "teal",
+        name: "Màu sắc",
+        values: [
+          { value: "teal", name: "Xanh lá", default: true },
+          { value: "white", name: "Trắng" },
+        ],
+      },
+    ],
+    policy: [
+      { warranty: { time: 1, unit: "năm" }, icon: "warranty" },
+      { deliveryDate: { from: 3, to: 5 }, icon: "delivery" },
+      { gift: false, icon: "gift" },
+    ],
+    specs: {
+      size: "32.09'' H x 18.89'' W",
+      madeIn: "Việt Nam",
+      material: ["Gỗ công nghiệp", "Nhựa PVC", "Cao su"],
+      belongings: null,
+    },
+  },
+  {
+    id: "p-11",
+    initialPrice: 6000000,
+    title: "Bàn cà phê Alezzi",
+    category: { value: "living-room", name: "Phòng khách" },
+    productType: "table",
+    distributor: { name: "Hòa Phát", search: "hoa-phat" },
+    tags: {
+      new: true,
+      bestSeller: false,
+      discount: false,
+      freeShip: false,
+      gift: false,
+    },
+    promotion: [],
+    sort: [],
+    policy: [
+      { warranty: null, icon: "warranty" },
+      { deliveryDate: { from: 3, to: 5 }, icon: "delivery" },
+      { gift: false, icon: "gift" },
+    ],
+    specs: {
+      size: "18'' H x 42'' L x 24'' D",
+      madeIn: "Việt Nam",
+      material: ["Gỗ công nghiệp"],
+      belongings: null,
+    },
+  },
+  {
+    id: "p-12",
+    initialPrice: 1800000,
+    title: "Tủ cạnh giường Guilford",
+    category: { value: "bed-room", name: "Phòng ngủ" },
+    productType: "closet-cabinet",
+    distributor: { name: "Decox", search: "decox" },
+    tags: {
+      new: false,
+      bestSeller: false,
+      discount: false,
+      freeShip: false,
+      gift: false,
+    },
+    promotion: [],
+    sort: [
+      {
+        type: "color",
+        defaultValue: "black",
+        name: "Màu sắc",
+        values: [
+          { value: "black", name: "Đen", default: true },
+          { value: "white", name: "Trắng" },
+        ],
+      },
+    ],
+    policy: [
+      { warranty: null, icon: "warranty" },
+      { deliveryDate: { from: 4, to: 7 }, icon: "delivery" },
+      { gift: false, icon: "gift" },
+    ],
+    specs: {
+      size: "19.06'' H x 14.92'' W x 12.5'' D",
+      madeIn: "Việt Nam",
+      material: ["Gỗ công nghiệp"],
+      belongings: null,
+    },
+  },
+  {
+    id: "p-13",
+    initialPrice: 5600000,
+    title: "Tủ bếp Tressa",
+    category: { value: "kitchen", name: "Nhà bếp" },
+    productType: "closet-cabinet",
+    distributor: { name: "Chilai", search: "chi-lai" },
+    tags: {
+      new: false,
+      bestSeller: true,
+      discount: 15,
+      freeShip: true,
+      gift: false,
+    },
+    promotion: [
+      {
+        freeShipCode: "ChilaiFreeShip",
+      },
+    ],
+    sort: [],
+    policy: [
+      { warranty: { time: 1, unit: "năm" }, icon: "warranty" },
+      { deliveryDate: { from: 3, to: 5 }, icon: "delivery" },
+      { gift: false, icon: "gift" },
+    ],
+    specs: {
+      size: "35.98'' H x 35.67'' W x 16.54'' D",
+      madeIn: "Việt Nam",
+      material: ["Gỗ công nghiệp", "Thủy tinh"],
+      belongings: null,
+    },
+  },
+  {
+    id: "p-14",
+    initialPrice: 7200000,
+    title: "Ghế sofa Theodore",
+    category: { value: "living-room", name: "Phòng khách" },
+    productType: "chair",
+    distributor: { name: "Phố Xinh", search: "pho-xinh" },
+    tags: {
+      new: true,
+      bestSeller: false,
+      discount: false,
+      freeShip: true,
+      gift: false,
+    },
+    promotion: [
+      {
+        freeShipCode: "PhoXinhFreeShip",
+      },
+    ],
+    sort: [
+      {
+        type: "color",
+        defaultValue: "beige",
+        name: "Màu sắc",
+        values: [
+          { value: "beige", name: "Be", default: true },
+          { value: "blue", name: "Xanh dương" },
+        ],
+      },
+    ],
+    policy: [
+      { warranty: { time: 1.5, unit: "năm" }, icon: "warranty" },
+      { deliveryDate: { from: 3, to: 5 }, icon: "delivery" },
+      { gift: false, icon: "gift" },
+    ],
+    specs: {
+      size: "36'' H x 55'' W x 30'' D",
+      madeIn: "Việt Nam",
+      material: ["Gỗ công nghiệp", "Vải polyester"],
+      belongings: null,
+    },
+  },
 ];

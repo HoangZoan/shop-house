@@ -129,9 +129,11 @@ class ProductDetailOrderView extends View {
   _generatePrice(price, discount) {
     if (!discount) {
       return `
-        <div class="product-order__price-tag">${convertNumberToPriceString(
-          price - 1
-        )}đ</div>
+        <div class="product-order__price-container">
+          <div class="product-order__price-tag">${convertNumberToPriceString(
+            price - 1
+          )}đ</div>
+        </div>
       `;
     } else {
       return `
