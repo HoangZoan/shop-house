@@ -46,8 +46,16 @@ const productsListSortBarControl = () => {
 };
 
 const productsListControl = () => {
+  // Get products by location
+  const searchQueries = PreviewProductsView.getLocationSearchQueries();
+  const products = PreviewProductsView.getProductBySearchQueries(
+    productsData,
+    searchQueries
+  );
+
+  // Render product items
   PreviewProductsView.setCardTypeClass(".product-list-preview");
-  PreviewProductsView.renderItems(productsData, "side-page");
+  PreviewProductsView.renderItems(products, "side-page");
 
   // Set heart button and handle add favorite product click
   PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
