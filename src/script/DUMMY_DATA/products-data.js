@@ -184,7 +184,7 @@ export const productsData = [
     initialPrice: 1500000,
     title: "Tủ cạnh giường Carnforth",
     category: { value: "bed-room", name: "Phòng ngủ" },
-    productType: "table",
+    productType: "closet-cabinet",
     distributor: { name: "Phố Xinh", search: "pho-xinh" },
     tags: {
       new: false,

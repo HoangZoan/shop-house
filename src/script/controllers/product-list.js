@@ -1,5 +1,6 @@
 import PreviewProductsView from "../views/previewProductsView.js";
 import ProductsListSortBarView from "../views/productsListSortBarView.js";
+import ProductsListPaginationView from "../views/productsListPaginationView.js";
 import {
   addProductToLocalStorage,
   getProductById,
@@ -45,13 +46,14 @@ const productsListSortBarControl = () => {
   ProductsListSortBarView.renderBreadCrumbs("products-list");
 };
 
-const productsListControl = () => {
+function productsListControl(page = 1) {
   // Get products by location
-  const searchQueries = PreviewProductsView.getLocationSearchQueries();
-  const products = PreviewProductsView.getProductBySearchQueries(
-    productsData,
-    searchQueries
-  );
+  const products = PreviewProductsView.getProductBySearchQueries(productsData);
+
+  // Render pagination
+  ProductsListPaginationView.renderSingleItem(true);
+
+  // Get products list by page
 
   // Render product items
   PreviewProductsView.setCardTypeClass(".product-list-preview");
@@ -59,7 +61,9 @@ const productsListControl = () => {
 
   // Set heart button and handle add favorite product click
   PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
-};
+}
+
+function productListPaginationControl() {}
 
 const init = () => {
   initializePageHeader("side-page");

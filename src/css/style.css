@@ -1893,7 +1893,7 @@ input {
 .billboard {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 3.2rem;
+  column-gap: 1.8rem;
   row-gap: 2.8rem;
 }
 @media only screen and (max-width: 40em) {

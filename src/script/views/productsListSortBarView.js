@@ -1,4 +1,6 @@
 import { View } from "./view.js";
+import PreviewProductsView from "./previewProductsView.js";
+import { productsData } from "../DUMMY_DATA/products-data.js";
 
 class ProductsListSortBarView extends View {
   _parentElement = document.querySelector(".products-arrange-bar");
@@ -15,8 +17,15 @@ class ProductsListSortBarView extends View {
   }
 
   addSortPriceOptionsChangeHandler() {
+    const _this = this;
+
     this._sortPrice.addEventListener("change", (event) => {
-      console.log(this._getDataFromSortPrice(event.target.value));
+      const products = _this.getProductBySearchQueries(
+        productsData,
+        this._getDataFromSortPrice(event.target.value)
+      );
+
+      PreviewProductsView.renderItems(products, "side-page");
     });
   }
 
