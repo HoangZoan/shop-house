@@ -1,7 +1,7 @@
 import { productsData } from "./DUMMY_DATA/products-data.js";
 import HeaderTopBarView from "./views/headerTopBarView.js";
 import { deepCompareArrays } from "./helpers.js";
-import { CATEGORIES } from "./config.js";
+import { CATEGORIES, ITEMS_PER_PAGE } from "./config.js";
 
 // INITALIZE PAGE HEADER
 const addClickEventHandler = (callerClass, activeClass) => {
@@ -87,4 +87,11 @@ export const removeProductFromLocalStorage = (productData, storageName) => {
 
 export const clearLocalStorage = (storageName) => {
   window.localStorage.removeItem(storageName);
+};
+
+export const getProductsOnPage = (products, page) => {
+  const fromIndex = ITEMS_PER_PAGE * (page - 1);
+  const toIndex = ITEMS_PER_PAGE * page;
+
+  return products.slice(fromIndex, toIndex);
 };

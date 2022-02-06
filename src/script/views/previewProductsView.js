@@ -4,6 +4,7 @@ import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
 export class PreviewProductsView extends View {
   _parentElement;
   _heartButtonsElement;
+  _notFoundMessage = "Không có sản phẩm. Vui lòng thử lại";
 
   setHeartButtonsElement(handler) {
     this.setMultiComponentElementsClass(
