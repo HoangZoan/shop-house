@@ -28,7 +28,11 @@ class OrdersManageView extends View {
                     <img
                         src="../../resources/images/products/${
                           data.productId
-                        }/${data.searchQueries}-1.jpg"
+                        }/${
+          data.searchQueries && data.searchQueries.length !== 0
+            ? data.searchQueries + "-"
+            : ""
+        }1.jpg"
                         alt="Product img"
                     />
                 </div>

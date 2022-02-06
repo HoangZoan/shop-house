@@ -1,9 +1,11 @@
 import PreviewProductsView from "../views/previewProductsView.js";
 import ProductsListSortBarView from "../views/productsListSortBarView.js";
+import ProductsListPaginationView from "../views/productsListPaginationView.js";
 import {
   addProductToLocalStorage,
   getProductById,
   initializePageHeader,
+  getProductsOnPage,
 } from "../model.js";
 import {
   BRANDS,
@@ -11,6 +13,7 @@ import {
   CATEGORIES,
   ITEM_ARRANGEMENT,
   PRICE_RANGE,
+  ITEMS_PER_PAGE,
 } from "../config.js";
 import { productsData } from "../DUMMY_DATA/products-data.js";
 
@@ -45,13 +48,26 @@ const productsListSortBarControl = () => {
   ProductsListSortBarView.renderBreadCrumbs("products-list");
 };
 
-const productsListControl = () => {
+function productsListControl(_, page = 1) {
+  // Get products by location
+  const products = PreviewProductsView.getProductBySearchQueries(productsData);
+
+  // Render pagination
+  ProductsListPaginationView.renderSingleItem({
+    page,
+    pageNumber: Math.ceil(products.length / ITEMS_PER_PAGE),
+  });
+
+  // Get products list by page
+  const productsOnPage = getProductsOnPage(products, page);
+
+  // Render product items
   PreviewProductsView.setCardTypeClass(".product-list-preview");
-  PreviewProductsView.renderItems(productsData, "side-page");
+  PreviewProductsView.renderItems(productsOnPage, "side-page");
 
   // Set heart button and handle add favorite product click
   PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
-};
+}
 
 const init = () => {
   initializePageHeader("side-page");
@@ -59,5 +75,6 @@ const init = () => {
     productsListSortBarControl
   );
   PreviewProductsView.addRenderWhenLoadedHanlder(productsListControl);
+  ProductsListPaginationView.addNumberButtonClickHandler(productsListControl);
 };
 init();

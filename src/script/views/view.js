@@ -2,6 +2,7 @@ import {
   convertPriceStringToNumber,
   convertNumberToPriceString,
   validateInput,
+  calcSalesPrice,
 } from "../helpers.js";
 
 export class View {
@@ -53,14 +54,17 @@ export class View {
       markup +=
         "\n" +
         `
-          <a class="bread-crumbs__link" href="product-list.html?category=${data.category.value}">
+          <a 
+            class="bread-crumbs__link" 
+            href="product-list.html?category=${data.category.value}?arrange=most-purchased"
+          >
             ${data.category.name}
           </a>
             &nbsp;
           <span class="bread-crumbs__slash">/</span>
             &nbsp;
           <a class="bread-crumbs__link" href="#${data.id}">
-            Bộ bát đĩa sứ 16 món Wickham
+            ${data.title}
           </a> 
         `;
     }
@@ -96,7 +100,10 @@ export class View {
           ${linkName
             .map((data) => {
               return `
-                <a class="bread-crumbs__link" href="product-list.html?category=${data.value}">
+                <a 
+                  class="bread-crumbs__link" 
+                  href="product-list.html?category=${data.value}?arrange=most-purchased"
+                >
                   ${data.name}
                 </a>
               `;
@@ -185,6 +192,110 @@ export class View {
     if (set) window.location.search = search || defaultSortQuery;
 
     if (!set) return defaultSortQuery;
+  }
+
+  getLocationSearchQueries() {
+    return window.location.search
+      .slice(1)
+      .split("?")
+      .map((item) => item.split("="))
+      .reduce((obj, data) => {
+        obj[data[0]] = data[1];
+
+        return obj;
+      }, {});
+  }
+
+  getProductBySearchQueries(products, sortPrice = null) {
+    const queries = this.getLocationSearchQueries();
+    let bestSeller = [],
+      newComing = [],
+      regular = [],
+      output;
+
+    const getProductsArrangedByPrice = (products, asc = true) => {
+      const productsData = products.slice(0);
+
+      for (let i = 0; i < productsData.length; i++) {
+        for (let j = 0; j < productsData.length; j++) {
+          const isSmaller =
+            calcSalesPrice(
+              productsData[i].initialPrice,
+              productsData[i].tags.discount
+            ) <
+            calcSalesPrice(
+              productsData[j].initialPrice,
+              productsData[j].tags.discount
+            );
+
+          if (asc ? isSmaller : !isSmaller) {
+            let middle;
+            middle = productsData[i];
+            productsData[i] = productsData[j];
+            productsData[j] = middle;
+          }
+        }
+      }
+
+      return productsData;
+    };
+
+    for (const product of products) {
+      if (product.tags.new) {
+        newComing.push(product);
+        continue;
+      }
+      if (product.tags.bestSeller) {
+        bestSeller.push(product);
+        continue;
+      }
+      regular.push(product);
+    }
+
+    if (queries.arrange === "most-purchased")
+      output = [...bestSeller, ...newComing, ...regular];
+
+    if (queries.arrange === "new-release")
+      output = [...newComing, ...bestSeller, ...regular];
+
+    if (queries.arrange === "price-asc") {
+      output = getProductsArrangedByPrice(products.slice(0));
+    }
+
+    if (queries.arrange === "price-des") {
+      output = getProductsArrangedByPrice(products.slice(0), false);
+    }
+
+    if (queries.brand) {
+      output = output.filter(
+        (product) => product.distributor.search === queries.brand
+      );
+    }
+
+    if (queries.category) {
+      output = output.filter(
+        (product) => product.category.value === queries.category
+      );
+    }
+
+    if (queries["product-type"]) {
+      output = output.filter(
+        (product) => product.productType === queries["product-type"]
+      );
+    }
+
+    if (sortPrice) {
+      output = output.filter((product) => {
+        const price = calcSalesPrice(
+          product.initialPrice,
+          product.tags.discount
+        );
+
+        return price > sortPrice.from && price <= sortPrice.to;
+      });
+    }
+
+    return output;
   }
 
   generateReceiptPriceDetail(shipmentChargeText = null) {

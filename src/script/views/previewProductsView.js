@@ -4,6 +4,15 @@ import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
 export class PreviewProductsView extends View {
   _parentElement;
   _heartButtonsElement;
+  _notFoundMessage = "Không có sản phẩm. Vui lòng thử lại";
+
+  setHeartButtonsElement(handler) {
+    this.setMultiComponentElementsClass(
+      "_heartButtonsElement",
+      ".card-favorite-btn"
+    );
+    this._addHeartButtonClickHandler(handler);
+  }
 
   _setHeartButtonStyle(heartButton, iconSvg) {
     heartButton.classList.add("active");
@@ -28,14 +37,6 @@ export class PreviewProductsView extends View {
         handler(btn.dataset.productId);
       });
     });
-  }
-
-  setHeartButtonsElement(handler) {
-    this.setMultiComponentElementsClass(
-      "_heartButtonsElement",
-      ".card-favorite-btn"
-    );
-    this._addHeartButtonClickHandler(handler);
   }
 
   _generateTags(tagName, data) {
@@ -131,14 +132,14 @@ export class PreviewProductsView extends View {
                       </div>
                   </div>
                   <div class="card-text">
+                      <div class="card-text__product-title">
+                          ${data.title}
+                      </div>
+
                       ${_this._generatePrice(
                         data.initialPrice,
                         data.tags.discount
                       )}
-
-                      <div class="card-text__product-title">
-                          ${data.title}
-                      </div>
                   </div>
               </a>
       

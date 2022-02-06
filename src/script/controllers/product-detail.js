@@ -56,12 +56,12 @@ const cardHeartButtonControl = (productId) => {
 
 const followingPurchaseProductsControl = () => {
   PreviewProductsView.setCardTypeClass(".following-purchase-preview");
-  PreviewProductsView.renderItems(productsData, "in-page");
+  // PreviewProductsView.renderItems(productsData, "in-page");
 };
 
 const similarProductsControl = () => {
   PreviewProductsView.setCardTypeClass(".similar-purchase-preview");
-  PreviewProductsView.renderItems(productsData, "in-page");
+  // PreviewProductsView.renderItems(productsData, "in-page");
 
   // Set heart button and handle add favorite product click
   PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);

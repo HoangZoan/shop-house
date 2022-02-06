@@ -285,7 +285,9 @@ class OrderCardsView extends View {
   _generageImage(productId, query) {
     return `
         <img
-            src="../resources/images/products/${productId}/${query}-1.jpg"
+            src="../resources/images/products/${productId}/${
+      query && query.length !== 0 ? query + "-" : ""
+    }1.jpg"
             alt="Product image"
         />
     `;

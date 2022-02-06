@@ -12,8 +12,10 @@ class OrderDetailView extends View {
           <div class="order-card-img">
             <img
               src="../../resources/images/products/${item.productId}/${
-          item.searchQueries
-        }-1.jpg"
+          item.searchQueries && item.searchQueries.length !== 0
+            ? item.searchQueries + "-"
+            : ""
+        }1.jpg"
               alt="Product img"
             />
           </div>

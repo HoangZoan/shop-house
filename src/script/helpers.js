@@ -38,6 +38,8 @@ export const convertNumberToPriceString = (
 };
 
 export const calcSalesPrice = (price, discount) => {
+  if (!discount) return price;
+
   return (price * (100 - discount)) / 100;
 };
 

@@ -104,6 +104,24 @@ class ProductDetailOrderView extends View {
           </li>
         `;
         }
+
+        if (item.message) {
+          return `
+            <li>${item.message}</li>
+          `;
+        }
+
+        if (item.gifts) {
+          return `
+            <li>Quà tặng kèm: <strong>${item.gifts.join(", ")}</strong></li>
+          `;
+        }
+
+        if (item.freeShipCode) {
+          return `
+            <li>Nhập mã <strong>${item.freeShipCode}</strong> để được vận chuyển miễn phí</li>
+          `;
+        }
       })
       .join("\n");
   }
@@ -111,9 +129,11 @@ class ProductDetailOrderView extends View {
   _generatePrice(price, discount) {
     if (!discount) {
       return `
-        <div class="product-order__price-tag">${convertNumberToPriceString(
-          price - 1
-        )}đ</div>
+        <div class="product-order__price-container">
+          <div class="product-order__price-tag">${convertNumberToPriceString(
+            price - 1
+          )}đ</div>
+        </div>
       `;
     } else {
       return `
@@ -175,9 +195,16 @@ class ProductDetailOrderView extends View {
         </div>
       </div>
 
-      <ul class="product-order__promotion-list">
-        ${this._generatePromotionList(data.promotion)}
-      </ul>
+      ${
+        data.promotion.length > 0
+          ? `
+        <ul class="product-order__promotion-list">
+          ${this._generatePromotionList(data.promotion)}
+        </ul>
+      `
+          : ""
+      }
+      
 
       ${this._generatePrice(data.initialPrice, data.tags.discount)}
 

@@ -1,5 +1,6 @@
 export const SUCCESS_MESSAGE_TIMEOUT = 3000;
 export const MINI_IMAGE_AMOUNT = 4;
+export const ITEMS_PER_PAGE = 8;
 export const PRODUCT_DETAIL_SEARCH_QUERIES = [
   { query: "color", name: "Màu sắc", value: null },
   { query: "size", name: "Kích cỡ", value: null },
@@ -20,7 +21,9 @@ export const BRANDS = [
   { name: "Decox", value: "decox" },
 ];
 export const PRODUCT_TYPES = [
-  { name: "Bàn ghế", value: "table-chair" },
+  { name: "Bàn", value: "table" },
+  { name: "Ghế", value: "chair" },
+  { name: "Giường", value: "bed" },
   { name: "Tủ", value: "closet-cabinet" },
   { name: "Dụng cụ nhà bếp", value: "kitchen-appliances" },
   { name: "Dụng cụ làm vườn", value: "garden-appliances" },
