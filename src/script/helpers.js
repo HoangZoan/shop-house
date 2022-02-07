@@ -151,15 +151,55 @@ export class Carousel {
     // Responsive
     if (Boolean(options.responsive)) {
       window.addEventListener("resize", () => {
-        // Set wrapper according to responsive (resizing)
+        // Re-asign 'this' value according to responsive (resizing)
         _this._setResponsiveCSS(_this._options);
-        this._setWrapperStyle();
+        _this._setWrapperStyle();
+        this._handleDirectionButtons(true);
       });
 
-      // Set wrapper according to responsive (reload)
+      // Re-asign 'this' value according to responsive (reload)
       this._setResponsiveCSS(_this._options);
       this._setWrapperStyle();
+      this._handleDirectionButtons();
+    } else {
+      // Set next/prev button handler (no-responsive)
+      this._handleDirectionButtons();
     }
+  }
+
+  _handleDirectionButtons(resize = false) {
+    if (!this._btnNext || !this._btnPrev) return;
+
+    if (resize) {
+      this._cardEls.forEach((el) => {
+        el.style.transform = "translateX(0)";
+      });
+      this._turn = 1;
+      return;
+    }
+
+    const _this = this;
+    if (!this._turn) this._turn = 1;
+
+    this._btnNext.addEventListener("click", () => {
+      if (_this._turn === _this._cardsLength - _this._cardShown + 1) return;
+
+      _this._cardEls.forEach((el) => {
+        el.style.transform = `translateX(calc((100% * ${_this._turn} + ${_this._gap} * ${_this._turn}) * -1))`;
+      });
+      _this._turn++;
+    });
+
+    this._btnPrev.addEventListener("click", () => {
+      if (_this._turn === 1) return;
+      _this._turn--;
+
+      _this._cardEls.forEach((el) => {
+        el.style.transform = `translateX(calc((100% * ${_this._turn - 1} + ${
+          _this._gap
+        } * ${_this._turn - 1}) * -1))`;
+      });
+    });
   }
 
   _setStyle(element, css) {
