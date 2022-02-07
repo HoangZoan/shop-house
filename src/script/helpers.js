@@ -195,15 +195,6 @@ export class Carousel {
               ? hoverEffect[prop]
               : `${initialStyle[prop]} ${hoverEffect[prop]}`;
         });
-
-        // console.log(initialStyle);
-        // if (_this._options.hoverEffect.transform) {
-        //   const cardTransformStyle = el.style.transform;
-        //   initialStyle = cardTransformStyle;
-        //   el.style.transform = cardTransformStyle
-        //     ? `${cardTransformStyle} ${_this._options.hoverEffect.transform}`
-        //     : _this._options.hoverEffect.transform;
-        // }
       });
 
       el.addEventListener("mouseout", () => {
@@ -228,9 +219,22 @@ export class Carousel {
     const _this = this;
     if (!this._turn) this._turn = 1;
 
-    this._btnNext.addEventListener("click", () => {
-      if (_this._turn === _this._cardsLength - _this._cardShown + 1) return;
+    // Hide prev button when showing the first card
+    _this._btnPrev.style.opacity = "0";
+    _this._btnPrev.style.visibility = "hidden";
 
+    this._btnNext.addEventListener("click", () => {
+      // Show prev button
+      _this._btnPrev.style.opacity = "1";
+      _this._btnPrev.style.visibility = "visible";
+
+      // Hide next button when showing the last card
+      if (_this._turn === _this._cardsLength - _this._cardShown) {
+        _this._btnNext.style.opacity = "0";
+        _this._btnNext.style.visibility = "hidden";
+      }
+
+      // Func
       _this._cardEls.forEach((el) => {
         el.style.transform = `translateX(calc((100% * ${_this._turn} + ${_this._gap} * ${_this._turn}) * -1))`;
       });
@@ -238,7 +242,11 @@ export class Carousel {
     });
 
     this._btnPrev.addEventListener("click", () => {
-      if (_this._turn === 1) return;
+      // Show next button
+      _this._btnNext.style.opacity = "1";
+      _this._btnNext.style.visibility = "visible";
+
+      // Func
       _this._turn--;
 
       _this._cardEls.forEach((el) => {
@@ -246,6 +254,12 @@ export class Carousel {
           _this._gap
         } * ${_this._turn - 1}) * -1))`;
       });
+
+      // Hide prev button when showing the first card
+      if (_this._turn === 1) {
+        _this._btnPrev.style.opacity = "0";
+        _this._btnPrev.style.visibility = "hidden";
+      }
     });
   }
 

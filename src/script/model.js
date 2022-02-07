@@ -95,3 +95,18 @@ export const getProductsOnPage = (products, page) => {
 
   return products.slice(fromIndex, toIndex);
 };
+
+export const getProductsByType = (type) => {
+  let output;
+
+  switch (type) {
+    case "best-seller":
+      output = productsData.filter((product) => product.tags.bestSeller);
+      break;
+    case "new-coming":
+      output = productsData.filter((product) => product.tags.new);
+      break;
+  }
+
+  return output;
+};

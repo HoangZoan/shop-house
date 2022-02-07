@@ -1,10 +1,26 @@
 import { View } from "./view.js";
 import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
+import { Carousel } from "../helpers.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
   _heartButtonsElement;
   _notFoundMessage = "Không có sản phẩm. Vui lòng thử lại";
+
+  addCarouselsHandler(sliderClassName) {
+    const carousel = new Carousel(sliderClassName, {
+      btnPrev: "slider-btn--prev",
+      btnNext: "slider-btn--next",
+      sliderType: "multi-slides",
+      cardShown: 4,
+      gap: "2.4rem",
+      responsive: [
+        { breakPoint: "31.25em", cardShown: 1 },
+        { breakPoint: "40em", cardShown: 2 },
+        { breakPoint: "60em", cardShown: 3 },
+      ],
+    });
+  }
 
   setHeartButtonsElement(handler) {
     this.setMultiComponentElementsClass(

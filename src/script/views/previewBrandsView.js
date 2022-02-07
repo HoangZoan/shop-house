@@ -16,9 +16,6 @@ class PreviewBrandsView extends View {
         { breakPoint: "40em", gap: "2.8rem" },
         { breakPoint: "60em", cardShown: 2 },
       ],
-      hoverEffect: {
-        transform: "translateY(-2px)",
-      },
     });
   }
 
