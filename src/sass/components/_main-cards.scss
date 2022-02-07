@@ -80,12 +80,12 @@
   }
 
   &__cards-container {
-    position: relative;
+    // position: relative;
+    // overflow: hidden;
   }
 
   &__cards {
-    display: grid;
-    overflow: hidden;
+    // display: grid;
     padding: 0.8rem;
 
     .card-img,
@@ -159,27 +159,6 @@
       );
 
       grid-template-columns: repeat(var(--brands-number), var(--column-width));
-      column-gap: var(--column-gap);
-    }
-
-    &.variant-product-preview {
-      --columns-visible: 4;
-      @include respond(lg) {
-        --columns-visible: 3;
-      }
-      @include respond(md) {
-        --columns-visible: 2;
-      }
-      @include respond(sm) {
-        --columns-visible: 1;
-      }
-
-      --column-gap: 3.2rem;
-      --column-width: calc(
-        (100% - var(--column-gap) * (var(--columns-visible) - 1)) /
-          var(--columns-visible)
-      );
-      grid-template-columns: repeat(5, var(--column-width));
       column-gap: var(--column-gap);
     }
 

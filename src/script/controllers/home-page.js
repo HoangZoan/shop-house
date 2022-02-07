@@ -11,6 +11,9 @@ import {
 
 const brandsPreviewControl = () => {
   PreviewBrandsView.renderItems(BRANDS);
+
+  // Test
+  PreviewBrandsView.addCarouselsHandler();
 };
 
 const cardHeartButtonControl = (productId) => {

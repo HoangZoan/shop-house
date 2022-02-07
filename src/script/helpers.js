@@ -126,3 +126,78 @@ export const calcPromotionCodePrice = (netPrice, promotionCode) => {
 
   return (netPrice * discountNumber) / 100;
 };
+
+export class Carousel {
+  constructor(className, options) {
+    this._options = options;
+    this._carouselWrapperEl = document.querySelector("." + className);
+    this._carouselContainerEl = this._carouselWrapperEl.parentElement;
+    this._cardEls = [...this._carouselWrapperEl.children];
+    this._btnNext = this._carouselContainerEl.querySelector(
+      "." + options.btnNext
+    );
+    this._btnPrev = this._carouselContainerEl.querySelector(
+      "." + options.btnPrev
+    );
+    this._cardsLength = this._cardEls.length;
+    this._cardShown = options.cardShown;
+    this._gap = options.gap;
+    const _this = this;
+
+    // Set components style
+    this._setContainerStyle();
+    this._setWrapperStyle();
+
+    // Responsive
+    if (Boolean(options.responsive)) {
+      window.addEventListener("resize", () => {
+        // Set wrapper according to responsive (resizing)
+        _this._setResponsiveCSS(_this._options);
+        this._setWrapperStyle();
+      });
+
+      // Set wrapper according to responsive (reload)
+      this._setResponsiveCSS(_this._options);
+      this._setWrapperStyle();
+    }
+  }
+
+  _setStyle(element, css) {
+    const props = Object.keys(css);
+    props.forEach((prop) => (element.style[prop] = css[prop]));
+  }
+
+  _setResponsiveCSS(options) {
+    const currentRes = options.responsive.find(
+      (option) => window.matchMedia(`(max-width:${option.breakPoint})`).matches
+    );
+
+    if (!currentRes) {
+      this._cardShown = options.cardShown;
+      this._gap = options.gap;
+    } else {
+      const props = Object.keys(currentRes);
+      props.forEach((prop) => {
+        if (prop === "breakPoint") return;
+        this[`_${prop}`] = currentRes[prop];
+      });
+    }
+  }
+
+  _setContainerStyle() {
+    this._setStyle(this._carouselContainerEl, {
+      position: "relative",
+      overflow: "hidden",
+    });
+  }
+
+  _setWrapperStyle() {
+    const columnWidth = `calc((100% - ${this._gap} * (${this._cardShown} - 1)) / ${this._cardShown})`;
+
+    this._setStyle(this._carouselWrapperEl, {
+      display: "grid",
+      gridTemplateColumns: `repeat(${this._cardsLength}, ${columnWidth})`,
+      columnGap: this._gap,
+    });
+  }
+}
