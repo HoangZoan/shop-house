@@ -8,6 +8,7 @@ class PreviewBrandsView extends View {
     const carousel = new Carousel("brands-preview", {
       btnPrev: "slider-btn--prev",
       btnNext: "slider-btn--next",
+      sliderType: "multi-slides",
       cardShown: 3,
       gap: "4.8rem",
       responsive: [
@@ -15,6 +16,9 @@ class PreviewBrandsView extends View {
         { breakPoint: "40em", gap: "2.8rem" },
         { breakPoint: "60em", cardShown: 2 },
       ],
+      hoverEffect: {
+        transform: "translateY(-2px)",
+      },
     });
   }
 

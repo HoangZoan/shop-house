@@ -144,6 +144,13 @@ export class Carousel {
     this._gap = options.gap;
     const _this = this;
 
+    let slidesHandler;
+    switch (options.sliderType) {
+      case "multi-slides":
+        slidesHandler = this._multiSlidesHandler.bind(this);
+        break;
+    }
+
     // Set components style
     this._setContainerStyle();
     this._setWrapperStyle();
@@ -154,20 +161,60 @@ export class Carousel {
         // Re-asign 'this' value according to responsive (resizing)
         _this._setResponsiveCSS(_this._options);
         _this._setWrapperStyle();
-        this._handleDirectionButtons(true);
+        slidesHandler(true);
       });
 
       // Re-asign 'this' value according to responsive (reload)
       this._setResponsiveCSS(_this._options);
       this._setWrapperStyle();
-      this._handleDirectionButtons();
+      slidesHandler();
     } else {
       // Set next/prev button handler (no-responsive)
-      this._handleDirectionButtons();
+      slidesHandler();
+    }
+
+    // Set hover effect
+    if (Boolean(options.hoverEffect)) {
+      this._setHoverEffect(options.hoverEffect);
     }
   }
 
-  _handleDirectionButtons(resize = false) {
+  _setHoverEffect(hoverEffect) {
+    const _this = this;
+    let initialStyle = {};
+
+    this._cardEls.forEach((el) => {
+      el.addEventListener("mouseover", () => {
+        const props = Object.keys(hoverEffect);
+
+        props.forEach((prop) => {
+          initialStyle[prop] = el.style[prop];
+
+          el.style[prop] =
+            initialStyle[prop] === ""
+              ? hoverEffect[prop]
+              : `${initialStyle[prop]} ${hoverEffect[prop]}`;
+        });
+
+        // console.log(initialStyle);
+        // if (_this._options.hoverEffect.transform) {
+        //   const cardTransformStyle = el.style.transform;
+        //   initialStyle = cardTransformStyle;
+        //   el.style.transform = cardTransformStyle
+        //     ? `${cardTransformStyle} ${_this._options.hoverEffect.transform}`
+        //     : _this._options.hoverEffect.transform;
+        // }
+      });
+
+      el.addEventListener("mouseout", () => {
+        const props = Object.keys(initialStyle);
+
+        props.forEach((prop) => (el.style[prop] = initialStyle[prop]));
+      });
+    });
+  }
+
+  _multiSlidesHandler(resize = false) {
     if (!this._btnNext || !this._btnPrev) return;
 
     if (resize) {
