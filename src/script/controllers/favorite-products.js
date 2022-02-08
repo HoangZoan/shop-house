@@ -21,7 +21,9 @@ const FavoriteProductsControl = () => {
 };
 
 const recentlyViewedProductsControl = () => {
-  const products = getDataFromLocalStorage("recently-viewed-products");
+  const products = getDataFromLocalStorage(
+    "recently-viewed-products"
+  ).reverse();
 
   PreviewProductsView.setCardTypeClass(".recently-viewed-prodcuts");
   PreviewProductsView.renderItems(products, "side-page");

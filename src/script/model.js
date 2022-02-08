@@ -128,16 +128,33 @@ export const getProductsByType = (type, productData, productId) => {
 };
 
 export const addRecentlyViewedProducts = (product) => {
+  let recentlyViewedProducts;
   addProductToLocalStorage(product, "recently-viewed-products");
+  recentlyViewedProducts = getDataFromLocalStorage("recently-viewed-products");
+  if (recentlyViewedProducts.length <= 1) return;
 
-  const recentlyViewedProducts = getDataFromLocalStorage(
-    "recently-viewed-products"
+  const match = recentlyViewedProducts.find(
+    (productData) => productData.id === product.id
   );
 
-  if (recentlyViewedProducts.length < RECENTLY_VIEWED_PRODUCTS_MAX + 1) return;
+  if (match) {
+    const updatedProducts = recentlyViewedProducts.filter(
+      (productData) => productData.id !== product.id
+    );
+    recentlyViewedProducts = [...updatedProducts, product];
+  }
 
-  window.localStorage.setItem(
-    "recently-viewed-products",
-    JSON.stringify(recentlyViewedProducts.slice(1))
-  );
+  if (recentlyViewedProducts.length < RECENTLY_VIEWED_PRODUCTS_MAX + 1) {
+    if (match) {
+      window.localStorage.setItem(
+        "recently-viewed-products",
+        JSON.stringify(recentlyViewedProducts)
+      );
+    }
+  } else {
+    window.localStorage.setItem(
+      "recently-viewed-products",
+      JSON.stringify(recentlyViewedProducts.slice(1))
+    );
+  }
 };
