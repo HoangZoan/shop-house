@@ -17,6 +17,7 @@ class ProductDetailDescriptionView extends View {
     const carousel = new Carousel("product-description__gallery__big-img", {
       btnPrev: "slider-btn--prev",
       btnNext: "slider-btn--next",
+      btnImageContainer: "product-description__gallery__small-images-container",
       sliderType: "full-content",
     });
   }
@@ -26,8 +27,8 @@ class ProductDetailDescriptionView extends View {
 
     for (let i = 1; i <= MINI_IMAGE_AMOUNT; i++) {
       result.push(`
-        <div class="${!bigImages ? "small-image " : ""}${
-        i === 1 ? "active" : ""
+        <div class="${!bigImages ? "small-image " : "large-image"}${
+        !bigImages ? (i === 1 ? "active" : "") : ""
       }">
           <img
             src="../resources/images/products/${productId}/${

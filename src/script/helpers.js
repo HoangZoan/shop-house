@@ -133,15 +133,25 @@ export class Carousel {
     this._carouselWrapperEl = document.querySelector("." + className);
     this._carouselContainerEl = this._carouselWrapperEl.parentElement;
     this._cardEls = [...this._carouselWrapperEl.children];
-    this._imgEls = this._carouselWrapperEl.querySelectorAll("img");
+    this._imgEls = [...this._carouselWrapperEl.querySelectorAll("img")].map(
+      (el) => el.parentElement
+    );
     this._btnNext = this._carouselContainerEl.querySelector(
       "." + options.btnNext
     );
     this._btnPrev = this._carouselContainerEl.querySelector(
       "." + options.btnPrev
     );
+    this._btnImagesContainer = this._carouselContainerEl.querySelector(
+      "." + options.btnImageContainer
+    );
+    this._btnsImage = this._btnImagesContainer && [
+      ...this._btnImagesContainer.children,
+    ];
+
     this._cardShown = options.cardShown;
     this._gap = options.gap;
+    this._slideSpeed = options.slideSpeed;
     const _this = this;
 
     // Set slider type config
@@ -193,37 +203,118 @@ export class Carousel {
     }
   }
 
-  _setHoverEffect(hoverEffect) {
-    let initialStyle = {};
+  // Functions for 'full-content' type
+  _fullContentSlidesHandler() {
+    const _this = this;
+    if (!this._imageOrder) this._imageOrder = 1;
+    // let imageOrder = 1;
 
-    this._cardEls.forEach((el) => {
-      el.addEventListener("mouseover", () => {
-        const props = Object.keys(hoverEffect);
+    // Handle arrow buttons
+    if (this._btnNext && this._btnPrev) {
+      this._handleFullContentSlidesArrowButtons();
+    }
 
-        props.forEach((prop) => {
-          initialStyle[prop] = el.style[prop];
+    // Handle mini-images
+    if (this._btnsImage) {
+      this._handleFullContentImageButtons();
+    }
+  }
 
-          el.style[prop] =
-            initialStyle[prop] === ""
-              ? hoverEffect[prop]
-              : `${initialStyle[prop]} ${hoverEffect[prop]}`;
+  _activateMiniImagesByImageOrder(imageOrder) {
+    this._btnsImage.forEach((el, index) => {
+      if (index + 1 === imageOrder) {
+        el.classList.add("active");
+      } else {
+        el.classList.remove("active");
+      }
+    });
+  }
+
+  _showImageByIndex(imageOrder) {
+    this._imgEls.forEach(
+      (el) =>
+        (el.style.transform = `translateX(calc((${
+          imageOrder - 1
+        } * 100%) * -1)`)
+    );
+  }
+
+  _handleFullContentImageButtons() {
+    const _this = this;
+
+    this._btnsImage.forEach((el, index) => {
+      el.addEventListener("click", () => {
+        // Show large image and activate mini image by index
+        _this._showImageByIndex(index + 1);
+        _this._activateMiniImagesByImageOrder(index + 1);
+        _this._imageOrder = index + 1;
+
+        // Show/hide nex/prev button (if they exist)
+        if (!this._btnNext || !this._btnPrev) return;
+
+        [_this._btnPrev, _this._btnNext].forEach((el) => {
+          el.style.opacity = "1";
+          el.style.visibility = "visible";
         });
-      });
 
-      el.addEventListener("mouseout", () => {
-        const props = Object.keys(initialStyle);
+        // Hide next button when showing the last image
+        if (index === this._btnsImage.length - 1) {
+          _this._btnNext.style.opacity = "0";
+          _this._btnNext.style.visibility = "hidden";
+        }
 
-        props.forEach((prop) => (el.style[prop] = initialStyle[prop]));
+        // Hide prev button when showing the first image
+        if (index === 0) {
+          this._btnPrev.style.opacity = "0";
+          this._btnPrev.style.visibility = "hidden";
+        }
       });
     });
   }
 
-  _showImageByIndex() {}
+  _handleFullContentSlidesArrowButtons() {
+    // Hide prev button when showing the first image
+    if (this._imageOrder === 1) {
+      this._btnPrev.style.opacity = "0";
+      this._btnPrev.style.visibility = "hidden";
+    }
 
-  _fullContentSlidesHandler() {
-    // console.log(this._imgEls);
+    this._btnNext.addEventListener("click", () => {
+      // Show next button
+      this._btnPrev.style.opacity = "1";
+      this._btnPrev.style.visibility = "visible";
+
+      // Hide next button when showing the last image
+      if (this._imageOrder === this._imgEls.length - 1) {
+        this._btnNext.style.opacity = "0";
+        this._btnNext.style.visibility = "hidden";
+      }
+
+      // Functionality
+      this._imageOrder++;
+      this._showImageByIndex(this._imageOrder);
+      this._btnsImage && this._activateMiniImagesByImageOrder(this._imageOrder);
+    });
+
+    this._btnPrev.addEventListener("click", () => {
+      // Show next button
+      this._btnNext.style.opacity = "1";
+      this._btnNext.style.visibility = "visible";
+
+      // Functionality
+      this._imageOrder--;
+      this._showImageByIndex(this._imageOrder);
+      this._btnsImage && this._activateMiniImagesByImageOrder(this._imageOrder);
+
+      // Hide prev button when showing the first image
+      if (this._imageOrder === 1) {
+        this._btnPrev.style.opacity = "0";
+        this._btnPrev.style.visibility = "hidden";
+      }
+    });
   }
 
+  // Functions for 'multi-slides' type
   _multiSlidesHandler(resize = false) {
     if (!this._btnNext || !this._btnPrev) return;
 
@@ -248,12 +339,12 @@ export class Carousel {
       _this._btnPrev.style.visibility = "visible";
 
       // Hide next button when showing the last card
-      if (_this._turn === _this._cardsLength - _this._cardShown) {
+      if (_this._turn === _this._cardEls.length - _this._cardShown) {
         _this._btnNext.style.opacity = "0";
         _this._btnNext.style.visibility = "hidden";
       }
 
-      // Func
+      // Functionality
       _this._cardEls.forEach((el) => {
         el.style.transform = `translateX(calc((100% * ${_this._turn} + ${_this._gap} * ${_this._turn}) * -1))`;
       });
@@ -265,9 +356,8 @@ export class Carousel {
       _this._btnNext.style.opacity = "1";
       _this._btnNext.style.visibility = "visible";
 
-      // Func
+      // Functionality
       _this._turn--;
-
       _this._cardEls.forEach((el) => {
         el.style.transform = `translateX(calc((100% * ${_this._turn - 1} + ${
           _this._gap
@@ -281,6 +371,8 @@ export class Carousel {
       }
     });
   }
+
+  // Set components style
 
   _setStyle(element, css) {
     const props = Object.keys(css);
@@ -329,6 +421,31 @@ export class Carousel {
       display: "grid",
       gridTemplateColumns: `repeat(${columnCount}, ${columnWidth})`,
       columnGap: this._gap,
+    });
+  }
+
+  _setHoverEffect(hoverEffect) {
+    let initialStyle = {};
+
+    this._cardEls.forEach((el) => {
+      el.addEventListener("mouseover", () => {
+        const props = Object.keys(hoverEffect);
+
+        props.forEach((prop) => {
+          initialStyle[prop] = el.style[prop];
+
+          el.style[prop] =
+            initialStyle[prop] === ""
+              ? hoverEffect[prop]
+              : `${initialStyle[prop]} ${hoverEffect[prop]}`;
+        });
+      });
+
+      el.addEventListener("mouseout", () => {
+        const props = Object.keys(initialStyle);
+
+        props.forEach((prop) => (el.style[prop] = initialStyle[prop]));
+      });
     });
   }
 }
