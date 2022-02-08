@@ -76,5 +76,8 @@ const init = () => {
   );
   PreviewProductsView.addRenderWhenLoadedHanlder(productsListControl);
   ProductsListPaginationView.addNumberButtonClickHandler(productsListControl);
+  ProductsListPaginationView.addUpdateProductListWhenResizeHandler(
+    productsListControl
+  );
 };
 init();

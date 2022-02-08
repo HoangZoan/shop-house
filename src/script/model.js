@@ -94,8 +94,15 @@ export const clearLocalStorage = (storageName) => {
 };
 
 export const getProductsOnPage = (products, page) => {
-  const fromIndex = ITEMS_PER_PAGE * (page - 1);
-  const toIndex = ITEMS_PER_PAGE * page;
+  let itemsPerPage = ITEMS_PER_PAGE;
+
+  const mediaMax = window.matchMedia("(max-width: 60em)").matches;
+  const mediaMin = window.matchMedia("(min-width: 40em)").matches;
+
+  if (mediaMin && mediaMax) itemsPerPage = ITEMS_PER_PAGE + 1;
+
+  const fromIndex = itemsPerPage * (page - 1);
+  const toIndex = itemsPerPage * page;
 
   return products.slice(fromIndex, toIndex);
 };
