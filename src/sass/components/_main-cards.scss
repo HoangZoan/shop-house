@@ -95,7 +95,7 @@
       position: relative;
 
       .product-card-tags {
-        width: 70%;
+        width: 75%;
         display: flex;
         align-items: flex-start;
         flex-wrap: wrap;
@@ -135,29 +135,6 @@
           }
         }
       }
-    }
-
-    &.variant-brand {
-      --columns-visible: 3;
-      @include respond(lg) {
-        --columns-visible: 2;
-      }
-      @include respond(sm) {
-        --columns-visible: 1;
-      }
-
-      --column-gap: 4.8rem;
-      @include respond(md) {
-        --column-gap: 2.8rem;
-      }
-
-      --column-width: calc(
-        (100% - var(--column-gap) * (var(--columns-visible) - 1)) /
-          var(--columns-visible)
-      );
-
-      grid-template-columns: repeat(var(--brands-number), var(--column-width));
-      column-gap: var(--column-gap);
     }
 
     &.product-list-preview {

@@ -5,6 +5,13 @@ class ProductDetailDescriptionView extends View {
   _parentElement = document.querySelector(".product-description");
   _productDetailSection = document.querySelector(".section-product-detail");
 
+  addHashChangeHandler() {
+    window.addEventListener("hashchange", () => {
+      window.location.reload();
+      window.scroll({ top: 0 });
+    });
+  }
+
   _generageSmallImages(productId, query) {
     let result = [];
 
@@ -35,7 +42,10 @@ class ProductDetailDescriptionView extends View {
 
   _generateMarkup() {
     const data = this._data;
-    const locationQuery = this._getLocationSearchValues();
+    const locationQuery =
+      this._getLocationSearchValues() === "_blank"
+        ? ""
+        : this._getLocationSearchValues();
 
     return `
     <div class="product-description__gallery">

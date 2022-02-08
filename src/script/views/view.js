@@ -182,6 +182,8 @@ export class View {
   }
 
   setLocationSearch(search = null, sort = null, set = true) {
+    if (sort && sort.length === 0) return "?sort=_blank";
+
     const sortData = sort || this._data.sort;
     const defaultSortQuery = sortData
       ?.map((data) => {
@@ -296,6 +298,12 @@ export class View {
     }
 
     return output;
+  }
+
+  getData() {
+    if (!this._data) return null;
+
+    return this._data;
   }
 
   generateReceiptPriceDetail(shipmentChargeText = null) {

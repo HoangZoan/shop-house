@@ -177,6 +177,12 @@ export class Carousel {
     if (Boolean(options.hoverEffect)) {
       this._setHoverEffect(options.hoverEffect);
     }
+
+    // Hide next/prev button when there're not enough cards
+    if (this._cardEls.length < this._cardShown) {
+      this._btnNext.style.display = "none";
+      this._btnPrev.style.display = "none";
+    }
   }
 
   _setHoverEffect(hoverEffect) {

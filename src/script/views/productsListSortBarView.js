@@ -30,12 +30,14 @@ class ProductsListSortBarView extends View {
   }
 
   addSortOptionsChangeHandler() {
+    const _this = this;
+
     this._sortSelects.forEach((select) => {
       if (select.dataset.query === "price-range") return;
 
       select.addEventListener("change", () => {
         let queriesArr = [];
-        this._sortSelects.forEach((select) => {
+        _this._sortSelects.forEach((select) => {
           if (select.value !== "") {
             queriesArr.push({
               query: select.dataset.query,
@@ -44,13 +46,25 @@ class ProductsListSortBarView extends View {
           }
         });
 
+        if (select.dataset.query === "category") {
+          const queriesIncludeProductType = _this
+            ._getLocationSearchValues(false)
+            .includes("product-type");
+
+          if (queriesIncludeProductType) {
+            queriesArr = queriesArr.filter(
+              (queryData) => queryData.query !== "product-type"
+            );
+          }
+        }
+
         const queriesStr = queriesArr
           .map(({ query, value }) => {
             return `?${query}=${value}`;
           })
           .join("");
 
-        this.setLocationSearch(queriesStr);
+        _this.setLocationSearch(queriesStr);
       });
     });
   }

@@ -2022,7 +2022,7 @@ input {
   position: relative;
 }
 .main-cards__cards .card-img .product-card-tags {
-  width: 70%;
+  width: 75%;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -2056,31 +2056,6 @@ input {
 }
 .main-cards__cards .card-img .product-card-tags__item--gift {
   background-color: #3498db;
-}
-.main-cards__cards.variant-brand {
-  --columns-visible: 3;
-  --column-gap: 4.8rem;
-  --column-width: calc(
-    (100% - var(--column-gap) * (var(--columns-visible) - 1)) /
-      var(--columns-visible)
-  );
-  grid-template-columns: repeat(var(--brands-number), var(--column-width));
-  column-gap: var(--column-gap);
-}
-@media only screen and (max-width: 60em) {
-  .main-cards__cards.variant-brand {
-    --columns-visible: 2;
-  }
-}
-@media only screen and (max-width: 31.25em) {
-  .main-cards__cards.variant-brand {
-    --columns-visible: 1;
-  }
-}
-@media only screen and (max-width: 40em) {
-  .main-cards__cards.variant-brand {
-    --column-gap: 2.8rem;
-  }
 }
 .main-cards__cards.product-list-preview {
   --columns-visible: 4;
