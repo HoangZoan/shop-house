@@ -1,6 +1,7 @@
 export const SUCCESS_MESSAGE_TIMEOUT = 3000;
 export const MINI_IMAGE_AMOUNT = 4;
 export const ITEMS_PER_PAGE = 8;
+export const RECENTLY_VIEWED_PRODUCTS_MAX = 10;
 export const PRODUCT_DETAIL_SEARCH_QUERIES = [
   { query: "color", name: "Màu sắc", value: null },
   { query: "size", name: "Kích cỡ", value: null },

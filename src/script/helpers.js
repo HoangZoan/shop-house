@@ -126,3 +126,185 @@ export const calcPromotionCodePrice = (netPrice, promotionCode) => {
 
   return (netPrice * discountNumber) / 100;
 };
+
+export class Carousel {
+  constructor(className, options) {
+    this._options = options;
+    this._carouselWrapperEl = document.querySelector("." + className);
+    this._carouselContainerEl = this._carouselWrapperEl.parentElement;
+    this._cardEls = [...this._carouselWrapperEl.children];
+    this._btnNext = this._carouselContainerEl.querySelector(
+      "." + options.btnNext
+    );
+    this._btnPrev = this._carouselContainerEl.querySelector(
+      "." + options.btnPrev
+    );
+    this._cardsLength = this._cardEls.length;
+    this._cardShown = options.cardShown;
+    this._gap = options.gap;
+    const _this = this;
+
+    let slidesHandler;
+    switch (options.sliderType) {
+      case "multi-slides":
+        slidesHandler = this._multiSlidesHandler.bind(this);
+        break;
+    }
+
+    // Set components style
+    this._setContainerStyle();
+    this._setWrapperStyle();
+
+    // Responsive
+    if (Boolean(options.responsive)) {
+      window.addEventListener("resize", () => {
+        // Re-asign 'this' value according to responsive (resizing)
+        _this._setResponsiveCSS(_this._options);
+        _this._setWrapperStyle();
+        slidesHandler(true);
+      });
+
+      // Re-asign 'this' value according to responsive (reload)
+      this._setResponsiveCSS(_this._options);
+      this._setWrapperStyle();
+      slidesHandler();
+    } else {
+      // Set next/prev button handler (no-responsive)
+      slidesHandler();
+    }
+
+    // Set hover effect
+    if (Boolean(options.hoverEffect)) {
+      this._setHoverEffect(options.hoverEffect);
+    }
+
+    // Hide next/prev button when there're not enough cards
+    if (this._cardEls.length < this._cardShown) {
+      this._btnNext.style.display = "none";
+      this._btnPrev.style.display = "none";
+    }
+  }
+
+  _setHoverEffect(hoverEffect) {
+    const _this = this;
+    let initialStyle = {};
+
+    this._cardEls.forEach((el) => {
+      el.addEventListener("mouseover", () => {
+        const props = Object.keys(hoverEffect);
+
+        props.forEach((prop) => {
+          initialStyle[prop] = el.style[prop];
+
+          el.style[prop] =
+            initialStyle[prop] === ""
+              ? hoverEffect[prop]
+              : `${initialStyle[prop]} ${hoverEffect[prop]}`;
+        });
+      });
+
+      el.addEventListener("mouseout", () => {
+        const props = Object.keys(initialStyle);
+
+        props.forEach((prop) => (el.style[prop] = initialStyle[prop]));
+      });
+    });
+  }
+
+  _multiSlidesHandler(resize = false) {
+    if (!this._btnNext || !this._btnPrev) return;
+
+    if (resize) {
+      this._cardEls.forEach((el) => {
+        el.style.transform = "translateX(0)";
+      });
+      this._turn = 1;
+      return;
+    }
+
+    const _this = this;
+    if (!this._turn) this._turn = 1;
+
+    // Hide prev button when showing the first card
+    _this._btnPrev.style.opacity = "0";
+    _this._btnPrev.style.visibility = "hidden";
+
+    this._btnNext.addEventListener("click", () => {
+      // Show prev button
+      _this._btnPrev.style.opacity = "1";
+      _this._btnPrev.style.visibility = "visible";
+
+      // Hide next button when showing the last card
+      if (_this._turn === _this._cardsLength - _this._cardShown) {
+        _this._btnNext.style.opacity = "0";
+        _this._btnNext.style.visibility = "hidden";
+      }
+
+      // Func
+      _this._cardEls.forEach((el) => {
+        el.style.transform = `translateX(calc((100% * ${_this._turn} + ${_this._gap} * ${_this._turn}) * -1))`;
+      });
+      _this._turn++;
+    });
+
+    this._btnPrev.addEventListener("click", () => {
+      // Show next button
+      _this._btnNext.style.opacity = "1";
+      _this._btnNext.style.visibility = "visible";
+
+      // Func
+      _this._turn--;
+
+      _this._cardEls.forEach((el) => {
+        el.style.transform = `translateX(calc((100% * ${_this._turn - 1} + ${
+          _this._gap
+        } * ${_this._turn - 1}) * -1))`;
+      });
+
+      // Hide prev button when showing the first card
+      if (_this._turn === 1) {
+        _this._btnPrev.style.opacity = "0";
+        _this._btnPrev.style.visibility = "hidden";
+      }
+    });
+  }
+
+  _setStyle(element, css) {
+    const props = Object.keys(css);
+    props.forEach((prop) => (element.style[prop] = css[prop]));
+  }
+
+  _setResponsiveCSS(options) {
+    const currentRes = options.responsive.find(
+      (option) => window.matchMedia(`(max-width:${option.breakPoint})`).matches
+    );
+
+    if (!currentRes) {
+      this._cardShown = options.cardShown;
+      this._gap = options.gap;
+    } else {
+      const props = Object.keys(currentRes);
+      props.forEach((prop) => {
+        if (prop === "breakPoint") return;
+        this[`_${prop}`] = currentRes[prop];
+      });
+    }
+  }
+
+  _setContainerStyle() {
+    this._setStyle(this._carouselContainerEl, {
+      position: "relative",
+      overflow: "hidden",
+    });
+  }
+
+  _setWrapperStyle() {
+    const columnWidth = `calc((100% - ${this._gap} * (${this._cardShown} - 1)) / ${this._cardShown})`;
+
+    this._setStyle(this._carouselWrapperEl, {
+      display: "grid",
+      gridTemplateColumns: `repeat(${this._cardsLength}, ${columnWidth})`,
+      columnGap: this._gap,
+    });
+  }
+}

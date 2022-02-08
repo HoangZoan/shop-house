@@ -1,16 +1,19 @@
 import PreviewProductsView from "../views/previewProductsView.js";
 import PreviewBrandsView from "../views/previewBrandsView.js";
 import RegisterEmailFormView from "../views/registerEmailFormView.js";
-import { productsData } from "../DUMMY_DATA/products-data.js";
 import { BRANDS } from "../config.js";
 import {
   initializePageHeader,
   getProductById,
   addProductToLocalStorage,
+  getProductsByType,
 } from "../model.js";
 
 const brandsPreviewControl = () => {
   PreviewBrandsView.renderItems(BRANDS);
+
+  // Add carousels handler
+  PreviewBrandsView.addCarouselsHandler();
 };
 
 const cardHeartButtonControl = (productId) => {
@@ -19,14 +22,20 @@ const cardHeartButtonControl = (productId) => {
 
 const bestSaleProductsControl = () => {
   PreviewProductsView.setCardTypeClass(".best-seller-preview");
-  // PreviewProductsView.renderItems(productsData);
+  PreviewProductsView.renderItems(getProductsByType("best-seller"));
+
+  // Add carousels handler
+  PreviewProductsView.addCarouselsHandler("best-seller-preview");
 };
 
 const newComingProductsControl = () => {
   PreviewProductsView.setCardTypeClass(".new-coming-preview");
-  // PreviewProductsView.renderItems(productsData);
+  PreviewProductsView.renderItems(getProductsByType("new-coming"));
 
-  // Set heart button and handle add favorite product click
+  // Add carousels handler
+  PreviewProductsView.addCarouselsHandler("new-coming-preview");
+
+  // Set heart button and handle add favorite product click (including best-seller)
   PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
 };
 

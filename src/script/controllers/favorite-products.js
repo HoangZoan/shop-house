@@ -21,8 +21,11 @@ const FavoriteProductsControl = () => {
 };
 
 const recentlyViewedProductsControl = () => {
+  const products = getDataFromLocalStorage("recently-viewed-products");
+
   PreviewProductsView.setCardTypeClass(".recently-viewed-prodcuts");
-  PreviewProductsView.renderItems(productsData, "side-page");
+  PreviewProductsView.renderItems(products, "side-page");
+  PreviewProductsView.addCarouselsHandler("recently-viewed-prodcuts");
 };
 
 const init = () => {

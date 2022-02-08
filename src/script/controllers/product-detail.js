@@ -5,16 +5,24 @@ import {
   initializePageHeader,
   getProductById,
   addProductToLocalStorage,
+  getProductsByType,
+  addRecentlyViewedProducts,
 } from "../model.js";
-import { productsData } from "../DUMMY_DATA/products-data.js";
 
 const productDetailDescriptionControl = () => {
   // Get product id from hash name and render
   const hash = window.location.hash.slice(1);
-  ProductDetailDescriptionView.renderSingleItem(getProductById(hash));
+  const product = getProductById(hash);
+  ProductDetailDescriptionView.renderSingleItem(product);
+
+  // Add product as recently viewed
+  addRecentlyViewedProducts(product);
 
   // Render bread crumbs
   ProductDetailDescriptionView.renderBreadCrumbs("product-detail");
+
+  // Handle reload page when hash change
+  ProductDetailDescriptionView.addHashChangeHandler();
 };
 
 const productDetailOrderControl = () => {
@@ -55,13 +63,29 @@ const cardHeartButtonControl = (productId) => {
 };
 
 const followingPurchaseProductsControl = () => {
+  const productData = ProductDetailOrderView.getData();
+  const products = getProductsByType(
+    "following-purchase",
+    productData.category.value,
+    productData.id
+  );
+
   PreviewProductsView.setCardTypeClass(".following-purchase-preview");
-  // PreviewProductsView.renderItems(productsData, "in-page");
+  PreviewProductsView.renderItems(products, "in-page");
+  PreviewProductsView.addCarouselsHandler("following-purchase-preview");
 };
 
 const similarProductsControl = () => {
+  const productData = ProductDetailOrderView.getData();
+  const products = getProductsByType(
+    "similar-purchase",
+    productData.productType,
+    productData.id
+  );
+
   PreviewProductsView.setCardTypeClass(".similar-purchase-preview");
-  // PreviewProductsView.renderItems(productsData, "in-page");
+  PreviewProductsView.renderItems(products, "in-page");
+  PreviewProductsView.addCarouselsHandler("similar-purchase-preview");
 
   // Set heart button and handle add favorite product click
   PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);

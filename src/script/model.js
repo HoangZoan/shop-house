@@ -1,7 +1,11 @@
 import { productsData } from "./DUMMY_DATA/products-data.js";
 import HeaderTopBarView from "./views/headerTopBarView.js";
 import { deepCompareArrays } from "./helpers.js";
-import { CATEGORIES, ITEMS_PER_PAGE } from "./config.js";
+import {
+  CATEGORIES,
+  ITEMS_PER_PAGE,
+  RECENTLY_VIEWED_PRODUCTS_MAX,
+} from "./config.js";
 
 // INITALIZE PAGE HEADER
 const addClickEventHandler = (callerClass, activeClass) => {
@@ -94,4 +98,47 @@ export const getProductsOnPage = (products, page) => {
   const toIndex = ITEMS_PER_PAGE * page;
 
   return products.slice(fromIndex, toIndex);
+};
+
+export const getProductsByType = (type, productData, productId) => {
+  let output;
+  console.log(productId);
+
+  switch (type) {
+    case "best-seller":
+      output = productsData.filter((product) => product.tags.bestSeller);
+      break;
+    case "new-coming":
+      output = productsData.filter((product) => product.tags.new);
+      break;
+    case "following-purchase":
+      output = productsData.filter(
+        (product) =>
+          product.category.value === productData && product.id !== productId
+      );
+      break;
+    case "similar-purchase":
+      output = productsData.filter(
+        (product) =>
+          product.productType === productData && product.id !== productId
+      );
+      break;
+  }
+
+  return output;
+};
+
+export const addRecentlyViewedProducts = (product) => {
+  addProductToLocalStorage(product, "recently-viewed-products");
+
+  const recentlyViewedProducts = getDataFromLocalStorage(
+    "recently-viewed-products"
+  );
+
+  if (recentlyViewedProducts.length < RECENTLY_VIEWED_PRODUCTS_MAX + 1) return;
+
+  window.localStorage.setItem(
+    "recently-viewed-products",
+    JSON.stringify(recentlyViewedProducts.slice(1))
+  );
 };
