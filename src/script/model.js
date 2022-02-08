@@ -102,7 +102,6 @@ export const getProductsOnPage = (products, page) => {
 
 export const getProductsByType = (type, productData, productId) => {
   let output;
-  console.log(productId);
 
   switch (type) {
     case "best-seller":

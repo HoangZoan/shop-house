@@ -816,6 +816,12 @@ input {
   height: 100%;
   object-fit: cover;
 }
+.section-product-detail .product-description__gallery__big-img .slider-btn--prev {
+  left: 0;
+}
+.section-product-detail .product-description__gallery__big-img .slider-btn--next {
+  right: 0;
+}
 .section-product-detail .product-description__gallery__small-images-container {
   display: flex;
   justify-content: center;

@@ -133,21 +133,28 @@ export class Carousel {
     this._carouselWrapperEl = document.querySelector("." + className);
     this._carouselContainerEl = this._carouselWrapperEl.parentElement;
     this._cardEls = [...this._carouselWrapperEl.children];
+    this._imgEls = this._carouselWrapperEl.querySelectorAll("img");
     this._btnNext = this._carouselContainerEl.querySelector(
       "." + options.btnNext
     );
     this._btnPrev = this._carouselContainerEl.querySelector(
       "." + options.btnPrev
     );
-    this._cardsLength = this._cardEls.length;
     this._cardShown = options.cardShown;
     this._gap = options.gap;
     const _this = this;
 
+    // Set slider type config
     let slidesHandler;
     switch (options.sliderType) {
       case "multi-slides":
         slidesHandler = this._multiSlidesHandler.bind(this);
+        break;
+      case "full-content":
+        this._cardShown = 1;
+        this._gap = 0;
+        this._cardsLength = 4;
+        slidesHandler = this._fullContentSlidesHandler.bind(this);
         break;
     }
 
@@ -180,13 +187,13 @@ export class Carousel {
 
     // Hide next/prev button when there're not enough cards
     if (this._cardEls.length < this._cardShown) {
+      if (!this._btnNext || !this._btnPrev) return;
       this._btnNext.style.display = "none";
       this._btnPrev.style.display = "none";
     }
   }
 
   _setHoverEffect(hoverEffect) {
-    const _this = this;
     let initialStyle = {};
 
     this._cardEls.forEach((el) => {
@@ -209,6 +216,12 @@ export class Carousel {
         props.forEach((prop) => (el.style[prop] = initialStyle[prop]));
       });
     });
+  }
+
+  _showImageByIndex() {}
+
+  _fullContentSlidesHandler() {
+    // console.log(this._imgEls);
   }
 
   _multiSlidesHandler(resize = false) {
@@ -299,11 +312,22 @@ export class Carousel {
   }
 
   _setWrapperStyle() {
-    const columnWidth = `calc((100% - ${this._gap} * (${this._cardShown} - 1)) / ${this._cardShown})`;
+    let columnWidth, columnCount;
+
+    switch (this._options.sliderType) {
+      case "multi-slides":
+        columnCount = this._cardEls.length;
+        columnWidth = `calc((100% - ${this._gap} * (${this._cardShown} - 1)) / ${this._cardShown})`;
+        break;
+      case "full-content":
+        columnCount = this._imgEls.length;
+        columnWidth = "100%";
+        break;
+    }
 
     this._setStyle(this._carouselWrapperEl, {
       display: "grid",
-      gridTemplateColumns: `repeat(${this._cardsLength}, ${columnWidth})`,
+      gridTemplateColumns: `repeat(${columnCount}, ${columnWidth})`,
       columnGap: this._gap,
     });
   }

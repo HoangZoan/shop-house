@@ -21,6 +21,14 @@
         @include placeImg;
         margin-bottom: 1.8rem;
         position: relative;
+
+        .slider-btn--prev {
+          left: 0;
+        }
+
+        .slider-btn--next {
+          right: 0;
+        }
       }
 
       &__small-images-container {
