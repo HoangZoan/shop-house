@@ -1,6 +1,6 @@
 import { productsData } from "./DUMMY_DATA/products-data.js";
 import HeaderTopBarView from "./views/headerTopBarView.js";
-import { deepCompareArrays } from "./helpers.js";
+import { deepCompareArrays, Carousel } from "./helpers.js";
 import {
   CATEGORIES,
   ITEMS_PER_PAGE,
@@ -17,6 +17,15 @@ const addClickEventHandler = (callerClass, activeClass) => {
     if (!btn) return;
 
     active.classList.toggle("active");
+  });
+};
+
+export const handleBillboardSlider = () => {
+  const carousel = new Carousel("billboard__slider__item-container", {
+    btnPrev: "slider-btn--prev",
+    btnNext: "slider-btn--next",
+    sliderType: "full-content",
+    autoPlay: 6000,
   });
 };
 

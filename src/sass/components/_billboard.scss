@@ -9,7 +9,16 @@
   }
 
   &__slider {
-    &__item--1 {
+    &__item {
+      transition: $trans-short;
+    }
+
+    .slider-btn--prev {
+      left: 0;
+    }
+
+    .slider-btn--next {
+      right: 0;
     }
   }
 

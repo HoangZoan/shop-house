@@ -133,9 +133,9 @@ export class Carousel {
     this._carouselWrapperEl = document.querySelector("." + className);
     this._carouselContainerEl = this._carouselWrapperEl.parentElement;
     this._cardEls = [...this._carouselWrapperEl.children];
-    this._imgEls = [...this._carouselWrapperEl.querySelectorAll("img")].map(
-      (el) => el.parentElement
-    );
+    this._imgEls = [
+      ...this._carouselWrapperEl.querySelectorAll(".slider-item"),
+    ];
     this._btnNext = this._carouselContainerEl.querySelector(
       "." + options.btnNext
     );
@@ -201,13 +201,65 @@ export class Carousel {
       this._btnNext.style.display = "none";
       this._btnPrev.style.display = "none";
     }
+
+    // Set auto-play
+
+    /* Full-content */
+    if (options.sliderType === "full-content" && options.autoPlay) {
+      let imageNumber = 1;
+
+      setInterval(() => {
+        if (imageNumber > this._imgEls.length) {
+          imageNumber = 1;
+        }
+
+        this._imageOrder = imageNumber;
+        this._showImageByIndex(imageNumber);
+
+        if (this._btnNext && this._btnPrev) {
+          // Hide prev button when showing the first image
+          imageNumber === 1
+            ? this._showPrevBtn(false)
+            : this._showPrevBtn(true);
+
+          // Hide next button when showing the last image
+          imageNumber === this._imgEls.length
+            ? this._showNextBtn(false)
+            : this._showNextBtn(true);
+        }
+
+        if (this._btnImagesContainer) {
+          this._activateMiniImagesByImageOrder(imageNumber);
+        }
+
+        imageNumber++;
+      }, options.autoPlay);
+    }
+  }
+
+  _showNextBtn(show) {
+    if (show) {
+      this._btnNext.style.opacity = "1";
+      this._btnNext.style.visibility = "visible";
+    } else {
+      this._btnNext.style.opacity = "0";
+      this._btnNext.style.visibility = "hidden";
+    }
+  }
+
+  _showPrevBtn(show) {
+    if (show) {
+      this._btnPrev.style.opacity = "1";
+      this._btnPrev.style.visibility = "visible";
+    } else {
+      this._btnPrev.style.opacity = "0";
+      this._btnPrev.style.visibility = "hidden";
+    }
   }
 
   // Functions for 'full-content' type
   _fullContentSlidesHandler() {
-    const _this = this;
     if (!this._imageOrder) this._imageOrder = 1;
-    // let imageOrder = 1;
 
     // Handle arrow buttons
     if (this._btnNext && this._btnPrev) {
@@ -259,57 +311,53 @@ export class Carousel {
 
         // Hide next button when showing the last image
         if (index === this._btnsImage.length - 1) {
-          _this._btnNext.style.opacity = "0";
-          _this._btnNext.style.visibility = "hidden";
+          _this._showNextBtn(false);
         }
 
         // Hide prev button when showing the first image
         if (index === 0) {
-          this._btnPrev.style.opacity = "0";
-          this._btnPrev.style.visibility = "hidden";
+          _this._showPrevBtn(false);
         }
       });
     });
   }
 
   _handleFullContentSlidesArrowButtons() {
+    const _this = this;
     // Hide prev button when showing the first image
     if (this._imageOrder === 1) {
-      this._btnPrev.style.opacity = "0";
-      this._btnPrev.style.visibility = "hidden";
+      this._showPrevBtn(false);
     }
 
     this._btnNext.addEventListener("click", () => {
-      // Show next button
-      this._btnPrev.style.opacity = "1";
-      this._btnPrev.style.visibility = "visible";
+      // Show prev button
+      _this._showPrevBtn(true);
 
       // Hide next button when showing the last image
-      if (this._imageOrder === this._imgEls.length - 1) {
-        this._btnNext.style.opacity = "0";
-        this._btnNext.style.visibility = "hidden";
+      if (_this._imageOrder === _this._imgEls.length - 1) {
+        _this._showNextBtn(false);
       }
 
       // Functionality
-      this._imageOrder++;
-      this._showImageByIndex(this._imageOrder);
-      this._btnsImage && this._activateMiniImagesByImageOrder(this._imageOrder);
+      _this._imageOrder++;
+      _this._showImageByIndex(_this._imageOrder);
+      _this._btnsImage &&
+        _this._activateMiniImagesByImageOrder(_this._imageOrder);
     });
 
     this._btnPrev.addEventListener("click", () => {
       // Show next button
-      this._btnNext.style.opacity = "1";
-      this._btnNext.style.visibility = "visible";
+      _this._showNextBtn(true);
 
       // Functionality
-      this._imageOrder--;
-      this._showImageByIndex(this._imageOrder);
-      this._btnsImage && this._activateMiniImagesByImageOrder(this._imageOrder);
+      _this._imageOrder--;
+      _this._showImageByIndex(_this._imageOrder);
+      _this._btnsImage &&
+        _this._activateMiniImagesByImageOrder(_this._imageOrder);
 
       // Hide prev button when showing the first image
-      if (this._imageOrder === 1) {
-        this._btnPrev.style.opacity = "0";
-        this._btnPrev.style.visibility = "hidden";
+      if (_this._imageOrder === 1) {
+        _this._showPrevBtn(false);
       }
     });
   }
@@ -330,18 +378,15 @@ export class Carousel {
     if (!this._turn) this._turn = 1;
 
     // Hide prev button when showing the first card
-    _this._btnPrev.style.opacity = "0";
-    _this._btnPrev.style.visibility = "hidden";
+    this._showPrevBtn(false);
 
     this._btnNext.addEventListener("click", () => {
       // Show prev button
-      _this._btnPrev.style.opacity = "1";
-      _this._btnPrev.style.visibility = "visible";
+      _this._showPrevBtn(true);
 
       // Hide next button when showing the last card
       if (_this._turn === _this._cardEls.length - _this._cardShown) {
-        _this._btnNext.style.opacity = "0";
-        _this._btnNext.style.visibility = "hidden";
+        _this._showNextBtn(false);
       }
 
       // Functionality
@@ -353,8 +398,7 @@ export class Carousel {
 
     this._btnPrev.addEventListener("click", () => {
       // Show next button
-      _this._btnNext.style.opacity = "1";
-      _this._btnNext.style.visibility = "visible";
+      _this._showNextBtn(true);
 
       // Functionality
       _this._turn--;
@@ -366,8 +410,7 @@ export class Carousel {
 
       // Hide prev button when showing the first card
       if (_this._turn === 1) {
-        _this._btnPrev.style.opacity = "0";
-        _this._btnPrev.style.visibility = "hidden";
+        _this._showPrevBtn(false);
       }
     });
   }

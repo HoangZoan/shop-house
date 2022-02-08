@@ -275,9 +275,13 @@ export class View {
     }
 
     if (queries.category) {
-      output = output.filter(
-        (product) => product.category.value === queries.category
-      );
+      output = output.filter((product) => {
+        if (queries.category === "sale") {
+          return product.tags.discount;
+        }
+
+        return product.category.value === queries.category;
+      });
     }
 
     if (queries["product-type"]) {

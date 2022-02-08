@@ -1913,6 +1913,15 @@ input {
     grid-template-columns: 1fr;
   }
 }
+.billboard__slider__item {
+  transition: all 0.2s;
+}
+.billboard__slider .slider-btn--prev {
+  left: 0;
+}
+.billboard__slider .slider-btn--next {
+  right: 0;
+}
 .billboard__banners {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

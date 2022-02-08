@@ -114,15 +114,55 @@
       <section class="section-billboards bg--gray">
         <div class="billboard container">
           <div class="billboard__slider">
-            <div class="billboard__slider__item--1 banner">
-              <a href="#">
-                <picture>
-                  <img
-                    src="./resources/images/banners/slider.png"
-                    alt="Banner"
-                  />
-                </picture>
-              </a>
+
+            <!-- Slider wrapper -->
+            <div class="billboard__slider__item-container">
+              <div class="billboard__slider__item banner slider-item">
+                <a href="#">
+                  <picture>
+                    <img
+                      src="./resources/images/banners/billboard-1.jpg"
+                      alt="Banner"
+                    />
+                  </picture>
+                </a>
+              </div>
+              <div class="billboard__slider__item banner slider-item">
+                <a href="#">
+                  <picture>
+                    <img
+                      src="./resources/images/banners/billboard-2.jpg"
+                      alt="Banner"
+                    />
+                  </picture>
+                </a>
+              </div>
+              <div class="billboard__slider__item banner slider-item">
+                <a href="#">
+                  <picture>
+                    <img
+                      src="./resources/images/banners/billboard-3.jpg"
+                      alt="Banner"
+                    />
+                  </picture>
+                </a>
+              </div>
+            </div>
+
+            <!-- SLIDER BUTTON -->
+            <div class="slider-btn--prev center-content">
+              <svg>
+                <use
+                  xlink:href="../resources/icons/sprite.svg#chevron-left"
+                ></use>
+              </svg>
+            </div>
+            <div class="slider-btn--next center-content">
+              <svg>
+                <use
+                  xlink:href="../resources/icons/sprite.svg#chevron-right"
+                ></use>
+              </svg>
             </div>
           </div>
           <div class="billboard__banners">
@@ -130,7 +170,7 @@
               <a href="#">
                 <picture>
                   <img
-                    src="./resources/images/banners/banner-sm-1.png"
+                    src="./resources/images/banners/banner-sm-1.jpg"
                     alt="Banner"
                   />
                 </picture>
@@ -140,7 +180,7 @@
               <a href="#">
                 <picture>
                   <img
-                    src="./resources/images/banners/banner-sm-2.png"
+                    src="./resources/images/banners/banner-sm-2.jpg"
                     alt="Banner"
                   />
                 </picture>
@@ -441,8 +481,19 @@
         <div class="banner-wide container">
           <a href="#">
             <picture>
+              <source
+                  srcset="./resources/images/banners/long-banner-sm.jpg"
+                  media="(max-width:
+                  31.25em)"
+                />
+              <source
+                  srcset="./resources/images/banners/long-banner-md.jpg"
+                  media="(max-width:
+                  50em)"
+                />
+              
               <img
-                src="./resources/images/banners/long-banner.png"
+                src="./resources/images/banners/long-banner.jpg"
                 alt="Ad area"
               />
             </picture>

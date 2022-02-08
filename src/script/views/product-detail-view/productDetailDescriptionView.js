@@ -27,7 +27,7 @@ class ProductDetailDescriptionView extends View {
 
     for (let i = 1; i <= MINI_IMAGE_AMOUNT; i++) {
       result.push(`
-        <div class="${!bigImages ? "small-image " : "large-image"}${
+        <div class="${!bigImages ? "small-image " : "large-image slider-item"}${
         !bigImages ? (i === 1 ? "active" : "") : ""
       }">
           <img
