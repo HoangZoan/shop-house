@@ -15,6 +15,9 @@ const productDetailDescriptionControl = () => {
   const product = getProductById(hash);
   ProductDetailDescriptionView.renderSingleItem(product);
 
+  // Handle product images carousel
+  ProductDetailDescriptionView.addProductImagesCarouselHandler();
+
   // Add product as recently viewed
   addRecentlyViewedProducts(product);
 

@@ -7,6 +7,7 @@ import {
   getProductById,
   addProductToLocalStorage,
   getProductsByType,
+  handleBillboardSlider,
 } from "../model.js";
 
 const brandsPreviewControl = () => {
@@ -45,6 +46,7 @@ const registerEmailFormControl = (values) => {
 
 const init = () => {
   initializePageHeader();
+  handleBillboardSlider();
   PreviewBrandsView.addRenderWhenLoadedHanlder(brandsPreviewControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(bestSaleProductsControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(newComingProductsControl);

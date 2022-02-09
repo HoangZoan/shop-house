@@ -21,11 +21,24 @@
         @include placeImg;
         margin-bottom: 1.8rem;
         position: relative;
+
+        .large-image {
+          transition: $trans-short;
+        }
+
+        .slider-btn--prev {
+          left: 0;
+        }
+
+        .slider-btn--next {
+          right: 0;
+        }
       }
 
       &__small-images-container {
         display: flex;
         justify-content: center;
+        padding-bottom: 4px;
 
         .small-image {
           --img-size: 4.2rem;
@@ -33,6 +46,7 @@
           width: var(--img-size);
           opacity: 0.7;
           transition: $trans-short;
+          cursor: pointer;
           @include placeImg;
 
           &:not(:last-child) {
@@ -42,6 +56,7 @@
           &:hover,
           &.active {
             opacity: 1;
+            box-shadow: 0 0 0 2px $color-primary;
           }
         }
       }

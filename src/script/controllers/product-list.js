@@ -48,14 +48,14 @@ const productsListSortBarControl = () => {
   ProductsListSortBarView.renderBreadCrumbs("products-list");
 };
 
-function productsListControl(_, page = 1) {
+function productsListControl(_, page = 1, itemsPerPage = ITEMS_PER_PAGE) {
   // Get products by location
   const products = PreviewProductsView.getProductBySearchQueries(productsData);
 
   // Render pagination
   ProductsListPaginationView.renderSingleItem({
     page,
-    pageNumber: Math.ceil(products.length / ITEMS_PER_PAGE),
+    pageNumber: Math.ceil(products.length / itemsPerPage),
   });
 
   // Get products list by page
@@ -76,5 +76,8 @@ const init = () => {
   );
   PreviewProductsView.addRenderWhenLoadedHanlder(productsListControl);
   ProductsListPaginationView.addNumberButtonClickHandler(productsListControl);
+  ProductsListPaginationView.addUpdateProductListWhenResizeHandler(
+    productsListControl
+  );
 };
 init();

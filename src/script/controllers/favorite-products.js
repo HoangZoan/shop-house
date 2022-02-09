@@ -1,10 +1,19 @@
 import FavoriteProductsView from "../views/favoriteProductsView.js";
 import PreviewProductsView from "../views/previewProductsView.js";
-import { initializePageHeader, getDataFromLocalStorage } from "../model.js";
-import { productsData } from "../DUMMY_DATA/products-data.js";
+import {
+  initializePageHeader,
+  getDataFromLocalStorage,
+  addProductToLocalStorage,
+  getProductById,
+} from "../model.js";
 
 const breadCrumbsControl = () => {
   FavoriteProductsView.renderBreadCrumbs("favorite-products");
+};
+
+const cardHeartButtonControl = (productId) => {
+  addProductToLocalStorage(getProductById(productId), "favorite-products");
+  window.location.reload();
 };
 
 const FavoriteProductsControl = () => {
@@ -21,11 +30,16 @@ const FavoriteProductsControl = () => {
 };
 
 const recentlyViewedProductsControl = () => {
-  const products = getDataFromLocalStorage("recently-viewed-products");
+  const products = getDataFromLocalStorage(
+    "recently-viewed-products"
+  ).reverse();
 
   PreviewProductsView.setCardTypeClass(".recently-viewed-prodcuts");
   PreviewProductsView.renderItems(products, "side-page");
   PreviewProductsView.addCarouselsHandler("recently-viewed-prodcuts");
+
+  // Set heart button and handle add favorite product click
+  PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
 };
 
 const init = () => {

@@ -1,4 +1,5 @@
 import { View } from "../view.js";
+import { Carousel } from "../../helpers.js";
 import { MINI_IMAGE_AMOUNT } from "../../config.js";
 
 class ProductDetailDescriptionView extends View {
@@ -12,12 +13,23 @@ class ProductDetailDescriptionView extends View {
     });
   }
 
-  _generageSmallImages(productId, query) {
+  addProductImagesCarouselHandler() {
+    const carousel = new Carousel("product-description__gallery__big-img", {
+      btnPrev: "slider-btn--prev",
+      btnNext: "slider-btn--next",
+      btnImageContainer: "product-description__gallery__small-images-container",
+      sliderType: "full-content",
+    });
+  }
+
+  _generageImages(productId, query, bigImages = false) {
     let result = [];
 
     for (let i = 1; i <= MINI_IMAGE_AMOUNT; i++) {
       result.push(`
-        <div class="small-image ${i === 1 ? "active" : ""}">
+        <div class="${!bigImages ? "small-image " : "large-image slider-item"}${
+        !bigImages ? (i === 1 ? "active" : "") : ""
+      }">
           <img
             src="../resources/images/products/${productId}/${
         query && query.length !== 0 ? query + "-" : ""
@@ -50,17 +62,12 @@ class ProductDetailDescriptionView extends View {
     return `
     <div class="product-description__gallery">
       <div class="product-description__gallery__big-img">
-        <img
-          src="../resources/images/products/${data.id}/${
-      locationQuery && locationQuery.length !== 0 ? locationQuery + "-" : ""
-    }1.jpg"
-          alt="Product image"
-        />
+        ${this._generageImages(data.id, locationQuery, true)}
 
         ${this._generateSliderButtons()}
 
       <div class="product-description__gallery__small-images-container">
-        ${this._generageSmallImages(data.id, locationQuery)}
+        ${this._generageImages(data.id, locationQuery)}
       </div>
     </div>
 
