@@ -501,9 +501,9 @@ export class View {
                   return `
                   <option ${
                     checkMatchValue(value.value) ? "selected" : ""
-                  } value="${value.value}" data-name=${value.name}>${
-                    option.name
-                  }: ${value.name}</option>
+                  } value="${value.value}" data-name=${value.name
+                    .split(" ")
+                    .join("_")}>${option.name}: ${value.name}</option>
                 `;
                 })
                 .join("\n")}

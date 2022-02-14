@@ -286,7 +286,7 @@ class OrderCardsView extends View {
     return `
         <img
             src="../resources/images/products/${productId}/${
-      query && query.length !== 0 ? query + "-" : ""
+      query && query.length !== 0 && query !== "_blank" ? query + "-" : ""
     }1.jpg"
             alt="Product image"
         />
@@ -297,7 +297,9 @@ class OrderCardsView extends View {
     return specs
       .map((data) => {
         return `
-            <li>${data.name}: <span class="specification-value">${data.value}</span></li>
+            <li>${data.name}: <span class="specification-value">${data.value
+          .split("_")
+          .join(" ")}</span></li>
         `;
       })
       .join("\n");
