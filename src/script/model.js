@@ -116,31 +116,65 @@ export const getProductsOnPage = (products, page) => {
   return products.slice(fromIndex, toIndex);
 };
 
-export const getProductsByType = (type, productData, productId) => {
-  let output;
+export const getProductsFromDB = async (id = null) => {
+  try {
+    const response = await fetch(
+      `https://shop-house-b4d1e-default-rtdb.asia-southeast1.firebasedatabase.app/products${
+        id ? `/${id}` : ""
+      }.json`
+    );
 
-  switch (type) {
-    case "best-seller":
-      output = productsData.filter((product) => product.tags.bestSeller);
-      break;
-    case "new-coming":
-      output = productsData.filter((product) => product.tags.new);
-      break;
-    case "following-purchase":
-      output = productsData.filter(
-        (product) =>
-          product.category.value === productData && product.id !== productId
-      );
-      break;
-    case "similar-purchase":
-      output = productsData.filter(
-        (product) =>
-          product.productType === productData && product.id !== productId
-      );
-      break;
+    if (response.status !== 200) throw new Error("Products not found");
+
+    const data = await response.json();
+
+    let output;
+
+    if (!id) {
+      output = [];
+
+      for (const id in data) {
+        output.push({ ...data[id], id: id });
+      }
+    } else {
+      output = { ...data, id };
+    }
+
+    return output;
+  } catch (error) {
+    throw error;
   }
+};
 
-  return output;
+export const getProductsByType = async (type, productData, productId) => {
+  try {
+    const products = await getProductsFromDB();
+
+    let output;
+    switch (type) {
+      case "best-seller":
+        output = products.filter((product) => product.tags.bestSeller);
+        break;
+      case "new-coming":
+        output = products.filter((product) => product.tags.new);
+        break;
+      case "following-purchase":
+        output = products.filter(
+          (product) =>
+            product.category.value === productData && product.id !== productId
+        );
+        break;
+      case "similar-purchase":
+        output = products.filter(
+          (product) =>
+            product.productType === productData && product.id !== productId
+        );
+        break;
+    }
+    return output;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const addRecentlyViewedProducts = (product) => {

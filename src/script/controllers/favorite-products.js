@@ -4,16 +4,21 @@ import {
   initializePageHeader,
   getDataFromLocalStorage,
   addProductToLocalStorage,
-  getProductById,
+  getProductsFromDB,
 } from "../model.js";
 
 const breadCrumbsControl = () => {
   FavoriteProductsView.renderBreadCrumbs("favorite-products");
 };
 
-const cardHeartButtonControl = (productId) => {
-  addProductToLocalStorage(getProductById(productId), "favorite-products");
-  window.location.reload();
+const cardHeartButtonControl = async (productId) => {
+  try {
+    const product = await getProductsFromDB(productId);
+    addProductToLocalStorage(product, "favorite-products");
+    window.location.reload();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const FavoriteProductsControl = () => {
@@ -24,7 +29,7 @@ const FavoriteProductsControl = () => {
   // Set Delete button and handle click event
   FavoriteProductsView.setMultiComponentElementsClass(
     "_deleteButtons",
-    ".card-content__action .btn--sub"
+    ".card-content__action .btn--danger"
   );
   FavoriteProductsView.addDeleteClickHandler(FavoriteProductsControl);
 };
@@ -32,7 +37,7 @@ const FavoriteProductsControl = () => {
 const recentlyViewedProductsControl = () => {
   const products = getDataFromLocalStorage(
     "recently-viewed-products"
-  ).reverse();
+  )?.reverse();
 
   PreviewProductsView.setCardTypeClass(".recently-viewed-prodcuts");
   PreviewProductsView.renderItems(products, "side-page");

@@ -11,6 +11,7 @@ class ProductDetailOrderView extends View {
   _addToCartBtn;
 
   _getInCartProductData() {
+    const _this = this;
     const data = this._data;
     let specifications = [];
     this._searchQueries.forEach((search) => {
@@ -29,16 +30,22 @@ class ProductDetailOrderView extends View {
       (pol) => pol.deliveryDate
     ).deliveryDate;
 
+    const thmbImage = data.images.find(
+      (imageData) =>
+        imageData.type === _this._getLocationSearchValues() ||
+        _this._getLocationSearchValues() === "_blank"
+    ).imageUrls[0];
+
     return {
       distributor: data.distributor,
       initialPrice: data.initialPrice,
       discount: data.tags.discount,
       locationSearch: window.location.search,
-      searchQueries: this._getLocationSearchValues(),
       id: data.id,
       title: data.title,
       specifications,
       deliveryDate,
+      thmbImage,
     };
   }
 
@@ -46,6 +53,7 @@ class ProductDetailOrderView extends View {
     const _this = this;
     this._addToCartBtn.addEventListener("click", () => {
       handler(_this._getInCartProductData(), "in-cart-products");
+      console.log(_this._getInCartProductData());
 
       _this._buttonChangeTextHandler(_this._addToCartBtn, "Thêm vào giỏ");
     });
@@ -65,6 +73,7 @@ class ProductDetailOrderView extends View {
     let initialQueries = [];
 
     this._searchQueries.forEach(({ query }) => {
+      if (!_this._data.sort) return;
       const queryMatch = _this._data.sort.find((srt) => srt.type === query);
 
       if (queryMatch) {
@@ -196,7 +205,7 @@ class ProductDetailOrderView extends View {
       </div>
 
       ${
-        data.promotion.length > 0
+        data.promotion && data.promotion.length > 0
           ? `
         <ul class="product-order__promotion-list">
           ${this._generatePromotionList(data.promotion)}
@@ -209,7 +218,7 @@ class ProductDetailOrderView extends View {
       ${this._generatePrice(data.initialPrice, data.tags.discount)}
 
       <div class="product-order__product-filter">
-        ${this._generateOptions(data.sort)}
+        ${this._generateOptions(data.sort || [])}
       </div>
 
       <div class="product-order__action">

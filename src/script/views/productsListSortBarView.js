@@ -1,6 +1,5 @@
 import { View } from "./view.js";
 import PreviewProductsView from "./previewProductsView.js";
-import { productsData } from "../DUMMY_DATA/products-data.js";
 
 class ProductsListSortBarView extends View {
   _parentElement = document.querySelector(".products-arrange-bar");
@@ -8,6 +7,8 @@ class ProductsListSortBarView extends View {
   _sortPrice;
 
   _getDataFromSortPrice(dataStr) {
+    if (dataStr === "") return null;
+
     const [min, max] = dataStr.split("-");
 
     return {
@@ -16,7 +17,7 @@ class ProductsListSortBarView extends View {
     };
   }
 
-  addSortPriceOptionsChangeHandler() {
+  addSortPriceOptionsChangeHandler(productsData) {
     const _this = this;
 
     this._sortPrice.addEventListener("change", (event) => {
