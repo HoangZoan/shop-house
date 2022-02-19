@@ -158,12 +158,13 @@ input {
 
 .btn--danger {
   background-color: #fff;
-  color: #e74c3c;
-  border: 1px solid #e74c3c;
+  color: #1e90ff;
+  border: 1px solid #1e90ff;
 }
 .btn--danger:hover {
   background-color: #e74c3c;
   color: #fff;
+  border: 1px solid #e74c3c;
 }
 
 .btn--link {
@@ -2778,7 +2779,7 @@ input {
   }
 }
 .modal__box__title svg {
-  color: #1e90ff;
+  color: #2ecc71;
   margin-right: 2.4rem;
   height: 5.6rem;
   width: 5.6rem;

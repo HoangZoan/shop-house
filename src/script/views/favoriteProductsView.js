@@ -96,7 +96,7 @@ class FavoriteProductsView extends View {
                             </a>
                             <button data-product-id=${
                               data.id
-                            } class="btn--sub">Xóa</button>
+                            } class="btn--danger">Xóa</button>
                         </div>
                     </div>
                 </li>

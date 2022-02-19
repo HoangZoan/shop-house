@@ -101,12 +101,13 @@
 .btn--danger {
   @extend %button;
   background-color: $color-white-background;
-  color: $color-red;
-  border: $border-red-thin;
+  color: $color-primary;
+  border: $border-primary-thin;
 
   &:hover {
     background-color: $color-red;
     color: $color-white;
+    border: $border-red-thin;
   }
 }
 
