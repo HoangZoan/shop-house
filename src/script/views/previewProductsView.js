@@ -5,7 +5,7 @@ import { Carousel } from "../helpers.js";
 export class PreviewProductsView extends View {
   _parentElement;
   _heartButtonsElement;
-  _notFoundMessage = "Không có sản phẩm. Vui lòng thử lại";
+  _notFoundMessage = "Chưa có sản phẩm";
 
   addCarouselsHandler(sliderClassName) {
     const carousel = new Carousel(sliderClassName, {
