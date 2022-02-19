@@ -28,6 +28,16 @@ const productDetailDescriptionControl = async () => {
 
     // Handle reload page when hash change
     ProductDetailDescriptionView.addHashChangeHandler();
+
+    // Render product order card by break-point
+    const responsive = window.matchMedia("(max-width: 50em)").matches;
+
+    if (responsive) {
+      ProductDetailOrderView.setCardTypeClass(".product-order--responsive");
+
+      // Get product id from hash name and render
+      ProductDetailOrderView.renderSingleItem(product);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -36,15 +46,15 @@ const productDetailDescriptionControl = async () => {
 const productDetailOrderControl = async () => {
   try {
     // Render product order card by break-point
-    const responsive = window.matchMedia("(max-width: 50em)").matches;
-    ProductDetailOrderView.setCardTypeClass(
-      `${responsive ? ".product-order--responsive" : ".product-order--origin"}`
-    );
+    const responsive = window.matchMedia("(min-width: 51em)").matches;
+
+    if (responsive) {
+      ProductDetailOrderView.setCardTypeClass(".product-order--origin");
+    }
 
     // Get product id from hash name and render
     const hash = window.location.hash.slice(1);
     const product = await getProductsFromDB(hash);
-    console.log(product);
     ProductDetailOrderView.renderSingleItem(product);
 
     // Set options select and handle change event
@@ -74,37 +84,55 @@ const productDetailOrderControl = async () => {
   }
 };
 
-const cardHeartButtonControl = (productId) => {
-  addProductToLocalStorage(getProductById(productId), "favorite-products");
+const cardHeartButtonControl = async (productId) => {
+  try {
+    const product = await getProductsFromDB(productId);
+    addProductToLocalStorage(product, "favorite-products");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const followingPurchaseProductsControl = () => {
-  const productData = ProductDetailOrderView.getData();
-  const products = getProductsByType(
-    "following-purchase",
-    productData.category.value,
-    productData.id
-  );
+const followingPurchaseProductsControl = async () => {
+  try {
+    const hash = window.location.hash.slice(1);
+    const productData = await getProductsFromDB(hash);
+    const products = await getProductsByType(
+      "following-purchase",
+      productData.category.value,
+      productData.id
+    );
 
-  PreviewProductsView.setCardTypeClass(".following-purchase-preview");
-  PreviewProductsView.renderItems(products, "in-page");
-  PreviewProductsView.addCarouselsHandler("following-purchase-preview");
+    PreviewProductsView.setCardTypeClass(".following-purchase-preview");
+    PreviewProductsView.renderItems(products, "in-page");
+    PreviewProductsView.addCarouselsHandler("following-purchase-preview");
+
+    // Set heart button and handle add favorite product click
+    PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const similarProductsControl = () => {
-  const productData = ProductDetailOrderView.getData();
-  const products = getProductsByType(
-    "similar-purchase",
-    productData.productType,
-    productData.id
-  );
+const similarProductsControl = async () => {
+  try {
+    const hash = window.location.hash.slice(1);
+    const productData = await getProductsFromDB(hash);
+    const products = await getProductsByType(
+      "similar-purchase",
+      productData.productType,
+      productData.id
+    );
 
-  PreviewProductsView.setCardTypeClass(".similar-purchase-preview");
-  PreviewProductsView.renderItems(products, "in-page");
-  PreviewProductsView.addCarouselsHandler("similar-purchase-preview");
+    PreviewProductsView.setCardTypeClass(".similar-purchase-preview");
+    PreviewProductsView.renderItems(products, "in-page");
+    PreviewProductsView.addCarouselsHandler("similar-purchase-preview");
 
-  // Set heart button and handle add favorite product click
-  PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+    // Set heart button and handle add favorite product click
+    PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const init = () => {
@@ -113,9 +141,9 @@ const init = () => {
     productDetailDescriptionControl
   );
   ProductDetailOrderView.addRenderByLocationHandler(productDetailOrderControl);
-  // PreviewProductsView.addRenderWhenLoadedHanlder(
-  //   followingPurchaseProductsControl
-  // );
-  // PreviewProductsView.addRenderWhenLoadedHanlder(similarProductsControl);
+  PreviewProductsView.addRenderWhenLoadedHanlder(
+    followingPurchaseProductsControl
+  );
+  PreviewProductsView.addRenderWhenLoadedHanlder(similarProductsControl);
 };
 init();

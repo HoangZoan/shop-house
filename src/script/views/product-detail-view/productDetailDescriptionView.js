@@ -34,7 +34,7 @@ class ProductDetailDescriptionView extends View {
         return `
         <div 
           class="${!bigImages ? "small-image " : "large-image slider-item"}${
-          !bigImages ? (i === 1 ? "active" : "") : ""
+          !bigImages ? (i === 0 ? "active" : "") : ""
         }">
           <img
             src="${url}"

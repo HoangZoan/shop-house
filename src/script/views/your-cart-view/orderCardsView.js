@@ -95,6 +95,7 @@ class OrderCardsView extends View {
       const totalPrices = [...orderCardTotalPriceEls].map((el) =>
         convertPriceStringToNumber(el.innerText)
       );
+
       const inCartProductsData = [...quantityControlEls].map((el, index) => ({
         distributor: _this._data[index].distributor,
         productId: _this._data[index].id,
@@ -103,12 +104,15 @@ class OrderCardsView extends View {
         orderQuantity: el.innerText,
         totalPrice: totalPrices[index],
         searchQueries: _this._data[index].searchQueries,
+        thmbImage: _this._data[index].thmbImage,
       }));
 
       CheckOutFormView._ordersData = {
         products: inCartProductsData,
         deliveryDateStandard,
       };
+
+      console.log(inCartProductsData);
     });
   }
 
@@ -282,12 +286,10 @@ class OrderCardsView extends View {
     });
   }
 
-  _generageImage(productId, query) {
+  _generageImage(imgSrc) {
     return `
         <img
-            src="../resources/images/products/${productId}/${
-      query && query.length !== 0 && query !== "_blank" ? query + "-" : ""
-    }1.jpg"
+            src="${imgSrc}"
             alt="Product image"
         />
     `;
@@ -393,12 +395,12 @@ class OrderCardsView extends View {
                   data-product-specs=${data.locationSearch}
               >
                   <td class="order-card__img img-origin">
-                    ${_this._generageImage(data.id, data.searchQueries)}
+                    ${_this._generageImage(data.thmbImage)}
                   </td>
       
                   <td class="order-card__text">
                       <div class="order-card__img img-responsive">
-                        ${_this._generageImage(data.id, data.searchQueries)}
+                        ${_this._generageImage(data.thmbImage)}
                       </div>
       
                       <a 

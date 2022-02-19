@@ -11,11 +11,7 @@ class OrderDetailView extends View {
         <li class="order-manage-card__cards-list__item">
           <div class="order-card-img">
             <img
-              src="../../resources/images/products/${item.productId}/${
-          item.searchQueries && item.searchQueries.length !== 0
-            ? item.searchQueries + "-"
-            : ""
-        }1.jpg"
+              src="${item.thmbImage}"
               alt="Product img"
             />
           </div>

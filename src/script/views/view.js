@@ -144,6 +144,7 @@ export class View {
       if (page === "your-cart") {
         if (!this._validateInputValues()) return;
 
+        console.log(this._ordersData);
         handler({
           ...Object.fromEntries([...new FormData(this._formEl)]),
           ...this._getReceiptDetail(),

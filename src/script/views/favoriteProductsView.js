@@ -64,9 +64,7 @@ class FavoriteProductsView extends View {
                 <li class="main-cards__cards__favorite-card">
                     <div class="card-img">
                         <img
-                            src="../resources/images/products/${
-                              data.id
-                            }/thmb.jpg"
+                            src="${data.thmbImage}"
                             alt="Product image"
                         />
                     </div>
@@ -87,7 +85,7 @@ class FavoriteProductsView extends View {
                             <a 
                               href=${_this._generateHrefLink(
                                 _this._currentPage,
-                                data.sort,
+                                data.sort || [],
                                 data.id
                               )}
                               class="btn--primary"

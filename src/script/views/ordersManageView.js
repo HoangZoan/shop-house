@@ -25,16 +25,7 @@ class OrdersManageView extends View {
         return `
             <li class="order-manage-card__cards-list__item">
                 <div class="order-card-img">
-                    <img
-                        src="../../resources/images/products/${
-                          data.productId
-                        }/${
-          data.searchQueries && data.searchQueries.length !== 0
-            ? data.searchQueries + "-"
-            : ""
-        }1.jpg"
-                        alt="Product img"
-                    />
+                    <img src="${data.thmbImage}" alt="Product img"/>
                 </div>
     
                 <div class="order-card-content">

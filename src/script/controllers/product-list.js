@@ -6,6 +6,7 @@ import {
   getProductById,
   initializePageHeader,
   getProductsOnPage,
+  getProductsFromDB,
 } from "../model.js";
 import {
   BRANDS,
@@ -15,41 +16,53 @@ import {
   PRICE_RANGE,
   ITEMS_PER_PAGE,
 } from "../config.js";
-import { productsData } from "../DUMMY_DATA/products-data.js";
+// import { productsData } from "../DUMMY_DATA/products-data.js";
 
-const cardHeartButtonControl = (productId) => {
-  addProductToLocalStorage(getProductById(productId), "favorite-products");
+const cardHeartButtonControl = async (productId) => {
+  try {
+    const product = await getProductsFromDB(productId);
+    addProductToLocalStorage(product, "favorite-products");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const productsListSortBarControl = () => {
-  ProductsListSortBarView.renderSingleItem({
-    BRANDS,
-    PRODUCT_TYPES,
-    CATEGORIES,
-    ITEM_ARRANGEMENT,
-    PRICE_RANGE,
-  });
+const productsListSortBarControl = async () => {
+  try {
+    ProductsListSortBarView.renderSingleItem({
+      BRANDS,
+      PRODUCT_TYPES,
+      CATEGORIES,
+      ITEM_ARRANGEMENT,
+      PRICE_RANGE,
+    });
 
-  // Set options select and handle change event
-  ProductsListSortBarView.setMultiComponentElementsClass(
-    "_sortSelects",
-    ".products-arrange-bar select"
-  );
-  ProductsListSortBarView.addSortOptionsChangeHandler();
+    // Set options select and handle change event
+    ProductsListSortBarView.setMultiComponentElementsClass(
+      "_sortSelects",
+      ".products-arrange-bar select"
+    );
+    ProductsListSortBarView.addSortOptionsChangeHandler();
 
-  // Set select for price range and handle change event
-  ProductsListSortBarView.setComponentElementClass(
-    "_sortPrice",
-    ".products-arrange-bar select[data-query='price-range']"
-  );
-  ProductsListSortBarView.addSortPriceOptionsChangeHandler();
+    // Set select for price range and handle change event
+    const productsData = await getProductsFromDB();
 
-  // Render bread crumbs
-  ProductsListSortBarView.renderBreadCrumbs("products-list");
+    ProductsListSortBarView.setComponentElementClass(
+      "_sortPrice",
+      ".products-arrange-bar select[data-query='price-range']"
+    );
+    ProductsListSortBarView.addSortPriceOptionsChangeHandler(productsData);
+
+    // Render bread crumbs
+    ProductsListSortBarView.renderBreadCrumbs("products-list");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-function productsListControl(_, page = 1, itemsPerPage = ITEMS_PER_PAGE) {
+async function productsListControl(_, page = 1, itemsPerPage = ITEMS_PER_PAGE) {
   // Get products by location
+  const productsData = await getProductsFromDB();
   const products = PreviewProductsView.getProductBySearchQueries(productsData);
 
   // Render pagination
