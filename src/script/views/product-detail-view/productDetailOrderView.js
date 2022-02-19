@@ -53,7 +53,6 @@ class ProductDetailOrderView extends View {
     const _this = this;
     this._addToCartBtn.addEventListener("click", () => {
       handler(_this._getInCartProductData(), "in-cart-products");
-      console.log(_this._getInCartProductData());
 
       _this._buttonChangeTextHandler(_this._addToCartBtn, "Thêm vào giỏ");
     });

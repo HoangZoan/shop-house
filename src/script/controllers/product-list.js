@@ -3,7 +3,6 @@ import ProductsListSortBarView from "../views/productsListSortBarView.js";
 import ProductsListPaginationView from "../views/productsListPaginationView.js";
 import {
   addProductToLocalStorage,
-  getProductById,
   initializePageHeader,
   getProductsOnPage,
   getProductsFromDB,

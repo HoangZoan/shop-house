@@ -4,13 +4,11 @@ import RegisterEmailFormView from "../views/registerEmailFormView.js";
 import { BRANDS } from "../config.js";
 import {
   initializePageHeader,
-  getProductById,
   addProductToLocalStorage,
   getProductsByType,
   handleBillboardSlider,
+  getProductsFromDB,
 } from "../model.js";
-import { productsData as oldProductsData } from "../DUMMY_DATA/products-data.js";
-import { productsData } from "../DUMMY_DATA/products-data-with-img-url.js";
 
 const brandsPreviewControl = () => {
   PreviewBrandsView.renderItems(BRANDS);
@@ -19,8 +17,13 @@ const brandsPreviewControl = () => {
   PreviewBrandsView.addCarouselsHandler();
 };
 
-const cardHeartButtonControl = (productId) => {
-  addProductToLocalStorage(getProductById(productId), "favorite-products");
+const cardHeartButtonControl = async (productId) => {
+  try {
+    const product = await getProductsFromDB(productId);
+    addProductToLocalStorage(product, "favorite-products");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const bestSaleProductsControl = async () => {
@@ -58,27 +61,6 @@ const registerEmailFormControl = (values) => {
   console.log(values);
 };
 
-const test = () => {
-  let promises = [];
-
-  productsData.forEach((product) => {
-    promises.push(
-      fetch(
-        "https://shop-house-b4d1e-default-rtdb.asia-southeast1.firebasedatabase.app/products.json",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(product),
-        }
-      )
-    );
-  });
-
-  Promise.all(promises).catch((error) => console.log(error));
-};
-
 const init = () => {
   initializePageHeader();
   handleBillboardSlider();
@@ -86,6 +68,5 @@ const init = () => {
   PreviewProductsView.addRenderWhenLoadedHanlder(bestSaleProductsControl);
   PreviewProductsView.addRenderWhenLoadedHanlder(newComingProductsControl);
   RegisterEmailFormView.addSubmitFormHandler(registerEmailFormControl, "home");
-  // test();
 };
 init();

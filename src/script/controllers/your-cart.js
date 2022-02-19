@@ -3,20 +3,24 @@ import CheckOutFormView from "../views/your-cart-view/checkOutFormView.js";
 import {
   initializePageHeader,
   getDataFromLocalStorage,
-  getProductById,
   addProductToLocalStorage,
   removeProductFromLocalStorage,
   clearLocalStorage,
+  getProductsFromDB,
 } from "../model.js";
 
-function saveButtonControl(productId, productSpecs) {
-  // Save the product for later
-  const savedProduct = getProductById(productId);
-  addProductToLocalStorage(savedProduct, "favorite-products");
+async function saveButtonControl(productId, productSpecs) {
+  try {
+    // Save the product for later
+    const savedProduct = await getProductsFromDB(productId);
+    addProductToLocalStorage(savedProduct, "favorite-products");
 
-  // Remove the product from orders table
-  removeProductFromLocalStorage(productSpecs, "in-cart-products");
-  orderCardsControl();
+    // Remove the product from orders table
+    removeProductFromLocalStorage(productSpecs, "in-cart-products");
+    orderCardsControl();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function confirmDeleteButtonControl(productSpecs) {

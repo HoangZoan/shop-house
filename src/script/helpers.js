@@ -207,33 +207,52 @@ export class Carousel {
     /* Full-content */
     if (options.sliderType === "full-content" && options.autoPlay) {
       let imageNumber = 1;
+      let intervalActive = [];
 
-      setInterval(() => {
-        if (imageNumber > this._imgEls.length) {
-          imageNumber = 1;
+      const createInterval = () => {
+        const interval = setInterval(() => {
+          if (imageNumber > this._imgEls.length) {
+            imageNumber = 1;
+          }
+
+          this._imageOrder = imageNumber;
+          this._showImageByIndex(imageNumber);
+
+          if (this._btnNext && this._btnPrev) {
+            // Hide prev button when showing the first image
+            imageNumber === 1
+              ? this._showPrevBtn(false)
+              : this._showPrevBtn(true);
+
+            // Hide next button when showing the last image
+            imageNumber === this._imgEls.length
+              ? this._showNextBtn(false)
+              : this._showNextBtn(true);
+          }
+
+          if (this._btnImagesContainer) {
+            this._activateMiniImagesByImageOrder(imageNumber);
+          }
+
+          imageNumber++;
+        }, options.autoPlay);
+
+        if (intervalActive.length === 0) {
+          intervalActive.push(interval);
         }
+      };
+      createInterval();
 
-        this._imageOrder = imageNumber;
-        this._showImageByIndex(imageNumber);
-
-        if (this._btnNext && this._btnPrev) {
-          // Hide prev button when showing the first image
-          imageNumber === 1
-            ? this._showPrevBtn(false)
-            : this._showPrevBtn(true);
-
-          // Hide next button when showing the last image
-          imageNumber === this._imgEls.length
-            ? this._showNextBtn(false)
-            : this._showNextBtn(true);
-        }
-
-        if (this._btnImagesContainer) {
-          this._activateMiniImagesByImageOrder(imageNumber);
-        }
-
-        imageNumber++;
-      }, options.autoPlay);
+      if (this._btnNext && this._btnPrev) {
+        [this._btnNext, this._btnPrev].forEach((btnEl) => {
+          btnEl.addEventListener("click", () => {
+            if (intervalActive.length !== 0) {
+              clearInterval(intervalActive[0]);
+              createInterval();
+            }
+          });
+        });
+      }
     }
   }
 

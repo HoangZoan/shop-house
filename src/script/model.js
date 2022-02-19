@@ -1,4 +1,3 @@
-import { productsData } from "./DUMMY_DATA/products-data.js";
 import HeaderTopBarView from "./views/headerTopBarView.js";
 import { deepCompareArrays, Carousel } from "./helpers.js";
 import {
@@ -36,11 +35,6 @@ export const initializePageHeader = (currentPage) => {
 };
 
 // MODEL FUNCTIONALITY
-export const getProductById = (id) => {
-  return productsData.find(
-    (product) => product.id === id || product.orderId === id
-  );
-};
 
 export const persistDataOnLocalStorage = (storageName, data) => {
   const dataUpload = JSON.stringify(data);

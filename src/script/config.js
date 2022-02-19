@@ -16,10 +16,34 @@ export const CATEGORIES = [
   { name: "Khuyến mãi", value: "sale" },
 ];
 export const BRANDS = [
-  { name: "Chilai", value: "chilai" },
-  { name: "Hòa Phát", value: "hoa-phat" },
-  { name: "Phố Xinh", value: "pho-xinh" },
-  { name: "Decox", value: "decox" },
+  {
+    name: "Chilai",
+    value: "chilai",
+    logo: "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fchilai-logo.png?alt=media&token=3a7ab7b5-458a-4fc1-9956-89b51269c526",
+    wallpaper:
+      "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fchilai-wall.png?alt=media&token=a89acd41-ddcf-42dc-a797-f032d6401426",
+  },
+  {
+    name: "Hòa Phát",
+    value: "hoa-phat",
+    logo: "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fhoa-phat-logo.png?alt=media&token=df48928a-074e-410f-bf3b-94303fbf697c",
+    wallpaper:
+      "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fhoa-phat-wall.png?alt=media&token=71f4af66-b75c-4bdf-988a-9a9af1191265",
+  },
+  {
+    name: "Phố Xinh",
+    value: "pho-xinh",
+    logo: "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fpho-xinh-logo.png?alt=media&token=71912831-0220-42d0-8396-8ce85426e78e",
+    wallpaper:
+      "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fpho-xinh-wall.png?alt=media&token=0a04f96e-b7cc-45eb-b98a-2f87d438b963",
+  },
+  {
+    name: "Decox",
+    value: "decox",
+    logo: "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fdecox-logo.png?alt=media&token=0c05176c-e8b7-4688-a2ea-1b85df803ca1",
+    wallpaper:
+      "https://firebasestorage.googleapis.com/v0/b/shop-house-b4d1e.appspot.com/o/brands%2Fdecox-wall.png?alt=media&token=80b6067d-4a79-41d0-8f68-1b67e2f64151",
+  },
 ];
 export const PRODUCT_TYPES = [
   { name: "Bàn", value: "table" },

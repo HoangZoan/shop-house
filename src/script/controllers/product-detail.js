@@ -3,7 +3,6 @@ import ProductDetailOrderView from "../views/product-detail-view/productDetailOr
 import ProductDetailDescriptionView from "../views/product-detail-view/productDetailDescriptionView.js";
 import {
   initializePageHeader,
-  getProductById,
   addProductToLocalStorage,
   getProductsByType,
   addRecentlyViewedProducts,
