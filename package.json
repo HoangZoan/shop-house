@@ -7,8 +7,10 @@
     "devserver": "live-server",
     "start": "npm-run-all --parallel devserver watch:sass",
     "watch:sass": "sass src/sass/main.scss src/css/style.css -w --no-source-map",
-    "build:sass": "sass src/css/style.build.css src/css/style.css -w --no-source-map --style compressed",
-    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' src/css/style.css -o src/css/style.build.css",
+    "create:sass": "sass src/sass/main.scss src/css/style.css --no-source-map",
+    "prefix:sass": "postcss --use autoprefixer -b 'last 10 versions' src/css/style.css -o src/css/style.build.css",
+    "compress:sass": "sass src/css/style.build.css src/css/style.css -w --no-source-map --style compressed",
+    "build:sass": "npm-run-all create:sass prefix:sass compress:sass",
     "update:sprite": "svg-sprite -s --symbol-dest resources/icons --symbol-sprite sprite.svg resources/icons/*.svg"
   },
   "author": "Hoang",
