@@ -121,15 +121,13 @@ export class PreviewProductsView extends View {
               <a 
                 href="${_this._generateHrefLink(
                   _this._currentPage,
-                  _this._data[index].sort,
+                  _this._data[index].sort || [],
                   data.id
                 )}" 
                 class="main-cards__cards__product-card">
                   <div class="card-img">
                       <img 
-                        src="${
-                          homepage === "home" ? "" : "."
-                        }./resources/images/products/${data.id}/thmb.jpg" 
+                        src="${data.thmbImage}" 
                         alt="Product" 
                       />
       

@@ -22,25 +22,30 @@ class ProductDetailDescriptionView extends View {
     });
   }
 
-  _generageImages(productId, query, bigImages = false) {
+  _generageImages(productData, query, bigImages = false) {
     let result = [];
 
-    for (let i = 1; i <= MINI_IMAGE_AMOUNT; i++) {
-      result.push(`
-        <div class="${!bigImages ? "small-image " : "large-image slider-item"}${
-        !bigImages ? (i === 1 ? "active" : "") : ""
-      }">
+    const imagesData = productData.images.find(
+      (imgData) => imgData.type === query || query === ""
+    );
+
+    const imagesMarkup = imagesData.imageUrls
+      .map((url, i) => {
+        return `
+        <div 
+          class="${!bigImages ? "small-image " : "large-image slider-item"}${
+          !bigImages ? (i === 1 ? "active" : "") : ""
+        }">
           <img
-            src="../resources/images/products/${productId}/${
-        query && query.length !== 0 ? query + "-" : ""
-      }${i}.jpg"
+            src="${url}"
             alt="Product image"
           />
         </div>
-      `);
-    }
+      `;
+      })
+      .join("\n");
 
-    return result.join("\n");
+    return imagesMarkup;
   }
 
   _generateSpecification(specs) {
@@ -62,12 +67,12 @@ class ProductDetailDescriptionView extends View {
     return `
     <div class="product-description__gallery">
       <div class="product-description__gallery__big-img">
-        ${this._generageImages(data.id, locationQuery, true)}
+        ${this._generageImages(data, locationQuery, true)}
 
         ${this._generateSliderButtons()}
 
       <div class="product-description__gallery__small-images-container">
-        ${this._generageImages(data.id, locationQuery)}
+        ${this._generageImages(data, locationQuery)}
       </div>
     </div>
 

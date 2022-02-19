@@ -7,58 +7,71 @@ import {
   addProductToLocalStorage,
   getProductsByType,
   addRecentlyViewedProducts,
+  getProductsFromDB,
 } from "../model.js";
 
-const productDetailDescriptionControl = () => {
-  // Get product id from hash name and render
-  const hash = window.location.hash.slice(1);
-  const product = getProductById(hash);
-  ProductDetailDescriptionView.renderSingleItem(product);
+const productDetailDescriptionControl = async () => {
+  try {
+    // Get product id from hash name and render
+    const hash = window.location.hash.slice(1);
+    const product = await getProductsFromDB(hash);
+    ProductDetailDescriptionView.renderSingleItem(product);
 
-  // Handle product images carousel
-  ProductDetailDescriptionView.addProductImagesCarouselHandler();
+    // Handle product images carousel
+    ProductDetailDescriptionView.addProductImagesCarouselHandler();
 
-  // Add product as recently viewed
-  addRecentlyViewedProducts(product);
+    // Add product as recently viewed
+    addRecentlyViewedProducts(product);
 
-  // Render bread crumbs
-  ProductDetailDescriptionView.renderBreadCrumbs("product-detail");
+    // Render bread crumbs
+    ProductDetailDescriptionView.renderBreadCrumbs("product-detail");
 
-  // Handle reload page when hash change
-  ProductDetailDescriptionView.addHashChangeHandler();
+    // Handle reload page when hash change
+    ProductDetailDescriptionView.addHashChangeHandler();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const productDetailOrderControl = () => {
-  // Render product order card by break-point
-  const responsive = window.matchMedia("(max-width: 50em)").matches;
-  ProductDetailOrderView.setCardTypeClass(
-    `${responsive ? ".product-order--responsive" : ".product-order--origin"}`
-  );
+const productDetailOrderControl = async () => {
+  try {
+    // Render product order card by break-point
+    const responsive = window.matchMedia("(max-width: 50em)").matches;
+    ProductDetailOrderView.setCardTypeClass(
+      `${responsive ? ".product-order--responsive" : ".product-order--origin"}`
+    );
 
-  // Get product id from hash name and render
-  const hash = window.location.hash.slice(1);
-  ProductDetailOrderView.renderSingleItem(getProductById(hash));
+    // Get product id from hash name and render
+    const hash = window.location.hash.slice(1);
+    const product = await getProductsFromDB(hash);
+    console.log(product);
+    ProductDetailOrderView.renderSingleItem(product);
 
-  // Set options select and handle change event
-  ProductDetailOrderView.setMultiComponentElementsClass(
-    "_sortSelects",
-    ".product-order__product-filter select"
-  );
-  ProductDetailOrderView.addSortOptionsChangeHandler();
+    // Set options select and handle change event
+    ProductDetailOrderView.setMultiComponentElementsClass(
+      "_sortSelects",
+      ".product-order__product-filter select"
+    );
+    ProductDetailOrderView.addSortOptionsChangeHandler();
 
-  // Set favorite button and handle click event
-  ProductDetailOrderView.setComponentElementClass(
-    "_favoriteBtn",
-    ".product-order__action .btn--sub"
-  );
-  ProductDetailOrderView.addFavoriteBtnClickHanlder(addProductToLocalStorage);
+    // Set favorite button and handle click event
+    ProductDetailOrderView.setComponentElementClass(
+      "_favoriteBtn",
+      ".product-order__action .btn--sub"
+    );
+    ProductDetailOrderView.addFavoriteBtnClickHanlder(addProductToLocalStorage);
 
-  // Set add to cart button and handle click event
-  ProductDetailOrderView.setComponentElementClass(
-    "_addToCartBtn",
-    ".product-order__action .btn--primary"
-  );
-  ProductDetailOrderView.addAddToCartBtnClickHandler(addProductToLocalStorage);
+    // Set add to cart button and handle click event
+    ProductDetailOrderView.setComponentElementClass(
+      "_addToCartBtn",
+      ".product-order__action .btn--primary"
+    );
+    ProductDetailOrderView.addAddToCartBtnClickHandler(
+      addProductToLocalStorage
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const cardHeartButtonControl = (productId) => {
@@ -100,9 +113,9 @@ const init = () => {
     productDetailDescriptionControl
   );
   ProductDetailOrderView.addRenderByLocationHandler(productDetailOrderControl);
-  PreviewProductsView.addRenderWhenLoadedHanlder(
-    followingPurchaseProductsControl
-  );
-  PreviewProductsView.addRenderWhenLoadedHanlder(similarProductsControl);
+  // PreviewProductsView.addRenderWhenLoadedHanlder(
+  //   followingPurchaseProductsControl
+  // );
+  // PreviewProductsView.addRenderWhenLoadedHanlder(similarProductsControl);
 };
 init();
