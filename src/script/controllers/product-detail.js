@@ -36,6 +36,24 @@ const productDetailDescriptionControl = async () => {
 
       // Get product id from hash name and render
       ProductDetailOrderView.renderSingleItem(product);
+
+      // Set favorite button and handle click event
+      ProductDetailOrderView.setComponentElementClass(
+        "_favoriteBtn",
+        ".product-order__action .btn--sub"
+      );
+      ProductDetailOrderView.addFavoriteBtnClickHanlder(
+        addProductToLocalStorage
+      );
+
+      // Set add to cart button and handle click event
+      ProductDetailOrderView.setComponentElementClass(
+        "_addToCartBtn",
+        ".product-order__action .btn--primary"
+      );
+      ProductDetailOrderView.addAddToCartBtnClickHandler(
+        addProductToLocalStorage
+      );
     }
   } catch (error) {
     console.log(error);

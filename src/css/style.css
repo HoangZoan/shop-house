@@ -1354,6 +1354,7 @@ input {
 .section-form-check-out .user-info-field__form-control .input-wrapper {
   flex: 1;
   position: relative;
+  width: 100%;
 }
 .section-form-check-out .user-info-field__form-control .input-wrapper .input-error {
   position: absolute;

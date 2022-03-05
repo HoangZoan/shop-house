@@ -93,7 +93,7 @@ class OrderCardsView extends View {
         ".order-card__total-price.total-price-origin"
       );
       const totalPrices = [...orderCardTotalPriceEls].map((el) =>
-        convertPriceStringToNumber(el.innerText)
+        convertPriceStringToNumber(el.innerText.trim())
       );
 
       const inCartProductsData = [...quantityControlEls].map((el, index) => ({
@@ -111,8 +111,6 @@ class OrderCardsView extends View {
         products: inCartProductsData,
         deliveryDateStandard,
       };
-
-      console.log(inCartProductsData);
     });
   }
 
@@ -211,9 +209,9 @@ class OrderCardsView extends View {
     const totalPriceEls = this._totalPriceEls;
     let totalPrices = [];
 
-    totalPriceEls.forEach((el) =>
-      totalPrices.push(convertPriceStringToNumber(el.innerText))
-    );
+    totalPriceEls.forEach((el) => {
+      totalPrices.push(convertPriceStringToNumber(el.innerText.trim()));
+    });
 
     const netPrice =
       totalPrices.length === 0
