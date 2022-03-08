@@ -995,6 +995,17 @@ input {
     --padding-size: 1.2rem;
   }
 }
+.section-product-detail .product-order__action button.is-favorite {
+  background-color: #1e90ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-product-detail .product-order__action button.is-favorite svg {
+  fill: #fff;
+  height: 2.4rem;
+  width: 2.4rem;
+}
 .section-product-detail .product-order__policy-title {
   font-weight: 700;
   font-size: 1.8rem;

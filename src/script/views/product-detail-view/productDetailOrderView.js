@@ -58,12 +58,19 @@ class ProductDetailOrderView extends View {
     });
   }
 
-  addFavoriteBtnClickHanlder(handler) {
+  addFavoriteBtnClickHanlder(addHandler, removeHandler, renderHandler) {
     const _this = this;
-    this._favoriteBtn.addEventListener("click", () => {
-      handler(_this._data, "favorite-products");
 
-      _this._buttonChangeTextHandler(_this._favoriteBtn, "Yêu thích");
+    this._favoriteBtn.addEventListener("click", () => {
+      const isFavorite = document.querySelector(".btn--sub.is-favorite");
+
+      if (isFavorite) {
+        removeHandler(_this._data.id, "favorite-products");
+      } else {
+        addHandler(_this._data, "favorite-products");
+      }
+
+      renderHandler();
     });
   }
 
@@ -190,8 +197,17 @@ class ProductDetailOrderView extends View {
       .join("\n");
   }
 
+  _generateHeartIconMarkup() {
+    return `
+      <svg>
+        <use xlink:href="../resources/icons/sprite.svg#heart-solid"></use>
+      </svg>
+    `;
+  }
+
   _generateMarkup() {
     const data = this._data;
+    const isFavorite = this._checkFavoriteProduct(data.id);
 
     return `
       <div class="product-order__title-info">
@@ -221,7 +237,9 @@ class ProductDetailOrderView extends View {
       </div>
 
       <div class="product-order__action">
-        <button class="btn--sub">Yêu thích</button>
+        <button class="btn--sub ${isFavorite ? "is-favorite" : ""}">
+          ${isFavorite ? this._generateHeartIconMarkup() : "Yêu thích"}
+        </button>
         <button class="btn--primary">Thêm vào giỏ</button>
       </div>
 

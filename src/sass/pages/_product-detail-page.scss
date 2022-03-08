@@ -189,6 +189,19 @@
         }
         padding-top: var(--padding-size);
         padding-bottom: var(--padding-size);
+
+        &.is-favorite {
+          background-color: $color-primary;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            fill: $color-white;
+            height: 2.4rem;
+            width: 2.4rem;
+          }
+        }
       }
     }
 

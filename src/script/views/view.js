@@ -372,6 +372,7 @@ export class View {
 
   _buttonChangeTextHandler(buttonEl, originText) {
     buttonEl.textContent = "Đã thêm";
+
     setTimeout(() => {
       buttonEl.textContent = `${originText}`;
     }, 1000);
@@ -439,6 +440,14 @@ export class View {
     if (fromFast === 1 && toFast === 1) inDay = true;
 
     return { inDay, from: fromFast, to: toFast };
+  }
+
+  _checkFavoriteProduct(id) {
+    const favoriteProducts = JSON.parse(
+      window.localStorage.getItem("favorite-products")
+    );
+
+    return favoriteProducts.some((product) => product.id === id);
   }
 
   _generateDeliveryDate({ from, to, inDay = false }) {
