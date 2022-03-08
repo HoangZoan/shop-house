@@ -10,12 +10,17 @@ import {
 const addClickEventHandler = (callerClass, activeClass) => {
   const caller = document.querySelector("." + callerClass);
   const active = document.querySelector("." + activeClass);
+  const mainEl = document.querySelector("main");
 
   caller.addEventListener("click", (e) => {
     const btn = e.target.closest("." + callerClass);
     if (!btn) return;
 
     active.classList.toggle("active");
+
+    if (callerClass === "tool-icon--search") {
+      mainEl.classList.toggle("expand-top-padding");
+    }
   });
 };
 

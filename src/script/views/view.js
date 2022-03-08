@@ -63,7 +63,7 @@ export class View {
             &nbsp;
           <span class="bread-crumbs__slash">/</span>
             &nbsp;
-          <a class="bread-crumbs__link" href="#${data.id}">
+          <a class="bread-crumbs__link fw-700" href="#${data.id}">
             ${data.title}
           </a> 
         `;

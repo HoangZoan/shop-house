@@ -24,6 +24,10 @@ body {
   font-size: 1.4rem;
 }
 
+main.expand-top-padding {
+  padding-top: 8rem;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -90,6 +94,10 @@ input {
 
 .fw-500 {
   font-weight: 500;
+}
+
+.fw-700 {
+  font-weight: 700;
 }
 
 /* CONTAINER */
@@ -236,6 +244,8 @@ input {
   justify-content: space-between;
   align-items: center;
   position: relative;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
 }
 @media only screen and (max-width: 50em) {
   .page-header .header-bar {
@@ -584,9 +594,11 @@ input {
   margin-right: 1.2rem;
 }
 .footer-content__column .footer-logo {
+  margin-top: 1rem;
   --logo-size: 12rem;
   height: var(--logo-size);
   width: var(--logo-size);
+  height: auto;
 }
 .footer-content__column .footer-logo img {
   display: block;
@@ -596,9 +608,10 @@ input {
 }
 .footer-content__column .footer-copyright {
   font-size: 1.2rem;
+  margin-top: 1.2rem;
 }
 .footer-content__column .certificate-logo {
-  --logo-width: 18rem;
+  --logo-width: 14rem;
   width: var(--logo-width);
   height: auto;
 }
@@ -2188,12 +2201,11 @@ input {
   background-color: #fff;
 }
 .main-cards__cards__product-card .card-text {
-  padding: 2rem 2.8rem;
+  padding: 1.8rem 1.8rem;
   font-size: 1.6rem;
 }
 @media only screen and (max-width: 68.75em) {
   .main-cards__cards__product-card .card-text {
-    padding: 1.8rem 1.8rem;
     font-size: 1.4rem;
   }
 }
@@ -2203,16 +2215,25 @@ input {
     font-size: 1.6rem;
   }
 }
+.main-cards__cards__product-card .card-text__price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
 .main-cards__cards__product-card .card-text__price--current {
   color: #1e90ff;
 }
 .main-cards__cards__product-card .card-text__price--old {
   color: #e74c3c;
 }
+.main-cards__cards__product-card .card-text__price--old {
+  font-size: 1.2rem;
+}
 .main-cards__cards__product-card .card-text__product-title {
   font-size: 1.8rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.6rem;
   height: 6rem;
+  line-height: 1.6;
 }
 @media only screen and (max-width: 68.75em) {
   .main-cards__cards__product-card .card-text__product-title {
