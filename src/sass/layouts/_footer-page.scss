@@ -94,18 +94,21 @@
     // BOTTOM CONTENT
 
     .footer-logo {
+      margin-top: 1rem;
       --logo-size: 12rem;
       height: var(--logo-size);
       width: var(--logo-size);
       @include placeImg;
+      height: auto;
     }
 
     .footer-copyright {
       font-size: 1.2rem;
+      margin-top: 1.2rem;
     }
 
     .certificate-logo {
-      --logo-width: 18rem;
+      --logo-width: 14rem;
       width: var(--logo-width);
       height: auto;
       @include placeImg;

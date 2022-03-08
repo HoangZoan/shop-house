@@ -150,10 +150,12 @@ export class PreviewProductsView extends View {
                           ${data.title}
                       </div>
 
-                      ${_this._generatePrice(
-                        data.initialPrice,
-                        data.tags.discount
-                      )}
+                      <div class="card-text__price-wrapper">
+                        ${_this._generatePrice(
+                          data.initialPrice,
+                          data.tags.discount
+                        )}
+                      </div>
                   </div>
               </a>
       
