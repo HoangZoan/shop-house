@@ -5,6 +5,7 @@ import {
   getDataFromLocalStorage,
   addProductToLocalStorage,
   getProductsFromDB,
+  removeProductFromLocalStorage,
 } from "../model.js";
 
 const breadCrumbsControl = () => {
@@ -44,7 +45,10 @@ const recentlyViewedProductsControl = () => {
   PreviewProductsView.addCarouselsHandler("recently-viewed-prodcuts");
 
   // Set heart button and handle add favorite product click
-  PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+  PreviewProductsView.setHeartButtonsElement(
+    cardHeartButtonControl,
+    removeProductFromLocalStorage
+  );
 };
 
 const init = () => {

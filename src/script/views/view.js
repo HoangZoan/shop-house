@@ -447,6 +447,10 @@ export class View {
       window.localStorage.getItem("favorite-products")
     );
 
+    if (!favoriteProducts) {
+      return false;
+    }
+
     return favoriteProducts.some((product) => product.id === id);
   }
 

@@ -130,9 +130,6 @@ const followingPurchaseProductsControl = async () => {
     PreviewProductsView.setCardTypeClass(".following-purchase-preview");
     PreviewProductsView.renderItems(products, "in-page");
     PreviewProductsView.addCarouselsHandler("following-purchase-preview");
-
-    // Set heart button and handle add favorite product click
-    PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
   } catch (error) {
     console.log(error);
   }
@@ -153,7 +150,10 @@ const similarProductsControl = async () => {
     PreviewProductsView.addCarouselsHandler("similar-purchase-preview");
 
     // Set heart button and handle add favorite product click
-    PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+    PreviewProductsView.setHeartButtonsElement(
+      cardHeartButtonControl,
+      removeProductFromLocalStorage
+    );
   } catch (error) {
     console.log(error);
   }

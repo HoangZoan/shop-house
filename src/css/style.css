@@ -166,8 +166,8 @@ input {
 
 .btn--danger {
   background-color: #fff;
-  color: #1e90ff;
-  border: 1px solid #1e90ff;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
 }
 .btn--danger:hover {
   background-color: #e74c3c;
@@ -2175,6 +2175,9 @@ input {
   display: block;
 }
 .main-cards__cards__product-card-container .card-favorite-btn:hover svg {
+  color: #1e90ff;
+}
+.main-cards__cards__product-card-container .card-favorite-btn.is-hearted svg {
   color: #1e90ff;
 }
 .main-cards__cards__product-card-container .card-favorite-btn svg {
