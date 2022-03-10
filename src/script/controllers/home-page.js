@@ -45,6 +45,9 @@ const bestSaleProductsControl = async () => {
         cardHeartButtonControl,
         removeProductFromLocalStorage
       );
+
+      // Clear seleted heart buttons when user log out
+      PreviewProductsView.clearHeartedButtonsWhenLogout();
     } else {
       PreviewProductsView.setProductTypeHasRendered("best-seller");
     }
@@ -71,6 +74,9 @@ const newComingProductsControl = async () => {
         cardHeartButtonControl,
         removeProductFromLocalStorage
       );
+
+      // Clear seleted heart buttons when user log out
+      PreviewProductsView.clearHeartedButtonsWhenLogout();
     } else {
       PreviewProductsView.setProductTypeHasRendered("new-coming");
     }

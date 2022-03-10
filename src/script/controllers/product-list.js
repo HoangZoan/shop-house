@@ -84,6 +84,9 @@ async function productsListControl(_, page = 1, itemsPerPage = ITEMS_PER_PAGE) {
     cardHeartButtonControl,
     removeProductFromLocalStorage
   );
+
+  // Clear seleted heart buttons when user log out
+  PreviewProductsView.clearHeartedButtonsWhenLogout();
 }
 
 const init = () => {

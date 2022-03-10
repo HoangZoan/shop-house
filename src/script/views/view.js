@@ -368,6 +368,10 @@ export class View {
           ) + "đ";
   }
 
+  _checkAuthenticationUser() {
+    return JSON.parse(window.localStorage.getItem("user"));
+  }
+
   _handleEmptyTextFieldError(input) {
     const inputIsValid = validateInput(input.value);
 

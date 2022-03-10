@@ -52,6 +52,9 @@ const recentlyViewedProductsControl = () => {
     removeProductFromLocalStorage,
     true
   );
+
+  // Clear seleted heart buttons when user log out
+  PreviewProductsView.clearHeartedButtonsWhenLogout();
 };
 
 const init = () => {
