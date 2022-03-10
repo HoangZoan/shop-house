@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Form</title>
     <link rel="stylesheet" href="../src/css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../resources/images/logo/favicon.png"
+      type="image/png"
+    />
     <script
       type="module"
       src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"
@@ -129,6 +134,16 @@
               <div class="tool-box-menu__item__title">Hỏi đáp</div>
             </a>
           </li>
+          <li class="tool-box-menu__item log-out-item">
+            <a href="./login-form.html">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use xlink:href="../resources/icons/sprite.svg#log-out"></use>
+                </svg>
+              </div>
+              <div class="tool-box-menu__item__title">Đăng xuất</div>
+            </a>
+          </li>
         </ul>
 
         <div class="divider"></div>
@@ -139,7 +154,7 @@
       </div>
     </header>
 
-    <section class="section-login-form">
+    <section class="section-login-form main-padding-y">
       <div class="form-container">
         <h3 class="login-status-message hidden">
           <ion-icon name="checkmark-circle"></ion-icon><span>Abc</span>
@@ -310,6 +325,16 @@
         </div>
       </div>
     </footer>
-    <!-- <script src="./script.js"></script> -->
+
+    <div class="modal modal-auth">
+      <div class="modal__box">
+        <div class="modal__box__title">Đăng nhập để sử dụng tính năng</div>
+
+        <div class="modal__box__action">
+          <a href="./login-form.html" class="btn--primary">Đăng nhập</a>
+          <button class="btn--sub cancel-modal-btn">Bỏ qua</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

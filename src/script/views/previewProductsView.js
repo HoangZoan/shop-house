@@ -4,11 +4,19 @@ import {
   calcSalesPrice,
   Carousel,
 } from "../helpers.js";
-import { renderBadgesNumber } from "../model.js";
+import {
+  renderBadgesNumber,
+  checkUserAuthentication,
+  toggleShowAuthenticationModal,
+} from "../model.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
   _heartButtonsElement;
+  _bestSellerHasRendered = false;
+  _newComingHasRendered = false;
+  _followingPurchaseHasRendered = false;
+  _similarProductsHasRendered = false;
   _notFoundMessage = "Chưa có sản phẩm";
 
   addCarouselsHandler(sliderClassName) {
@@ -26,12 +34,46 @@ export class PreviewProductsView extends View {
     });
   }
 
-  setHeartButtonsElement(addHandler, removeHandler) {
+  checkProductsTypeHasRendered(type) {
+    switch (type) {
+      case "best-seller":
+        return this._bestSellerHasRendered;
+      case "new-coming":
+        return this._newComingHasRendered;
+      case "following-purchase":
+        return this._followingPurchaseHasRendered;
+      case "similar-products":
+        return this._similarProductsHasRendered;
+    }
+  }
+
+  setProductTypeHasRendered(type) {
+    switch (type) {
+      case "best-seller":
+        this._bestSellerHasRendered = true;
+        break;
+      case "new-coming":
+        this._newComingHasRendered = true;
+        break;
+      case "following-purchase":
+        this._followingPurchaseHasRendered = true;
+        break;
+      case "similar-products":
+        this._similarProductsHasRendered = true;
+        break;
+    }
+  }
+
+  checkIfHeartButtonEventIsAllSet() {
+    return this._heartButtonsElement;
+  }
+
+  setHeartButtonsElement(addHandler, removeHandler, reload) {
     this.setMultiComponentElementsClass(
       "_heartButtonsElement",
       ".card-favorite-btn"
     );
-    this._addHeartButtonClickHandler(addHandler, removeHandler);
+    this._addHeartButtonClickHandler(addHandler, removeHandler, reload);
   }
 
   _setHeartButtonStyle(heartButton, iconSvg, isHearted) {
@@ -47,11 +89,17 @@ export class PreviewProductsView extends View {
     }, 600);
   }
 
-  _addHeartButtonClickHandler(addHandler, removeHandler) {
+  _addHeartButtonClickHandler(addHandler, removeHandler, reload = false) {
     const _this = this;
 
     this._heartButtonsElement.forEach((element) => {
       element.addEventListener("click", (event) => {
+        const user = checkUserAuthentication();
+        if (!user) {
+          toggleShowAuthenticationModal();
+          return;
+        }
+
         const btn = event.target.closest(".card-favorite-btn");
         const iconSvg = btn.querySelector("svg");
         const isHearted = btn.classList.contains("is-hearted");
@@ -62,6 +110,10 @@ export class PreviewProductsView extends View {
         if (Boolean(isHearted)) {
           btn.classList.remove("is-hearted");
           removeHandler(productId, "favorite-products");
+
+          if (reload) {
+            window.location.reload();
+          }
         } else {
           btn.classList.add("is-hearted");
           addHandler(productId);

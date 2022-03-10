@@ -1,7 +1,11 @@
 import { View } from "../view.js";
 import { calcSalesPrice, convertNumberToPriceString } from "../../helpers.js";
 import { PRODUCT_DETAIL_SEARCH_QUERIES } from "../../config.js";
-import { renderBadgesNumber } from "../../model.js";
+import {
+  renderBadgesNumber,
+  checkUserAuthentication,
+  toggleShowAuthenticationModal,
+} from "../../model.js";
 
 class ProductDetailOrderView extends View {
   _parentElement;
@@ -64,6 +68,12 @@ class ProductDetailOrderView extends View {
     const _this = this;
 
     this._favoriteBtn.addEventListener("click", () => {
+      const user = checkUserAuthentication();
+      if (!user) {
+        toggleShowAuthenticationModal();
+        return;
+      }
+
       const isFavorite = document.querySelector(".btn--sub.is-favorite");
 
       if (isFavorite) {

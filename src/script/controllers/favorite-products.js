@@ -49,7 +49,8 @@ const recentlyViewedProductsControl = () => {
   // Set heart button and handle add favorite product click
   PreviewProductsView.setHeartButtonsElement(
     cardHeartButtonControl,
-    removeProductFromLocalStorage
+    removeProductFromLocalStorage,
+    true
   );
 };
 

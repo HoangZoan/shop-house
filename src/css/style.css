@@ -490,6 +490,12 @@ input {
     padding-left: 0;
   }
 }
+.page-header .header-category .tool-box-menu__item.log-out-item .tool-box-menu__item__title {
+  color: #e74c3c;
+}
+.page-header .header-category .tool-box-menu__item.log-out-item svg {
+  fill: #e74c3c;
+}
 .page-header .header-category .tool-box-menu__item:hover {
   background-color: #f1f8ff;
   color: #1e90ff;
@@ -1953,7 +1959,6 @@ input {
 
 .section-login-form {
   background-color: #f4f4f4;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2092,6 +2097,7 @@ input {
 .sub-btn {
   margin-top: 16px;
   border: 1px solid #1e90ff;
+  color: #1e90ff;
 }
 
 .sub-btn:hover {
@@ -2987,6 +2993,7 @@ input {
   }
 }
 .modal__box__title {
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3042,6 +3049,34 @@ input {
 }
 @media only screen and (max-width: 31.25em) {
   .modal__box__action a:not(:last-child) {
+    margin-bottom: 1.2rem;
+  }
+}
+.modal.modal-auth .modal__box {
+  padding: 2.4rem 1.2rem;
+  max-width: 36rem;
+}
+.modal.modal-auth .modal__box__title {
+  font-size: 2rem;
+  margin-bottom: 3.2rem;
+}
+.modal.modal-auth .modal__box__action {
+  justify-content: space-around;
+}
+.modal.modal-auth .modal__box__action button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-size: 1.6rem;
+}
+@media only screen and (max-width: 31.25em) {
+  .modal.modal-auth .modal__box__action button {
+    text-align: center;
+    padding: 0.4rem 2rem;
+    min-width: 18rem;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .modal.modal-auth .modal__box__action button:not(:last-child) {
     margin-bottom: 1.2rem;
   }
 }

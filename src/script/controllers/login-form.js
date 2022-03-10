@@ -145,6 +145,8 @@ const submitFormHandler = () => {
     }
 
     if (formIsValid) {
+      window.localStorage.setItem("user", JSON.stringify({ login: true }));
+
       setTimeout(() => {
         window.location.replace("/");
       }, 1000);
@@ -173,6 +175,6 @@ const init = () => {
   actionsBtnHandler();
   renderFormUI();
   submitFormHandler();
-  initializePageHeader("nested-page");
+  initializePageHeader("side-page");
 };
 init();
