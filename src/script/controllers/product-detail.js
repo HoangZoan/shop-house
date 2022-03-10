@@ -7,6 +7,8 @@ import {
   getProductsByType,
   addRecentlyViewedProducts,
   getProductsFromDB,
+  removeProductFromLocalStorage,
+  renderBadgesNumber,
 } from "../model.js";
 
 const productDetailDescriptionControl = async () => {
@@ -43,7 +45,9 @@ const productDetailDescriptionControl = async () => {
         ".product-order__action .btn--sub"
       );
       ProductDetailOrderView.addFavoriteBtnClickHanlder(
-        addProductToLocalStorage
+        addProductToLocalStorage,
+        removeProductFromLocalStorage,
+        productDetailOrderControl
       );
 
       // Set add to cart button and handle click event
@@ -86,7 +90,11 @@ const productDetailOrderControl = async () => {
       "_favoriteBtn",
       ".product-order__action .btn--sub"
     );
-    ProductDetailOrderView.addFavoriteBtnClickHanlder(addProductToLocalStorage);
+    ProductDetailOrderView.addFavoriteBtnClickHanlder(
+      addProductToLocalStorage,
+      removeProductFromLocalStorage,
+      productDetailOrderControl
+    );
 
     // Set add to cart button and handle click event
     ProductDetailOrderView.setComponentElementClass(
@@ -105,6 +113,7 @@ const cardHeartButtonControl = async (productId) => {
   try {
     const product = await getProductsFromDB(productId);
     addProductToLocalStorage(product, "favorite-products");
+    renderBadgesNumber();
   } catch (error) {
     console.log(error);
   }
@@ -123,9 +132,6 @@ const followingPurchaseProductsControl = async () => {
     PreviewProductsView.setCardTypeClass(".following-purchase-preview");
     PreviewProductsView.renderItems(products, "in-page");
     PreviewProductsView.addCarouselsHandler("following-purchase-preview");
-
-    // Set heart button and handle add favorite product click
-    PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
   } catch (error) {
     console.log(error);
   }
@@ -146,7 +152,10 @@ const similarProductsControl = async () => {
     PreviewProductsView.addCarouselsHandler("similar-purchase-preview");
 
     // Set heart button and handle add favorite product click
-    PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+    PreviewProductsView.setHeartButtonsElement(
+      cardHeartButtonControl,
+      removeProductFromLocalStorage
+    );
   } catch (error) {
     console.log(error);
   }

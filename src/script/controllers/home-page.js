@@ -8,6 +8,8 @@ import {
   getProductsByType,
   handleBillboardSlider,
   getProductsFromDB,
+  removeProductFromLocalStorage,
+  renderBadgesNumber,
 } from "../model.js";
 
 const brandsPreviewControl = () => {
@@ -21,6 +23,7 @@ const cardHeartButtonControl = async (productId) => {
   try {
     const product = await getProductsFromDB(productId);
     addProductToLocalStorage(product, "favorite-products");
+    renderBadgesNumber();
   } catch (error) {
     console.log(error);
   }
@@ -51,7 +54,10 @@ const newComingProductsControl = async () => {
     PreviewProductsView.addCarouselsHandler("new-coming-preview");
 
     // Set heart button and handle add favorite product click (including best-seller)
-    PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+    PreviewProductsView.setHeartButtonsElement(
+      cardHeartButtonControl,
+      removeProductFromLocalStorage
+    );
   } catch (error) {
     console.log(error);
   }

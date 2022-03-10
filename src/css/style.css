@@ -166,8 +166,8 @@ input {
 
 .btn--danger {
   background-color: #fff;
-  color: #1e90ff;
-  border: 1px solid #1e90ff;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
 }
 .btn--danger:hover {
   background-color: #e74c3c;
@@ -326,6 +326,7 @@ input {
 }
 .page-header .header-bar__tools-box .tool-icon {
   cursor: pointer;
+  position: relative;
 }
 .page-header .header-bar__tools-box .tool-icon--search, .page-header .header-bar__tools-box .tool-icon--menu {
   display: none;
@@ -357,6 +358,20 @@ input {
   .page-header .header-bar__tools-box .tool-icon svg {
     --icon-size: 2rem;
   }
+}
+.page-header .header-bar__tools-box .tool-icon .tool-icon-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #e74c3c;
+  color: #fff;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.6rem;
+  display: none;
 }
 .page-header .header-category {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -994,6 +1009,17 @@ input {
   .section-product-detail .product-order__action button {
     --padding-size: 1.2rem;
   }
+}
+.section-product-detail .product-order__action button.is-favorite {
+  background-color: #1e90ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-product-detail .product-order__action button.is-favorite svg {
+  fill: #fff;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 .section-product-detail .product-order__policy-title {
   font-weight: 700;
@@ -2164,6 +2190,9 @@ input {
   display: block;
 }
 .main-cards__cards__product-card-container .card-favorite-btn:hover svg {
+  color: #1e90ff;
+}
+.main-cards__cards__product-card-container .card-favorite-btn.is-hearted svg {
   color: #1e90ff;
 }
 .main-cards__cards__product-card-container .card-favorite-btn svg {

@@ -6,6 +6,8 @@ import {
   initializePageHeader,
   getProductsOnPage,
   getProductsFromDB,
+  removeProductFromLocalStorage,
+  renderBadgesNumber,
 } from "../model.js";
 import {
   BRANDS,
@@ -21,6 +23,7 @@ const cardHeartButtonControl = async (productId) => {
   try {
     const product = await getProductsFromDB(productId);
     addProductToLocalStorage(product, "favorite-products");
+    renderBadgesNumber();
   } catch (error) {
     console.log(error);
   }
@@ -78,7 +81,10 @@ async function productsListControl(_, page = 1, itemsPerPage = ITEMS_PER_PAGE) {
   PreviewProductsView.renderItems(productsOnPage, "side-page");
 
   // Set heart button and handle add favorite product click
-  PreviewProductsView.setHeartButtonsElement(cardHeartButtonControl);
+  PreviewProductsView.setHeartButtonsElement(
+    cardHeartButtonControl,
+    removeProductFromLocalStorage
+  );
 }
 
 const init = () => {

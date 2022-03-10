@@ -100,6 +100,7 @@
 
       .tool-icon {
         cursor: pointer;
+        position: relative;
 
         &--search,
         &--menu {
@@ -126,6 +127,19 @@
         }
 
         @include socialIcons;
+
+        .tool-icon-badge {
+          @include position-top-right(-5px, -5px);
+          background-color: $color-red;
+          color: $color-white;
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 50%;
+          font-size: 1.2rem;
+          text-align: center;
+          line-height: 1.6rem;
+          display: none;
+        }
       }
     }
   }

@@ -1,6 +1,10 @@
 import { View } from "./view.js";
-import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
-import { Carousel } from "../helpers.js";
+import {
+  convertNumberToPriceString,
+  calcSalesPrice,
+  Carousel,
+} from "../helpers.js";
+import { renderBadgesNumber } from "../model.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
@@ -22,16 +26,19 @@ export class PreviewProductsView extends View {
     });
   }
 
-  setHeartButtonsElement(handler) {
+  setHeartButtonsElement(addHandler, removeHandler) {
     this.setMultiComponentElementsClass(
       "_heartButtonsElement",
       ".card-favorite-btn"
     );
-    this._addHeartButtonClickHandler(handler);
+    this._addHeartButtonClickHandler(addHandler, removeHandler);
   }
 
-  _setHeartButtonStyle(heartButton, iconSvg) {
-    heartButton.classList.add("active");
+  _setHeartButtonStyle(heartButton, iconSvg, isHearted) {
+    if (!isHearted) {
+      heartButton.classList.add("active");
+    }
+
     iconSvg.style.animation = "growAndShrink 0.4s";
 
     setTimeout(() => {
@@ -40,17 +47,28 @@ export class PreviewProductsView extends View {
     }, 600);
   }
 
-  _addHeartButtonClickHandler(handler) {
+  _addHeartButtonClickHandler(addHandler, removeHandler) {
     const _this = this;
 
     this._heartButtonsElement.forEach((element) => {
       element.addEventListener("click", (event) => {
         const btn = event.target.closest(".card-favorite-btn");
         const iconSvg = btn.querySelector("svg");
+        const isHearted = btn.classList.contains("is-hearted");
+        const productId = btn.dataset.productId;
+
         if (!btn) return;
 
-        _this._setHeartButtonStyle(btn, iconSvg);
-        handler(btn.dataset.productId);
+        if (Boolean(isHearted)) {
+          btn.classList.remove("is-hearted");
+          removeHandler(productId, "favorite-products");
+        } else {
+          btn.classList.add("is-hearted");
+          addHandler(productId);
+        }
+
+        _this._setHeartButtonStyle(btn, iconSvg, isHearted);
+        renderBadgesNumber();
       });
     });
   }
@@ -159,9 +177,12 @@ export class PreviewProductsView extends View {
                   </div>
               </a>
       
-              <div class="card-favorite-btn center-content" data-product-id=${
-                data.id
-              }>
+              <div 
+                class="card-favorite-btn center-content ${
+                  _this._checkFavoriteProduct(data.id) ? "is-hearted" : ""
+                }" 
+                data-product-id=${data.id}
+              >
                   <svg>
                       <use xlink:href="${
                         homepage === "home" ? "" : "../"
