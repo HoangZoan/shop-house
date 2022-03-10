@@ -1,5 +1,5 @@
 import HeaderTopBarView from "./views/headerTopBarView.js";
-import { deepCompareArrays, Carousel } from "./helpers.js";
+import { deepCompareArrays, Carousel, convertViToEn } from "./helpers.js";
 import {
   CATEGORIES,
   ITEMS_PER_PAGE,
@@ -21,6 +21,26 @@ const addClickEventHandler = (callerClass, activeClass) => {
     if (callerClass === "tool-icon--search") {
       mainEl.classList.toggle("expand-top-padding");
     }
+  });
+};
+
+const addSearchBarClickHandler = () => {
+  const searchInput = document.querySelector(
+    ".header-bar__search-control input"
+  );
+  const searchBtn = document.querySelector(
+    ".header-bar__search-control button"
+  );
+
+  searchBtn.addEventListener("click", () => {
+    if (searchInput.value === "") return;
+
+    window.location.replace(
+      `/pages/product-list.html?keywords=${convertViToEn(
+        searchInput.value
+      )}?arrange=most-purchased`
+    );
+    searchInput.value = "";
   });
 };
 
@@ -60,6 +80,7 @@ export const renderBadgesNumber = () => {
 };
 
 export const initializePageHeader = (currentPage) => {
+  addSearchBarClickHandler();
   addClickEventHandler("tool-icon--menu", "header-category");
   addClickEventHandler("tool-icon--search", "header-bar__search-control");
   HeaderTopBarView.renderItems(CATEGORIES, currentPage);
