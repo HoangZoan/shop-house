@@ -7,6 +7,7 @@ import {
   removeProductFromLocalStorage,
   clearLocalStorage,
   getProductsFromDB,
+  renderBadgesNumber,
 } from "../model.js";
 
 async function saveButtonControl(productId, productSpecs) {
@@ -18,6 +19,7 @@ async function saveButtonControl(productId, productSpecs) {
     // Remove the product from orders table
     removeProductFromLocalStorage(productSpecs, "in-cart-products");
     orderCardsControl();
+    renderBadgesNumber();
   } catch (error) {
     console.log(error);
   }
@@ -27,6 +29,7 @@ function confirmDeleteButtonControl(productSpecs) {
   // Remove the product from orders table
   removeProductFromLocalStorage(productSpecs, "in-cart-products");
   orderCardsControl();
+  renderBadgesNumber();
 }
 
 function orderCardsControl() {

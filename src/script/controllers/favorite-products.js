@@ -6,6 +6,7 @@ import {
   addProductToLocalStorage,
   getProductsFromDB,
   removeProductFromLocalStorage,
+  renderBadgesNumber,
 } from "../model.js";
 
 const breadCrumbsControl = () => {
@@ -16,6 +17,7 @@ const cardHeartButtonControl = async (productId) => {
   try {
     const product = await getProductsFromDB(productId);
     addProductToLocalStorage(product, "favorite-products");
+    renderBadgesNumber();
     window.location.reload();
   } catch (error) {
     console.log(error);

@@ -3,6 +3,7 @@ import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
 import {
   persistDataOnLocalStorage,
   getDataFromLocalStorage,
+  renderBadgesNumber,
 } from "../model.js";
 
 class FavoriteProductsView extends View {
@@ -23,6 +24,7 @@ class FavoriteProductsView extends View {
           persistDataOnLocalStorage("favorite-products", productsAfterDelete);
         }
         handler();
+        renderBadgesNumber();
       });
     });
   }

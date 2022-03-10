@@ -7,6 +7,7 @@ import {
   getProductsOnPage,
   getProductsFromDB,
   removeProductFromLocalStorage,
+  renderBadgesNumber,
 } from "../model.js";
 import {
   BRANDS,
@@ -22,6 +23,7 @@ const cardHeartButtonControl = async (productId) => {
   try {
     const product = await getProductsFromDB(productId);
     addProductToLocalStorage(product, "favorite-products");
+    renderBadgesNumber();
   } catch (error) {
     console.log(error);
   }

@@ -1,6 +1,10 @@
 import { View } from "./view.js";
-import { convertNumberToPriceString, calcSalesPrice } from "../helpers.js";
-import { Carousel } from "../helpers.js";
+import {
+  convertNumberToPriceString,
+  calcSalesPrice,
+  Carousel,
+} from "../helpers.js";
+import { renderBadgesNumber } from "../model.js";
 
 export class PreviewProductsView extends View {
   _parentElement;
@@ -54,7 +58,6 @@ export class PreviewProductsView extends View {
         const productId = btn.dataset.productId;
 
         if (!btn) return;
-        console.log(btn);
 
         if (Boolean(isHearted)) {
           btn.classList.remove("is-hearted");
@@ -65,6 +68,7 @@ export class PreviewProductsView extends View {
         }
 
         _this._setHeartButtonStyle(btn, iconSvg, isHearted);
+        renderBadgesNumber();
       });
     });
   }

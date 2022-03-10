@@ -33,10 +33,37 @@ export const handleBillboardSlider = () => {
   });
 };
 
+export const renderBadgesNumber = () => {
+  const favoriteBadges = document.querySelector(
+    ".tool-icon--heart .tool-icon-badge"
+  );
+  const inCartBadges = document.querySelector(
+    ".tool-icon--cart .tool-icon-badge"
+  );
+
+  const favoriteProducts = getDataFromLocalStorage("favorite-products");
+  const inCartProducts = getDataFromLocalStorage("in-cart-products");
+
+  if (favoriteProducts) {
+    favoriteBadges.style.display = "block";
+    favoriteBadges.textContent = favoriteProducts.length;
+  } else {
+    favoriteBadges.style.display = "none";
+  }
+
+  if (inCartProducts) {
+    inCartBadges.style.display = "block";
+    inCartBadges.textContent = inCartProducts.length;
+  } else {
+    inCartBadges.style.display = "none";
+  }
+};
+
 export const initializePageHeader = (currentPage) => {
   addClickEventHandler("tool-icon--menu", "header-category");
   addClickEventHandler("tool-icon--search", "header-bar__search-control");
   HeaderTopBarView.renderItems(CATEGORIES, currentPage);
+  renderBadgesNumber();
 };
 
 // MODEL FUNCTIONALITY
@@ -46,11 +73,11 @@ export const persistDataOnLocalStorage = (storageName, data) => {
   window.localStorage.setItem(storageName, dataUpload);
 };
 
-export const getDataFromLocalStorage = (storageName) => {
+export function getDataFromLocalStorage(storageName) {
   const dataReceive = window.localStorage.getItem(storageName);
 
   return JSON.parse(dataReceive);
-};
+}
 
 export const addProductToLocalStorage = (productData, storageName) => {
   const existingData = getDataFromLocalStorage(storageName);

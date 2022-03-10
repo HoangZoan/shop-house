@@ -1,6 +1,7 @@
 import { View } from "../view.js";
 import { calcSalesPrice, convertNumberToPriceString } from "../../helpers.js";
 import { PRODUCT_DETAIL_SEARCH_QUERIES } from "../../config.js";
+import { renderBadgesNumber } from "../../model.js";
 
 class ProductDetailOrderView extends View {
   _parentElement;
@@ -55,6 +56,7 @@ class ProductDetailOrderView extends View {
       handler(_this._getInCartProductData(), "in-cart-products");
 
       _this._buttonChangeTextHandler(_this._addToCartBtn, "Thêm vào giỏ");
+      renderBadgesNumber();
     });
   }
 
@@ -71,6 +73,7 @@ class ProductDetailOrderView extends View {
       }
 
       renderHandler();
+      renderBadgesNumber();
     });
   }
 
