@@ -38,6 +38,18 @@ const bestSaleProductsControl = async () => {
 
     // Add carousels handler
     PreviewProductsView.addCarouselsHandler("best-seller-preview");
+
+    // Set heart button and handle add favorite product click (including best-seller)
+    if (PreviewProductsView.checkProductsTypeHasRendered("new-coming")) {
+      PreviewProductsView.setHeartButtonsElement(
+        cardHeartButtonControl,
+        removeProductFromLocalStorage
+      );
+    } else {
+      PreviewProductsView.setProductTypeHasRendered("best-seller");
+    }
+
+    // PreviewProductsView.setProductTypeHasRendered()
   } catch (error) {
     console.log(error);
   }
@@ -54,10 +66,14 @@ const newComingProductsControl = async () => {
     PreviewProductsView.addCarouselsHandler("new-coming-preview");
 
     // Set heart button and handle add favorite product click (including best-seller)
-    PreviewProductsView.setHeartButtonsElement(
-      cardHeartButtonControl,
-      removeProductFromLocalStorage
-    );
+    if (PreviewProductsView.checkProductsTypeHasRendered("best-seller")) {
+      PreviewProductsView.setHeartButtonsElement(
+        cardHeartButtonControl,
+        removeProductFromLocalStorage
+      );
+    } else {
+      PreviewProductsView.setProductTypeHasRendered("new-coming");
+    }
   } catch (error) {
     console.log(error);
   }

@@ -85,20 +85,66 @@
             <a href="./pages/user-dashboard/user-info.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
-                  <use xlink:href="resources/icons/sprite.svg#user"></use>
+                  <use xlink:href="./resources/icons/sprite.svg#user"></use>
                 </svg>
               </div>
               <div class="tool-box-menu__item__title">Thông tin khách hàng</div>
             </a>
           </li>
           <li class="tool-box-menu__item">
-            <a href="./pages/favorite-products.html">
+            <a href="favorite-products.html">
               <div class="tool-box-menu__item__icon">
                 <svg>
-                  <use xlink:href="resources/icons/sprite.svg#heart"></use>
+                  <use xlink:href="./resources/icons/sprite.svg#heart"></use>
                 </svg>
               </div>
               <div>Sản phẩm yêu thích</div>
+            </a>
+          </li>
+          <li class="tool-box-menu__item">
+            <a href="./pages/user-dashboard/payment-info.html">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use
+                    xlink:href="./resources/icons/sprite.svg#credit-card"
+                  ></use>
+                </svg>
+              </div>
+              <div class="tool-box-menu__item__title">Thông tin thanh toán</div>
+            </a>
+          </li>
+          <li class="tool-box-menu__item">
+            <a href="./pages/user-dashboard/orders-manage.html">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use
+                    xlink:href="./resources/icons/sprite.svg#clipboard"
+                  ></use>
+                </svg>
+              </div>
+              <div class="tool-box-menu__item__title">Quản lý đơn hàng</div>
+            </a>
+          </li>
+          <li class="tool-box-menu__item">
+            <a href="#">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use
+                    xlink:href="./resources/icons/sprite.svg#question-circle"
+                  ></use>
+                </svg>
+              </div>
+              <div class="tool-box-menu__item__title">Hỏi đáp</div>
+            </a>
+          </li>
+          <li class="tool-box-menu__item log-out-item">
+            <a href="./pages/login-form.html">
+              <div class="tool-box-menu__item__icon">
+                <svg>
+                  <use xlink:href="./resources/icons/sprite.svg#log-out"></use>
+                </svg>
+              </div>
+              <div class="tool-box-menu__item__title">Đăng xuất</div>
             </a>
           </li>
         </ul>
@@ -693,5 +739,16 @@
         </div>
       </div>
     </footer>
+
+    <div class="modal modal-auth">
+      <div class="modal__box">
+        <div class="modal__box__title">Đăng nhập để sử dụng tính năng</div>
+
+        <div class="modal__box__action">
+          <a href="./pages/login-form.html" class="btn--primary">Đăng nhập</a>
+          <button class="btn--sub cancel-modal-btn">Bỏ qua</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

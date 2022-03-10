@@ -61,6 +61,12 @@ export const renderBadgesNumber = () => {
     ".tool-icon--cart .tool-icon-badge"
   );
 
+  if (!checkUserAuthentication()) {
+    favoriteBadges.style.display = "none";
+    inCartBadges.style.display = "none";
+    return;
+  }
+
   const favoriteProducts = getDataFromLocalStorage("favorite-products");
   const inCartProducts = getDataFromLocalStorage("in-cart-products");
 
@@ -79,10 +85,77 @@ export const renderBadgesNumber = () => {
   }
 };
 
+export const toggleShowAuthenticationModal = () => {
+  const modalEl = document.querySelector(".modal.modal-auth");
+
+  modalEl.classList.toggle("active");
+};
+
+const addCancelAuthModalClickHandler = () => {
+  const cancelBtnEl = document.querySelector(".btn--sub.cancel-modal-btn");
+  if (!cancelBtnEl) return;
+
+  cancelBtnEl.addEventListener("click", toggleShowAuthenticationModal);
+};
+
+const addHeaderToolIconAuthHanlder = () => {
+  const userIconEl = document.querySelector(".tool-icon.tool-icon--user");
+  const heartIconEl = document.querySelector(".tool-icon.tool-icon--heart");
+  const responsiveHeaderNanLinks = [
+    ...document.querySelectorAll(".tool-box-menu__item a"),
+  ];
+
+  [userIconEl, heartIconEl, ...responsiveHeaderNanLinks].forEach((el) =>
+    el.addEventListener("click", (event) => {
+      if (!checkUserAuthentication()) {
+        event.preventDefault();
+        toggleShowAuthenticationModal();
+      }
+    })
+  );
+};
+
+const handleRemoveLogoutButton = () => {
+  const logoutBtnEl = document.querySelector(
+    ".tool-box-menu__item.log-out-item"
+  );
+
+  if (checkUserAuthentication()) {
+    logoutBtnEl.style.display = "block";
+  } else {
+    logoutBtnEl.style.display = "none";
+  }
+};
+
+const addLogoutHandler = () => {
+  const logoutBtn = document.querySelector(".user-nav__link.log-out-item");
+  const logoutBtnResponsive = document.querySelector(
+    ".tool-box-menu__item.log-out-item"
+  );
+
+  if (!logoutBtn && !logoutBtnResponsive) return;
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      window.localStorage.removeItem("user");
+    });
+  }
+
+  if (logoutBtnResponsive) {
+    logoutBtnResponsive.addEventListener("click", () => {
+      window.localStorage.removeItem("user");
+    });
+  }
+};
+
 export const initializePageHeader = (currentPage) => {
   addSearchBarClickHandler();
   addClickEventHandler("tool-icon--menu", "header-category");
   addClickEventHandler("tool-icon--search", "header-bar__search-control");
+  addCancelAuthModalClickHandler();
+  addHeaderToolIconAuthHanlder();
+  addLogoutHandler();
+  handleRemoveLogoutButton();
   HeaderTopBarView.renderItems(CATEGORIES, currentPage);
   renderBadgesNumber();
 };
@@ -255,3 +328,7 @@ export const addRecentlyViewedProducts = (product) => {
     );
   }
 };
+
+export function checkUserAuthentication() {
+  return JSON.parse(window.localStorage.getItem("user"));
+}

@@ -259,6 +259,16 @@
           padding-left: 0;
         }
 
+        &.log-out-item {
+          .tool-box-menu__item__title {
+            color: $color-red;
+          }
+
+          svg {
+            fill: $color-red;
+          }
+        }
+
         &:hover {
           @include category-list-hover;
           @include category-list-transition;
