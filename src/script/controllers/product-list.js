@@ -17,7 +17,6 @@ import {
   PRICE_RANGE,
   ITEMS_PER_PAGE,
 } from "../config.js";
-// import { productsData } from "../DUMMY_DATA/products-data.js";
 
 const cardHeartButtonControl = async (productId) => {
   try {

@@ -3,6 +3,7 @@ import {
   convertNumberToPriceString,
   validateInput,
   calcSalesPrice,
+  convertViToEn,
 } from "../helpers.js";
 
 export class View {
@@ -301,6 +302,15 @@ export class View {
       });
     }
 
+    if (queries.keywords) {
+      output = output.filter((product) => {
+        const productName = convertViToEn(product.title.toLowerCase());
+        const searchKeywords = queries.keywords.replace("%20", " ");
+
+        return productName.indexOf(searchKeywords) !== -1;
+      });
+    }
+
     return output;
   }
 
@@ -547,17 +557,34 @@ export class View {
   }
 
   _generateNotFoundMarkup() {
+    const getKeywords = () => {
+      const locationQueries = window.location.search;
+      const queryNameIndex = locationQueries.indexOf("keywords");
+
+      if (queryNameIndex === -1) return false;
+
+      const headCuttedQueryString = locationQueries.slice(queryNameIndex + 9);
+      const questionMarkIndex = headCuttedQueryString.indexOf("?");
+
+      return headCuttedQueryString.slice(0, questionMarkIndex);
+    };
+
     const nestedPage = this._parentElement.classList.contains(
       "order-manage-cards-container"
     );
+    const searchKeywords = getKeywords();
+
+    let message = this._productDetailSection
+      ? this._productIdNotFoundMessage
+      : this._notFoundMessage;
+
+    if (searchKeywords) {
+      message = `Không tìm thấy kết quả của "${searchKeywords}"`;
+    }
 
     return `
         <div class="not-found-message center-content">
-          <p class="not-found-message__text">${
-            this._productDetailSection
-              ? this._productIdNotFoundMessage
-              : this._notFoundMessage
-          }</p>
+          <p class="not-found-message__text">${message}</p>
           <a href="${
             nestedPage ? "../" : ""
           }../index.html" class="not-found-message__link">
