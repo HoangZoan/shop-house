@@ -41,8 +41,12 @@
       padding-top: 1.8rem;
       padding-bottom: 1.8rem;
 
+      &.log-out-item {
+        color: $color-red;
+      }
+
       &:hover span {
-        color: $color-primary;
+        font-weight: 700;
       }
 
       svg {
@@ -50,6 +54,7 @@
         height: var(--icon-size);
         width: var(--icon-size);
         color: $color-primary;
+        fill: $color-red;
         margin-right: 2.4rem;
       }
 
