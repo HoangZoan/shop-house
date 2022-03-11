@@ -139,6 +139,9 @@ const followingPurchaseProductsControl = async () => {
         cardHeartButtonControl,
         removeProductFromLocalStorage
       );
+
+      // Clear seleted heart buttons when user log out
+      PreviewProductsView.clearHeartedButtonsWhenLogout();
     } else {
       PreviewProductsView.setProductTypeHasRendered("following-purchase");
     }
@@ -169,6 +172,9 @@ const similarProductsControl = async () => {
         cardHeartButtonControl,
         removeProductFromLocalStorage
       );
+
+      // Clear seleted heart buttons when user log out
+      PreviewProductsView.clearHeartedButtonsWhenLogout();
     } else {
       PreviewProductsView.setProductTypeHasRendered("similar-products");
     }

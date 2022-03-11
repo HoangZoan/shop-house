@@ -19,6 +19,17 @@ export class PreviewProductsView extends View {
   _similarProductsHasRendered = false;
   _notFoundMessage = "Chưa có sản phẩm";
 
+  clearHeartedButtonsWhenLogout() {
+    if (!this._checkAuthenticationUser()) {
+      console.log(this._checkAuthenticationUser());
+      const allHeartedButtonsEl = document.querySelectorAll(
+        ".card-favorite-btn.is-hearted"
+      );
+
+      allHeartedButtonsEl.forEach((el) => el.classList.remove("is-hearted"));
+    }
+  }
+
   addCarouselsHandler(sliderClassName) {
     const carousel = new Carousel(sliderClassName, {
       btnPrev: "slider-btn--prev",
